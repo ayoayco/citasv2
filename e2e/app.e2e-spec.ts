@@ -1,10 +1,10 @@
-import { MeanAppPage } from './app.po';
+import { CitasV2Page } from './app.po';
 
-describe('mean-app App', () => {
-  let page: MeanAppPage;
+describe('citasv2 App', () => {
+  let page: CitasV2Page;
 
   beforeEach(() => {
-    page = new MeanAppPage();
+    page = new CitasV2Page();
   });
 
   it('should display message saying app works', () => {
