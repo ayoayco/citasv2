@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 
 
 // page CREATE
-router.post('/pages/add', function(request, response) {
+router.post('/pages/add', sessionCheck, function(request, response) {
     var page = new Page({
         title: request.body.title,
         url: request.body.url,
@@ -43,7 +43,7 @@ router.get('/pages', function(request, response) {
 });
 
 // page UPDATE
-router.post('/pages/update', function(request, response) {
+router.post('/pages/update', sessionCheck, function(request, response) {
     var id = request.body._id;
 
     Page.update({
@@ -61,7 +61,7 @@ router.post('/pages/update', function(request, response) {
 });
 
 // page DELETE
-router.get('/pages/delete/:id', function(request, response) {
+router.get('/pages/delete/:id', sessionCheck, function(request, response) {
     var id = request.params.id;
     Page.remove({
         _id: id
