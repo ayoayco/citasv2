@@ -28,7 +28,9 @@
     "core-js": "^2.4.1",
     "express": "^4.15.2",
     "express-session": "^1.15.2",
+    "jquery": "^3.2.1",
     "mongoose": "^4.9.6",
+    "ngx-bootstrap": "^1.6.6",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },
