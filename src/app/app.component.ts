@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Hello Worldz!';
+  title = 'Cloud-Based Intelligent Total Analysis System';
+  description = 'Using Geospatial Wireless Sensors & Mobile Microscopy';
 }
