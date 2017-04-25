@@ -163,3 +163,10 @@ router.get('/logout', function(request, response) {
 
 
 module.exports = router;
+
+
+function sessionCheck(request, response, next) {
+
+    if (request.session.user) next();
+    else response.send(401, 'authorization failed');
+}

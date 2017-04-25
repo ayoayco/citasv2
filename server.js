@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const sessionChecker = require('./server/sessionChecker');
 
 
 // Get our API routes
@@ -29,6 +28,8 @@ app.use(cookieParser('secret'));
 
 // Set our api routes
 app.use('/api', api);
+
+app.use('/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
