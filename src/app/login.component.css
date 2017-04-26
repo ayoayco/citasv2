@@ -10,6 +10,10 @@ button.login-btn {
     width: 100px;
 }
 
+div.login-div p {
+    margin: 0;
+}
+
 div.login-div {
     width: 305px;
     margin: 0 auto;
