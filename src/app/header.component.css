@@ -2,13 +2,13 @@
     background: black url('../assets/bg_header-min.jpg') no-repeat;
     background-size: cover;
     min-height: 520px;
-    text-align: center;
-    font-family: "Open sans", Helvetica, Arial;
-    font-weight: 300;
 }
 
 #head {
+    font-family: "Open sans", Helvetica, Arial;
     color: white;
+    text-align: center;
+    font-weight: 300;
 }
 
 #head .lead {
