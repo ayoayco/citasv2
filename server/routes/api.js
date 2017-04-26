@@ -132,7 +132,7 @@ router.post('/login', function(request, response) {
     var username = request.body.username;
     var password = request.body.password;
 
-    adminUser.findOne({
+    User.findOne({
         username: username
     }, function(err, data) {
         if (err | data === null) {
