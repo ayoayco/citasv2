@@ -1,0 +1,21 @@
+nav {
+    padding: 20px;
+    padding-top: 25px;
+    background: transparent;
+    border: none;
+}
+
+ul.dropdown-menu {
+    background-color: #222;
+    border-color: #080808;
+}
+
+ul.dropdown-menu a {
+    background-color: #222;
+    color: #9d9d9d;
+}
+
+ul.dropdown-menu a:hover {
+    background-color: #222;
+    color: #ffffff;
+}
