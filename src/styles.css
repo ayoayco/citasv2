@@ -66,12 +66,3 @@ label {
 a {
     color: #eea022;
 }
-
-a.navbar-brand {
-    background-image: url('assets/logo@2x.png');
-    background-size: 181px 53px;
-    margin-top: 0!important;
-    display: block;
-    width: 181px;
-    height: 53px;
-}
