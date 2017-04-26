@@ -66,3 +66,7 @@ label {
 a {
     color: #eea022;
 }
+
+.div-center {
+    margin: 0 auto;
+}

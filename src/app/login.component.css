@@ -2,6 +2,19 @@
     width: 350px;
 }
 
+button.login-btn.btn-primary {
+    width: 200px;
+}
+
 button.login-btn {
-    width: 150px;
+    width: 100px;
+}
+
+div.login-div {
+    width: 305px;
+    margin: 0 auto;
+}
+
+input.form-control {
+    margin-top: 15px;
 }
