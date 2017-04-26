@@ -1,8 +1,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-//to do: add other user properties
 var User = new Schema({
+    firstname: String,
+    middlename: String,
+    lastname: String,
+    email: String,
+    birthdate: String,
     username: String,
     password: String
 });
