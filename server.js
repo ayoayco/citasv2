@@ -29,8 +29,6 @@ app.use(cookieParser('secret'));
 // Set our api routes
 app.use('/api', api);
 
-app.use('/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/'));
-
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
