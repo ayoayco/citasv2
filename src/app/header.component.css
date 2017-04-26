@@ -1,5 +1,5 @@
 #header-wrap {
-    background: black url('../assets/bg_header.jpg') no-repeat;
+    background: black url('../assets/bg_header-min.jpg') no-repeat;
     background-size: cover;
     min-height: 520px;
     text-align: center;
@@ -37,7 +37,7 @@
 }
 
 i.app-logo {
-    background: url('../assets/citas.png') no-repeat center center !important;
+    background: url('../assets/citas-min.png') no-repeat center center !important;
     height: 190px;
     display: block;
     width: 190px;
