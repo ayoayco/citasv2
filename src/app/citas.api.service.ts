@@ -21,8 +21,6 @@ export class CitasApiService {
         let options = new RequestOptions({ headers: headers });
 
         let body = "username="+username+"&password="+password;
-
-        //console.log("URL: "+url+"\n"+body);
         
         return this.http.post(url, body, options)
         .toPromise()
@@ -45,8 +43,8 @@ export class CitasApiService {
             errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
         } else {
             errMsg = error.message ? error.message : error.toString();
-            }
-            console.error("Error logging in: " + errMsg);
         }
+        console.error("Error logging in: " + errMsg);
+    }
 
 }

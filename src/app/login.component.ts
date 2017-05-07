@@ -23,9 +23,7 @@ export class AppLoginComponent {
   constructor(
     private apiService: CitasApiService,
     private sessionService: AppSessionService
-  ) {
-    this.apiService = apiService;
-  }
+  ) {  }
 
 
   login(): void{
@@ -41,9 +39,10 @@ export class AppLoginComponent {
         res => {
           data = res;
           if(data){
-            // login success
-            //console.log("key: "+sha256(data.key));
-            
+            // login success, start session
+            if(this.sessionService.startSession(data.user, sha256(data.key))){
+              this.sessionService.setLoggedIn(true, data.user);
+            }
           }else{
             // login fail
             console.log("no data received");

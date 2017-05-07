@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
     res.send('api workzzz');
 });
 
-
 // page CREATE
 router.post('/pages/add', sessionCheck, function(request, response) {
     var page = new Page({
@@ -130,8 +129,18 @@ router.get('/users', function(request, response) {
 // user login
 router.post('/login', function(request, response) {
     var username = request.body.username;
-    var password = request.body.password;
+    var key = request.body.key;
 
+    //start session
+    request.session.regenerate(function() {
+        request.session.user = username;
+        request.session.secret = key;
+
+        var res = `{"username" : "` + username + `"}`;
+        return response.send(res);
+    });
+
+    /*
     User.findOne({
         username: username
     }, function(err, data) {
@@ -140,8 +149,7 @@ router.post('/login', function(request, response) {
         } else {
             var usr = data;
 
-            if (username == usr.username && bcrypt.compareSync(password, usr.password)) {
-
+            if (username == usr.username && bcrypt.compareSync(key, usr.key)) {
                 request.session.regenerate(function() {
                     request.session.user = username;
                     return response.send(username);
@@ -151,6 +159,7 @@ router.post('/login', function(request, response) {
             }
         }
     });
+    */
 });
 
 // user logout
