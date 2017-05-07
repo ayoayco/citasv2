@@ -13,7 +13,7 @@ const api = require('./server/routes/api');
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/citasv2');
+//mongoose.connect('mongodb://127.0.0.1:27017/citasv2');
 
 // Parsers for POST data
 app.use(bodyParser.json());

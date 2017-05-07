@@ -1,21 +1,55 @@
 import { Component } from '@angular/core';
-import { LoginService } from './login.service';
+import { CitasApiService } from './citas.api.service';
+import { AppSessionService } from './app.session.service';
+
+declare var sha256: any;
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [LoginService]
+  providers: [CitasApiService, AppSessionService]
 })
-
 
 export class AppLoginComponent {
 
-  constructor(private loginService: LoginService) {
-    this.loginService = loginService;
+  username: string = "";
+  password: string = "";
+  user = {
+    username : "",
+    key : ""
+  };
+
+  constructor(
+    private apiService: CitasApiService,
+    private sessionService: AppSessionService
+  ) {
+    this.apiService = apiService;
   }
 
+
   login(): void{
-    console.log(this.loginService.login());
+    var data: any;
+    if(!this.username) {
+      return;
+    }
+
+    //authenticate user
+    var hash = sha256(this.password);
+    this.apiService.authenticateUser(this.username, hash)
+    .then(
+        res => {
+          data = res;
+          if(data){ // login success
+            console.log("key: "+sha256(data.key));
+          }else{ // login fail
+            console.log("no data received");
+          }
+        }
+        // set user.username and user.key
+    );
+
+    //start session if valid user
+    
   }
 }
