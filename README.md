@@ -1,5 +1,23 @@
 # CitasV2
 
+A platform for remote data collection, data storage, and a data analysis framework that uses web, mobile, and cloud technologies for the detection and forecasting of plant diseases. 
+
+The web platform is accessible to researchers who wish to acquire data gathered by the farmers and analyzed by the system.
+
+## Soil Analysis
+
+Soil parameters gathered from the field are plotted on a graph to show the trends over a given time period.
+
+## Geospatial Analysis & Disease Mapping
+
+The web platform visualizes the spread of Foc TR4 in the respective farm sites and analyze where the disease might spread to next.
+
+## Plant Image Analysis
+
+Images loaded into the system are processed and analyzed to see if the plants are infected with Foc TR4 or not.
+
+# For Developers...
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.1.
 
 ## Development server
