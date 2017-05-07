@@ -13,8 +13,8 @@
                 <form id="loginForm" method="post" class="form-horizontal">
                     <div class="form-group">
                         <div class="login-div">
-                            <input type="text" class="form-control" name="username" placeholder="Username" />
-                            <input type="password" class="form-control" name="password" placeholder="Password" />
+                            <input type="text" id="usernamefield" class="form-control" [(ngModel)]="username" name="username" placeholder="Username" />
+                            <input type="password" id="passwordfield" class="form-control" [(ngModel)]="password" name="password" placeholder="Password" />
                         </div>
                     </div>
 
