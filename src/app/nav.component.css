@@ -1,9 +1,12 @@
 nav {
     padding: 10px;
     padding-top: 15px;
-    background: rgba(3, 3, 3, 0.5);
     border: none;
     border-radius: 0;
+}
+
+.nav-transparent {
+    background: rgba(3, 3, 3, 0.5);
 }
 
 ul.dropdown-menu {

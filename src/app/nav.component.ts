@@ -7,4 +7,13 @@ import { Component, Input } from '@angular/core';
 })
 
 export class AppNavComponent {
+  @Input() isTransparent: boolean;
+
+  constructor(){}
+
+  getStyle(){
+    if(this.isTransparent){
+      return "rgba(3, 3, 3, 0.5)";
+    }
+  }
 }

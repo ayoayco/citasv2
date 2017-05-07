@@ -12,10 +12,12 @@ import { AppHeaderComponent } from './header.component';
 import { AppHomeComponent } from './home.component';
 import { AppDashboardComponent } from './dashboard.component';
 import { AppPageNotFoundComponent } from './notfound.component';
+import { AppRegistrationComponent } from './registration.component';
 
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'dashboard', component: AppDashboardComponent },
+  { path: 'registration', component: AppRegistrationComponent },
   { path: '**', component: AppPageNotFoundComponent }
 ];
 
@@ -28,7 +30,8 @@ const appRoutes: Routes = [
     AppHeaderComponent,
     AppDashboardComponent,
     AppHomeComponent,
-    AppPageNotFoundComponent
+    AppPageNotFoundComponent,
+    AppRegistrationComponent
   ],
   imports: [
     BrowserModule,

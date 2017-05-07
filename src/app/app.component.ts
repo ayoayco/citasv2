@@ -7,6 +7,4 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'Cloud-Based Intelligent Total Analysis System';
-  description = 'Using Geospatial Wireless Sensors & Mobile Microscopy';
 }
