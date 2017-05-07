@@ -1,8 +1,7 @@
 <div id="header-wrap">
     <app-nav></app-nav>
 
-    <header id="head">
-        <p *ngIf="isLoggedIn">Eow, {{loggedInUser}}</p>
+    <header id="head" *ngIf="!isLoggedIn">
         <div class="container ">
             <div class="row ">
                 <i class="app-logo "></i>
