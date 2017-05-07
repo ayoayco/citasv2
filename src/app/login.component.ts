@@ -40,16 +40,17 @@ export class AppLoginComponent {
     .then(
         res => {
           data = res;
-          if(data){ // login success
-            console.log("key: "+sha256(data.key));
-          }else{ // login fail
+          if(data){
+            // login success
+            //console.log("key: "+sha256(data.key));
+            
+          }else{
+            // login fail
             console.log("no data received");
           }
         }
         // set user.username and user.key
     );
-
-    //start session if valid user
     
   }
 }
