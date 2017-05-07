@@ -1,7 +1,24 @@
-#body-wrap {
+.container {
     padding: 90px 0 30px;
     font-family: "Open sans", Helvetica, Arial;
     color: #333;
-    text-align: center;
     font-weight: 300;
+    margin: 0 auto;
+}
+
+body {
+    background-color: #eee;
+}
+
+*[role="form"] {
+    max-width: 530px;
+    padding: 15px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 0.3em;
+}
+
+*[role="form"] h2 {
+    margin-left: 5em;
+    margin-bottom: 1em;
 }

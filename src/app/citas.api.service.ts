@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
+import { User } from './user';
+
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 
@@ -12,6 +14,29 @@ export class CitasApiService {
 
     data: any;
     constructor(private http: Http){}
+
+    public addUser(user: User){
+        var url = this.APIURL + "/register";
+        var msg = "Add user: " + JSON.stringify(user);
+
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        let options = new RequestOptions({ headers: headers });
+
+        let body = "username="+user.username
+            +"&password="+user.hashedpw
+            +"&user_type="+user.user_type
+            +"&firstname="+user.firstname
+            +"&lastname="+user.lastname
+            +"&email="+user.email
+            +"&mobile_number="+user.mobile_nunmber;
+        
+        console.log(body);
+
+        return this.http.post(url, body, options)
+        .toPromise()
+        .then(this.extractData)
+        .catch(this.handleError);
+    }
 
     public authenticateUser(username: string, password: string): Promise<Response> {
 
