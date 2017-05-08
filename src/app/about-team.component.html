@@ -1,16 +1,276 @@
 <app-nav></app-nav>
-<app-nav-pages [menuItems]="menuItems"></app-nav-pages>
+<!--<app-nav-pages [menuItems]="menuItems"></app-nav-pages>-->
 <div id="main" class="container">
+    <ol class="breadcrumb">
+        <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+        <li class="active">Meet the Team</li>
+    </ol>
     <div class="row">
         <!-- Article main content -->
         <article class="col-sm-12 maincontent">
-            <h1 class="page-header text-center">About the Project</h1>
-            <p class="about-content" style="margin: 0 20% 0 20%;">The project aims to address the problem of late detection of diseases in plants by developing an intelligent and mobile cloud-based Total Analysis System (TAS) consisting of a mobile PlantScope (mobile phone based microscope) partnered with
-                a mobile loop-mediated isothermal amplification (LAMP) assay kit that will be directly accessible to farmers. </p>
-            <p class="about-content" style="padding-bottom: 40px; padding-top: 20px; margin: 0 20% 0 20%;">We want to provide a platform for remote data collection, data storage, and a data analysis framework that uses web, mobile, and cloud technologies in the context of detection and prediction of plant disease and its spread, respectively.The
-                project also provides low-cost environmental monitoring of crops that uses a multi-dimensional (plant, its environment, and geospatial features) and multi-platform approach (using web, mobile, and cloud), considering micro-total analysis
-                and a relatively low cost mobile lab.
-            </p>
+            <!-- STORAGE FOR IMAGES -->
+
+            <!-- MARKUP -->
+            <h1 class="page-header text-center">CITAS Team</h1>
+
+            <!-- Project Leads -->
+            <div class="container-fluid">
+                <h3 class="text-center">Project Leaders &amp; Principal Investigators</h3>
+                <div class="row">
+                    <div class="col-sm-4 center-block teambox">
+                        <div class="rndimg" style="background-image: url('./assets/DISCS/DISCS-Ma_Regina_Estuar.png');"></div>
+                        <h4>Ma. Regina Estuar, Ph. D.</h4>
+                        <h5>Project Leader &amp; Principal Investigator</h5>
+                        <h6>Department of Information Systems and Computer Science</h6>
+                    </div>
+                    <div class="col-sm-4 center-block teambox">
+                        <div class="rndimg" style="background-image: url('./assets/UCB/UCB-Dan_Fletcher.png');"></div>
+                        <h4>Dan Fletcher, Ph. D.</h4>
+                        <h5>Project Leader &amp; Principal Investigator</h5>
+                        <h6>University of California, Berkeley</h6>
+                    </div>
+                    <div class="col-sm-4 center-block teambox">
+                        <div class="rndimg" style="background-image: url('./assets/Bio/Bio-Neil_Tan_Gana.png');"></div>
+                        <h4>Neil Tan Gana, Ph. D.</h4>
+                        <h5>Co-Project Leader</h5>
+                        <h6>Department of Biology</h6>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+
+            <div class="container-fluid">
+                <h3 class="text-center">Department of Biology</h3>
+
+                <!-- Team Heads -->
+                <div class="row">
+                    <div class="col-sm-4 center-block teambox">
+                        <div class="rndimg" style="background-image: url('./assets/Bio/Bio-Crisanto_Lopez.png'); background-size: 100% 110%;"></div>
+                        <h4>Crisanto Lopez, Ph. D.</h4>
+                        <h5>Project Staff Level 3</h5>
+                    </div>
+                    <div class="col-sm-4 center-block teambox">
+                        <div class="rndimg" style="background-image: url('./assets/Bio/Bio-Merab_Chan.png'); "></div>
+                        <h4>Merab Chan, Ph. D.</h4>
+                        <h5>Project Staff Level 3</h5>
+                    </div>
+                    <div class="col-sm-4 center-block teambox">
+                        <div class="rndimg" style="background-image: url('./assets/Bio/Bio-Arni_Gambe-Gilbuena.png'); "></div>
+                        <h4>Arni Gambe-Gilbuena, Ph. D.</h4>
+                        <h5>Project Staff Level 3</h5>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <!-- Team Members -->
+                <div class="row">
+                    <div class="col-sm-4 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/Bio/Bio-Christina_Eufracia_Vargas.png');"></div>
+                        <h4>Ma. Christina Eufracia Vargas</h4>
+                        <h5>Science Research Specialist II</h5>
+                    </div>
+                    <div class="col-sm-4 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/Bio/Bio-Ada_Rae_Abigail_Eda.png');"></div>
+                        <h4>Adria Rae Abigail Eda</h4>
+                        <h5>University Researcher I</h5>
+                    </div>
+                    <div class="col-sm-4 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/Bio/Bio-Clister_Pangatihon.png');"></div>
+                        <h4>Clister Pangantihon</h4>
+                        <h5>Research Assistant</h5>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+
+            <div class="container-fluid">
+                <h3 class="text-center">Department of Environmental Science</h3>
+
+                <!-- Team Heads -->
+                <div class="row">
+                    <div class="col-sm-4 center-block teambox">
+                        <div class="rndimg" style="background-image: url('./assets/ES/ES-Emilyn_Espiritu.png'); background-size: 100% 100%;"></div>
+                        <h4>Emilyn Espiritu, Ph. D.</h4>
+                        <h5>Project Staff Level 3</h5>
+                    </div>
+                    <div class="col-sm-4 center-block teambox">
+                        <div class="rndimg" style="background-image: url('./assets/ES/ES-Ian_Navarrete.png'); "></div>
+                        <h4>Ian Navarrete, Ph. D.</h4>
+                        <h5>Project Staff Level 3</h5>
+                    </div>
+                    <div class="col-sm-4 center-block teambox">
+                        <div class="rndimg" style="background-image: url('./assets/ES/ES-Ma_Aileen_Leah_Guzman.png'); "></div>
+                        <h4>Ma. Aileen Leah Guzman, Ph. D.</h4>
+                        <h5>Project Staff Level 3</h5>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <!-- Team Members -->
+                <div class="row">
+                    <div class="col-sm-12 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/ES/ES-Carissa_Quintana.jpg');"></div>
+                        <h4>Carissa Quintana</h4>
+                        <h5>Science Research Specialist II</h5>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+
+            <div class="container-fluid">
+                <h3 class="text-center">Department of Information Systems and Computer Science</h3>
+
+                <!-- Team Heads -->
+                <div class="row">
+                    <div class="col-sm-6 center-block teambox">
+                        <div class="rndimg" style="background-image: url('./assets/DISCS/DISCS-Marlene_de_Leon.png'); "></div>
+                        <h4>Marlene de Leon, Ph. D.</h4>
+                        <h5>Project Staff Level 3</h5>
+                    </div>
+                    <div class="col-sm-6 center-block teambox">
+                        <div class="rndimg" style="background-image: url('./assets/DISCS/DISCS-Andrei_Coronel.png'); "></div>
+                        <h4>Andrei Coronel, Ph. D.</h4>
+                        <h5>Project Staff Level 3</h5>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <!-- Team Members -->
+                <div class="row">
+                    <div class="col-sm-3 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/DISCS/DISCS-Patricia_Abu.png');"></div>
+                        <h4>Patricia Abu, Ph. D.</h4>
+                        <h5>Science Research Specialist II (Image)</h5>
+                    </div>
+                    <div class="col-sm-3 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/DISCS/DISCS-Noel_Victorino.png');"></div>
+                        <h4>John Noel Victorino, M.S.</h4>
+                        <h5>Science Research Specialist II (Analytics)</h5>
+                    </div>
+                    <div class="col-sm-3 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/DISCS/DISCS-Romel_John_Santos.png');"></div>
+                        <h4>Romel John Santos</h4>
+                        <h5>Computer Programmer II (Web)</h5>
+                    </div>
+                    <div class="col-sm-3 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/DISCS/DISCS-Desiree_Alviento.png');"></div>
+                        <h4>Desiree Alviento</h4>
+                        <h5>Computer Programmer II (Ontology)</h5>
+                    </div>
+                    <div class="col-sm-3 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/DISCS/DISCS-Sharlene_Paelmo.jpg');"></div>
+                        <h4>Sharlene Mae Paelmo</h4>
+                        <h5>Science Research Specialist II (Analytics)</h5>
+                    </div>
+                    <div class="col-sm-3 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/DISCS/DISCS-Ivan_Lester_Saddi.jpg');"></div>
+                        <h4>Ivan Lester Saddi</h4>
+                        <h5>Science Research Specialist II</h5>
+                    </div>
+                    <div class="col-sm-3 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/DISCS/DISCS-Chiara_Veronica_Senires.jpg');"></div>
+                        <h4>Chiara Veronica Señires</h4>
+                        <h5>Research Assistant</h5>
+                    </div>
+                    <div class="col-sm-3 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/DISCS/DISCS-Hadrian_Lim.png');"></div>
+                        <h4>Hadrian Paulo Lim</h4>
+                        <h5>Research Assistant</h5>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+
+            <div class="container-fluid">
+                <h3 class="text-center">Department of Electronics, Communications, and Computer Engineering</h3>
+
+                <!-- Team Heads -->
+                <div class="row">
+                    <div class="col-sm-4 center-block teambox">
+                        <div class="rndimg" style="background-image: url('./assets/ECCE/ECCE-Maria_Leonora_Guico.png'); "></div>
+                        <h4>Engr. Maria Leonora Guico, M.Sc.</h4>
+                        <h5>Project Staff Level 3</h5>
+                    </div>
+                    <div class="col-sm-4 center-block teambox">
+                        <div class="rndimg" style="background-image: url('./assets/ECCE/ECCE-Jose_Claro_Monje.png'); "></div>
+                        <h4>Engr. Jose Claro Monje, M.Sc.</h4>
+                        <h5>Project Staff Level 3</h5>
+                    </div>
+                    <div class="col-sm-4 center-block teambox">
+                        <div class="rndimg" style="background-image: url('./assets/ECCE/ECCE-Carlos_Oppus.png'); "></div>
+                        <h4>Engr. Carlos Oppus, M.Sc.</h4>
+                        <h5>Project Staff Level 3</h5>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <!-- Team Members -->
+                <div class="row">
+                    <div class="col-sm-4 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/ECCE/ECCE-Francis_Tiausas.png');"></div>
+                        <h4>Francis Tiausas</h4>
+                        <h5>Science Research Specialist II</h5>
+                    </div>
+                    <div class="col-sm-4 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/ECCE/ECCE-Joseph_Jimenez.png');"></div>
+                        <h4>Joseph Mark Jimenez</h4>
+                        <h5>Science Research Specialist II</h5>
+                    </div>
+                    <div class="col-sm-4 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/ECCE/ECCE-Jerelyn_Co.png');"></div>
+                        <h4>Jerelyn Co</h4>
+                        <h5>Research Assistant</h5>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+
+            <div class="container-fluid">
+
+                <h3 class="text-center">UC Berkeley Fletcher Lab</h3>
+
+                <!-- Team Members -->
+                <div class="row">
+                    <div class="col-sm-4 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/UCB/UCB-Mike_DAmbrosio.jpg');"></div>
+                        <h4>Dr. Mike D'Ambrosio</h4>
+                        <h5>Research Scientist (automation, optics)</h5>
+                    </div>
+                    <div class="col-sm-4 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/UCB/UCB-Neil_Switz.jpg');"></div>
+                        <h4>Dr. Neil Switz</h4>
+                        <h5>Visiting Research Scientist (optics, tech transfer)</h5>
+                    </div>
+                    <div class="col-sm-4 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/UCB/UCB-Dan_Friedman.jpg');"></div>
+                        <h4>Dan Friedman</h4>
+                        <h5>Research Associate (mechanics, optics)</h5>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+
+            <div class="container-fluid">
+
+                <h3 class="text-center">Project Staff</h3>
+
+                <!-- Team Members -->
+                <div class="row">
+                    <div class="col-sm-12 center-block teambox team-member">
+                        <div class="rndimg" style="background-image: url('./assets/Staff-Steve_Chaves.png');"></div>
+                        <h4>Steve Chaves</h4>
+                        <h5>Project Assistant IV</h5>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
         </article>
         <!-- /Article -->
     </div>
