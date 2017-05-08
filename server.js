@@ -39,6 +39,13 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
+app.get('/', function(req, res) {
+    sess = req.session;
+    if (sess.username) {
+        res.redirect('/admin');
+    }
+});
+
 /**
  * Get port from environment and store in Express.
  */

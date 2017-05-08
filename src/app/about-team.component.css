@@ -1,0 +1,24 @@
+div.container {
+    padding: 90px 0 30px;
+}
+
+.teambox .rndimg {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    display: block;
+    margin: auto;
+}
+
+.teambox {
+    display: block;
+    min-height: 250px;
+    padding: 9px;
+    text-align: center;
+    margin-bottom: 20px;
+}

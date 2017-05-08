@@ -16,6 +16,7 @@ import { AppRegistrationComponent } from './registration.component';
 import { AppAboutCitasComponent } from './about-citas.component';
 import { AppNavPagesComponent } from './nav.pages.component';
 import { AppAboutTeamComponent } from './about-team.component';
+import { AppContactUsComponent } from './contact-us.component';
 
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
   { path: 'registration', component: AppRegistrationComponent },
   { path: 'about-citas', component: AppAboutCitasComponent },
   { path: 'about-team', component: AppAboutTeamComponent },
+  { path: 'contact-us', component: AppContactUsComponent },
   { path: '**', component: AppPageNotFoundComponent }
 ];
 
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
     AppRegistrationComponent,
     AppAboutCitasComponent,
     AppNavPagesComponent,
-    AppAboutTeamComponent
+    AppAboutTeamComponent,
+    AppContactUsComponent
   ],
   imports: [
     BrowserModule,
