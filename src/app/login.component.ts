@@ -45,7 +45,7 @@ export class AppLoginComponent {
             }
           }else{
             // login fail
-            console.log("no data received");
+            console.log("Invalid username / password");
           }
         }
         // set user.username and user.key
