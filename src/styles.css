@@ -70,3 +70,14 @@ a {
 .div-center {
     margin: 0 auto;
 }
+
+.features-image {
+    display: block;
+    margin: 0 auto 0 auto;
+    width: 128px;
+    height: 128px;
+}
+
+img {
+    max-width: 100%;
+}
