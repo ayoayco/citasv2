@@ -21,7 +21,7 @@ export class AppRegistrationComponent {
            firstname: "",
            lastname: "",
            email: "",
-           mobile_nunmber: ""
+           mobile_number: ""
         }
 
     constructor(

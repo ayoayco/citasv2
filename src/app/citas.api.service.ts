@@ -28,7 +28,7 @@ export class CitasApiService {
             +"&firstname="+user.firstname
             +"&lastname="+user.lastname
             +"&email="+user.email
-            +"&mobile_number="+user.mobile_nunmber;
+            +"&mobile_number="+user.mobile_number;
         
         console.log(body);
 

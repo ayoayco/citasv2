@@ -9,5 +9,5 @@ export class User {
   firstname: string;
   lastname: string;
   email: string;
-  mobile_nunmber: string;
+  mobile_number: string;
 }
