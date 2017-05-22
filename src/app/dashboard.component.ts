@@ -17,6 +17,7 @@ export class AppDashboardComponent implements OnInit {
     ngOnInit() {
         let loggedIn: boolean = this.sessionService.isLoggedIn();
         if(!loggedIn){
+            console.log("Please log in first.")
             this.router.navigate(['/']);
         }
     }
