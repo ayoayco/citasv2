@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { User } from './user';
 
+import { Router } from '@angular/router';
+
 declare var sha256: any;
 
 @Component({
@@ -25,7 +27,8 @@ export class AppRegistrationComponent {
         }
 
     constructor(
-        private apiService: CitasApiService
+        private apiService: CitasApiService,
+        private router: Router
     ){}
 
     addUser(): void{
@@ -37,7 +40,7 @@ export class AppRegistrationComponent {
             if(data){
                 //add success
                 //console.log(data.Success);
-                location.assign('/');
+                this.router.navigate(['/']);
             }
         });
     }
