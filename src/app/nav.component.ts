@@ -27,7 +27,6 @@ export class AppNavComponent {
 
   logout(){
     this.sessionService.endSession();
-    location.reload();
   }
 
   getStyle(){

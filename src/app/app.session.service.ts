@@ -26,6 +26,7 @@ export class AppSessionService{
 
     public endSession(){
         this.cookieService.removeAll();
+        location.assign('/');
     }
 
     public startSession(username: string, key: string): Promise<Response> {
@@ -45,7 +46,6 @@ export class AppSessionService{
     private extractData(res: Response) {
         let body = res.json();
         console.log('started session for user: '+ body.username);
-        //console.log('key: '+body.key);
         return body || { };
     }
 
