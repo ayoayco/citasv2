@@ -45,17 +45,8 @@ export class AppLoginComponent {
           if(data){
             // login success, start session
             if(this.sessionService.startSession(data.user, sha256(data.key))){
-              this.sessionService.setLoggedIn(true, data.user);
-
-              // set cookies!
-              this.cookieService.put("key", data.key);
-              this.cookieService.put("username", data.user);
-
               location.reload();
             }
-
-            strkey = this.cookieService.get("key");
-            console.log("key: "+ strkey);
           }else{
             // login fail
             console.log("Invalid username / password");

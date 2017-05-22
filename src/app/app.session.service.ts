@@ -28,7 +28,7 @@ export class AppSessionService{
 
     public endSession(){
         this.cookieService.removeAll();
-        this.router.navigate(['/']);
+        location.assign('/');
     }
 
     public startSession(username: string, key: string): Promise<Response> {
@@ -41,16 +41,19 @@ export class AppSessionService{
         
         return this.http.post(url, body, options)
         .toPromise()
-        .then(this.extractData)
+        .then(this.extractData.bind(this))
         .catch(this.handleError);
     }
 
     private extractData(res: Response) {
         let body = res.json();
         console.log('started session for user: '+ body.username);
+
+        // set cookies!
+        this.cookieService.put("key", body.key);
+        this.cookieService.put("username", body.username);
         return body || { };
     }
-
     
     private handleError (error: Response | any) {
         // In a real world app, you might use a remote logging infrastructure
@@ -67,12 +70,8 @@ export class AppSessionService{
 
 
     public isLoggedIn():boolean{
+        this.loggedIn = this.cookieService.get("username") ? true: false;
         return this.loggedIn;
-    }
-
-    public setLoggedIn(isLoggedIn: boolean, username: string): void{
-        this.loggedIn = isLoggedIn;
-        this.loggedInUser = username;
     }
 
 

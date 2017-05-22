@@ -19,10 +19,8 @@ export class AppNavComponent {
     private cookieService: CookieService,
     private sessionService: AppSessionService
   ){
-    var username = this.cookieService.get("username");
-    var key = this.cookieService.get("key");
     
-    this.isLoggedIn = username ? true : false;
+    this.isLoggedIn = this.sessionService.isLoggedIn();
   }
 
   logout(){
