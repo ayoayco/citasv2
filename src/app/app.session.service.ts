@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 
 import 'rxjs/add/operator/catch';
@@ -17,7 +18,8 @@ export class AppSessionService{
     data: any;
     constructor(
         private http: Http,
-        private cookieService: CookieService
+        private cookieService: CookieService,
+        private router: Router
     ){}
 
     public getLoggedInUser(): string{
@@ -26,7 +28,7 @@ export class AppSessionService{
 
     public endSession(){
         this.cookieService.removeAll();
-        location.assign('/');
+        this.router.navigate(['/']);
     }
 
     public startSession(username: string, key: string): Promise<Response> {
