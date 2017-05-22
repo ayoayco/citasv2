@@ -35,8 +35,9 @@ export class AppRegistrationComponent {
         .then(res => {
             data = res;
             if(data){
-                //login success
-                console.log(data.Success);
+                //add success
+                //console.log(data.Success);
+                location.assign('/');
             }
         });
     }

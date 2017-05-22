@@ -136,7 +136,10 @@ router.post('/login', function(request, response) {
         request.session.user = username;
         request.session.secret = key;
 
-        var res = `{"username" : "` + username + `"}`;
+        var res = `{
+            "username" : "` + username + `",
+            "key" : "` + key + `"
+        }`;
         return response.send(res);
     });
 
