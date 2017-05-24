@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AppSessionService } from './app.session.service';
-import {CookieService} from 'ngx-cookie';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +17,6 @@ export class AppComponent implements OnInit{
   isLoggedIn: boolean;
 
   constructor(
-    private cookieService: CookieService,
     private router: Router,
     private sessionService: AppSessionService
   ){}

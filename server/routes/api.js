@@ -169,7 +169,6 @@ router.post('/login', function(request, response) {
 router.get('/logout', function(request, response) {
     request.session.destroy(function() {
         return response.send(401, 'User logged out');
-
     });
 });
 
