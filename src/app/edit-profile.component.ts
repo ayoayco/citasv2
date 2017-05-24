@@ -47,12 +47,10 @@ export class AppEditProfileComponent {
                 console.log(data);
                 if(data){
                     this.user.fullname = data.fullname;
-                    this.user.mobile_number = data.mobile_number ? data.mobile_number : "";
+                    this.user.mobile_number = data.mobile_number;
+                    this.user.email = data.email;
                 }
             });
-
-
-
         }
     }
 
@@ -64,6 +62,7 @@ export class AppEditProfileComponent {
                 if(data){
                     this.user.fullname = data.fullname;
                     this.user.mobile_number = data.mobile_number;
+                    this.user.email = data.email;
                 }
             });
     }
