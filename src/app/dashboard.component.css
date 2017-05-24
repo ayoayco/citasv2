@@ -5,3 +5,7 @@ div.container {
     text-align: center;
     font-weight: 300;
 }
+
+h1 {
+    text-align: left;
+}

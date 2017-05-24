@@ -1,0 +1,38 @@
+nav {
+    padding: 10px;
+    padding-top: 15px;
+    border: none;
+    border-radius: 0;
+}
+
+.nav-transparent {
+    background: rgba(3, 3, 3, 0.5);
+}
+
+ul.dropdown-menu {
+    background-color: #222;
+    border-color: #080808;
+}
+
+ul.dropdown-menu a {
+    background-color: #222;
+    color: #9d9d9d;
+}
+
+ul.dropdown-menu a:hover {
+    background-color: #222;
+    color: #ffffff;
+}
+
+a.navbar-brand {
+    background-image: url('../assets/logo@2x-min.png');
+    background-size: 181px 53px;
+    margin-top: 0!important;
+    display: block;
+    width: 181px;
+    height: 53px;
+}
+
+a {
+    cursor: pointer
+}

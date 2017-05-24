@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { AppSessionService } from './app.session.service';
 
 @Component({
@@ -11,9 +11,25 @@ import { AppSessionService } from './app.session.service';
 })
 
 export class UserNavComponent {
+    @Input() farms: any[];
+    @Input() selectedFarm: string = "";
+    @Output() selectFarm = new EventEmitter<{}>();
+
+    isLoggedIn: boolean;
+    username: string;
+
     constructor(
         private sessionService: AppSessionService
     ){
-        
+        this.isLoggedIn = this.sessionService.isLoggedIn();
+        this.username = this.sessionService.getLoggedInUser();
+    }
+
+    public logout(){
+        this.sessionService.endSession();
+    }
+
+    public OnSelectFarm(name: string){
+        this.selectFarm.emit(name);
     }
 }
