@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { AppSessionService } from './app.session.service';
 
-import { CookieService } from 'ngx-cookie';
-
 declare var sha256: any;
 
 @Component({
@@ -24,8 +22,7 @@ export class AppLoginComponent {
 
   constructor(
     private apiService: CitasApiService,
-    private sessionService: AppSessionService,
-    private cookieService: CookieService
+    private sessionService: AppSessionService
   ) {  }
 
 

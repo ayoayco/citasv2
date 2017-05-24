@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Response, Headers, RequestOptions } from '@angular/http';
 
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
@@ -11,19 +11,20 @@ import 'rxjs/add/operator/toPromise';
 
 export class AppSessionService{
 
-    private APIURL = 'http://localhost:3000';
-    private loggedIn: boolean = false;
-    private loggedInUser: string = "";
-
     data: any;
     constructor(
-        private http: Http,
         private cookieService: CookieService,
         private router: Router
     ){}
 
     public getLoggedInUser(): string{
-        return this.loggedInUser;
+        let user: string;
+
+        if(this.isLoggedIn()){
+            return user;
+        }else{
+            return;
+        }
     }
 
     public endSession(){
@@ -31,47 +32,19 @@ export class AppSessionService{
         location.assign('/');
     }
 
-    public startSession(username: string, key: string): Promise<Response> {
-        var url = this.APIURL + "/api/login";
-
-        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-        let options = new RequestOptions({ headers: headers });
-
-        let body = "username="+username+"&key="+key;
+    public startSession(username: string, key: string): void {
         
-        return this.http.post(url, body, options)
-        .toPromise()
-        .then(this.extractData.bind(this))
-        .catch(this.handleError);
-    }
-
-    private extractData(res: Response) {
-        let body = res.json();
-        console.log('started session for user: '+ body.username);
+        console.log('started session for user: '+ username);
 
         // set cookies!
-        this.cookieService.put("key", body.key);
-        this.cookieService.put("username", body.username);
-        return body || { };
-    }
-    
-    private handleError (error: Response | any) {
-        // In a real world app, you might use a remote logging infrastructure
-        let errMsg: string;
-        if (error instanceof Response) {
-            const body = error.json() || '';
-            const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-        } else {
-            errMsg = error.message ? error.message : error.toString();
-        }
-        console.error("Error starting session: " + errMsg);
-    }
+        this.cookieService.put("key", key);
+        this.cookieService.put("username", username);
 
+        this.router.navigate(['/dashboard']);
+    }
 
     public isLoggedIn():boolean{
-        this.loggedIn = this.cookieService.get("username") ? true: false;
-        return this.loggedIn;
+        return this.cookieService.get("username") ? true: false;
     }
 
 

@@ -8,7 +8,7 @@ const session = require('express-session');
 
 
 // Get our API routes
-const api = require('./server/routes/api');
+//const api = require('./server/routes/api');
 const app = express();
 
 // Connect to MongoDB
@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use(session({ path: '/', httpOnly: true, secret: 'wuhooooooooo0', secure: false, maxAge: null, resave: true, saveUninitialized: true }));
 
 // Set our api routes
-app.use('/api', api);
+//app.use('/api', api);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
@@ -60,4 +60,4 @@ const server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-server.listen(port, () => console.log(`Web App and REST API running on localhost:${port}`));
+server.listen(port, () => console.log(`Web App running on localhost:${port}`));

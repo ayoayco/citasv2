@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-
-import { CookieService } from 'ngx-cookie';
 import { AppSessionService } from './app.session.service'
 
 @Component({
@@ -16,7 +14,6 @@ export class AppNavComponent {
   isLoggedIn: boolean;
 
   constructor(
-    private cookieService: CookieService,
     private sessionService: AppSessionService
   ){
     
