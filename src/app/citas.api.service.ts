@@ -15,9 +15,37 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http){}
 
-    public addUser(user: User){
-        var url = this.APIURL + "/register";
-        var msg = "Add user: " + JSON.stringify(user);
+    public editUser(user: User, key: string){
+
+        let url = this.APIURL + "/profile?key="+ key;
+
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        let options = new RequestOptions({ headers: headers });
+
+        let body = "&firstname="+user.firstname
+            +"&lastname="+user.lastname
+            +"&mobile_number="+user.mobile_number;
+        
+        console.log(body);
+
+        return this.http.put(url, body, options)
+        .toPromise()
+        .then(this.extractData)
+        .catch(this.handleError);
+    }
+
+    public getUser( key: string){
+        let url = this.APIURL + "/profile?key="+key;
+        
+        console.log(url);
+         return this.http.get(url)
+         .toPromise()
+         .then(this.extractData)
+         .catch(this.handleError);
+    }
+
+    public addUser(user: User): Promise<User>{
+        let url = this.APIURL + "/register";
 
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers });
@@ -40,7 +68,7 @@ export class CitasApiService {
 
     public authenticateUser(username: string, password: string): Promise<Response> {
 
-        var url = this.APIURL + "/login";
+        let url = this.APIURL + "/login";
 
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers });

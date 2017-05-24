@@ -7,7 +7,9 @@ import { Title } from '@angular/platform-browser';
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css'],
-    providers: [ AppSessionService ]
+    providers: [
+        AppSessionService
+    ]
 })
 
 export class AppDashboardComponent implements OnInit {

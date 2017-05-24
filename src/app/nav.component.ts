@@ -5,12 +5,15 @@ import { AppSessionService } from './app.session.service'
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css'],
-  providers: [AppSessionService]
+  providers: [
+    AppSessionService
+  ]
 })
 
 export class AppNavComponent {
   @Input() isTransparent: boolean;
 
+  username: string;
   isLoggedIn: boolean;
 
   constructor(
@@ -18,6 +21,7 @@ export class AppNavComponent {
   ){
     
     this.isLoggedIn = this.sessionService.isLoggedIn();
+    this.username = this.sessionService.getLoggedInUser();
   }
 
   logout(){

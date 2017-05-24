@@ -60,7 +60,7 @@ interface JQueryAjaxSettings {
      */
     error? (jqXHR: JQueryXHR, textStatus: string, errorThrown: string): any;
     /**
-     * Whether to trigger global Ajax event handlers for this request. The default is true. Set to false to prevent the global handlers like ajaxStart or ajaxStop from being triggered. This can be used to control various Ajax Events.
+     * Whether to trigger global Ajax event handlers for this request. The default is true. Set to false to prevent the global handlers like ajaxStart or ajaxStop from being triggered. This can be used to control letious Ajax Events.
      */
     global?: boolean;
     /**
@@ -957,9 +957,9 @@ interface JQueryStatic {
     (html: string, attributes: Object): JQuery;
 
     /**
-     * Relinquish jQuery's control of the $ variable.
+     * Relinquish jQuery's control of the $ letiable.
      *
-     * @param removeAll A Boolean indicating whether to remove all jQuery variables from the global scope (including jQuery itself).
+     * @param removeAll A Boolean indicating whether to remove all jQuery letiables from the global scope (including jQuery itself).
      * @see {@link https://api.jquery.com/jQuery.noConflict/}
      */
     noConflict(removeAll?: boolean): JQueryStatic;
@@ -3755,5 +3755,5 @@ interface JQuery {
 declare module "jquery" {
     export = $;
 }
-declare var jQuery: JQueryStatic;
-declare var $: JQueryStatic;
+declare let jQuery: JQueryStatic;
+declare let $: JQueryStatic;

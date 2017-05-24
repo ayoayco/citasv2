@@ -17,11 +17,21 @@ export class AppSessionService{
         private router: Router
     ){}
 
+    public getLoggedInKey(): string{
+        let key: string;
+
+        if(this.isLoggedIn()){
+            return key = this.cookieService.get("key");
+        }else{
+            return;
+        }
+    }
+
     public getLoggedInUser(): string{
         let user: string;
 
         if(this.isLoggedIn()){
-            return user;
+            return user = this.cookieService.get("username");
         }else{
             return;
         }
@@ -35,6 +45,7 @@ export class AppSessionService{
     public startSession(username: string, key: string): void {
         
         console.log('started session for user: '+ username);
+        console.log('key: '+ key);
 
         // set cookies!
         this.cookieService.put("key", key);

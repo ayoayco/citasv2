@@ -2,13 +2,16 @@ import { Component } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { AppSessionService } from './app.session.service';
 
-declare var sha256: any;
+declare let sha256: any;
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [CitasApiService, AppSessionService]
+  providers: [
+    CitasApiService,
+    AppSessionService
+  ]
 })
 
 export class AppLoginComponent {
@@ -27,21 +30,21 @@ export class AppLoginComponent {
 
 
   login(): void{
-    var data: any;
+    let data: any;
     if(!this.username) {
       return;
     }
 
     //authenticate user
-    var hash = sha256(this.password);
-    var strkey = "";
+    let hash = sha256(this.password);
+    let strkey = "";
     this.apiService.authenticateUser(this.username, hash)
     .then(
         res => {
           data = res;
           if(data){
             // login success, start session
-            if(this.sessionService.startSession(data.user, sha256(data.key))){
+            if(this.sessionService.startSession(data.user, data.key)){
               location.reload();
             }
           }else{
