@@ -18,9 +18,11 @@ import { AppAboutCitasComponent } from './about-citas.component';
 import { AppNavPagesComponent } from './nav.pages.component';
 import { AppAboutTeamComponent } from './about-team.component';
 import { AppContactUsComponent } from './contact-us.component';
+import { AppEditProfileComponent } from './edit-profile.component';
 
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
+  { path: 'edit-profile', component: AppEditProfileComponent },
   { path: 'dashboard', component: AppDashboardComponent },
   { path: 'registration', component: AppRegistrationComponent },
   { path: 'about-citas', component: AppAboutCitasComponent },
@@ -43,7 +45,8 @@ const appRoutes: Routes = [
     AppAboutCitasComponent,
     AppNavPagesComponent,
     AppAboutTeamComponent,
-    AppContactUsComponent
+    AppContactUsComponent,
+    AppEditProfileComponent
   ],
   imports: [
     BrowserModule,

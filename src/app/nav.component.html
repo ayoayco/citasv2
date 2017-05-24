@@ -26,7 +26,14 @@
                 </li>
                 <li><a routerLink="/contact-us" routerLinkActive="active">Contact</a></li>
                 <li *ngIf="!isLoggedIn"><a class="btn" data-toggle="modal" data-target="#loginModal">Login</a></li>
-                <li *ngIf="isLoggedIn"><a class="btn" data-toggle="modal" (click)="logout()">Logout</a></li>
+                <li *ngIf="isLoggedIn" class="dropdown bg-inverse">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi, {{username}}! <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a routerLink="/edit-profile" routerLinkActive="active">Edit User Profile</a></li>
+                        <!--<li role="separator" class="divider"></li>-->
+                        <li><a href="#" (click)="logout()">Logout</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

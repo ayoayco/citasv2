@@ -24,11 +24,6 @@ export class AppComponent implements OnInit{
   ngOnInit(){
     this.isLoggedIn = this.sessionService.isLoggedIn();
     console.log("isLoggedIn: " + this.isLoggedIn);
-
-    if(this.isLoggedIn){
-      this.router.navigate(['/dashboard']);
-    }
-
   }
 
 }

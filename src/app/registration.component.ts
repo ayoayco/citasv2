@@ -4,7 +4,7 @@ import { User } from './user';
 
 import { Router } from '@angular/router';
 
-declare var sha256: any;
+declare let sha256: any;
 
 @Component({
     selector: 'app-registration',
@@ -32,7 +32,7 @@ export class AppRegistrationComponent {
     ){}
 
     addUser(): void{
-        var data: any;
+        let data: any;
         this.user.hashedpw = sha256(this.user.password);
         this.apiService.addUser(this.user)
         .then(res => {

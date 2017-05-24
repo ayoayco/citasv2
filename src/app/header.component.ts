@@ -5,7 +5,9 @@ import { AppSessionService } from './app.session.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [AppSessionService]
+  providers: [
+    AppSessionService
+  ]
 })
 
 export class AppHeaderComponent {
