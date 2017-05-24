@@ -15,6 +15,17 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http){}
 
+    public getFarms(key: string){
+        let url = this.APIURL + "/farmlist?key="+key;
+        
+        console.log(url);
+         return this.http.get(url)
+         .toPromise()
+         .then(this.extractData)
+         .catch(this.handleError);
+
+    }
+
     public contactUs(email: string, name: string, message: string){
 
         let url = this.APIURL + "/contactus";

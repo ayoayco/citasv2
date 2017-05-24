@@ -1,0 +1,33 @@
+<nav class="navbar navbar-inverse navbar-fixed-top headroom navbar-affix affix-top" data-spy="affix" data-offset-top="60">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown bg-inverse">
+                    <a href="#" *ngIf="farms" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{selectedFarm}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let farm of farms"><a (click)="OnSelectFarm(farm.farm_name)">{{farm.farm_name}}</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li *ngIf="!isLoggedIn"><a class="btn" data-toggle="modal" data-target="#loginModal">Login</a></li>
+                <li *ngIf="isLoggedIn" class="dropdown bg-inverse">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi, {{username}}! <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a routerLink="/edit-profile" routerLinkActive="active">Edit User Profile</a></li>
+                        <!--<li role="separator" class="divider"></li>-->
+                        <li><a href="#" (click)="logout()">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<app-login></app-login>

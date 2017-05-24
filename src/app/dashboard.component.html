@@ -1,4 +1,5 @@
-<app-nav></app-nav>
+<user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
 <div class="container">
-    <h1>Dashboard</h1>
+    <h1>{{selectedFarm}} Overview</h1>
+
 </div>
