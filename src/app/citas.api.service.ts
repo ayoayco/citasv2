@@ -43,11 +43,12 @@ export class CitasApiService {
         let options = new RequestOptions({ headers: headers });
 
         let body = "&fullname="+user.fullname
-            +"&mobile_number="+user.mobile_number;
+            +"&mobile_number="+user.mobile_number
+            +"&email="+user.email;
         
         console.log(body);
 
-        return this.http.put(url, body, options)
+        return this.http.post(url, body, options)
         .toPromise()
         .then(this.extractData)
         .catch(this.handleError);
