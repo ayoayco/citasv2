@@ -19,6 +19,7 @@ import { AppNavPagesComponent } from './nav.pages.component';
 import { AppAboutTeamComponent } from './about-team.component';
 import { AppContactUsComponent } from './contact-us.component';
 import { AppEditProfileComponent } from './edit-profile.component';
+import { UserNavComponent} from './user.nav.component';
 
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     AppNavPagesComponent,
     AppAboutTeamComponent,
     AppContactUsComponent,
-    AppEditProfileComponent
+    AppEditProfileComponent,
+    UserNavComponent
   ],
   imports: [
     BrowserModule,

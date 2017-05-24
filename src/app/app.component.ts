@@ -6,7 +6,7 @@ import { AppSessionService } from './app.session.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: [''],
+  styles: ['./app.component.css'],
   providers: [
     AppSessionService
   ]

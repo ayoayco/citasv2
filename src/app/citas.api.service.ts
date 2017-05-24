@@ -42,8 +42,7 @@ export class CitasApiService {
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers });
 
-        let body = "&firstname="+user.firstname
-            +"&lastname="+user.lastname
+        let body = "&fullname="+user.fullname
             +"&mobile_number="+user.mobile_number;
         
         console.log(body);
@@ -73,8 +72,7 @@ export class CitasApiService {
         let body = "username="+user.username
             +"&password="+user.hashedpw
             +"&user_type="+user.user_type
-            +"&firstname="+user.firstname
-            +"&lastname="+user.lastname
+            +"&fullname="+user.fullname
             +"&email="+user.email
             +"&mobile_number="+user.mobile_number;
         

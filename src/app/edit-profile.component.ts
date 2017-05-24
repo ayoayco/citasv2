@@ -24,8 +24,7 @@ export class AppEditProfileComponent {
            password: "",
            hashedpw: "",
            user_type: 0,
-           firstname: "",
-           lastname: "",
+           fullname: "",
            email: "",
            mobile_number: ""
         }
@@ -47,8 +46,7 @@ export class AppEditProfileComponent {
                 data = res;
                 console.log(data);
                 if(data){
-                    this.user.firstname = data.firstname;
-                    this.user.lastname = data.lastname;
+                    this.user.fullname = data.fullname;
                     this.user.mobile_number = data.mobile_number ? data.mobile_number : "";
                 }
             });
@@ -64,8 +62,7 @@ export class AppEditProfileComponent {
         .then(res => {
                 data = res;
                 if(data){
-                    this.user.firstname = data.firstname;
-                    this.user.lastname = data.lastname;
+                    this.user.fullname = data.fullname;
                     this.user.mobile_number = data.mobile_number;
                 }
             });

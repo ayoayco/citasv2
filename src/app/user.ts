@@ -6,8 +6,7 @@ export class User {
   password: string;
   hashedpw: string;
   user_type: number;
-  firstname: string;
-  lastname: string;
+  fullname: string;
   email: string;
   mobile_number: string;
 }
