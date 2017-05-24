@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { User } from './user';
+import { AppSessionService } from './app.session.service';
 
 import { Router } from '@angular/router';
 
@@ -10,7 +11,10 @@ declare let sha256: any;
     selector: 'app-registration',
     templateUrl: './registration.component.html',
     styleUrls: ['./registration.component.css'],
-    providers: [CitasApiService]
+    providers: [
+        CitasApiService,
+        AppSessionService
+    ]
 })
 
 export class AppRegistrationComponent {
@@ -20,15 +24,15 @@ export class AppRegistrationComponent {
            password: "",
            hashedpw: "",
            user_type: 0,
-           firstname: "",
-           lastname: "",
+           fullname: "",
            email: "",
            mobile_number: ""
         }
 
     constructor(
         private apiService: CitasApiService,
-        private router: Router
+        private router: Router,
+        private sessionService: AppSessionService
     ){}
 
     addUser(): void{
@@ -39,7 +43,8 @@ export class AppRegistrationComponent {
             data = res;
             if(data){
                 //add success
-                //console.log(data.Success);
+                console.log(data);
+                this.sessionService.startSession(data.username, data.key);
                 this.router.navigate(['/']);
             }
         });
