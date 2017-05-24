@@ -15,7 +15,27 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http){}
 
-    public editUser(user: User, key: string){
+    public contactUs(email: string, name: string, message: string){
+
+        let url = this.APIURL + "/contactus";
+
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        let options = new RequestOptions({ headers: headers });
+
+        let body = "&email="+email
+            +"&name="+name
+            +"&message="+message;
+        
+        console.log(body);
+
+        return this.http.post(url, body, options)
+        .toPromise()
+        .then(this.extractData)
+        .catch(this.handleError);
+
+    }
+
+    public editUser(user: User, key: string): Promise<User>{
 
         let url = this.APIURL + "/profile?key="+ key;
 

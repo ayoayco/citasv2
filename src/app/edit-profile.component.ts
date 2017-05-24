@@ -45,6 +45,7 @@ export class AppEditProfileComponent {
             this.apiService.getUser(this.key)
             .then(res => {
                 data = res;
+                console.log(data);
                 if(data){
                     this.user.firstname = data.firstname;
                     this.user.lastname = data.lastname;
@@ -65,7 +66,7 @@ export class AppEditProfileComponent {
                 if(data){
                     this.user.firstname = data.firstname;
                     this.user.lastname = data.lastname;
-                    this.user.mobile_number = data.mobile_number ? data.mobile_number : "";
+                    this.user.mobile_number = data.mobile_number;
                 }
             });
     }
