@@ -18,7 +18,7 @@ export class CitasApiService {
     public getFarms(key: string){
         let url = this.APIURL + "/farmlist?key="+key;
         
-        console.log(url);
+        //console.log(url);
          return this.http.get(url)
          .toPromise()
          .then(this.extractData)
@@ -37,7 +37,7 @@ export class CitasApiService {
             +"&name="+name
             +"&message="+message;
         
-        console.log(body);
+        //console.log(body);
 
         return this.http.post(url, body, options)
         .toPromise()
@@ -57,7 +57,7 @@ export class CitasApiService {
             +"&mobile_number="+user.mobile_number
             +"&email="+user.email;
         
-        console.log(body);
+        //console.log(body);
 
         return this.http.post(url, body, options)
         .toPromise()
@@ -68,7 +68,7 @@ export class CitasApiService {
     public getUser( key: string){
         let url = this.APIURL + "/profile?key="+key;
         
-        console.log(url);
+        //console.log(url);
          return this.http.get(url)
          .toPromise()
          .then(this.extractData)
@@ -88,7 +88,7 @@ export class CitasApiService {
             +"&email="+user.email
             +"&mobile_number="+user.mobile_number;
         
-        console.log(body);
+        //console.log(body);
 
         return this.http.post(url, body, options)
         .toPromise()

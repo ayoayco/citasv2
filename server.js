@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const session = require('express-session');
 
 
@@ -12,7 +12,7 @@ const session = require('express-session');
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/citasv2');
+// mongoose.connect('mongodb://127.0.0.1:27017/citasv2');
 
 // Parsers for POST data
 app.use(bodyParser.json());

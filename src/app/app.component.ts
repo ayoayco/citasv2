@@ -26,4 +26,8 @@ export class AppComponent implements OnInit{
     console.log("isLoggedIn: " + this.isLoggedIn);
   }
 
+  onActivate(e, outlet){
+    outlet.scrollTop = 0;
+  }
+
 }

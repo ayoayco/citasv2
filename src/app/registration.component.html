@@ -2,6 +2,10 @@
 
 <div class="container">
     <form class="form-horizontal" role="form">
+        <div *ngIf="success" class="alert alert-success">
+            <strong>Success!</strong> Your have successfully registered. Starting session...
+        </div>
+        <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
         <h2>Registration Form</h2>
         <div class="form-group">
             <label for="fullname" class="col-sm-3 control-label">Full Name</label>
@@ -40,7 +44,7 @@
         <div class="form-group">
             <label for="password2" class="col-sm-3 control-label">Confirm Password</label>
             <div class="col-sm-9">
-                <input type="password" id="password2" placeholder="Confirm Password" class="form-control">
+                <input [(ngModel)]="password2" name="password2" type="password" id="password2" placeholder="Confirm Password" class="form-control">
             </div>
         </div>
         <!-- /.form-group -->
@@ -48,8 +52,8 @@
             <div class="col-sm-9 col-sm-offset-3">
                 <div class="checkbox">
                     <label>
-                                <input type="checkbox">I accept <a routerLink="/terms" routerLinkActive="active">terms</a>
-                            </label>
+                        <input [(ngModel)]="accept" name="accept" type="checkbox" /> I accept <a routerLink="/terms" routerLinkActive="active">terms</a>
+                    </label>
                 </div>
             </div>
         </div>
@@ -57,6 +61,7 @@
         <div class="form-group">
             <div class="col-sm-9 col-sm-offset-3">
                 <button (click)="addUser()" class="btn btn-primary btn-block">Register</button>
+                <a routerLink="/dashboard" routerLinkActive="active" class="btn btn-default btn-block">Cancel</a>
             </div>
         </div>
     </form>
