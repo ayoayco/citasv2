@@ -18,7 +18,10 @@ import { CitasApiService } from './citas.api.service';
 
 export class AppEditProfileComponent {
     
-    key = this.sessionService.getLoggedInKey();
+    key: string = this.sessionService.getLoggedInKey();
+    success: boolean = false;
+    err: boolean = false;
+    msg: string;
     user : User = {
            username: "",
            password: "",
@@ -46,9 +49,8 @@ export class AppEditProfileComponent {
                 data = res;
                 console.log(data);
                 if(data){
-                    this.user.fullname = data.fullname;
-                    this.user.mobile_number = data.mobile_number;
-                    this.user.email = data.email;
+                    this.user = data;
+                    this.user.user_type = data.role;
                 }
             });
         }
@@ -56,14 +58,43 @@ export class AppEditProfileComponent {
 
     editUser(){
         let data: any;
-        this.apiService.editUser(this.user, this.key)
-        .then(res => {
-                data = res;
-                if(data){
-                    this.user.fullname = data.fullname;
-                    this.user.mobile_number = data.mobile_number;
-                    this.user.email = data.email;
-                }
-            });
+
+        this.msg = "<strong>Update Failed!</strong> Please correct the following error(s):<br /><ol>";
+        this.err = false;
+        this.success = false;
+
+        if(this.user.fullname == ""){
+            this.msg += "<li> Fullname Empty</li>";
+            this.err = true;
+        }
+        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(this.user.user_type == 5){
+            if(this.user.email == ""){
+                this.msg += "<li> Email empty</li>";
+                this.err = true;
+            }else if(!re.test(this.user.email)){
+                this.msg += "<li> Email not valid</li>";
+                this.err = true;
+            }
+        }
+        if(this.user.user_type == 4 && this.user.mobile_number == ""){
+            this.msg += "<li> Mobile Number empty</li>";
+            this.err = true;
+        }
+
+        this.msg += "</ol>"
+
+        if(!this.err){
+            this.apiService.editUser(this.user, this.key)
+            .then(res => {
+                    data = res;
+                    if(data){
+                        this.user.fullname = data.fullname;
+                        this.user.mobile_number = data.mobile_number;
+                        this.user.email = data.email;
+                        this.success = true;
+                    }
+                });
+        }
     }
 }

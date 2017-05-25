@@ -27,7 +27,6 @@ export class AppDashboardComponent {
     ){
         let loggedIn: boolean = this.sessionService.isLoggedIn();
         if(!loggedIn){
-            console.log("Please log in first.")
             this.router.navigate(['/']);
         }else{
             this.titleService.setTitle('Dashboard');
@@ -43,7 +42,7 @@ export class AppDashboardComponent {
                     this.farms = data.data;
                     this.selectedFarm = data.data[0].farm_name;
                 }
-                console.log(this.farms);
+                //console.log(this.farms);
             }
         );
     }

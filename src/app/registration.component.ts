@@ -19,6 +19,9 @@ declare let sha256: any;
 
 export class AppRegistrationComponent {
 
+    success: boolean = false;
+    msg: string;
+    err: boolean = false;
     user : User = {
            username: "",
            password: "",
@@ -28,6 +31,8 @@ export class AppRegistrationComponent {
            email: "",
            mobile_number: ""
         }
+    password2: string;
+    accept:any;
 
     constructor(
         private apiService: CitasApiService,
@@ -36,37 +41,55 @@ export class AppRegistrationComponent {
     ){}
 
     addUser(): void{
+        this.msg = "<strong>Registration Failed!</strong> Please correct the following error(s):<br /><ol>";
+        this.err = false;
         let data: any;
+        let count: number = 0;
         this.user.hashedpw = sha256(this.user.password);
-        let msg = "Please provide the following:\n";
-        let err = false;
         if(this.user.fullname == ""){
-            msg += "Fullname\n"
-            err = true;
+            this.msg += "<li> Fullname Empty</li>";
+            this.err = true;
         }
-        if(this.user.user_type == 5 && this.user.email == ""){
-            msg += "Email\n"
-            err = true;
+        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(this.user.user_type == 5){
+            if(this.user.email == ""){
+                this.msg += "<li> Email empty</li>";
+                this.err = true;
+            }else if(!re.test(this.user.email)){
+                this.msg += "<li> Email not valid</li>";
+                this.err = true;
+            }
         }
         if(this.user.user_type == 4 && this.user.mobile_number == ""){
-            msg += "Mobile Number\n"
-            err = true;
+            this.msg += "<li> Mobile Number empty</li>";
+            this.err = true;
         }
         if(this.user.user_type == 0){
-            msg += "User Type\n"
-            err = true;
+            this.msg += "<li> User Type empty</li>";
+            this.err = true;
         }
         if(this.user.password == ""){
-            msg += "Password\n"
-            err = true;
+            this.msg += "<li> Password Empty</li>";
+            this.err = true;
+        }
+        if(!this.password2){
+            this.msg += "<li> Password Confirmation empty</li>";
+            this.err = true;
+        }else if(this.password2 != this.user.password){
+            this.msg += "<li> Password Confirmation mismatch</li>";
+            this.err = true;
+        }
+        if(!this.accept){
+            this.msg += "<li> Terms not accepted</li>";
+            this.err = true;
         }
 
+
+        this.msg += "</ol>"
 
         
-        if(err){
-            alert(msg);
-        }
-        else{
+        if(!this.err){
+            this.success = true;
             this.apiService.addUser(this.user)
             .then(res => {
                 data = res;
