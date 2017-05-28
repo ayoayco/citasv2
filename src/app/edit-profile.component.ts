@@ -47,7 +47,7 @@ export class AppEditProfileComponent {
             this.apiService.getUser(this.key)
             .then(res => {
                 data = res;
-                console.log(data);
+                //console.log(data);
                 if(data){
                     this.user = data;
                     this.user.user_type = data.role;
