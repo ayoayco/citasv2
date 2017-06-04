@@ -1,4 +1,32 @@
 <div id="container">
     <h3>Farm Info</h3>
     <p>{{this.selectedFarm.farm_name}} is owned by ...</p>
+
+    <table class="float-left">
+        <tr>
+            <th class="table-title" colspan="2">Sensors</th>
+        </tr>
+        <tr>
+            <th>Sampling Site ID</th>
+            <th>Geolocation</th>
+        </tr>
+        <tr *ngFor="let sensor of sensors">
+            <td>{{sensor.sampling_site_id}}</td>
+            <td>({{sensor.lat}}, {{sensor.lng}})</td>
+        </tr>
+    </table>
+    <table class="float-left">
+        <tr>
+            <th class="table-title" colspan="2">Plants</th>
+        </tr>
+        <tr>
+            <th>Sampling Site ID</th>
+            <th>Geolocation</th>
+        </tr>
+        <tr *ngFor="let plant of plants">
+            <td>{{plant.sampling_site_id}}</td>
+            <td>({{plant.lat}}, {{plant.lng}})</td>
+        </tr>
+    </table>
+    <div class="clear-both"></div>
 </div>

@@ -11,4 +11,6 @@ import { Farm } from './farm';
 
 export class DashboardFarmInfoComponent {
     @Input() selectedFarm: Farm;
+    @Input() sensors: any[];
+    @Input() plants: any[];
 }
