@@ -2,99 +2,83 @@
 <app-header [title]="title" [description]="description"></app-header>
 <div class="container text-center">
     <br> <br>
-    <h2 class="thin">A platform for remote data collection, data storage, and a data analysis framework that uses web, mobile, and cloud technologies for the detection and forecasting of plant diseases.</h2>
+    <p class="thin" id="desc">CITAS is a platform for remote data collection, data storage, and a data analysis framework that uses web, mobile, and cloud technologies for the detection and <span>forecasting of plant diseases.</span></p>
 </div>
 <h2 id="LearnMore" class="text-center"></h2>
 <div class="container">
-
-
-
-    <h2 class="text-center top-space">Features</h2>
-    <br>
-
-    <div class="row">
+    <div class="row" id="features-row">
         <div class="col-sm-6">
-            <img class="features-image" src="./assets/cloud.png">
-            <h3 style="text-align: center;">Cloud Platform</h3>
-            <p style="margin: 0 20% 0 20%;">The cloud platform stores and processes all the data that is used in the mobile and web platforms.</p>
+            <img class="float-left features-image" src="./assets/icon-cloud.png">
+            <div class="features-desc float-left">
+                <h3 style="text-align: center;">Cloud</h3>
+                <p style="margin: 0 20% 0 20%;">The cloud platform stores and processes all the data that is used in the mobile and web platforms.</p>
+            </div>
         </div>
 
         <div class="col-sm-6">
-            <img class="features-image" src="./assets/database-icon.png">
-            <h3 style="text-align: center;">CITAS Database</h3>
-            <p style="margin: 0 20% 0 20%;">The database contains all data pertinent for the system such as plant information, soil conditions, and geospatial data.</p>
+            <img class="float-left features-image" src="./assets/icon-database.png">
+            <div class="features-desc float-left">
+                <h3 style="text-align: center;">Database</h3>
+                <p style="margin: 0 20% 0 20%;">The database contains all data pertinent for the system such as plant information, soil conditions, and geospatial data.</p>
+            </div>
         </div>
     </div>
     <!-- /row -->
 
-    <br>
-    <br>
-    <br>
-    <br>
 
-    <div id="mobile-features-row" class="row" style="margin-bottom: 7%;">
-        <div class="col-md-6">
-            <h3>Mobile Platform</h3>
-            <p>The mobile platform is used by the farmers on the field to collect data from their respective farms. Components:
-            </p>
-            <ul>
-                <li>Data Capture (TANIM)</li>
-                <li>Image Capture</li>
-                <li>Image Analysis</li>
-                <li>Data Analysis</li>
-                <li>Visualization</li>
-            </ul>
-
-            <h4>Plantscope</h4>
-            <p>
-                The PlantScope is composed of a mobile microscope paired with software for image processing, geospatial tagging, and QR coding for automated and easy labeling of plants.
-            </p>
-            <h4>Soil Data Collection</h4>
-            <p>
-                Wireless Sensors deployed around the farm sites collect environmental data parameters and are retrieved by the farmers via the mobile app.
-            </p>
-            <h4>LAMP Assay Kit</h4>
-            <p>
-                The LAMP Assay Kit is composed of a thermocycler and reagents that is used for the molecular detection of Foc TR4.
-            </p>
-        </div>
-
-        <div class="col-md-6">
-            <img class="mobile-image" src="./assets/mobile-pic.jpg">
+    <div id="web-features-row" class="platform-row row">
+        <h3>Web Platform</h3>
+        <p class="platform-desc">The web platform is accessible to researchers who wish to acquire data gathered by the farmers and analyzed by the system.</p>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Soil Analysis</h4>
+                <p>
+                    Soil parameters gathered from the field are plotted on a graph to show the trends over a given time period.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h4>Geospatial Analysis</h4>
+                <p>
+                    The web platform visualizes the spread of Foc TR4 in the respective farm sites and analyze where the disease might spread to next.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h4>Plant Image Analysis</h4>
+                <p>
+                    Images loaded into the system are processed and analyzed to see if the plants are infected with Foc TR4 or not.
+                </p>
+            </div>
         </div>
     </div>
     <!-- /row -->
 
-    <div id="web-features-row" class="row">
-
-        <div class="col-md-6">
-            <img class="web-image" src="./assets/web-pic.PNG">
+    <div id="mobile-features-row" class="platform-row row">
+        <h3>Mobile Platform</h3>
+        <p class="platform-desc">The mobile platform is used by the farmers on the field to collect data from their respective farms.</p>
+        <p>Components: Data Capture (TANIM), Image Capture, Image Analysis, Data Analysis, Visualization</p>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Plantscope</h4>
+                <p>
+                    The PlantScope is composed of a mobile microscope paired with software for image processing, geospatial tagging, and QR coding for automated and easy labeling of plants.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h4>Soil Data Collection</h4>
+                <p>
+                    Wireless Sensors deployed around the farm sites collect environmental data parameters and are retrieved by the farmers via the mobile app.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h4>LAMP Assay Kit</h4>
+                <p>
+                    The LAMP Assay Kit is composed of a thermocycler and reagents that is used for the molecular detection of Foc TR4.
+                </p>
+            </div>
         </div>
+        <!-- /row -->
 
-        <div class="col-md-6">
-            <h3>Web Platform</h3>
-            <p>The web platform is accessible to researchers who wish to acquire data gathered by the farmers and analyzed by the system.</p>
-
-            <h4>Soil Analysis</h4>
-            <p>
-                Soil parameters gathered from the field are plotted on a graph to show the trends over a given time period.
-            </p>
-            <h4>Geospatial Analysis &amp; Disease Mapping</h4>
-            <p>
-                The web platform visualizes the spread of Foc TR4 in the respective farm sites and analyze where the disease might spread to next.
-            </p>
-            <h4>Plant Image Analysis
-            </h4>
-            <p>
-                Images loaded into the system are processed and analyzed to see if the plants are infected with Foc TR4 or not.
-            </p>
-        </div>
-
-
-    </div>
-    <!-- /row -->
-
-    <!--
+        <!--
         <div class="jumbotron top-space">
             <p>Dicta, nostrum nemo soluta sapiente sit dolor quae voluptas quidem doloribus recusandae facere magni ullam suscipit sunt atque rerum eaque iusto facilis esse nam veniam incidunt officia perspiciatis at voluptatibus. Libero, aliquid illum possimus numquam fuga.</p>
             <br />

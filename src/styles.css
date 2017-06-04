@@ -32,6 +32,18 @@ i.app-logo {
     margin-top: 50px;
 }
 
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.clear-both {
+    clear: both;
+}
+
 
 /* max viewport height minus #head.secondary height */
 
