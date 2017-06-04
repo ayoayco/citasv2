@@ -15,7 +15,27 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http){}
 
-    public getFarms(key: string){
+    public getPlantList(key: string, farmID?: string, siteID?: string){
+        let url = this.APIURL + "/plantlist/"+farmID+"/"+siteID+"?key="+key;
+        
+        //console.log(url);
+         return this.http.get(url)
+         .toPromise()
+         .then(this.extractData)
+         .catch(this.handleError);
+    }
+
+    public getFarm(key: string, farmID: string){
+        let url = this.APIURL + "/farm/"+farmID+"?key="+key;
+        
+        //console.log(url);
+         return this.http.get(url)
+         .toPromise()
+         .then(this.extractData)
+         .catch(this.handleError);
+    }
+
+    public getFarmList(key: string){
         let url = this.APIURL + "/farmlist?key="+key;
         
         //console.log(url);
