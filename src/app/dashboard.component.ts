@@ -63,6 +63,14 @@ export class AppDashboardComponent {
                         }
                     );
 
+                    this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                    .then(
+                        res => {
+                            data = res;
+                            console.log(data);
+                        }
+                    );
+
                 }
                 //console.log(this.farms);
             }
@@ -84,7 +92,14 @@ export class AppDashboardComponent {
                 data = res;
                 this.selectedFarm = data.data[0];
                 console.log(this.selectedFarm);
-            }
+                
+                    this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                    .then(
+                        res => {
+                            data = res;
+                            console.log(data);
+                        }
+                    );
         );
     }
 
