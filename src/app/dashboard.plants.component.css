@@ -1,0 +1,20 @@
+td.text {
+    font-weight: bold;
+    text-align: left;
+}
+
+td.value {
+    text-align: right;
+}
+
+td {
+    padding: 30px;
+}
+
+tr {
+    border: 1px solid gray;
+}
+
+table {
+    width: 350px;
+}
