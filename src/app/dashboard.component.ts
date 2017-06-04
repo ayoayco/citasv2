@@ -16,7 +16,7 @@ import { Farm } from './farm';
 
 export class AppDashboardComponent {
     
-    farms: any[];
+    farms: Farm[];
     selectedFarm: Farm = {
         center: [],
         farm_id: 0,
@@ -29,6 +29,7 @@ export class AppDashboardComponent {
         soil_management: false,
     };
     plants: any[] = [];
+    sensors: any[] = [];
 
     constructor(
         private sessionService: AppSessionService,
@@ -73,6 +74,15 @@ export class AppDashboardComponent {
                                 }
                             );
 
+                            this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                            .then(
+                                res => {
+                                    data = res;
+                                    this.sensors = data.data;
+                                    console.log("sensors count: "+this.sensors.length);
+                                }
+                            );
+
                         }
                     );
 
@@ -106,6 +116,16 @@ export class AppDashboardComponent {
                         console.log("plant count: "+this.plants.length);
                     }
                 );
+
+                
+                            this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                            .then(
+                                res => {
+                                    data = res;
+                                    this.sensors = data.data;
+                                    console.log("sensors count: "+this.sensors.length);
+                                }
+                            );
 
             }
         );

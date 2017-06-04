@@ -59,7 +59,6 @@ export class CitasApiService {
          .toPromise()
          .then(this.extractData)
          .catch(this.handleError);
-
     }
 
     public contactUs(email: string, name: string, message: string){
