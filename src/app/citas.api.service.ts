@@ -15,6 +15,19 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http){}
 
+    public getSensorList(key: string, farmID?: string, siteID?: string){
+        let url = this.APIURL + "/sensorlist";
+        if(farmID) url += "/"+farmID;
+        if(siteID) url += "/"+siteID;
+        url += "?key="+key;
+        
+        //console.log(url);
+         return this.http.get(url)
+         .toPromise()
+         .then(this.extractData)
+         .catch(this.handleError);
+    }
+
     public getPlantList(key: string, farmID?: string, siteID?: string){
         let url = this.APIURL + "/plantlist";
         if(farmID) url += "/"+farmID;

@@ -19,8 +19,11 @@ import { AppNavPagesComponent } from './nav.pages.component';
 import { AppAboutTeamComponent } from './about-team.component';
 import { AppContactUsComponent } from './contact-us.component';
 import { AppEditProfileComponent } from './edit-profile.component';
-import { UserNavComponent} from './user.nav.component';
 
+import { UserNavComponent} from './user.nav.component';
+import { DashboardFarmInfoComponent } from './dashboard.farm-info.component';
+import { DashboardPlantsComponent } from './dashboard.plants.component';
+ 
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'edit-profile', component: AppEditProfileComponent },
@@ -48,7 +51,9 @@ const appRoutes: Routes = [
     AppAboutTeamComponent,
     AppContactUsComponent,
     AppEditProfileComponent,
-    UserNavComponent
+    UserNavComponent,
+    DashboardFarmInfoComponent,
+    DashboardPlantsComponent
   ],
   imports: [
     BrowserModule,

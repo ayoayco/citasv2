@@ -28,6 +28,7 @@ export class AppDashboardComponent {
         geometry: [],
         soil_management: false,
     };
+    plants: any[] = [];
 
     constructor(
         private sessionService: AppSessionService,
@@ -59,15 +60,19 @@ export class AppDashboardComponent {
                         res => {
                             data = res;
                             this.selectedFarm = data.data[0];
-                            console.log(this.selectedFarm);
-                        }
-                    );
+                            console.log("select farm: " + this.selectedFarm.farm_name);
+                            console.log("select farm ID: " + this.selectedFarm.farm_id);
 
-                    this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                    .then(
-                        res => {
-                            data = res;
-                            console.log(data);
+
+                            this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                            .then(
+                                res => {
+                                    data = res;
+                                    this.plants = data.data;
+                                    console.log("plant count: "+this.plants.length);
+                                }
+                            );
+
                         }
                     );
 
@@ -80,9 +85,7 @@ export class AppDashboardComponent {
     public selectFarm(name: string){
         this.selectedFarm.farm_name = name;
         let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == name });
-        this.selectedFarm.farm_id = selectedArr[0].farm_id;
-        console.log("select farm: " + this.selectedFarm);
-        console.log("select farm ID: " + this.selectedFarm.farm_id);
+        this.selectedFarm = selectedArr[0];
 
         let data: any;
 
@@ -91,15 +94,20 @@ export class AppDashboardComponent {
             res => {
                 data = res;
                 this.selectedFarm = data.data[0];
-                console.log(this.selectedFarm);
-                
-                    this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                    .then(
-                        res => {
-                            data = res;
-                            console.log(data);
-                        }
-                    );
+                console.log("select farm: " + this.selectedFarm.farm_name);
+                console.log("select farm ID: " + this.selectedFarm.farm_id);
+
+
+                this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                .then(
+                    res => {
+                        data = res;
+                        this.plants = data.data;
+                        console.log("plant count: "+this.plants.length);
+                    }
+                );
+
+            }
         );
     }
 
