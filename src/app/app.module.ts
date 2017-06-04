@@ -23,6 +23,8 @@ import { AppEditProfileComponent } from './edit-profile.component';
 import { UserNavComponent} from './user.nav.component';
 import { DashboardFarmInfoComponent } from './dashboard.farm-info.component';
 import { DashboardPlantsComponent } from './dashboard.plants.component';
+import { DashboardSensorsComponent } from './dashboard.sensors.component';
+import { DashboardFarmsComponent} from './dashboard.farms.component';
  
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
@@ -53,7 +55,9 @@ const appRoutes: Routes = [
     AppEditProfileComponent,
     UserNavComponent,
     DashboardFarmInfoComponent,
-    DashboardPlantsComponent
+    DashboardPlantsComponent,
+    DashboardSensorsComponent,
+    DashboardFarmsComponent
   ],
   imports: [
     BrowserModule,

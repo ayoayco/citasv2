@@ -11,9 +11,4 @@ import { Farm } from './farm';
 
 export class DashboardPlantsComponent{
     @Input() plants: any[] = [];
-
-    constructor(private apiService: CitasApiService, private sessionService: AppSessionService){
-        let data: any;
-        console.log("plant count: "+this.plants.length);
-    }
 }
