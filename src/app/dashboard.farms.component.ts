@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Farm } from './farm';
 
@@ -10,4 +10,9 @@ import { Farm } from './farm';
 
 export class DashboardFarmsComponent {
     @Input() farms: Farm[];
+    @Output() selectFarm = new EventEmitter<{}>();
+    
+    public OnSelectFarm(name: string){
+        this.selectFarm.emit(name);
+    }
 }

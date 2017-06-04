@@ -3,8 +3,8 @@
         <tr>
             <th>Other Farms</th>
         </tr>
-        <tr>
-            <td class="text">Plants</td>
+        <tr *ngFor="let farm of farms">
+            <td class="text"><a (click)="OnSelectFarm(farm.farm_name)">{{farm.farm_name}}</a></td>
         </tr>
     </table>
 </div>
