@@ -1,11 +1,11 @@
 #header-wrap {
-    background: black url('../assets/bg_header-min.jpg') no-repeat;
+    background: black url('../assets/bg_header-min.png') no-repeat;
     background-size: cover;
     min-height: 520px;
 }
 
 #head {
-    padding: 90px 0 30px;
+    padding: 190px 0 30px;
     font-family: "Open sans", Helvetica, Arial;
     color: white;
     text-align: center;
@@ -13,24 +13,31 @@
 }
 
 #head .lead {
-    font-family: "Open sans", Helvetica, Arial;
-    font-size: 44px;
     margin-bottom: 6px;
     line-height: 1.15em;
+	color: #2D4137;
+    font-family: 'Montserrat', sans-serif;
+	font-size: 36px;
+	font-weight: bold;
+	line-height: 47px;
+	text-align: center;
 }
 
 #head .tagline {
     padding-bottom: 45px;
+	color: #2D4137;
+    font-family: 'Montserrat', sans-serif;
+	font-size: 24px;
+	line-height: 38px;
+	text-align: center;
 }
 
 #head .btn-default {
-    text-shadow: none;
-    background: transparent;
     color: white;
-    -webkit-box-shadow: inset 0px 0px 0px 3px rgba(255, 255, 255, .5);
-    -moz-box-shadow: inset 0px 0px 0px 3px rgba(255, 255, 255, .5);
-    box-shadow: inset 0px 0px 0px 3px rgba(255, 255, 255, .5);
-    background: transparent;
+	height: 47px;
+	width: 187px;
+	border-radius: 4px;
+	background-color: #19BD6C;
 }
 
 #head .btn {
