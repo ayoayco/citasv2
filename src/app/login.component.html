@@ -5,7 +5,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h5 class="modal-title">Login</h5>
+                <i class="app-logo "></i>
             </div>
 
             <div class="modal-body">
@@ -13,20 +13,24 @@
                 <form id="loginForm" method="post" class="form-horizontal">
                     <div class="form-group">
                         <div class="login-div">
+                            <label for="username" id="username-lbl">Username</label>
                             <input type="text" id="usernamefield" class="form-control" [(ngModel)]="username" name="username" placeholder="Username" />
+                            <label for="password" id="pw-lbl">Password</label>
                             <input type="password" id="passwordfield" class="form-control" [(ngModel)]="password" name="password" placeholder="Password" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="login-div">
-                            <button type="button" class="login-btn btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="login-btn btn btn-primary" (click)="login()" data-dismiss="modal"><i class="fa fa-btn fa-sign-in"></i> Login</button>
+                            <button type="submit" class="login-btn btn btn-primary" (click)="login()" data-dismiss="modal">Login</button>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="login-div">
-                            <p class="text-center small">No account yet? <a routerLink="/registration" routerLinkActive="active" data-dismiss="modal">Register here</a></p>
+                            <a class="reg-lnk" routerLink="/registration" routerLinkActive="active" data-dismiss="modal">Register</a>
+                            <span id="forgot-span">
+                                <a class="forgot-lnk" routerLink="/registration" routerLinkActive="active" data-dismiss="modal">Forgot Password</a>
+                            </span>
                         </div>
                     </div>
                 </form>

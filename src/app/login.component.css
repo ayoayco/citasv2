@@ -1,9 +1,8 @@
 .modal-dialog {
-    width: 350px;
-}
-
-button.login-btn.btn-primary {
-    width: 200px;
+	height: 539px;
+	width: 442px;
+	background-color: #FFFFFF;
+	box-shadow: 0 2px 20px 0 rgba(0,0,0,0.08);
 }
 
 button.login-btn {
@@ -21,4 +20,68 @@ div.login-div {
 
 input.form-control {
     margin-top: 15px;
+	height: 53px;
+	width: 298px;
+	border: 1px solid #E4E4E4;
+	border-radius: 2px;
+    margin-bottom: 27px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #57675F;
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: none !important;
+}
+
+i.app-logo {
+    background: url('../assets/logo-min.png') no-repeat center center !important;
+    display: block;
+    margin: auto;
+    background-size: cover !important;
+	height: 42px;
+	width: 138px;
+    margin-top: 50px;
+}
+
+.modal-content {
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.login-div label {
+	height: 1.8%;
+	width: 3.19%;
+	color: #57675F;
+	font-size: 14px;
+	line-height: 18px;
+}
+
+button.btn-primary {
+	height: 53px;
+	width: 298px;
+	border-radius: 4px;
+	background-color: #19BD6C;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+a.reg-lnk {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    color: #838383;
+    font-size: 16px;
+}
+
+a.forgot-lnk {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    color: #9C9C9C;
+    font-size: 16px;
+}
+
+span#forgot-span {
+    text-align: right;
+    padding-left: 45px;
 }
