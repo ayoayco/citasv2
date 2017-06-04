@@ -16,7 +16,10 @@ export class CitasApiService {
     constructor(private http: Http){}
 
     public getPlantList(key: string, farmID?: string, siteID?: string){
-        let url = this.APIURL + "/plantlist/"+farmID+"/"+siteID+"?key="+key;
+        let url = this.APIURL + "/plantlist";
+        if(farmID) url += "/"+farmID;
+        if(siteID) url += "/"+siteID;
+        url += "?key="+key;
         
         //console.log(url);
          return this.http.get(url)
