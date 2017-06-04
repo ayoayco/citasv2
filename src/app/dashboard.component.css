@@ -1,6 +1,6 @@
 div.container {
     padding: 90px 0 30px;
-    font-family: "Open sans", Helvetica, Arial;
+    font-family: 'Montserrat', sans-serif;
     color: #333;
     text-align: center;
     font-weight: 300;
@@ -8,4 +8,5 @@ div.container {
 
 h1 {
     text-align: left;
+    font-weight: bold;
 }
