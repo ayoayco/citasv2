@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { Farm } from './farm';
 
 @Component({
     selector: 'farm-info',
@@ -8,5 +10,5 @@ import { Component } from '@angular/core';
 )
 
 export class DashboardFarmInfoComponent {
-
+    @Input() selectedFarm: Farm;
 }
