@@ -1,8 +1,8 @@
 .modal-dialog {
-	height: 539px;
-	width: 442px;
-	background-color: #FFFFFF;
-	box-shadow: 0 2px 20px 0 rgba(0,0,0,0.08);
+    height: 539px;
+    width: 442px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.08);
 }
 
 button.login-btn {
@@ -20,10 +20,10 @@ div.login-div {
 
 input.form-control {
     margin-top: 15px;
-	height: 53px;
-	width: 298px;
-	border: 1px solid #E4E4E4;
-	border-radius: 2px;
+    height: 53px;
+    width: 298px;
+    border: 1px solid #E4E4E4;
+    border-radius: 2px;
     margin-bottom: 27px;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
@@ -35,36 +35,21 @@ input.form-control {
     border-bottom: none !important;
 }
 
-i.app-logo {
-    background: url('../assets/logo-min.png') no-repeat center center !important;
-    display: block;
-    margin: auto;
-    background-size: cover !important;
-	height: 42px;
-	width: 138px;
-    margin-top: 50px;
-}
-
 .modal-content {
     box-shadow: none !important;
     border: none !important;
 }
 
 .login-div label {
-	height: 1.8%;
-	width: 3.19%;
-	color: #57675F;
-	font-size: 14px;
-	line-height: 18px;
+    height: 1.8%;
+    width: 3.19%;
+    color: #57675F;
+    font-size: 14px;
+    line-height: 18px;
 }
 
 button.btn-primary {
-	height: 53px;
-	width: 298px;
-	border-radius: 4px;
-	background-color: #19BD6C;
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
+    width: 298px;
 }
 
 a.reg-lnk {

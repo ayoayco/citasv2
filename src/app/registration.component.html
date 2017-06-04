@@ -6,60 +6,30 @@
             <strong>Success!</strong> Your have successfully registered. Starting session...
         </div>
         <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
-        <h2>Registration Form</h2>
+        <i class="app-logo "></i>
+        <h2>New User</h2>
         <div class="form-group">
-            <label for="fullname" class="col-sm-3 control-label">Full Name</label>
-            <div class="col-sm-9">
+            <div>
+                <label for="fullname" class="control-label">Full Name</label>
                 <input [(ngModel)]="user.fullname" name="fullname" type="text" id="fullname" placeholder="Full Name" class="form-control" autofocus>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="email" class="col-sm-3 control-label">Email</label>
-            <div class="col-sm-9">
+                <label for="email" class="control-label">Email</label>
                 <input [(ngModel)]="user.email" name="email" type="email" id="email" placeholder="Email" class="form-control">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="mobileNumber" class="col-sm-3 control-label">Mobile Number</label>
-            <div class="col-sm-9">
+                <label for="mobileNumber" class="control-label">Mobile Number</label>
                 <input [(ngModel)]="user.mobile_number" name="mobile_number" type="text" id="mobileNumber" placeholder="Mobile Number" class="form-control">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="userType" class="col-sm-3 control-label">User Type</label>
-            <div class="col-sm-9">
+                <label for="userType" class="control-label">User Type</label>
                 <select [(ngModel)]="user.user_type" name="userType" id="userType" class="form-control" placeholder="Choose User Type">
                             <option value="4">Farm Manager</option>
                             <option value="5">Researcher</option>
                         </select>
-            </div>
-        </div>
-        <!-- /.form-group -->
-        <div class="form-group">
-            <label for="password" class="col-sm-3 control-label">Password</label>
-            <div class="col-sm-9">
+                <label for="password" class="control-label">Password</label>
                 <input [(ngModel)]="user.password" name="password" type="password" id="password" placeholder="Password" class="form-control">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="password2" class="col-sm-3 control-label">Confirm Password</label>
-            <div class="col-sm-9">
+                <label for="password2" class="control-label">Confirm Password</label>
                 <input [(ngModel)]="password2" name="password2" type="password" id="password2" placeholder="Confirm Password" class="form-control">
-            </div>
-        </div>
-        <!-- /.form-group -->
-        <div class="form-group">
-            <div class="col-sm-9 col-sm-offset-3">
                 <div class="checkbox">
                     <label>
                         <input [(ngModel)]="accept" name="accept" type="checkbox" /> I accept <a routerLink="/terms" routerLinkActive="active">terms</a>
                     </label>
                 </div>
-            </div>
-        </div>
-        <!-- /.form-group -->
-        <div class="form-group">
-            <div class="col-sm-9 col-sm-offset-3">
                 <button (click)="addUser()" class="btn btn-primary btn-block">Register</button>
                 <a routerLink="/dashboard" routerLinkActive="active" class="btn btn-default btn-block">Cancel</a>
             </div>
