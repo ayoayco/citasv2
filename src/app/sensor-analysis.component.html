@@ -1,0 +1,23 @@
+<user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
+
+
+<div class="container">
+    <h1>Sensor Analysis</h1>
+    <div id="sensor-list-container" class="float-left">
+        <label for="sampling_sites">Sampling Site: </label>
+        <select (change)="onselect($event.target.value)">
+            <option value=""></option>
+            <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
+        </select>
+        <table>
+            <tr>
+                <th class="table-title" colspan="2">Map Plot: Sensors ({{sensors.length}})</th>
+            </tr>
+            <tr class="clickable-row" *ngFor="let sensor of sensors" (click)="selectSensor(sensor.sensor_name)">
+                <td>{{sensor.sensor_name}}</td>
+                <td>({{sensor.lat}}, {{sensor.lng}})</td>
+            </tr>
+        </table>
+    </div>
+    <div class="clear-both"></div>
+</div>

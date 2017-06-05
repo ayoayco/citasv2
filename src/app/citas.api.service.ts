@@ -28,6 +28,16 @@ export class CitasApiService {
          .catch(this.handleError);
     }
 
+    public getSensor(key: string, sensorName: string){
+        let url = this.APIURL + "/sensor/"+sensorName + "?key=" + key;
+        
+        //console.log(url);
+         return this.http.get(url)
+         .toPromise()
+         .then(this.extractData)
+         .catch(this.handleError);
+    }
+
     public getPlant(key: string, plantID: string){
         let url = this.APIURL + "/plant/"+plantID + "?key=" + key;
         
