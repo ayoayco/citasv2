@@ -29,11 +29,14 @@ import { DashboardFarmsComponent} from './dashboard.farms.component';
 import { AppPlantAnalysisComponent } from './plant-analysis.component';
 import { PlantAnalysisPlantInfoComponent } from './plant-analysis.plant-info.component';
 
+import { AppSensorAnalysisComponent } from './sensor-analysis.component';
+
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'edit-profile', component: AppEditProfileComponent },
   { path: 'dashboard', component: AppDashboardComponent },
   { path: 'plant-analysis', component: AppPlantAnalysisComponent },
+  { path: 'sensor-analysis', component: AppSensorAnalysisComponent },
   { path: 'registration', component: AppRegistrationComponent },
   { path: 'about-citas', component: AppAboutCitasComponent },
   { path: 'about-team', component: AppAboutTeamComponent },
@@ -59,6 +62,7 @@ const appRoutes: Routes = [
     UserNavComponent,
     AppDashboardComponent,
     AppPlantAnalysisComponent,
+    AppSensorAnalysisComponent,
     DashboardFarmInfoComponent,
     DashboardPlantsComponent,
     DashboardSensorsComponent,
