@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'sensors-info',
@@ -8,4 +9,11 @@ import { Component, Input } from '@angular/core';
 
 export class DashboardSensorsComponent {
     @Input() sensors: any[];
+
+    constructor(private router: Router){
+    }
+
+    public goToSensorAnalysis(){
+        this.router.navigate(['/sensor-analysis']);
+    }
 }

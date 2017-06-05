@@ -1,7 +1,7 @@
 div#container {
     border: 1px solid #ccc;
     margin: 30px 30px 30px 0;
-    width: 750px;
+    min-width: 750px;
     float: left;
     padding: 30px;
 }
@@ -20,6 +20,7 @@ th {
     padding: 5px 15px;
     text-align: left;
     border-right: 1px solid #ccc;
+    font-size: xx-small;
 }
 
 tr {
@@ -29,8 +30,8 @@ tr {
 }
 
 table {
-    width: 100%;
-    margin: 30px 30px 30px 0;
+    width: 250px;
+    margin: 30px auto;
     border-top: 1px solid #ccc;
 }
 

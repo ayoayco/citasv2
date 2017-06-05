@@ -96,6 +96,9 @@ export class AppPlantAnalysisComponent{
     }
 
     public selectFarm(name: string){
+        
+        this.plants = [];
+        this.selectedPlant = undefined;
         this.selectedFarm.farm_name = name;
         let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == name });
         this.selectedFarm = selectedArr[0];

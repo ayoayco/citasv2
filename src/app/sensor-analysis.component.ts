@@ -97,6 +97,10 @@ export class AppSensorAnalysisComponent {
     }
 
     public selectFarm(name: string){
+        
+        this.sensors = [];
+        this.selectedSensorReadings = undefined;
+        this.selectedSensorName = "";
         this.selectedFarm.farm_name = name;
         let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == name });
         this.selectedFarm = selectedArr[0];
