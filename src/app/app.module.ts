@@ -11,7 +11,6 @@ import { AppFooterComponent } from './footer.component';
 import { AppLoginComponent } from './login.component';
 import { AppHeaderComponent } from './header.component';
 import { AppHomeComponent } from './home.component';
-import { AppDashboardComponent } from './dashboard.component';
 import { AppPageNotFoundComponent } from './notfound.component';
 import { AppRegistrationComponent } from './registration.component';
 import { AppAboutCitasComponent } from './about-citas.component';
@@ -21,15 +20,20 @@ import { AppContactUsComponent } from './contact-us.component';
 import { AppEditProfileComponent } from './edit-profile.component';
 
 import { UserNavComponent} from './user.nav.component';
+import { AppDashboardComponent } from './dashboard.component';
 import { DashboardFarmInfoComponent } from './dashboard.farm-info.component';
 import { DashboardPlantsComponent } from './dashboard.plants.component';
 import { DashboardSensorsComponent } from './dashboard.sensors.component';
 import { DashboardFarmsComponent} from './dashboard.farms.component';
- 
+
+import { AppPlantAnalysisComponent } from './plant-analysis.component';
+import { PlantAnalysisPlantInfoComponent } from './plant-analysis.plant-info.component';
+
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'edit-profile', component: AppEditProfileComponent },
   { path: 'dashboard', component: AppDashboardComponent },
+  { path: 'plant-analysis', component: AppPlantAnalysisComponent },
   { path: 'registration', component: AppRegistrationComponent },
   { path: 'about-citas', component: AppAboutCitasComponent },
   { path: 'about-team', component: AppAboutTeamComponent },
@@ -44,7 +48,6 @@ const appRoutes: Routes = [
     AppFooterComponent,
     AppLoginComponent,
     AppHeaderComponent,
-    AppDashboardComponent,
     AppHomeComponent,
     AppPageNotFoundComponent,
     AppRegistrationComponent,
@@ -54,10 +57,13 @@ const appRoutes: Routes = [
     AppContactUsComponent,
     AppEditProfileComponent,
     UserNavComponent,
+    AppDashboardComponent,
+    AppPlantAnalysisComponent,
     DashboardFarmInfoComponent,
     DashboardPlantsComponent,
     DashboardSensorsComponent,
-    DashboardFarmsComponent
+    DashboardFarmsComponent,
+    PlantAnalysisPlantInfoComponent
   ],
   imports: [
     BrowserModule,

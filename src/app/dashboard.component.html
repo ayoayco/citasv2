@@ -1,8 +1,9 @@
 <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
 <div class="container">
     <h1>{{selectedFarm.farm_name}} Overview</h1>
-    <farm-info [plants]="plants" [sensors]="sensors" [selectedFarm]="selectedFarm"></farm-info>
     <plants-info [plants]="plants"></plants-info>
     <sensors-info [sensors]="sensors"></sensors-info>
     <farms-list [farms]="farms" (selectFarm)="selectFarm($event)"></farms-list>
+    <div class="clear-both"></div>
+    <farm-info [plants]="plants" [sensors]="sensors" [selectedFarm]="selectedFarm"></farm-info>
 </div>
