@@ -1,0 +1,48 @@
+<div id="container">
+    <div *ngIf="selectedSensorName == ''">
+        <h3>Selected Sensor: <em>None Selected</em></h3>
+    </div>
+    <div *ngIf="selectedSensorName != ''">
+        <h3>Selected Sensor: {{selectedSensorName}}</h3>
+        <table>
+            <tr>
+                <th>air_temp</th>
+                <th>battery</th>
+                <th>canopy_temp</th>
+                <th>conductivity</th>
+                <th>light</th>
+                <th>moisture</th>
+                <th>pH</th>
+                <th>soil_temp</th>
+                <th>timestamp</th>
+            </tr>
+            <tr *ngFor="let reading of readings">
+                <th>{{reading.air_temp}}</th>
+                <th>{{reading.battery}}</th>
+                <th>{{reading.canopy_temp}}</th>
+                <th>{{reading.conductivity}}</th>
+                <th>{{reading.light}}</th>
+                <th>{{reading.moisture}}</th>
+                <th>{{reading.pH}}</th>
+                <th>{{reading.soil_temp}}</th>
+                <th>{{reading.timestamp}}</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!--
+
+{
+    air_temp: 29.233
+    battery: 85
+    canopy_temp: 1
+    conductivity: 15
+    light: 3
+    moisture: 24
+    pH: 7
+    soil_temp: 28.2166
+    timestamp: "2017-May-10 09:14:12"
+}
+
+-->

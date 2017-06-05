@@ -30,7 +30,8 @@ export class AppSensorAnalysisComponent {
         soil_management: false,
     };
     sensors: any[] = [];
-    selectedSensor: any = undefined;
+    selectedSensorReadings: any[] = [];
+    selectedSensorName: string = "";
     sites: any[];
 
     constructor(
@@ -124,22 +125,24 @@ export class AppSensorAnalysisComponent {
             }
         );
     }
-    public selectSensor(sensorID: number){
+    public selectSensor(sensorID: string){
         console.log('sensor '+ sensorID + ' selected!');
         let data: any;
-        this.apiService.getSensor(this.sessionService.getLoggedInKey(), sensorID.toString())
+        this.apiService.getSensor(this.sessionService.getLoggedInKey(), sensorID)
         .then(
             res => {
                 data = res;
-                this.selectedSensor = data.data;
-                console.log(this.selectedSensor);
+                this.selectedSensorReadings = data.data;
+                this.selectedSensorName = sensorID;
+                console.log(this.selectedSensorReadings);
             }
         )
     }
 
     public onselect(val){
         this.sensors = [];
-        this.selectedSensor = undefined;
+        this.selectedSensorReadings = undefined;
+        this.selectedSensorName = "";
         this.selectSite(val);
     }
 
