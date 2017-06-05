@@ -1,0 +1,43 @@
+div#container {
+    border: 1px solid #ccc;
+    margin: 30px 30px 30px 0;
+    float: left;
+    padding: 30px;
+}
+
+td.text {
+    font-weight: bold;
+    text-align: left;
+}
+
+td.value {
+    text-align: left;
+}
+
+td,
+th {
+    padding: 5px 15px;
+    text-align: left;
+    border-right: 1px solid #ccc;
+}
+
+tr {
+    border: 1px solid #ccc;
+    border-top: 0px;
+    border-right: 0px;
+}
+
+table {
+    width: 100%;
+    margin: 30px 30px 30px 0;
+    border-top: 1px solid #ccc;
+}
+
+.table-title {
+    text-align: center;
+    font-size: large;
+}
+
+td:first-child {
+    width: 100px;
+}

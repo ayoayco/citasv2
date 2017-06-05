@@ -30,6 +30,7 @@ import { AppPlantAnalysisComponent } from './plant-analysis.component';
 import { PlantAnalysisPlantInfoComponent } from './plant-analysis.plant-info.component';
 
 import { AppSensorAnalysisComponent } from './sensor-analysis.component';
+import { SensorAnalysisSensorInfoComponent } from './sensor-analysis.sensor-info.component';
 
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
@@ -67,7 +68,8 @@ const appRoutes: Routes = [
     DashboardPlantsComponent,
     DashboardSensorsComponent,
     DashboardFarmsComponent,
-    PlantAnalysisPlantInfoComponent
+    PlantAnalysisPlantInfoComponent,
+    SensorAnalysisSensorInfoComponent
   ],
   imports: [
     BrowserModule,
