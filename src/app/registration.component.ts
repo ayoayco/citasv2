@@ -22,15 +22,7 @@ export class AppRegistrationComponent {
     success: boolean = false;
     msg: string;
     err: boolean = false;
-    user : User = {
-           username: "",
-           password: "",
-           hashedpw: "",
-           user_type: 0,
-           fullname: "",
-           email: "",
-           mobile_number: ""
-        }
+    user : User = new User();
     password2: string;
     accept:any;
 

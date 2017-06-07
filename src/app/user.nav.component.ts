@@ -14,17 +14,7 @@ import { Farm } from './models/farm';
 
 export class UserNavComponent {
     @Input() farms: Farm[];
-    @Input() selectedFarm: Farm = {
-        center: [],
-        farm_id: 0,
-        farm_name: "",
-        farm_size: "",
-        foc_present: false,
-        foc_prevention: false,
-        geocode: "",
-        geometry: [],
-        soil_management: false,
-    };
+    @Input() selectedFarm: Farm = new Farm();
     @Output() selectFarm = new EventEmitter<{}>();
 
     isLoggedIn: boolean;

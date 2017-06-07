@@ -22,15 +22,7 @@ export class AppEditProfileComponent {
     success: boolean = false;
     err: boolean = false;
     msg: string;
-    user : User = {
-           username: "",
-           password: "",
-           hashedpw: "",
-           user_type: 0,
-           fullname: "",
-           email: "",
-           mobile_number: ""
-        }
+    user : User = new User();
 
     constructor(
         private sessionService: AppSessionService,
