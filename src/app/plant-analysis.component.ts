@@ -18,17 +18,7 @@ import { Farm } from './models/farm';
 export class AppPlantAnalysisComponent{
     
     farms: Farm[] = [];
-    selectedFarm: Farm = {
-        center: [],
-        farm_id: 0,
-        farm_name: "",
-        farm_size: "",
-        foc_present: false,
-        foc_prevention: false,
-        geocode: "",
-        geometry: [],
-        soil_management: false,
-    };
+    selectedFarm: Farm = new Farm();
     plants: any[] = [];
     selectedPlant: any = undefined;
     sites: any[];
