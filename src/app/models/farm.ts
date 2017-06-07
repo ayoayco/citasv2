@@ -1,5 +1,5 @@
 // usage:
-// import { Farm } from './farm';
+// import { Farm } from './models/farm';
 
 export class Farm {
     center: number[];

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { Farm } from './farm';
+import { Farm } from './models/farm';
 
 @Component({
     selector: 'farms-list',

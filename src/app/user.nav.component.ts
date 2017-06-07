@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { AppSessionService } from './app.session.service';
 
-import { Farm } from './farm';
+import { Farm } from './models/farm';
 
 @Component({
     selector: 'user-nav',

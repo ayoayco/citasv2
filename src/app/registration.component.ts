@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
-import { User } from './user';
+import { User } from './models/user';
 import { AppSessionService } from './app.session.service';
 
 import { Router } from '@angular/router';
