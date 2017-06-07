@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Farm } from './farm';
+import { Farm } from './models/farm';
 
 @Component({
     selector: 'farm-info',

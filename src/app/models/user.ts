@@ -1,5 +1,5 @@
 // usage:
-// import { User } from './user';
+// import { User } from './models/user';
 
 export class User {
   username: string;

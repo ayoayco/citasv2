@@ -3,7 +3,7 @@ import { AppSessionService } from './app.session.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
-import { Farm } from './farm';
+import { Farm } from './models/farm';
 
 @Component({
     selector: 'app-sensor-analysis',
