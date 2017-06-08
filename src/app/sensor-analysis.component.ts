@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AppSessionService } from './app.session.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
 import { Farm } from './models/farm';
@@ -29,6 +29,7 @@ export class AppSensorAnalysisComponent {
     sites: Site[];
 
     constructor(
+        private activeRoute: ActivatedRoute,
         private sessionService: AppSessionService,
         private router: Router,
         private titleService: Title,
@@ -42,6 +43,12 @@ export class AppSensorAnalysisComponent {
         }
 
         let data : any;
+        let farm_name = "";
+        this.activeRoute.params.forEach(
+            (params : Params) => {
+                farm_name = params["id"];
+            }
+        );
 
         this.apiService.getFarmList(this.sessionService.getLoggedInKey())
         .then(
@@ -50,8 +57,17 @@ export class AppSensorAnalysisComponent {
                 if(data.data){
                     this.farms = data.data;
                     console.log(this.farms);
-                    this.selectedFarm.farm_name = data.data[0].farm_name;
-                    this.selectedFarm.farm_id = data.data[0].farm_id;
+
+                    if(farm_name == ""){
+                        this.selectedFarm = data.data[0];
+                    }else{
+                        let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == farm_name });
+
+                        this.selectedFarm = selectedArr[0];
+                        console.log(this.selectedFarm);
+                    }
+
+
 
                     this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                     .then(
