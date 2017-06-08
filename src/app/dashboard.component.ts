@@ -38,10 +38,11 @@ export class AppDashboardComponent {
 
         let data : any;
 
-        let farm_name = "";
+        let farm_name = undefined;
         this.activeRoute.params.forEach(
             (params : Params) => {
                 farm_name = params["id"];
+                console.log("params: ", params['id']);
             }
         );
 
@@ -51,16 +52,14 @@ export class AppDashboardComponent {
                 data = res;
                 if(data.data){
                     this.farms = data.data;
-                    console.log(this.farms);
-                    this.selectedFarm.farm_name = data.data[0].farm_name;
-                    this.selectedFarm.farm_id = data.data[0].farm_id;
+                    this.selectedFarm.farm_name = 'Loading...';
 
                     this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                     .then(
                         res => {
                             data = res;
                             
-                            if(farm_name == ""){
+                            if(farm_name == "" || farm_name == undefined){
                                 this.selectedFarm = data.data[0];
                             }else{
                                 let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == farm_name });
@@ -68,7 +67,7 @@ export class AppDashboardComponent {
                                 this.selectedFarm = selectedArr[0];
                                 console.log(this.selectedFarm);
                             }
-                            
+
                             console.log("select farm: " + this.selectedFarm.farm_name);
                             console.log("select farm ID: " + this.selectedFarm.farm_id);
 
@@ -104,9 +103,10 @@ export class AppDashboardComponent {
     }
 
     public selectFarm(name: string){
-        this.selectedFarm.farm_name = name;
         let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == name });
         this.selectedFarm = selectedArr[0];
+        this.plants = [];
+        this.sensors = []
 
         let data: any;
 
@@ -114,7 +114,6 @@ export class AppDashboardComponent {
         .then(
             res => {
                 data = res;
-                this.selectedFarm = data.data[0];
                 console.log("select farm: " + this.selectedFarm.farm_name);
                 console.log("select farm ID: " + this.selectedFarm.farm_id);
 

@@ -43,7 +43,12 @@ export class AppSensorAnalysisComponent {
         }
 
         let data : any;
-        let farm_name = "";
+        
+        this.sensors = [];
+        this.selectedSensorReadings = undefined;
+        this.selectedSensorName = "";
+
+        let farm_name = undefined;
         this.activeRoute.params.forEach(
             (params : Params) => {
                 farm_name = params["id"];
@@ -54,11 +59,11 @@ export class AppSensorAnalysisComponent {
         .then(
             res => {
                 data = res;
+                this.selectedFarm.farm_name = 'Loading...';
                 if(data.data){
                     this.farms = data.data;
-                    console.log(this.farms);
 
-                    if(farm_name == ""){
+                    if(farm_name == "" || farm_name == undefined){
                         this.selectedFarm = data.data[0];
                     }else{
                         let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == farm_name });
@@ -109,7 +114,6 @@ export class AppSensorAnalysisComponent {
         this.sensors = [];
         this.selectedSensorReadings = undefined;
         this.selectedSensorName = "";
-        this.selectedFarm.farm_name = name;
         let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == name });
         this.selectedFarm = selectedArr[0];
 
@@ -119,7 +123,6 @@ export class AppSensorAnalysisComponent {
         .then(
             res => {
                 data = res;
-                this.selectedFarm = data.data[0];
                 console.log("select farm: " + this.selectedFarm.farm_name);
                 console.log("select farm ID: " + this.selectedFarm.farm_id);
 
