@@ -37,7 +37,7 @@ const appRoutes: Routes = [
   { path: 'edit-profile', component: AppEditProfileComponent },
   { path: 'dashboard', component: AppDashboardComponent },
   { path: 'plant-analysis', component: AppPlantAnalysisComponent },
-  { path: 'sensor-analysis', component: AppSensorAnalysisComponent },
+  { path: 'sensor-analysis/:id', component: AppSensorAnalysisComponent },
   { path: 'registration', component: AppRegistrationComponent },
   { path: 'about-citas', component: AppAboutCitasComponent },
   { path: 'about-team', component: AppAboutTeamComponent },
