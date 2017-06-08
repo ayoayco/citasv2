@@ -67,8 +67,6 @@ export class AppSensorAnalysisComponent {
                         console.log(this.selectedFarm);
                     }
 
-
-
                     this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                     .then(
                         res => {
