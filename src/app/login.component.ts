@@ -49,7 +49,7 @@ export class AppLoginComponent {
             }
           }else{
             // login fail
-            console.log("Invalid username / password");
+            console.log("Failed to authenticate.");
           }
         }
         // set user.username and user.key
