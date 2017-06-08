@@ -35,8 +35,8 @@ import { SensorAnalysisSensorInfoComponent } from './sensor-analysis.sensor-info
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'edit-profile', component: AppEditProfileComponent },
-  { path: 'dashboard', component: AppDashboardComponent },
-  { path: 'plant-analysis', component: AppPlantAnalysisComponent },
+  { path: 'dashboard/:id', component: AppDashboardComponent },
+  { path: 'plant-analysis/:id', component: AppPlantAnalysisComponent },
   { path: 'sensor-analysis/:id', component: AppSensorAnalysisComponent },
   { path: 'registration', component: AppRegistrationComponent },
   { path: 'about-citas', component: AppAboutCitasComponent },
