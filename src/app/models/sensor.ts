@@ -1,39 +1,29 @@
 export class Sensor{
-    air_temp: number;
-    battery: number;
-    canopy_temp: number;
-    conductivity: number;
-    light: number;
-    moisture: number;
-    pH: number;
-    soil_temp: number;
-    timestamp: string;
+    farm_site_id: number;
+    lat: number;
+    lng: number;
+    sampling_site_id: number;
+    sensor_name: string;
 
     constructor(){
-        this.air_temp = 0;
-        this.battery = 0;
-        this.canopy_temp = 0;
-        this.conductivity = 0;
-        this.light = 0;
-        this.moisture = 0;
-        this.pH = 0;
-        this.soil_temp = 0;
-        this.timestamp = "";
+        this.farm_site_id = 0;
+        this.lat = 0;
+        this.lng = 0;
+        this.sampling_site_id = 0;
+        this.sensor_name = "";
     }
 }
 
 /*
 
+
 {
-    air_temp: 29.233
-    battery: 85
-    canopy_temp: 1
-    conductivity: 15
-    light: 3
-    moisture: 24
-    pH: 7
-    soil_temp: 28.2166
-    timestamp: "2017-May-10 09:14:12"
-}
+    farm_site_id: 1
+    lat: 6.047341
+    lng: 125.0826
+    sampling_site_id: 1
+    sensor_name: "SN1"
+} 
+
 
 */

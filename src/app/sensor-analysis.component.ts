@@ -5,6 +5,10 @@ import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
 import { Farm } from './models/farm';
 
+import { SensorReading } from './models/sensor-reading';
+import { Sensor } from './models/sensor';
+import { Site } from './models/site';
+
 @Component({
     selector: 'app-sensor-analysis',
     templateUrl: './sensor-analysis.component.html',
@@ -19,10 +23,10 @@ export class AppSensorAnalysisComponent {
     
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
-    sensors: any[] = [];
-    selectedSensorReadings: any[] = [];
+    sensors: Sensor[] = [];
+    selectedSensorReadings: SensorReading[] = [];
     selectedSensorName: string = "";
-    sites: any[];
+    sites: Site[];
 
     constructor(
         private sessionService: AppSessionService,
