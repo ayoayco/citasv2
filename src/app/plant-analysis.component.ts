@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
 import { Farm } from './models/farm';
+import { Plant } from './models/plant';
 
 @Component({
     selector: 'app-plant-analysis',
@@ -19,8 +20,8 @@ export class AppPlantAnalysisComponent{
     
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
-    plants: any[] = [];
-    selectedPlant: any = undefined;
+    plants: Plant[] = [];
+    selectedPlant: Plant = new Plant();
     sites: any[];
 
     constructor(
