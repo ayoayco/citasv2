@@ -17,8 +17,7 @@ tr {
 }
 
 table {
-    width: 350px;
-    float: left;
-    margin-right: 30px;
+    width: 300px;
+    margin: 0 30px 30px 0;
     border-top: 1px solid #ccc;
 }

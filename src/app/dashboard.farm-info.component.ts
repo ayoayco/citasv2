@@ -1,16 +1,24 @@
 import { Component, Input } from '@angular/core';
+import { CitasApiService } from './citas.api.service';
+import { AppSessionService } from './app.session.service';
 
 import { Farm } from './models/farm';
 
 @Component({
     selector: 'farm-info',
     templateUrl: './dashboard.farm-info.component.html',
-    styleUrls: ['./dashboard.farm-info.component.css']
+    styleUrls: ['./dashboard.farm-info.component.css'],
+    providers: [
+        CitasApiService,
+        AppSessionService
+    ]
 }
 )
 
-export class DashboardFarmInfoComponent {
+export class DashboardFarmInfoComponent{
     @Input() selectedFarm: Farm;
     @Input() sensors: any[];
     @Input() plants: any[];
+    constructor(){
+    }
 }

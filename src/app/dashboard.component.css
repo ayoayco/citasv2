@@ -11,3 +11,17 @@ h1 {
     font-weight: bold;
     margin-bottom: 30px;
 }
+
+div.container {
+    padding: 90px 0 30px;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    text-align: center;
+    font-weight: 300;
+}
+
+h1 {
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 30px;
+}

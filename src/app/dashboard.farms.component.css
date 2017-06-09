@@ -18,9 +18,9 @@ tr {
 }
 
 table {
-    width: 350px;
+    width: 220px;
     float: left;
-    margin-right: 30px;
+    margin: 0 30px 30px 0;
     border-top: 1px solid #ccc;
 }
 
