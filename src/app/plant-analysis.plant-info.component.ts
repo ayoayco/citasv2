@@ -11,7 +11,5 @@ export class PlantAnalysisPlantInfoComponent {
     @Input() selectedPlant: Plant = new Plant();
 
     constructor(){
-        console.log("selectedPlant");
-        console.log(this.selectedPlant);
     }
 }

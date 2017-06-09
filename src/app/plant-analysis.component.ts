@@ -56,32 +56,26 @@ export class AppPlantAnalysisComponent{
                 data = res;
                 if(data.data){
                     this.farms = data.data;
-                    this.selectedFarm.farm_name = 'Loading...';
+
+                    if(farm_name == "" || farm_name == undefined){
+                        this.selectedFarm = this.farms[0];
+                        console.log('selected farm: ' + this.selectedFarm.farm_name);
+                    }else{
+                        let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == farm_name });
+                        this.selectedFarm = selectedArr[0];
+                        console.log('selected farm: ' + this.selectedFarm.farm_name);
+                    }
 
                     this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                     .then(
                         res => {
                             data = res;
-                            
-                            if(farm_name == "" || farm_name == undefined){
-                                this.selectedFarm = data.data[0];
-                            }else{
-                                let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == farm_name });
-
-                                this.selectedFarm = selectedArr[0];
-                                console.log(this.selectedFarm);
-                            }
-
-                            console.log("select farm: " + this.selectedFarm.farm_name);
-                            console.log("select farm ID: " + this.selectedFarm.farm_id);
 
                             this.apiService.getSites(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                             .then(
                                 response => {
                                     data = response;
                                     this.sites = data.data;
-                                    console.log('sites!');
-                                    console.log(this.sites);
                                 }
                             );
 
