@@ -65,14 +65,12 @@ export class AppDashboardComponent {
                         this.selectedFarm = selectedArr[0];
                         console.log('selected farm: ' + this.selectedFarm.farm_name);
                     }
-                    
+
                     this.apiService.getPlantList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
                     .then(
                         res => {
                             data = res;
                             this.plants = data.data;
-                            console.log("plant count: "+this.plants.length);
-                            console.log(this.plants);
                         }
                     );
 
@@ -81,8 +79,6 @@ export class AppDashboardComponent {
                         res => {
                             data = res;
                             this.sensors = data.data;
-                            console.log("sensors count: "+this.sensors.length);
-                            console.log(this.sensors);
                         }
                     );
 
@@ -105,8 +101,6 @@ export class AppDashboardComponent {
             res => {
                 data = res;
                 this.plants = data.data;
-                console.log("plant count: "+this.plants.length);
-                console.log(this.plants);
             }
         );
 
@@ -115,8 +109,6 @@ export class AppDashboardComponent {
             res => {
                 data = res;
                 this.sensors = data.data;
-                console.log("sensors count: "+this.sensors.length);
-                console.log(this.sensors);
             }
         );
     }
