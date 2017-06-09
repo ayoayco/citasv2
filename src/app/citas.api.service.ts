@@ -16,6 +16,7 @@ export class CitasApiService {
     constructor(private http: Http){}
 
     public getSites(key: string, farmID?: string, siteID?: string){
+        $("body").addClass("loading");
         let url = this.APIURL + "/sites";
         if(farmID) url += "/"+farmID;
         if(siteID) url += "/"+siteID;
@@ -29,6 +30,7 @@ export class CitasApiService {
     }
 
     public getSensor(key: string, sensorName: string){
+        $("body").addClass("loading");
         let url = this.APIURL + "/sensor/"+sensorName + "?key=" + key;
         
         //console.log(url);
@@ -39,6 +41,7 @@ export class CitasApiService {
     }
 
     public getPlant(key: string, plantID: string){
+        $("body").addClass("loading");
         let url = this.APIURL + "/plant/"+plantID + "?key=" + key;
         
         //console.log(url);
@@ -49,6 +52,7 @@ export class CitasApiService {
     }
 
     public getSensorList(key: string, farmID?: string, siteID?: string){
+        $("body").addClass("loading");
         let url = this.APIURL + "/sensorlist";
         if(farmID) url += "/"+farmID;
         if(siteID) url += "/"+siteID;
@@ -62,6 +66,7 @@ export class CitasApiService {
     }
 
     public getPlantList(key: string, farmID?: string, siteID?: string){
+        $("body").addClass("loading");
         let url = this.APIURL + "/plantlist";
         if(farmID) url += "/"+farmID;
         if(siteID) url += "/"+siteID;
@@ -75,6 +80,7 @@ export class CitasApiService {
     }
 
     public getFarm(key: string, farmID: string){
+        $("body").addClass("loading");
         let url = this.APIURL + "/farm/"+farmID+"?key="+key;
         
         //console.log(url);
@@ -85,8 +91,8 @@ export class CitasApiService {
     }
 
     public getFarmList(key: string){
+        $("body").addClass("loading");
         let url = this.APIURL + "/farmlist?key="+key;
-        
         //console.log(url);
          return this.http.get(url)
          .toPromise()
@@ -115,6 +121,7 @@ export class CitasApiService {
     }
 
     public editUser(user: User, key: string): Promise<User>{
+        $("body").addClass("loading");
 
         let url = this.APIURL + "/profile?key="+ key;
 
@@ -134,6 +141,7 @@ export class CitasApiService {
     }
 
     public getUser( key: string){
+        $("body").addClass("loading");
         let url = this.APIURL + "/profile?key="+key;
         
         //console.log(url);
@@ -144,6 +152,7 @@ export class CitasApiService {
     }
 
     public addUser(user: User): Promise<User>{
+        $("body").addClass("loading");
         let url = this.APIURL + "/register";
 
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
@@ -165,6 +174,7 @@ export class CitasApiService {
     }
 
     public authenticateUser(username: string, password: string): Promise<Response> {
+        $("body").addClass("loading");
 
         let url = this.APIURL + "/login";
 
@@ -180,12 +190,14 @@ export class CitasApiService {
     }
 
     private extractData(res: Response) {
+        $("body").removeClass("loading");
         let body = res.json();
         return body || { };
     }
 
     
     private handleError (error: Response | any) {
+        $("body").removeClass("loading");
         // In a real world app, you might use a remote logging infrastructure
         let errMsg: string;
         if (error instanceof Response) {

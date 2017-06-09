@@ -4,7 +4,7 @@
             <th>Other Farms</th>
         </tr>
         <tr *ngFor="let farm of farms">
-            <td class="text"><a (click)="OnSelectFarm(farm.farm_name)">{{farm.farm_name}}</a></td>
+            <td class="text"><a (click)="OnSelectFarm(farm.farm_id)">{{farm.farm_name}}</a></td>
         </tr>
     </table>
 </div>

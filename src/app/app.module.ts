@@ -18,6 +18,7 @@ import { AppNavPagesComponent } from './nav.pages.component';
 import { AppAboutTeamComponent } from './about-team.component';
 import { AppContactUsComponent } from './contact-us.component';
 import { AppEditProfileComponent } from './edit-profile.component';
+import { MapComponent } from './map.component';
 
 import { UserNavComponent} from './user.nav.component';
 import { AppDashboardComponent } from './dashboard.component';
@@ -72,7 +73,8 @@ const appRoutes: Routes = [
     DashboardSensorsComponent,
     DashboardFarmsComponent,
     PlantAnalysisPlantInfoComponent,
-    SensorAnalysisSensorInfoComponent
+    SensorAnalysisSensorInfoComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

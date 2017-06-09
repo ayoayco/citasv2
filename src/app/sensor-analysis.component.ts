@@ -48,10 +48,10 @@ export class AppSensorAnalysisComponent {
         this.selectedSensorReadings = undefined;
         this.selectedSensorName = "";
 
-        let farm_name = undefined;
+        let farm_id = undefined;
         this.activeRoute.params.forEach(
             (params : Params) => {
-                farm_name = params["id"];
+                farm_id = params["id"];
             }
         );
 
@@ -63,40 +63,32 @@ export class AppSensorAnalysisComponent {
                 if(data.data){
                     this.farms = data.data;
 
-                    if(farm_name == "" || farm_name == undefined){
+                    if(farm_id == undefined){
                         this.selectedFarm = this.farms[0];
                         console.log('selected farm: ' + this.selectedFarm.farm_name);
                     }else{
-                        let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == farm_name });
+                        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == farm_id });
                         this.selectedFarm = selectedArr[0];
                         console.log('selected farm: ' + this.selectedFarm.farm_name);
                     }
 
-                    this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                    this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                    .then(
+                        response => {
+                            data = response;
+                            this.sites = data.data;
+                            console.log('sites!');
+                            console.log(this.sites);
+                        }
+                    );
+
+                    this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
                     .then(
                         res => {
                             data = res;
-
-                            this.apiService.getSites(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                            .then(
-                                response => {
-                                    data = response;
-                                    this.sites = data.data;
-                                    console.log('sites!');
-                                    console.log(this.sites);
-                                }
-                            );
-
-                            this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                            .then(
-                                res => {
-                                    data = res;
-                                    this.sensors = data.data;
-                                    console.log("sensor count: "+this.sensors.length);
-                                    console.log(this.sensors);
-                                }
-                            );
-
+                            this.sensors = data.data;
+                            console.log("sensor count: "+this.sensors.length);
+                            console.log(this.sensors);
                         }
                     );
 
@@ -106,36 +98,26 @@ export class AppSensorAnalysisComponent {
         );
     }
 
-    public selectFarm(name: string){
+    public selectFarm(id: number){
         
         this.sensors = [];
         this.selectedSensorReadings = undefined;
         this.selectedSensorName = "";
-        let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == name });
+        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == id });
         this.selectedFarm = selectedArr[0];
 
         let data: any;
 
-        this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+        this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
         .then(
             res => {
                 data = res;
-                console.log("select farm: " + this.selectedFarm.farm_name);
-                console.log("select farm ID: " + this.selectedFarm.farm_id);
-
-
-                this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                .then(
-                    res => {
-                        data = res;
-                        this.sensors = data.data;
-                        console.log("sensor count: "+this.sensors.length);
-                        console.log(this.sensors);
-                    }
-                );
-
+                this.sensors = data.data;
+                console.log("sensor count: "+this.sensors.length);
+                console.log(this.sensors);
             }
         );
+
     }
     public selectSensor(sensorID: string){
         console.log('sensor '+ sensorID + ' selected!');

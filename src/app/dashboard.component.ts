@@ -29,6 +29,8 @@ export class AppDashboardComponent {
         private titleService: Title,
         private apiService: CitasApiService
     ){
+
+        
         let loggedIn: boolean = this.sessionService.isLoggedIn();
         if(!loggedIn){
             this.router.navigate(['/']);
@@ -38,10 +40,10 @@ export class AppDashboardComponent {
 
         let data : any;
 
-        let farm_name = undefined;
+        let farm_id = undefined;
         this.activeRoute.params.forEach(
             (params : Params) => {
-                farm_name = params["id"];
+                farm_id = params["id"];
             }
         );
 
@@ -55,40 +57,32 @@ export class AppDashboardComponent {
 
                     this.farms = data.data;
 
-                    if(farm_name == "" || farm_name == undefined){
+                    if(farm_id == undefined){
                         this.selectedFarm = this.farms[0];
                         console.log('selected farm: ' + this.selectedFarm.farm_name);
                     }else{
-                        let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == farm_name });
+                        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == farm_id });
                         this.selectedFarm = selectedArr[0];
                         console.log('selected farm: ' + this.selectedFarm.farm_name);
                     }
-
-                    this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                    
+                    this.apiService.getPlantList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
                     .then(
                         res => {
                             data = res;
+                            this.plants = data.data;
+                            console.log("plant count: "+this.plants.length);
+                            console.log(this.plants);
+                        }
+                    );
 
-                            this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                            .then(
-                                res => {
-                                    data = res;
-                                    this.plants = data.data;
-                                    console.log("plant count: "+this.plants.length);
-                                    console.log(this.plants);
-                                }
-                            );
-
-                            this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                            .then(
-                                res => {
-                                    data = res;
-                                    this.sensors = data.data;
-                                    console.log("sensors count: "+this.sensors.length);
-                                    console.log(this.sensors);
-                                }
-                            );
-
+                    this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                    .then(
+                        res => {
+                            data = res;
+                            this.sensors = data.data;
+                            console.log("sensors count: "+this.sensors.length);
+                            console.log(this.sensors);
                         }
                     );
 
@@ -98,42 +92,31 @@ export class AppDashboardComponent {
         );
     }
 
-    public selectFarm(name: string){
-        let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == name });
+    public selectFarm(id: number){
+        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == id });
         this.selectedFarm = selectedArr[0];
         this.plants = [];
         this.sensors = []
 
         let data: any;
 
-        this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+        this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
         .then(
             res => {
                 data = res;
-                console.log("select farm: " + this.selectedFarm.farm_name);
-                console.log("select farm ID: " + this.selectedFarm.farm_id);
+                this.plants = data.data;
+                console.log("plant count: "+this.plants.length);
+                console.log(this.plants);
+            }
+        );
 
-
-                this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                .then(
-                    res => {
-                        data = res;
-                        this.plants = data.data;
-                        console.log("plant count: "+this.plants.length);
-                        console.log(this.plants);
-                    }
-                );
-
-               this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-               .then(
-                   res => {
-                       data = res;
-                       this.sensors = data.data;
-                       console.log("sensors count: "+this.sensors.length);
-                       console.log(this.sensors);
-                   }
-               );
-
+        this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+        .then(
+            res => {
+                data = res;
+                this.sensors = data.data;
+                console.log("sensors count: "+this.sensors.length);
+                console.log(this.sensors);
             }
         );
     }
