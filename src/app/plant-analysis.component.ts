@@ -43,10 +43,10 @@ export class AppPlantAnalysisComponent{
         this.plants = [];
         this.selectedPlant = undefined;
         
-        let farm_name = undefined;
+        let farm_id = undefined;
         this.activeRoute.params.forEach(
             (params : Params) => {
-                farm_name = params["id"];
+                farm_id = params["id"];
             }
         );
 
@@ -57,38 +57,31 @@ export class AppPlantAnalysisComponent{
                 if(data.data){
                     this.farms = data.data;
 
-                    if(farm_name == "" || farm_name == undefined){
+                    if(farm_id == undefined){
                         this.selectedFarm = this.farms[0];
                         console.log('selected farm: ' + this.selectedFarm.farm_name);
                     }else{
-                        let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == farm_name });
+                        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == farm_id });
                         this.selectedFarm = selectedArr[0];
                         console.log('selected farm: ' + this.selectedFarm.farm_name);
                     }
 
-                    this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+
+                    this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                    .then(
+                        response => {
+                            data = response;
+                            this.sites = data.data;
+                        }
+                    );
+
+                    this.apiService.getPlantList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
                     .then(
                         res => {
                             data = res;
-
-                            this.apiService.getSites(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                            .then(
-                                response => {
-                                    data = response;
-                                    this.sites = data.data;
-                                }
-                            );
-
-                            this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                            .then(
-                                res => {
-                                    data = res;
-                                    this.plants = data.data;
-                                    console.log("plant count: "+this.plants.length);
-                                    console.log(this.plants);
-                                }
-                            );
-
+                            this.plants = data.data;
+                            console.log("plant count: "+this.plants.length);
+                            console.log(this.plants);
                         }
                     );
 
@@ -98,35 +91,25 @@ export class AppPlantAnalysisComponent{
         );
     }
 
-    public selectFarm(name: string){
+    public selectFarm(id: number){
         
         this.plants = [];
         this.selectedPlant = undefined;
-        let selectedArr = $.grep(this.farms, function(e){ return e.farm_name == name });
+        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == id });
         this.selectedFarm = selectedArr[0];
 
         let data: any;
 
-        this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+        this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
         .then(
             res => {
                 data = res;
-                console.log("select farm: " + this.selectedFarm.farm_name);
-                console.log("select farm ID: " + this.selectedFarm.farm_id);
-
-
-                this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                .then(
-                    res => {
-                        data = res;
-                        this.plants = data.data;
-                        console.log("plant count: "+this.plants.length);
-                        console.log(this.plants);
-                    }
-                );
-
+                this.plants = data.data;
+                console.log("plant count: "+this.plants.length);
+                console.log(this.plants);
             }
         );
+
     }
 
     public selectPlant(plantID: number){
