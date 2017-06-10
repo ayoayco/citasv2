@@ -1,6 +1,4 @@
-import { Component, Input } from '@angular/core';
-
-import { Link } from './link';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-nav-pages',
@@ -8,10 +6,4 @@ import { Link } from './link';
     styleUrls: ['./nav.pages.component.css']
 })
 
-export class AppNavPagesComponent {
-    @Input() menuItems: Link[] = [];
-
-    constructor(){
-        this.menuItems.push(new Link("/", "Home"));
-    }
-}
+export class AppNavPagesComponent {}
