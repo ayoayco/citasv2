@@ -27,10 +27,4 @@ export class AppNavComponent {
   logout(){
     this.sessionService.endSession();
   }
-
-  getStyle(){
-    if(this.isTransparent){
-      return "rgba(3, 3, 3, 0.5)";
-    }
-  }
 }

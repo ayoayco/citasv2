@@ -15,9 +15,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a [routerLink]="['/dashboard', selectedFarm.farm_id]" routerLinkActive="active">Dashboard</a></li>
-                <li><a [routerLink]="[ '/plant-analysis', selectedFarm.farm_id]" routerLinkActive="active">Plant Analysis</a></li>
-                <li><a [routerLink]="[ '/sensor-analysis', selectedFarm.farm_id]" routerLinkActive="active">Sensor Analysis</a></li>
+                <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="['/dashboard', selectedFarm.farm_id]" routerLinkActive="active">Dashboard</a></li>
+                <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="[ '/plant-analysis', selectedFarm.farm_id]" routerLinkActive="active">Plant Analysis</a></li>
+                <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="[ '/sensor-analysis', selectedFarm.farm_id]" routerLinkActive="active">Sensor Analysis</a></li>
                 <li *ngIf="!isLoggedIn"><a class="btn" data-toggle="modal" data-target="#loginModal">Login</a></li>
                 <li *ngIf="isLoggedIn" class="dropdown bg-inverse">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi, {{username}}! <span class="caret"></span></a>
