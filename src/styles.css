@@ -16,8 +16,10 @@ body {
 
 .btn-primary {
     border-radius: 4px;
+    border: 0px !important;
     background-color: #19BD6C !important;
     font-family: 'Montserrat', sans-serif;
+    font-weight: bold !important;
     text-transform: uppercase;
     height: 53px;
 }
