@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, OnChanges, AfterViewInit, EventEmitter } from '@angular/core';
 import { Farm } from './models/farm';
 import { AppSessionService } from './app.session.service';
 import { CitasApiService} from './citas.api.service';
@@ -18,6 +18,9 @@ export class MapComponent implements OnChanges{
     @Input() selectedFarm: Farm;
     @Input() sensors: any[];
     @Input() plants: any[];
+    
+    @Output() selectPlant = new EventEmitter<{}>();
+
     mymap: L.Map;
 
     constructor(
@@ -35,12 +38,11 @@ export class MapComponent implements OnChanges{
         });
 
         // base map
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-            // to do: change these...
-            id: 'jenjereren.16nj7dd6',
-            accessToken: 'pk.eyJ1IjoiamVuamVyZXJlbiIsImEiOiJjaXM2ODlkNmcwZDlnMnlvMGswNmpldWUwIn0.eCh8h5prpNCamLH_zbYHoA'
+        let googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+            maxZoom: 20,
+            subdomains:['mt0','mt1','mt2','mt3']
         }).addTo(this.mymap);
+
     }
 
 
@@ -84,7 +86,6 @@ export class MapComponent implements OnChanges{
             .then(
                 res => {
                     data = res.data;
-                    console.log(data);
                     if(data){
                         // to do: clear previous layer
                         sitesLayer.clearLayers();
@@ -101,31 +102,41 @@ export class MapComponent implements OnChanges{
         // plants changed
         if(changes.plants && changes.plants.firstChange == false ){
             console.log("Map Plants: " + this.plants.length);
-            console.log(this.plants);
+
+            //to do: clear layers
+            plantsLayer.clearLayers();
             var plantIcon = L.icon({
                 iconUrl: './assets/images/plant.healthy.png',
 
-                iconSize:     [38, 38], // size of the icon
+                iconSize:     [25, 25] // size of the icon
                 // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
                 // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
             });
             
+                console.log(this.plants);
+
             for(var i=0; i<this.plants.length; i++){
-                let latlng = new L.LatLng(this.plants[i].lat, this.plants[i].lng);
-                plantsLayer.addLayer(L.marker(latlng, {icon: plantIcon}));
+                let arg = this.plants[i];
+                let latlng = new L.LatLng(arg.lat, arg.lng);
+                let marker = L.marker(latlng, {icon: plantIcon}).on('click', ()=>{
+                    this.onSelect('plant', arg);
+                });
+
+                plantsLayer.addLayer(marker);
                 plantsLayer.addTo(this.mymap);
             }
-            
         }
 
         // sensors changed
         if(changes.sensors && changes.sensors.firstChange == false ){
             console.log("Map Sensors: " + this.sensors.length);
-    
+
+            //to do: clear layers
+            sensorsLayer.clearLayers();
             var sensorIcon = L.icon({
                 iconUrl: './assets/images/sensor.png',
 
-                iconSize:     [38, 38], // size of the icon
+                iconSize:     [25, 25] // size of the icon
                 // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
                 // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
             });
@@ -136,5 +147,10 @@ export class MapComponent implements OnChanges{
                 sensorsLayer.addTo(this.mymap);
             }
         }
+    }
+
+    private onSelect(type:string, plant){
+        console.log(type + " selected");
+        this.selectPlant.emit(plant.plant_id);
     }
 }

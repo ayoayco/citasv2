@@ -80,8 +80,6 @@ export class AppPlantAnalysisComponent{
                         res => {
                             data = res;
                             this.plants = data.data;
-                            console.log("plant count: "+this.plants.length);
-                            console.log(this.plants);
                         }
                     );
 
@@ -105,8 +103,6 @@ export class AppPlantAnalysisComponent{
             res => {
                 data = res;
                 this.plants = data.data;
-                console.log("plant count: "+this.plants.length);
-                console.log(this.plants);
             }
         );
 
@@ -139,8 +135,6 @@ export class AppPlantAnalysisComponent{
             res => {
                 data = res;
                 this.plants = data.data;
-                console.log("plant count: "+this.plants.length);
-                console.log(this.plants);
             }
         );
     }
