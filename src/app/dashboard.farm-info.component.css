@@ -1,6 +1,6 @@
 div#container {
     border: 1px #ccc solid;
-    padding: 30px;
+    padding: 30px 0;
     width: 450px;
     margin: 0 30px 30px 0;
     text-align: left;
@@ -10,13 +10,16 @@ div#container {
 
 strong {
     font-size: 18px;
+    margin-left: 30px;
 }
 
 p {
     color: #57675F;
     font-weight: bold;
+    margin: 0 0 30px 30px;
 }
 
 a#view-link {
-    margin-top: 10px;
+    margin: 30px 0 10px 100px;
+    width: 250px;
 }
