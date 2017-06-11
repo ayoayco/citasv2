@@ -1,14 +1,18 @@
 td.text {
     font-weight: bold;
     text-align: left;
+    color: #57675f;
 }
 
 td.value {
     text-align: right;
+    font-size: x-large;
+    font-weight: bold;
 }
 
 td {
     padding: 30px;
+    background: #ffffff;
 }
 
 tr {

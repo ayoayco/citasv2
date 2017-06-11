@@ -66,31 +66,39 @@ div.features-desc p {
 }
 
 div#soil-analysis h4::before {
-    content: url('../assets/icon-soil_analysis.png');
+    background: url('../assets/icon-soil_analysis.png') center center no-repeat;
+    content: url('http://i.stack.imgur.com/Icd9n.png');
+    padding: 3px 5px;
 }
 
 div#geo-analysis h4::before {
-    content: url('../assets/icon-geospatial_analysis.png');
+    background: url('../assets/icon-geospatial_analysis.png') center center no-repeat;
+    content: url('http://i.stack.imgur.com/Icd9n.png');
+    padding: 3px 5px;
 }
 
 div#plant-analysis h4::before {
-    content: url('../assets/icon-plant_image_analysis.png');
+    background: url('../assets/icon-plant_image_analysis.png') center center no-repeat;
+    content: url('http://i.stack.imgur.com/Icd9n.png');
+    padding: 3px 5px;
 }
 
 div#plant-scope h4::before {
-    content: url('../assets/icon-plantscope.png');
+    background: url('../assets/icon-plantscope.png') center center no-repeat;
+    content: url('http://i.stack.imgur.com/Icd9n.png');
+    padding: 3px 5px;
 }
 
 div#soil-data h4::before {
-    content: url('../assets/icon-soil_data_collection.png');
+    background: url('../assets/icon-soil_data_collection.png') center center no-repeat;
+    content: url('http://i.stack.imgur.com/Icd9n.png');
+    padding: 3px 5px;
 }
 
 div#lamp-kit h4::before {
-    content: url('../assets/icon-lamp_assay_kit.png');
-}
-
-div.features-row div h4::before {
-    margin-right: 5px;
+    background: url('../assets/icon-lamp_assay_kit.png') center center no-repeat;
+    content: url('http://i.stack.imgur.com/Icd9n.png');
+    padding: 3px 5px;
 }
 
 h4 {
