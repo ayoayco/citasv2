@@ -11,7 +11,7 @@ p#desc {
     width: 80%;
     color: #57675F;
     font-family: 'Roboto', sans-serif;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 300;
     line-height: 39px;
     text-align: left;
@@ -49,6 +49,7 @@ h3 {
 p.platform-desc {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
+    font-size: 16px;
 }
 
 div.features-desc h3,
@@ -56,8 +57,7 @@ div.features-desc p,
 div.platform-row .row div p,
 div.platform-row .row div h3 {
     text-align: left !important;
-    padding: 5px;
-    margin: 5px 20px !important;
+    margin: 5px 0 !important;
     color: #57675F;
 }
 
