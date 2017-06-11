@@ -18,8 +18,13 @@ export class MapComponent implements OnChanges{
     @Input() selectedFarm: Farm;
     @Input() sensors: any[];
     @Input() plants: any[];
+
+    @Input() zoomControl: boolean = true;
+    @Input() scrollWheelZoom: boolean = true;
+    @Input() touchZoom: boolean = true;
     
     @Output() selectPlant = new EventEmitter<{}>();
+    @Output() selectSensor = new EventEmitter<{}>();
 
     mymap: L.Map;
 
@@ -33,6 +38,9 @@ export class MapComponent implements OnChanges{
 
         // initialize map
         this.mymap = new L.Map("map-div", {
+            zoomControl: this.zoomControl,
+            scrollWheelZoom: this.scrollWheelZoom,
+            touchZoom: this.touchZoom,
             center: new L.LatLng(12.4, 122.4),
             zoom: 5.5,
         });
@@ -70,7 +78,7 @@ export class MapComponent implements OnChanges{
                         let zoom = 0;
                         switch(data.farm_size){
                             case "large": zoom = 14 ; break;
-                            case "small": zoom = 15 ; break;
+                            case "small": zoom = 20 ; break;
                             default: zoom = 14; break;
                         }
                         this.mymap.setView(center, zoom);
@@ -142,14 +150,19 @@ export class MapComponent implements OnChanges{
             });
             
             for(var i=0; i<this.sensors.length; i++){
-                let latlng = new L.LatLng(this.sensors[i].lat, this.sensors[i].lng);
-                sensorsLayer.addLayer(L.marker(latlng, {icon: sensorIcon}));
+                let arg = this.sensors[i];
+                let latlng = new L.LatLng(arg.lat, arg.lng);
+                let marker = L.marker(latlng, {icon: sensorIcon}).on('click', ()=>{
+                    this.onSelect('sensor', arg);
+                });
+                sensorsLayer.addLayer(marker);
                 sensorsLayer.addTo(this.mymap);
             }
         }
     }
 
-    private onSelect(type:string, plant){
-        this.selectPlant.emit(plant.plant_id);
+    private onSelect(type:string, arg){
+        if(type == "plant") this.selectPlant.emit(arg.plant_id);
+        if(type == "sensor") this.selectSensor.emit(arg.sensor_name);
     }
 }

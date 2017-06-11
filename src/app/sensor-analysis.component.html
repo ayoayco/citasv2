@@ -3,14 +3,15 @@
 
 <div class="container">
     <h1>{{selectedFarm.farm_name}} : Sensor Analysis</h1>
-    <sensor-info [readings]="selectedSensorReadings" [selectedSensorName]="selectedSensorName"></sensor-info>
+    <sensor-info class="float-left" [readings]="selectedSensorReadings" [selectedSensorName]="selectedSensorName"></sensor-info>
     <div id="sensor-list-container" class="float-left">
         <label for="sampling_sites">Sampling Site: </label>
         <select (change)="onselect($event.target.value)">
             <option value=""></option>
             <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
         </select>
-        <table>
+        <map [zoomControl]="false" [selectedFarm]="selectedFarm" [sensors]="sensors" (selectSensor)="selectSensor($event)"></map>
+        <!--<table>
             <tr>
                 <th class="table-title" colspan="2">Map Plot: Sensors ({{sensors.length}})</th>
             </tr>
@@ -18,7 +19,7 @@
                 <td>{{sensor.sensor_name}}</td>
                 <td>({{sensor.lat}}, {{sensor.lng}})</td>
             </tr>
-        </table>
+        </table>-->
     </div>
     <div class="clear-both"></div>
 </div>

@@ -10,7 +10,7 @@
             <option value=""></option>
             <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
         </select>
-        <map [selectedFarm]="selectedFarm" [plants]="plants" (selectPlant)="selectPlant($event)"></map>
+        <map [zoomControl]="false" [selectedFarm]="selectedFarm" [plants]="plants" (selectPlant)="selectPlant($event)"></map>
         <!--<table>
             <tr>
                 <th class="table-title" colspan="2">Map Plot: Plants ({{plants.length}})</th>
