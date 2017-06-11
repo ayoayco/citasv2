@@ -1,9 +1,11 @@
 div.container {
-    padding: 90px 0 30px;
     font-family: 'Montserrat', sans-serif;
     color: #333;
     text-align: center;
     font-weight: 300;
+    background: #f3f3f3;
+    width: 100%;
+    padding: 60px 30px !important;
 }
 
 h1 {
