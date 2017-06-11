@@ -65,12 +65,12 @@ export class AppSensorAnalysisComponent {
 
                     if(farm_id == undefined){
                         this.selectedFarm = this.farms[0];
-                        console.log('selected farm: ' + this.selectedFarm.farm_name);
                     }else{
                         let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == farm_id });
                         this.selectedFarm = selectedArr[0];
-                        console.log('selected farm: ' + this.selectedFarm.farm_name);
                     }
+
+                    console.log('selected farm: ' + this.selectedFarm.farm_name);
 
                     this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
                     .then(
@@ -107,6 +107,18 @@ export class AppSensorAnalysisComponent {
         this.selectedFarm = selectedArr[0];
 
         let data: any;
+
+        console.log('selected farm: ' + this.selectedFarm.farm_name);
+
+        this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+        .then(
+            response => {
+                data = response;
+                this.sites = data.data;
+                console.log('sites!');
+                console.log(this.sites);
+            }
+        );
 
         this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
         .then(

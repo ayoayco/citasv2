@@ -1,7 +1,7 @@
 <div id="container">
     <h3>Farm Info</h3>
     <p>{{this.selectedFarm.farm_name}} is owned by ...</p>
-    <map [selectedFarm]="selectedFarm" [sensors]="sensors" [plants]="plants"></map>
+    <map [zoomControl]="false" [selectedFarm]="selectedFarm" [sensors]="sensors" [plants]="plants"></map>
     <!--<table class="float-left">
         <tr>
             <th class="table-title" colspan="3">Sensors ({{plants.length}})</th>
