@@ -5,21 +5,15 @@
     <plant-info class="float-left" [selectedPlant]="selectedPlant"></plant-info>
 
     <div id="plant-list-container" class="float-left">
-        <label for="sampling_sites">Sampling Site: </label>
-        <select (change)="onselect($event.target.value)">
-            <option value=""></option>
-            <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
-        </select>
-        <map [zoomControl]="false" [selectedFarm]="selectedFarm" [plants]="plants" (selectPlant)="selectPlant($event)"></map>
-        <!--<table>
-            <tr>
-                <th class="table-title" colspan="2">Map Plot: Plants ({{plants.length}})</th>
-            </tr>
-            <tr class="clickable-row" *ngFor="let plant of plants" (click)="selectPlant(plant.plant_id)">
-                <td>{{plant.plant_id}}</td>
-                <td>({{plant.lat}}, {{plant.lng}})</td>
-            </tr>
-        </table>-->
+        <div id="plant-list-div">
+            <label for="sampling_sites">Sampling Site: </label>
+            <select (change)="onselect($event.target.value)">
+                <option value=""></option>
+                <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
+            </select>
+            <map [zoomControl]="false" [selectedFarm]="selectedFarm" [plants]="plants" (selectPlant)="selectPlant($event)"></map>
+        </div>
+        <button class="btn btn-primary btn-block">Download Image Data</button>
     </div>
     <div class="clear-both"></div>
 </div>
