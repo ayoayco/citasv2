@@ -2,11 +2,26 @@
     <div class="footer1">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 widget">
-                    <h3 class="widget-title">Contact Us</h3>
-                    <a name="contact-us"></a>
+                <div class="col-md-6 widget">
                     <div class="widget-body">
-                        <h5>(+63) 426 6001 loc. 5605</h5>
+
+                        <i class="app-logo-white"></i>
+                        <ul class="simplenav">
+                            <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+                            <li><a routerLink="/about-citas" routerLinkActive="active">About</a></li>
+                            <li><a routerLink="/about-team" routerLinkActive="active">The Team</a></li>
+                            <li><a routerLink="/about-events" routerLinkActive="active">Events</a></li>
+                            <li><a routerLink="/about-research" routerLinkActive="active">Research</a></li>
+                            <li><a routerLink="/about-research" routerLinkActive="active">Trainings</a></li>
+                            <li><a routerLink="/contact-us" routerLinkActive="active">Contact Us</a></li>
+                            <li *ngIf="!isLoggedIn"><a class="clickable" data-toggle="modal" data-target="#loginModal">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 widget" id="contact-us">
+                    <h3 class="widget-title">Contact Us</h3>
+                    <div class="widget-body">
+                        <strong>(+63) 426 6001 loc. 5605</strong>
                         <p>Rm. 201a PLDT-CTC Building Ateneo de Manila University Katipunan Avenue, Loyola Heights Quezon City, Metro Manila, Philippines 1108</p>
                     </div>
                 </div>
@@ -19,20 +34,9 @@
     <div class="footer2">
         <div class="container">
             <div class="row">
-
                 <div class="col-md-6 widget">
                     <div class="widget-body">
-                        <p class="simplenav">
-                            <a routerLink="/" routerLinkActive="active">Home</a> |
-                            <a routerLink="/about-citas" routerLinkActive="active">About</a> |
-                            <a routerLink="/contact-us" routerLinkActive="active">Contact</a>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 widget">
-                    <div class="widget-body">
-                        <p class="text-right">
+                        <p class="text-left">
                             Copyright © 2017, CITAS | Designed by Ateneo de Manila University
                         </p>
                     </div>
