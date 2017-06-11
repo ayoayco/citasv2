@@ -28,6 +28,7 @@
             "../node_modules/js-sha256/build/sha256.min.js",
             "../node_modules/bootstrap/dist/js/bootstrap.min.js",
             "../node_modules/leaflet/dist/leaflet.js",
+            "../node_modules/jssor-slider/js/jssor.slider.min.js",
             "index.js"
         ],
         "environmentSource": "environments/environment.ts",
