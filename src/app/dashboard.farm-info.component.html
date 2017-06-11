@@ -1,37 +1,7 @@
 <div id="container">
-    <h3>Farm Info</h3>
-    <p>{{this.selectedFarm.farm_name}} is owned by ...</p>
+    <strong>Farm Info</strong>
+    <p>Owned by ...</p>
     <map [zoomControl]="false" [selectedFarm]="selectedFarm" [sensors]="sensors" [plants]="plants"></map>
-    <!--<table class="float-left">
-        <tr>
-            <th class="table-title" colspan="3">Sensors ({{plants.length}})</th>
-        </tr>
-        <tr>
-            <th>Sensor Name</th>
-            <th>Sampling Site ID</th>
-            <th>Geolocation</th>
-        </tr>
-        <tr *ngFor="let sensor of sensors">
-            <td>{{sensor.sensor_name}}</td>
-            <td>{{sensor.sampling_site_id}}</td>
-            <td>({{sensor.lat}}, {{sensor.lng}})</td>
-        </tr>
-    </table>
-    <table class="float-left">
-        <tr>
-            <th class="table-title" colspan="3">Plants ({{plants.length}})</th>
-        </tr>
-        <tr>
-            <th>Plant ID</th>
-            <th>Sampling Site ID</th>
-            <th>Geolocation</th>
-        </tr>
-        <tr *ngFor="let plant of plants">
-            <td>{{plant.plant_id}}</td>
-            <td>{{plant.sampling_site_id}}</td>
-            <td>({{plant.lat}}, {{plant.lng}})</td>
-        </tr>
-    </table>-->
     <div class="clear-both"></div>
     <a id="view-link" href="#" class="btn btn-default">View Total Analysis</a>
 </div>

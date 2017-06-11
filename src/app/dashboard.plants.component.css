@@ -5,19 +5,47 @@ td.text {
 
 td.value {
     text-align: right;
+    font-size: x-large;
+    font-weight: bold;
 }
 
 td {
     padding: 30px;
+    background: #ffffff;
+    height: 30px;
 }
 
 tr {
-    border: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     border-top: 0px;
 }
 
 table {
     width: 300px;
     margin-bottom: 30px;
-    border-top: 1px solid #ccc;
+    border: 1px solid #ccc;
+}
+
+tr#plants td.text {
+    color: #57675f;
+}
+
+tr#infected td.text::before {
+    background: url('../assets/icon-plant_infected.png') center center no-repeat;
+    content: url('http://i.stack.imgur.com/Icd9n.png');
+    padding: 3px;
+}
+
+tr#infected td.text {
+    color: #FF8657;
+}
+
+tr#healthy td.text::before {
+    background: url('../assets/icon-plant_healthy.png') center center no-repeat;
+    content: url('http://i.stack.imgur.com/Icd9n.png');
+    padding: 3px;
+}
+
+tr#healthy td.text {
+    color: #33c57d;
 }
