@@ -125,8 +125,9 @@ export class AppPlantAnalysisComponent{
         .then(
             res => {
                 data = res;
+                console.log(data);
                 this.selectedPlant = data.data;
-                console.log(this.selectedPlant);
+                //console.log(this.selectedPlant);
             }
         )
     }

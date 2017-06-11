@@ -6,6 +6,6 @@
         <sensors-info [sensors]="sensors"></sensors-info>
     </div>
     <farm-info class="float-left" [plants]="plants" [sensors]="sensors" [selectedFarm]="selectedFarm"></farm-info>
-    <farms-list class="float-left" [farms]="farms" (selectFarm)="selectFarm($event)"></farms-list>
+    <farms-list *ngIf="user.user_type == 5" class="float-left" [farms]="farms" (selectFarm)="selectFarm($event)"></farms-list>
     <div class="clear-both"></div>
 </div>

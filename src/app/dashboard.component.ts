@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
 import { Farm } from './models/farm';
+import { User } from './models/user';
 
 @Component ({
     selector: 'app-dashboard',
@@ -21,6 +22,7 @@ export class AppDashboardComponent {
     selectedFarm: Farm = new Farm();
     plants: any[] = [];
     sensors: any[] = [];
+    user: User;
 
     constructor(
         private activeRoute: ActivatedRoute,
@@ -30,7 +32,7 @@ export class AppDashboardComponent {
         private apiService: CitasApiService
     ){
 
-        
+        this.user = new User();
         let loggedIn: boolean = this.sessionService.isLoggedIn();
         if(!loggedIn){
             this.router.navigate(['/']);
@@ -39,6 +41,18 @@ export class AppDashboardComponent {
         }
 
         let data : any;
+
+        this.apiService.getUser(this.sessionService.getLoggedInKey())
+        .then(
+            res => {
+                data = res;
+                //console.log(data);
+                if(data){
+                    this.user = data;
+                    this.user.user_type = data.role;
+                }
+            }
+        );
 
         let farm_id = undefined;
         this.activeRoute.params.forEach(
