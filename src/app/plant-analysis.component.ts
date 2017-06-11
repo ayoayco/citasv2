@@ -71,6 +71,7 @@ export class AppPlantAnalysisComponent{
                         response => {
                             data = response;
                             this.sites = data.data;
+                            console.log('sites');
                             console.log(this.sites);
                         }
                     );

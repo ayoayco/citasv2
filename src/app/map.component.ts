@@ -82,7 +82,7 @@ export class MapComponent implements OnChanges{
                             default: zoom = 14; break;
                         }
                         this.mymap.setView(center, zoom);
-                        let polygon = L.polygon(data.geometry);
+                        let polygon = L.polygon(data.geometry, {color: 'black', fillOpacity: 0});
                         farmLayer.addLayer(polygon);
                         farmLayer.addTo(this.mymap);
                     }
@@ -98,7 +98,14 @@ export class MapComponent implements OnChanges{
                         // to do: clear previous layer
                         sitesLayer.clearLayers();
                         for(let i=0; i<data.length; i++){
-                            let polygon = L.polygon(data[i].geometry);
+                            let color = 'white';
+                            switch(data[i].status){
+                                case "infected": color = 'red'; break;
+                                case "not_infected": color = 'green'; break;
+                                case "unknown": color = 'white'; break;
+                                default: color = 'white';
+                            }
+                            let polygon = L.polygon(data[i].geometry, {color: color});
                             sitesLayer.addLayer(polygon);
                             sitesLayer.addTo(this.mymap);
                         }
