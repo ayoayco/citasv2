@@ -22,4 +22,8 @@ p {
 a#view-link {
     margin: 30px 0 10px 100px;
     width: 250px;
+    height: 47px !important;
+    padding: 15px 0;
+    font-size: 14px;
+    line-height: 18px;
 }

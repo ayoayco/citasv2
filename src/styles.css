@@ -24,6 +24,15 @@ body {
     height: 53px;
 }
 
+.btn-default {
+    border: 1px solid #19BD6C !important;
+    border-radius: 4px;
+    color: #33C57D !important;
+    font-family: 'Montserrat', sans-serif !important;
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+}
+
 i.app-logo {
     background: url('assets/logo-min.png') no-repeat center center !important;
     display: block;
