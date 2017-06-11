@@ -1,10 +1,56 @@
 <div id="container">
     <div *ngIf="selectedPlant == undefined">
         <h3>Selected Plant: <em>None Selected</em></h3>
+        <p>Select a plant marker to the right to view its details and the results of the analysis.</p>
     </div>
     <div *ngIf="selectedPlant != undefined">
-        <h3>Selected Plant: {{selectedPlant.plant_name}}</h3>
-        <table>
+        <h3>Selected Plant: <strong>{{selectedPlant.plant_name}}</strong></h3>
+        <p>Select a plant marker to the right to view its details and the results of the analysis.</p>
+        <div id="details-div">
+            <div class="detail-item">
+                <label>Variety</label><br />
+                <span class="value">{{selectedPlant.plant_variety}}</span>
+            </div>
+            <div class="detail-item">
+                <label>Pseudostem Diameter</label><br />
+                <span class="value">#</span>
+            </div>
+            <div class="detail-item">
+                <label>Growth Stage</label><br />
+                <span class="value">{{selectedPlant.growth_stage}}</span>
+            </div>
+            <div class="detail-item">
+                <label>Leaf Count</label><br />
+                <span class="value">{{selectedPlant.leaf_count}}</span>
+            </div>
+            <div class="detail-item">
+                <label>Height</label><br />
+                <span class="value">{{selectedPlant.plant_height}} cm</span>
+            </div>
+            <div class="detail-item">
+                <label>Leaf Area</label><br />
+                <span class="value">{{selectedPlant.leaf_area}}</span>
+            </div>
+            <div class="clear-both"></div>
+        </div>
+        <div id="images-div">
+            <ul>
+                <!--<li *ngFor="let image of selectedPlant.images">
+                    <img src="http://{{image.image_url}}" />
+                </li>-->
+                <li>
+                    <img src="./assets/old-bg_header-min.jpg" />
+                </li>
+                <li>
+                    <img src="./assets/old-bg_header-min.jpg" />
+                </li>
+                <li>
+                    <img src="./assets/old-bg_header-min.jpg" />
+                </li>
+            </ul>
+        </div>
+
+        <!--table>
             <tr>
                 <th>Property</th>
                 <th>Value</th>
@@ -73,6 +119,6 @@
                 <td class="text">stem_infected</td>
                 <td class="value">{{selectedPlant.stem_infected}}</td>
             </tr>
-        </table>
+        </table-->
     </div>
 </div>
