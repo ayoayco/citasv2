@@ -50,9 +50,6 @@ a {
 }
 
 .login-btn.btn-default {
-    height: 47px;
     width: 187px;
-    border: 1px solid #19BD6C;
-    border-radius: 4px;
-    color: #33C57D;
+    height: 47px !important;
 }
