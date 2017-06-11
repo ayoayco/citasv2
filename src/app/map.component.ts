@@ -150,7 +150,6 @@ export class MapComponent implements OnChanges{
     }
 
     private onSelect(type:string, plant){
-        console.log(type + " selected");
         this.selectPlant.emit(plant.plant_id);
     }
 }
