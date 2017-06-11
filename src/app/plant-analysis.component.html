@@ -2,7 +2,7 @@
 <div class="container">
     <h1>{{selectedFarm.farm_name}} : Plant Analysis</h1>
 
-    <plant-info [selectedPlant]="selectedPlant"></plant-info>
+    <plant-info class="float-left" [selectedPlant]="selectedPlant"></plant-info>
 
     <div id="plant-list-container" class="float-left">
         <label for="sampling_sites">Sampling Site: </label>
@@ -10,7 +10,8 @@
             <option value=""></option>
             <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
         </select>
-        <table>
+        <map [selectedFarm]="selectedFarm" [plants]="plants"></map>
+        <!--<table>
             <tr>
                 <th class="table-title" colspan="2">Map Plot: Plants ({{plants.length}})</th>
             </tr>
@@ -18,7 +19,7 @@
                 <td>{{plant.plant_id}}</td>
                 <td>({{plant.lat}}, {{plant.lng}})</td>
             </tr>
-        </table>
+        </table>-->
     </div>
     <div class="clear-both"></div>
 </div>
