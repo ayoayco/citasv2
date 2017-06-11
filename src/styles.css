@@ -32,6 +32,15 @@ i.app-logo {
     margin-top: 50px;
 }
 
+i.app-logo-white {
+    background: url('assets/logo-white-min.png') no-repeat center center !important;
+    display: block;
+    margin-bottom: 20px;
+    background-size: cover !important;
+    height: 42px;
+    width: 138px;
+}
+
 .float-left {
     float: left;
 }

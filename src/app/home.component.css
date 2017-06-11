@@ -8,7 +8,6 @@ p#desc span {
 
 p#desc {
     height: 117px;
-    width: 80%;
     color: #57675F;
     font-family: 'Roboto', sans-serif;
     font-size: 28px;
@@ -17,15 +16,16 @@ p#desc {
     text-align: left;
     border-left: 5px solid #F0F0F0;
     padding-left: 30px;
-    margin: 30px auto;
 }
 
 div.features-desc {
     width: 290px;
 }
 
-div#features-row {
-    width: 80%;
+div#features-row,
+div.platform-row,
+p#desc {
+    width: 90%;
     margin: 30px auto;
 }
 
@@ -35,8 +35,6 @@ div.platform-row {
     background-color: #FFFFFF;
     box-shadow: 0 4px 0 0 rgba(227, 227, 227, 0.5);
     padding: 30px;
-    margin: 30px auto;
-    width: 80%;
 }
 
 h3 {
@@ -65,4 +63,38 @@ div.platform-row .row div p,
 div.features-desc p {
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
+}
+
+div#soil-analysis h4::before {
+    content: url('../assets/icon-soil_analysis.png');
+}
+
+div#geo-analysis h4::before {
+    content: url('../assets/icon-geospatial_analysis.png');
+}
+
+div#plant-analysis h4::before {
+    content: url('../assets/icon-plant_image_analysis.png');
+}
+
+div#plant-scope h4::before {
+    content: url('../assets/icon-plantscope.png');
+}
+
+div#soil-data h4::before {
+    content: url('../assets/icon-soil_data_collection.png');
+}
+
+div#lamp-kit h4::before {
+    content: url('../assets/icon-lamp_assay_kit.png');
+}
+
+div.features-row div h4::before {
+    margin-right: 5px;
+}
+
+h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: x-large;
 }
