@@ -89,11 +89,11 @@ export class AppRegistrationComponent {
                     //add success
                     // login success, start session
                     console.log(data);
-                    // if(this.sessionService.startSession(data.username, data.key)){
-                    //     this.router.navigate(['/']);
-                    // }
+                    if(this.sessionService.startSession(data.user, data.key)){
+                        this.router.navigate(['/']);
+                    }
 
-                    //this.router.navigate(['/']);
+                    this.router.navigate(['/']);
                     //prompt user to check email
                 }else{
                     // login fail
