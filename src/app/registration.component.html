@@ -2,10 +2,6 @@
 
 <div class="container">
     <form class="form-horizontal" role="form">
-        <div *ngIf="success" class="alert alert-success">
-            <strong>Success!</strong> Your have successfully registered. Starting session...
-        </div>
-        <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
         <i class="app-logo "></i>
         <h2>New User</h2>
         <div class="form-group">
@@ -30,6 +26,11 @@
                         <input [(ngModel)]="accept" name="accept" type="checkbox" /> I accept <a routerLink="/terms" routerLinkActive="active">terms</a>
                     </label>
                 </div>
+                <br />
+                <div *ngIf="success" class="alert alert-success">
+                    <strong>Please check your email!</strong> Your have successfully registered.
+                </div>
+                <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
                 <button (click)="addUser()" class="btn btn-primary btn-block">Register</button>
                 <a routerLink="/dashboard" routerLinkActive="active" class="btn btn-default btn-block">Cancel</a>
             </div>

@@ -2,11 +2,6 @@
 
 <div class="container">
     <form class="form-horizontal" role="form">
-        <div *ngIf="success" class="alert alert-success">
-            <strong>Success!</strong> Your information was successfully updated.
-            <a routerLink="/dashboard" routerLinkActive="active">Go to Dashboard.</a>
-        </div>
-        <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
         <i class="app-logo "></i>
         <h2>Edit User</h2>
         <div class="form-group">
@@ -18,6 +13,12 @@
             <input [(ngModel)]="user.mobile_number" name="mobile_number" type="text" id="mobileNumber" placeholder="Mobile Number" class="form-control">
             <label for="email" class="control-label">Email</label>
             <input [(ngModel)]="user.email" name="email" type="email" id="email" placeholder="Email" class="form-control">
+            <br />
+            <div *ngIf="success" class="alert alert-success">
+                <strong>Success!</strong> Your information was successfully updated.
+                <a routerLink="/dashboard" routerLinkActive="active">Go to Dashboard.</a>
+            </div>
+            <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
             <button (click)="editUser()" class="btn btn-primary btn-block">Update User Info</button>
             <a routerLink="/dashboard" routerLinkActive="active" class="btn btn-default btn-block">Cancel</a>
         </div>

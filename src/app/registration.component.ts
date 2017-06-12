@@ -87,9 +87,17 @@ export class AppRegistrationComponent {
                 data = res;
                 if(data){
                     //add success
+                    // login success, start session
                     console.log(data);
-                    this.sessionService.startSession(data.username, data.key);
-                    this.router.navigate(['/']);
+                    // if(this.sessionService.startSession(data.username, data.key)){
+                    //     this.router.navigate(['/']);
+                    // }
+
+                    //this.router.navigate(['/']);
+                    //prompt user to check email
+                }else{
+                    // login fail
+                    console.log("Failed to authenticate.");
                 }
             });
         }
