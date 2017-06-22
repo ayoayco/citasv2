@@ -7,10 +7,10 @@
     <div id="sensor-list-container" class="float-left">
         <label for="sampling_sites">Sampling Site: </label>
         <select (change)="onselect($event.target.value)">
-            <option value=""></option>
+            <option value="">All</option>
             <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
         </select>
-        <map [zoomControl]="false" [selectedFarm]="selectedFarm" [sensors]="sensors" (selectSensor)="selectSensor($event)"></map>
+        <map [zoomControl]="true" [selectedFarm]="selectedFarm" [sensors]="sensors" (selectSensor)="selectSensor($event)"></map>
         <!--<table>
             <tr>
                 <th class="table-title" colspan="2">Map Plot: Sensors ({{sensors.length}})</th>

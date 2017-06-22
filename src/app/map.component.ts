@@ -15,6 +15,8 @@ import { CitasApiService} from './citas.api.service';
 
 export class MapComponent implements OnChanges{
 
+    @Input() disableInteraction: boolean;
+
     @Input() selectedFarm: Farm;
     @Input() sensors: any[];
     @Input() plants: any[];
@@ -27,14 +29,34 @@ export class MapComponent implements OnChanges{
     @Output() selectSensor = new EventEmitter<{}>();
 
     mymap: L.Map;
+    farmLayer: L.LayerGroup;
+    sitesLayer: L.LayerGroup;
+    plantsLayer: L.LayerGroup;
+    sensorsLayer: L.LayerGroup;
 
     constructor(
         private apiService: CitasApiService,
         private sessionService: AppSessionService
     ){
+        this.farmLayer = L.layerGroup([]);
+        this.sitesLayer = L.layerGroup([]);
+        this.plantsLayer = L.layerGroup([]);
+        this.sensorsLayer = L.layerGroup([]);
     }
 
     ngAfterViewInit(){
+
+        var dragging = true;
+        var doubleClickZoom = true;
+        var boxZoom = true;
+        var trackResize = true;
+
+        if(this.disableInteraction){
+            var dragging = false;
+            var doubleClickZoom = false;
+            var boxZoom = false;
+            var trackResize = false;
+        }
 
         // initialize map
         this.mymap = new L.Map("map-div", {
@@ -43,7 +65,13 @@ export class MapComponent implements OnChanges{
             touchZoom: this.touchZoom,
             center: new L.LatLng(12.4, 122.4),
             zoom: 5.5,
+            dragging: dragging,
+            doubleClickZoom: doubleClickZoom,
+            boxZoom: boxZoom,
+            trackResize: trackResize
         });
+
+        L.control.scale().addTo(this.mymap);
 
         // base map
         let googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
@@ -55,11 +83,6 @@ export class MapComponent implements OnChanges{
 
 
     ngOnChanges(changes: SimpleChanges){
-
-        let farmLayer = L.layerGroup([]);
-        let sitesLayer = L.layerGroup([]);
-        let plantsLayer = L.layerGroup([]);
-        let sensorsLayer = L.layerGroup([]);
 
         // selectedFarm changed
         if(changes.selectedFarm && changes.selectedFarm.firstChange == false ){
@@ -73,18 +96,18 @@ export class MapComponent implements OnChanges{
                     data = res.data[0];
                     if(data){
                         // to do: clear previous layer
-                        farmLayer.clearLayers();
+                        this.farmLayer.clearLayers();
                         let center = new L.LatLng(data.center[0], data.center[1]);
                         let zoom = 0;
                         switch(data.farm_size){
                             case "large": zoom = 14 ; break;
-                            case "small": zoom = 20 ; break;
+                            case "small": zoom = 16 ; break;
                             default: zoom = 14; break;
                         }
                         this.mymap.setView(center, zoom);
                         let polygon = L.polygon(data.geometry, {color: 'black', fillOpacity: 0});
-                        farmLayer.addLayer(polygon);
-                        farmLayer.addTo(this.mymap);
+                        this.farmLayer.addLayer(polygon);
+                        this.farmLayer.addTo(this.mymap);
                     }
                 }
             );
@@ -96,7 +119,7 @@ export class MapComponent implements OnChanges{
                     data = res.data;
                     if(data){
                         // to do: clear previous layer
-                        sitesLayer.clearLayers();
+                        this.sitesLayer.clearLayers();
                         for(let i=0; i<data.length; i++){
                             let color = 'white';
                             switch(data[i].status){
@@ -106,8 +129,8 @@ export class MapComponent implements OnChanges{
                                 default: color = 'white';
                             }
                             let polygon = L.polygon(data[i].geometry, {color: color});
-                            sitesLayer.addLayer(polygon);
-                            sitesLayer.addTo(this.mymap);
+                            this.sitesLayer.addLayer(polygon);
+                            this.sitesLayer.addTo(this.mymap);
                         }
                     }
                 }
@@ -119,7 +142,7 @@ export class MapComponent implements OnChanges{
             console.log("Map Plants: " + this.plants.length);
 
             //to do: clear layers
-            plantsLayer.clearLayers();
+            this.plantsLayer.clearLayers();
             var plantIcon = L.icon({
                 iconUrl: './assets/images/plant.healthy.png',
 
@@ -133,12 +156,23 @@ export class MapComponent implements OnChanges{
             for(var i=0; i<this.plants.length; i++){
                 let arg = this.plants[i];
                 let latlng = new L.LatLng(arg.lat, arg.lng);
-                let marker = L.marker(latlng, {icon: plantIcon}).on('click', ()=>{
+                let marker = L.marker(latlng, {icon: plantIcon}).on('click', (e)=>{
                     this.onSelect('plant', arg);
+
+                    var layer: any;
+                    for(layer in this.plantsLayer["_layers"]){
+                        var obj = this.plantsLayer["_layers"][layer];
+                        obj.setIcon(plantIcon);
+                    }
+
+                    e.target.setIcon(L.icon({
+                        iconUrl: './assets/images/plant.healthy.png',
+                        iconSize: [35, 35]
+                    }));
                 });
 
-                plantsLayer.addLayer(marker);
-                plantsLayer.addTo(this.mymap);
+                this.plantsLayer.addLayer(marker);
+                this.plantsLayer.addTo(this.mymap);
             }
         }
 
@@ -147,7 +181,7 @@ export class MapComponent implements OnChanges{
             console.log("Map Sensors: " + this.sensors.length);
 
             //to do: clear layers
-            sensorsLayer.clearLayers();
+            this.sensorsLayer.clearLayers();
             var sensorIcon = L.icon({
                 iconUrl: './assets/images/sensor.png',
 
@@ -159,11 +193,22 @@ export class MapComponent implements OnChanges{
             for(var i=0; i<this.sensors.length; i++){
                 let arg = this.sensors[i];
                 let latlng = new L.LatLng(arg.lat, arg.lng);
-                let marker = L.marker(latlng, {icon: sensorIcon}).on('click', ()=>{
+                let marker = L.marker(latlng, {icon: sensorIcon}).on('click', (e)=>{
                     this.onSelect('sensor', arg);
+
+                    var layer: any;
+                    for(layer in this.sensorsLayer["_layers"]){
+                        var obj = this.sensorsLayer["_layers"][layer];
+                        obj.setIcon(sensorIcon);
+                    }
+
+                    e.target.setIcon(L.icon({
+                        iconUrl: './assets/images/sensor.png',
+                        iconSize: [35, 35]
+                    }));
                 });
-                sensorsLayer.addLayer(marker);
-                sensorsLayer.addTo(this.mymap);
+                this.sensorsLayer.addLayer(marker);
+                this.sensorsLayer.addTo(this.mymap);
             }
         }
     }
