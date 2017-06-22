@@ -5,9 +5,21 @@
     <div *ngIf="selectedSensorName != ''">
         <h3>Selected Sensor: {{selectedSensorName}}</h3>
 
+        <ul id="tablist">
+            <li><a>air_temp</a></li>
+            <li><a>battery</a></li>
+            <li><a>canopy_temp</a></li>
+            <li><a>conductivity</a></li>
+            <li><a>light</a></li>
+            <li><a>moisture</a></li>
+            <li><a>pH</a></li>
+            <li><a>soil_temp</a></li>
+            <li><a>timestamp</a></li>
+        </ul>
+
         <chart [options]="options"></chart>
 
-        <table>
+        <!--<table>
             <tr>
                 <th>air_temp</th>
                 <th>battery</th>
@@ -30,6 +42,6 @@
                 <th>{{reading.soil_temp}}</th>
                 <th>{{reading.timestamp}}</th>
             </tr>
-        </table>
+        </table>-->
     </div>
 </div>
