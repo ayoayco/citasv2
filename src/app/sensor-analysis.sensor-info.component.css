@@ -10,6 +10,7 @@ ul#tablist li a {
     padding: 5px;
     margin: 10px 10px 10px 0;
     cursor: pointer;
+    text-decoration: none;
 }
 
 ul#tablist li {
@@ -19,11 +20,6 @@ ul#tablist li {
 ul#tablist {
     list-style: none;
     padding: 0;
-}
-
-chart .highcharts-container {
-    margin: 0 auto;
-    width: 100%;
 }
 
 td.text {

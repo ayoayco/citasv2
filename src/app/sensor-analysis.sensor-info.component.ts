@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 
 declare var require: any;
@@ -18,18 +18,35 @@ export function highchartsFactory() {
     ],
 })
 
-export class SensorAnalysisSensorInfoComponent{
+export class SensorAnalysisSensorInfoComponent implements OnChanges{
     @Input() readings: any = undefined;
     @Input() selectedSensorName: string ="";
     
     options: Object;
 
     constructor() {
-        this.options = {
-            title : { text : 'simple chart' },
-            series: [{
-                data: [29.9, 71.5, 106.4, 129.2],
-            }],
-        };
+
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+        //Add 'implements OnChanges' to the class.
+        if(changes.readings && changes.readings.firstChange == false ){
+            if(this.readings){
+                console.log(this.readings);
+                var air_temp = [];
+
+                for(var i=0; i<this.readings.length; i++){
+                    air_temp.push(this.readings[i].air_temp);
+                }
+            }
+
+            this.options = {
+                title : { text : 'simple chart' },
+                series: [{
+                    data: air_temp,
+                }],
+            };
+        }
     }
 }
