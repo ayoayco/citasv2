@@ -20,19 +20,26 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
     @Input() readings: any = undefined;
     @Input() selectedSensorName: string = "";
 
+    selectedTab = '';
     options: Object;
 
     constructor() {
-        var $link = $('#tablist');
     }
 
-    clickTab(tab) {
-        console.log(tab);
-
+    updateChart(tab) {
         var chartTitle = '';
         var yAxisLabel = '';
+        this.selectedTab = tab;
 
-        switch(tab){
+        var links = $('ul#tablist li a.selectedTab');
+        
+        for(var i=0; i<links.length; i++){
+            $(links[i]).removeClass('selectedTab');
+        }
+
+        $('#'+this.selectedTab).addClass('selectedTab');
+
+        switch(this.selectedTab){
             case 'soil_temp': chartTitle = 'Soil Temperature';
                 yAxisLabel = 'Temperature (°C)'; break;
             case 'air_temp': chartTitle = 'Air Temperature';
@@ -45,12 +52,11 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
         }
 
         if (this.readings) {
-            console.log(this.readings);
             var air_temp = [];
             var labels = [];
 
             for (var i = 0; i < this.readings.length; i++) {
-                air_temp.push(this.readings[i][tab]);
+                air_temp.push(this.readings[i][this.selectedTab]);
                 labels.push(this.readings[i].timestamp);
             }
         }
@@ -82,37 +88,8 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
         //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
         //Add 'implements OnChanges' to the class.
         if (changes.readings && changes.readings.firstChange == false) {
-            if (this.readings) {
-                console.log(this.readings);
-                var air_temp = [];
-                var labels = [];
-
-                for (var i = 0; i < this.readings.length; i++) {
-                    air_temp.push(this.readings[i].soil_temp);
-                    labels.push(this.readings[i].timestamp);
-                }
-            }
-
-            this.options = {
-                title: { text: 'Soil Temperature' },
-                colors: ["#19BD6C"],
-                chart: {
-                    width: 740
-                },
-                series: [{
-                    name: this.selectedSensorName,
-                    data: air_temp,
-                }],
-                xAxis: {
-                    gridLineWidth: 1,
-                    categories: labels
-                },
-                yAxis: {
-                    title: {
-                        text: 'Temperature (°C)'
-                    }
-                }
-            };
+            this.selectedTab = 'soil_temp';
+            this.updateChart(this.selectedTab);
         }
     }
 }
