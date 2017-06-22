@@ -53,11 +53,11 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
         }
 
         if (this.readings) {
-            var air_temp = [];
+            var values = [];
             var labels = [];
 
             for (var i = 0; i < this.readings.length; i++) {
-                air_temp.push(this.readings[i][this.selectedTab]);
+                values.push(this.readings[i][this.selectedTab]);
                 labels.push(this.readings[i].timestamp);
             }
         }
@@ -70,7 +70,7 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
             },
             series: [{
                 name: this.selectedSensorName,
-                data: air_temp,
+                data: values,
             }],
             xAxis: {
                 categories: labels,
