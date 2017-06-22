@@ -4,6 +4,9 @@
     </div>
     <div *ngIf="selectedSensorName != ''">
         <h3>Selected Sensor: {{selectedSensorName}}</h3>
+
+        <chart [options]="options"></chart>
+
         <table>
             <tr>
                 <th>air_temp</th>
