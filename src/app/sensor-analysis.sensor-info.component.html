@@ -1,47 +1,22 @@
 <div id="container">
     <div *ngIf="selectedSensorName == ''">
         <h3>Selected Sensor: <em>None Selected</em></h3>
+        <p>Select a plant marker to the right to view its details and the results of the analysis.</p>
     </div>
     <div *ngIf="selectedSensorName != ''">
         <h3>Selected Sensor: {{selectedSensorName}}</h3>
+        <p>Select a plant marker to the right to view its details and the results of the analysis.</p>
 
         <ul id="tablist">
-            <li><a>air_temp</a></li>
-            <li><a>battery</a></li>
-            <li><a>canopy_temp</a></li>
-            <li><a>conductivity</a></li>
-            <li><a>light</a></li>
-            <li><a>moisture</a></li>
-            <li><a>pH</a></li>
-            <li><a>soil_temp</a></li>
-            <li><a>timestamp</a></li>
+            <li><a (click)="clickTab('soil_temp')">Soil Temperature</a></li>
+            <li><a (click)="clickTab('air_temp')">Air Temperature</a></li>
+            <li><a (click)="clickTab('pH')">pH Level</a></li>
+            <li><a (click)="clickTab('conductivity')">Conductivity</a></li>
+            <li><a (click)="clickTab('light')">Amount of Light</a></li>
+            <li><a (click)="clickTab('moisture')">Soil Moisture</a></li>
         </ul>
 
         <chart [options]="options"></chart>
 
-        <!--<table>
-            <tr>
-                <th>air_temp</th>
-                <th>battery</th>
-                <th>canopy_temp</th>
-                <th>conductivity</th>
-                <th>light</th>
-                <th>moisture</th>
-                <th>pH</th>
-                <th>soil_temp</th>
-                <th>timestamp</th>
-            </tr>
-            <tr *ngFor="let reading of readings">
-                <th>{{reading.air_temp}}</th>
-                <th>{{reading.battery}}</th>
-                <th>{{reading.canopy_temp}}</th>
-                <th>{{reading.conductivity}}</th>
-                <th>{{reading.light}}</th>
-                <th>{{reading.moisture}}</th>
-                <th>{{reading.pH}}</th>
-                <th>{{reading.soil_temp}}</th>
-                <th>{{reading.timestamp}}</th>
-            </tr>
-        </table>-->
     </div>
 </div>
