@@ -24,6 +24,7 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
     options: Object;
 
     constructor() {
+            this.selectedTab = 'soil_temp';
     }
 
     updateChart(tab) {
@@ -88,7 +89,6 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
         //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
         //Add 'implements OnChanges' to the class.
         if (changes.readings && changes.readings.firstChange == false) {
-            this.selectedTab = 'soil_temp';
             this.updateChart(this.selectedTab);
         }
     }
