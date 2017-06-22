@@ -73,13 +73,19 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
                 data: air_temp,
             }],
             xAxis: {
+                categories: labels,
+                lineWidth: 2,
+                lineColor: '#ccc',
+                gridLineColor: "#e6e6e6",
+                gridLineDashStyle: "Solid",
                 gridLineWidth: 1,
-                categories: labels
             },
             yAxis: {
                 title: {
                     text: yAxisLabel
-                }
+                },
+                lineWidth: 2,
+                lineColor: '#ccc'
             }
         };
 
