@@ -35,17 +35,30 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges{
             if(this.readings){
                 console.log(this.readings);
                 var air_temp = [];
+                var labels = [];
 
                 for(var i=0; i<this.readings.length; i++){
                     air_temp.push(this.readings[i].air_temp);
+                    labels.push(this.readings[i].timestamp);
                 }
             }
 
             this.options = {
                 title : { text : 'Air Temperature' },
+                chart: {
+                    width: 800
+                },
                 series: [{
                     data: air_temp,
                 }],
+                xAxis: {
+                    categories: labels
+                },
+                yAxis: {
+                    title: {
+                        text: 'Temperature (°C)'
+                    }
+                }
             };
         }
     }
