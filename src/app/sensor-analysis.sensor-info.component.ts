@@ -42,7 +42,7 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges{
             }
 
             this.options = {
-                title : { text : 'simple chart' },
+                title : { text : 'Air Temperature' },
                 series: [{
                     data: air_temp,
                 }],
