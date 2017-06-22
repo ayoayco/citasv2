@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnChanges, AfterViewInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnChanges, AfterViewInit, EventEmitter, SimpleChanges } from '@angular/core';
 import { Farm } from './models/farm';
 import { AppSessionService } from './app.session.service';
 import { CitasApiService} from './citas.api.service';
@@ -54,7 +54,7 @@ export class MapComponent implements OnChanges{
     }
 
 
-    ngOnChanges(changes){
+    ngOnChanges(changes: SimpleChanges){
 
         let farmLayer = L.layerGroup([]);
         let sitesLayer = L.layerGroup([]);
