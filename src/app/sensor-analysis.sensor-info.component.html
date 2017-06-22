@@ -8,12 +8,12 @@
         <p>Select a plant marker to the right to view its details and the results of the analysis.</p>
 
         <ul id="tablist">
-            <li><a (click)="clickTab('soil_temp')">Soil Temperature</a></li>
-            <li><a (click)="clickTab('air_temp')">Air Temperature</a></li>
-            <li><a (click)="clickTab('pH')">pH Level</a></li>
-            <li><a (click)="clickTab('conductivity')">Conductivity</a></li>
-            <li><a (click)="clickTab('light')">Amount of Light</a></li>
-            <li><a (click)="clickTab('moisture')">Soil Moisture</a></li>
+            <li><a id="soil_temp" class="selectedTab" (click)="updateChart('soil_temp')">Soil Temperature</a></li>
+            <li><a id="air_temp" (click)="updateChart('air_temp')">Air Temperature</a></li>
+            <li><a id="pH" (click)="updateChart('pH')">pH Level</a></li>
+            <li><a id="conductivity" (click)="updateChart('conductivity')">Conductivity</a></li>
+            <li><a id="light" (click)="updateChart('light')">Amount of Light</a></li>
+            <li><a id="moisture" (click)="updateChart('moisture')">Soil Moisture</a></li>
         </ul>
 
         <chart [options]="options"></chart>

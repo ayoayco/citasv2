@@ -7,12 +7,16 @@ div#container {
     background: #ffffff;
 }
 
+ul#tablist li a.selectedTab {
+    background: #19BD6C;
+}
+
 ul#tablist li a {
-    border: 1px solid #ccc;
     padding: 5px;
     margin: 10px 10px 10px 0;
     cursor: pointer;
     text-decoration: none;
+    color: black;
 }
 
 ul#tablist li {
@@ -21,5 +25,6 @@ ul#tablist li {
 
 ul#tablist {
     list-style: none;
-    padding: 0;
+    padding: 3px;
+    border-bottom: 1px solid #19BD6C;
 }
