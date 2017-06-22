@@ -5,6 +5,27 @@ div#container {
     padding: 30px;
 }
 
+ul#tablist li a {
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 10px 10px 10px 0;
+    cursor: pointer;
+}
+
+ul#tablist li {
+    display: inline;
+}
+
+ul#tablist {
+    list-style: none;
+    padding: 0;
+}
+
+chart .highcharts-container {
+    margin: 0 auto;
+    width: 100%;
+}
+
 td.text {
     font-weight: bold;
     text-align: left;
