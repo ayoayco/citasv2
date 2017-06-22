@@ -163,12 +163,15 @@ export class MapComponent implements OnChanges{
                     for(layer in this.plantsLayer["_layers"]){
                         var obj = this.plantsLayer["_layers"][layer];
                         obj.setIcon(plantIcon);
+                        obj.setZIndexOffset(-1000);
                     }
 
                     e.target.setIcon(L.icon({
                         iconUrl: './assets/images/plant.healthy.png',
                         iconSize: [35, 35]
                     }));
+
+                    e.target.setZIndexOffset(1000);
                 });
 
                 this.plantsLayer.addLayer(marker);
@@ -200,12 +203,14 @@ export class MapComponent implements OnChanges{
                     for(layer in this.sensorsLayer["_layers"]){
                         var obj = this.sensorsLayer["_layers"][layer];
                         obj.setIcon(sensorIcon);
+                        obj.setZIndexOffset(-1000);
                     }
 
                     e.target.setIcon(L.icon({
                         iconUrl: './assets/images/sensor.png',
                         iconSize: [35, 35]
                     }));
+                    e.target.setZIndexOffset(1000);
                 });
                 this.sensorsLayer.addLayer(marker);
                 this.sensorsLayer.addTo(this.mymap);
