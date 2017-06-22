@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { CookieModule } from 'ngx-cookie';
+import { ChartModule } from 'angular2-highcharts/index';
 
 import { AppComponent } from './app.component';
 import { AppNavComponent } from './nav.component';
@@ -83,7 +84,8 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    CookieModule.forRoot()
+    CookieModule.forRoot(),
+    ChartModule
   ],
   providers: [
     Title
