@@ -15,6 +15,7 @@ import { CitasApiService} from './citas.api.service';
 
 export class MapComponent implements OnChanges{
 
+    @Input() height: number;
     @Input() disableInteraction: boolean;
 
     @Input() selectedFarm: Farm;
@@ -22,7 +23,6 @@ export class MapComponent implements OnChanges{
     @Input() plants: any[];
 
     @Input() zoomControl: boolean = true;
-    @Input() scrollWheelZoom: boolean = true;
     @Input() touchZoom: boolean = true;
     
     @Output() selectPlant = new EventEmitter<{}>();
@@ -50,25 +50,29 @@ export class MapComponent implements OnChanges{
         var doubleClickZoom = true;
         var boxZoom = true;
         var trackResize = true;
+        var scrollWheelZoom = true;
+
+        $('div#map-div').css('height', this.height+'px');
 
         if(this.disableInteraction){
             var dragging = false;
             var doubleClickZoom = false;
             var boxZoom = false;
             var trackResize = false;
+            var scrollWheelZoom = false;
         }
 
         // initialize map
         this.mymap = new L.Map("map-div", {
             zoomControl: this.zoomControl,
-            scrollWheelZoom: this.scrollWheelZoom,
             touchZoom: this.touchZoom,
             center: new L.LatLng(12.4, 122.4),
             zoom: 5.5,
             dragging: dragging,
             doubleClickZoom: doubleClickZoom,
             boxZoom: boxZoom,
-            trackResize: trackResize
+            trackResize: trackResize,
+            scrollWheelZoom: scrollWheelZoom
         });
 
         L.control.scale().addTo(this.mymap);
@@ -156,23 +160,27 @@ export class MapComponent implements OnChanges{
             for(var i=0; i<this.plants.length; i++){
                 let arg = this.plants[i];
                 let latlng = new L.LatLng(arg.lat, arg.lng);
-                let marker = L.marker(latlng, {icon: plantIcon}).on('click', (e)=>{
-                    this.onSelect('plant', arg);
+                let marker = L.marker(latlng, {icon: plantIcon});
 
-                    var layer: any;
-                    for(layer in this.plantsLayer["_layers"]){
-                        var obj = this.plantsLayer["_layers"][layer];
-                        obj.setIcon(plantIcon);
-                        obj.setZIndexOffset(-1000);
-                    }
+                if(!this.disableInteraction){
+                    marker.on('click', (e)=>{
+                        this.onSelect('plant', arg);
 
-                    e.target.setIcon(L.icon({
-                        iconUrl: './assets/images/plant.healthy.png',
-                        iconSize: [35, 35]
-                    }));
+                        var layer: any;
+                        for(layer in this.plantsLayer["_layers"]){
+                            var obj = this.plantsLayer["_layers"][layer];
+                            obj.setIcon(plantIcon);
+                            obj.setZIndexOffset(-1000);
+                        }
 
-                    e.target.setZIndexOffset(1000);
-                });
+                        e.target.setIcon(L.icon({
+                            iconUrl: './assets/images/plant.healthy.png',
+                            iconSize: [35, 35]
+                        }));
+
+                        e.target.setZIndexOffset(1000);
+                    })
+                }
 
                 this.plantsLayer.addLayer(marker);
                 this.plantsLayer.addTo(this.mymap);
@@ -196,22 +204,25 @@ export class MapComponent implements OnChanges{
             for(var i=0; i<this.sensors.length; i++){
                 let arg = this.sensors[i];
                 let latlng = new L.LatLng(arg.lat, arg.lng);
-                let marker = L.marker(latlng, {icon: sensorIcon}).on('click', (e)=>{
-                    this.onSelect('sensor', arg);
+                let marker = L.marker(latlng, {icon: sensorIcon});
+                if(!this.disableInteraction){
+                    marker.on('click', (e)=>{
+                        this.onSelect('sensor', arg);
 
-                    var layer: any;
-                    for(layer in this.sensorsLayer["_layers"]){
-                        var obj = this.sensorsLayer["_layers"][layer];
-                        obj.setIcon(sensorIcon);
-                        obj.setZIndexOffset(-1000);
-                    }
+                        var layer: any;
+                        for(layer in this.sensorsLayer["_layers"]){
+                            var obj = this.sensorsLayer["_layers"][layer];
+                            obj.setIcon(sensorIcon);
+                            obj.setZIndexOffset(-1000);
+                        }
 
-                    e.target.setIcon(L.icon({
-                        iconUrl: './assets/images/sensor.png',
-                        iconSize: [35, 35]
-                    }));
-                    e.target.setZIndexOffset(1000);
-                });
+                        e.target.setIcon(L.icon({
+                            iconUrl: './assets/images/sensor.png',
+                            iconSize: [35, 35]
+                        }));
+                        e.target.setZIndexOffset(1000);
+                    });
+                }
                 this.sensorsLayer.addLayer(marker);
                 this.sensorsLayer.addTo(this.mymap);
             }
