@@ -44,6 +44,7 @@ export class AppLoginComponent {
           data = res;
           if(data){
             // login success, start session
+            console.log(data);
             if(this.sessionService.startSession(data.user, data.key)){
               location.reload();
             }
