@@ -10,7 +10,7 @@ import 'rxjs/add/operator/toPromise';
 
 export class CitasApiService {
     
-    private APIURL: string = "http://45.55.235.245";
+    private APIURL: string = "http://54.179.145.154";//http://45.55.235.245";
 
     data: any;
     constructor(private http: Http){}
