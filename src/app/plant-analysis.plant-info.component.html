@@ -13,7 +13,7 @@
             </div>
             <div class="detail-item">
                 <label>Pseudostem Diameter</label><br />
-                <span class="value">{{selectedPlant.pseudostem_infected}}</span>
+                <span class="value">{{selectedPlant.pseudostem_diameter}}</span>
             </div>
             <div class="detail-item">
                 <label>Growth Stage</label><br />
@@ -37,7 +37,7 @@
             <strong>Images</strong>
             <ul>
                 <li *ngFor="let image of selectedPlant.images">
-                    <img src="http://{{image.image_thumbnail_url}}-thumbnail" />
+                    <img src="http://{{image.image_thumbnail_url}}" />
                     <!--<img src="./assets/old-bg_header-min.jpg" />-->
                 </li>
             </ul>
