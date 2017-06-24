@@ -119,10 +119,10 @@ export class AppPlantAnalysisComponent{
 
     }
 
-    public selectPlant(plantID: number){
+    public selectPlant(plantID: string){
         console.log('Plant '+ plantID + ' selected!');
         let data: any;
-        this.apiService.getPlant(this.sessionService.getLoggedInKey(), plantID.toString())
+        this.apiService.getPlant(this.sessionService.getLoggedInKey(), plantID)
         .then(
             res => {
                 data = res;
