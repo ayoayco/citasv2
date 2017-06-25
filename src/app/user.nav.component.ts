@@ -46,4 +46,8 @@ export class UserNavComponent {
     public OnSelectFarm(name: string){
         this.selectFarm.emit(name);
     }
+
+    public toggleSidebar(){
+            $("#wrapper").toggleClass("toggled");
+    }
 }

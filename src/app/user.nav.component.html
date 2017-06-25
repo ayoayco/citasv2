@@ -3,6 +3,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header" id="select-farm-dropdown">
             <ul class="nav navbar-nav navbar-left">
+                <!--<li><a (click)="toggleSidebar()" class="btn btn-default" id="menu-toggle">Toggle Menu</a></li>-->
                 <li class="dropdown bg-inverse">
                     <a href="#" *ngIf="farms" id="select-farm-toggle" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{selectedFarm.farm_name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -15,9 +16,6 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="['/dashboard', selectedFarm.farm_id]" routerLinkActive="active">Dashboard</a></li>
-                <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="[ '/plant-analysis', selectedFarm.farm_id]" routerLinkActive="active">Plant Analysis</a></li>
-                <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="[ '/sensor-analysis', selectedFarm.farm_id]" routerLinkActive="active">Soil Parameter Trends</a></li>
                 <li *ngIf="!isLoggedIn"><a class="btn" data-toggle="modal" data-target="#loginModal">Login</a></li>
                 <li *ngIf="isLoggedIn" class="dropdown bg-inverse">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi, {{username}}! <span class="caret"></span></a>

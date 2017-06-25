@@ -1,19 +1,24 @@
-<user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
-<div class="container">
-    <h1>Plant Analysis</h1>
+<div id="wrapper" class="toggled">
+    <sidebar [selectedFarm]="selectedFarm"></sidebar>
+    <div id="page-content-wrapper">
+        <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
+        <div class="container">
+            <h1>Plant Analysis</h1>
 
-    <plant-info class="float-left" [selectedPlant]="selectedPlant"></plant-info>
+            <plant-info class="float-left" [selectedPlant]="selectedPlant"></plant-info>
 
-    <div id="plant-list-container" class="float-left">
-        <div id="plant-list-div">
-            <label for="sampling_sites">Sampling Site: </label>
-            <select (change)="onselect($event.target.value)">
+            <div id="plant-list-container" class="float-left">
+                <div id="plant-list-div">
+                    <label for="sampling_sites">Sampling Site: </label>
+                    <select (change)="onselect($event.target.value)">
                 <option value="">All</option>
                 <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
             </select>
-            <map [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" (selectPlant)="selectPlant($event)"></map>
+                    <map [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" (selectPlant)="selectPlant($event)"></map>
+                </div>
+                <button class="btn btn-primary btn-block">Download Image Data</button>
+            </div>
+            <div class="clear-both"></div>
         </div>
-        <button class="btn btn-primary btn-block">Download Image Data</button>
     </div>
-    <div class="clear-both"></div>
 </div>

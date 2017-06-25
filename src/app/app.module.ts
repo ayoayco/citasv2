@@ -28,6 +28,7 @@ import { DashboardPlantsComponent } from './dashboard.plants.component';
 import { DashboardSensorsComponent } from './dashboard.sensors.component';
 import { DashboardFarmsComponent} from './dashboard.farms.component';
 import { DashboardPlantHealthComponent } from './dashboard.plant-health.component';
+import { DashboardSidebarComponent } from './dashboard.sidebar.component';
 
 import { AppPlantAnalysisComponent } from './plant-analysis.component';
 import { PlantAnalysisPlantInfoComponent } from './plant-analysis.plant-info.component';
@@ -77,7 +78,8 @@ const appRoutes: Routes = [
     PlantAnalysisPlantInfoComponent,
     SensorAnalysisSensorInfoComponent,
     MapComponent,
-    DashboardPlantHealthComponent
+    DashboardPlantHealthComponent,
+    DashboardSidebarComponent
   ],
   imports: [
     BrowserModule,
