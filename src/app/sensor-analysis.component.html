@@ -1,17 +1,18 @@
-<user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
-
-
-<div class="container">
-    <h1>Soil Parameter Trends</h1>
-    <sensor-info class="float-left" [readings]="selectedSensorReadings" [selectedSensorName]="selectedSensorName"></sensor-info>
-    <div id="sensor-list-container" class="float-left">
-        <label for="sampling_sites">Sampling Site: </label>
-        <select (change)="onselect($event.target.value)">
+<div id="wrapper" class="toggled">
+    <sidebar [selectedFarm]="selectedFarm"></sidebar>
+    <div id="page-content-wrapper">
+        <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
+        <div class="container">
+            <h1>Soil Parameter Trends</h1>
+            <sensor-info class="float-left" [readings]="selectedSensorReadings" [selectedSensorName]="selectedSensorName"></sensor-info>
+            <div id="sensor-list-container" class="float-left">
+                <label for="sampling_sites">Sampling Site: </label>
+                <select (change)="onselect($event.target.value)">
             <option value="">All</option>
             <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
         </select>
-        <map [zoomControl]="true" [selectedFarm]="selectedFarm" [sensors]="sensors" (selectSensor)="selectSensor($event)"></map>
-        <!--<table>
+                <map [zoomControl]="true" [selectedFarm]="selectedFarm" [sensors]="sensors" (selectSensor)="selectSensor($event)"></map>
+                <!--<table>
             <tr>
                 <th class="table-title" colspan="2">Map Plot: Sensors ({{sensors.length}})</th>
             </tr>
@@ -20,6 +21,8 @@
                 <td>({{sensor.lat}}, {{sensor.lng}})</td>
             </tr>
         </table>-->
+            </div>
+            <div class="clear-both"></div>
+        </div>
     </div>
-    <div class="clear-both"></div>
 </div>

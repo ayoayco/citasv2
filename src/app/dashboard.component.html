@@ -1,12 +1,17 @@
-<user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
-<div class="container">
-    <h1>{{selectedFarm.farm_name}} Overview</h1>
-    <div id="info-div" class="float-left">
-        <plants-info [plants]="plants"></plants-info>
-        <sensors-info [sensors]="sensors"></sensors-info>
+<div id="wrapper" class="toggled">
+    <sidebar [selectedFarm]="selectedFarm"></sidebar>
+    <div id="page-content-wrapper">
+        <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
+        <div class="container">
+            <h1>{{selectedFarm.farm_name}} Overview</h1>
+            <div id="info-div" class="float-left">
+                <plants-info [plants]="plants"></plants-info>
+                <sensors-info [sensors]="sensors"></sensors-info>
+            </div>
+            <farm-info class="float-left" [plants]="plants" [sensors]="sensors" [selectedFarm]="selectedFarm"></farm-info>
+            <farms-list *ngIf="user.user_type == 5" class="float-left" [farms]="farms" (selectFarm)="selectFarm($event)"></farms-list>
+            <div class="clear-both"></div>
+            <plant-health class="float-left"></plant-health>
+        </div>
     </div>
-    <farm-info class="float-left" [plants]="plants" [sensors]="sensors" [selectedFarm]="selectedFarm"></farm-info>
-    <farms-list *ngIf="user.user_type == 5" class="float-left" [farms]="farms" (selectFarm)="selectFarm($event)"></farms-list>
-    <div class="clear-both"></div>
-    <plant-health class="float-left"></plant-health>
 </div>
