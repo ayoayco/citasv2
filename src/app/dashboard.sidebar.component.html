@@ -14,7 +14,7 @@
             </ul>
         </li>
         <li *ngIf="selectedFarm.farm_id !=0">
-            <a href="#">Total Analysis</a>
+            <a [routerLink]="[ '/total-analysis', selectedFarm.farm_id]" routerLinkActive="active">Total Analysis</a>
         </li>
         <li *ngIf="selectedFarm.farm_id !=0" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sets <span class="caret"></span></a>
