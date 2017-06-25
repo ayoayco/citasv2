@@ -81,8 +81,6 @@ export class AppTotalAnalysisComponent {
                         response => {
                             data = response;
                             this.sites = data.data;
-                            console.log('sites!');
-                            console.log(this.sites);
                         }
                     );
 
@@ -91,8 +89,6 @@ export class AppTotalAnalysisComponent {
                         res => {
                             data = res;
                             this.sensors = data.data;
-                            console.log("sensor count: "+this.sensors.length);
-                            console.log(this.sensors);
                         }
                     );
 
@@ -139,6 +135,14 @@ export class AppTotalAnalysisComponent {
                 this.sensors = data.data;
                 console.log("sensor count: "+this.sensors.length);
                 console.log(this.sensors);
+            }
+        );
+
+        this.apiService.getPlantList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+        .then(
+            res => {
+                data = res;
+                this.plants = data.data;
             }
         );
 
