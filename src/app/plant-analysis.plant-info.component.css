@@ -4,6 +4,7 @@ div#container {
     text-align: left;
     background: #ffffff;
     margin-bottom: 14px;
+    min-width: 650px;
 }
 
 div.detail-item {

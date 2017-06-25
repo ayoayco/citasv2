@@ -4,6 +4,7 @@ div#container {
     background: #ffffff;
     padding: 30px;
     margin-bottom: 14px;
+    min-width: 650px;
 }
 
 ul#tablist li a.selectedTab {

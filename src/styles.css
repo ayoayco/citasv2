@@ -382,11 +382,11 @@ html {
 }
 
 .sidebar-nav li:nth-child(5):before {
-    background-color: #33c57d;
+    background-color: #ff8657;
 }
 
 .sidebar-nav li:nth-child(6):before {
-    background-color: #ff8657;
+    background-color: #33c57d;
 }
 
 .sidebar-nav li:nth-child(7):before {
