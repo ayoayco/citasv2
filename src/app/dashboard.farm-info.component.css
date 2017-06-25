@@ -1,11 +1,10 @@
 div#container {
     border: 1px #ccc solid;
     padding: 30px 0;
-    width: 450px;
-    margin: 0 30px 30px 0;
     text-align: left;
     font-family: 'Montserrat', sans-serif;
     background: #ffffff;
+    margin-bottom: 30px;
 }
 
 strong {
@@ -19,11 +18,15 @@ p {
     margin: 0 0 30px 30px;
 }
 
+div#container div {
+    width: 220px;
+    margin: 15px auto 0;
+}
+
 a#view-link {
-    margin: 30px 0 10px 100px;
-    width: 250px;
     height: 47px !important;
     padding: 15px 0;
     font-size: 14px;
     line-height: 18px;
+    width: 220px;
 }
