@@ -1,0 +1,7 @@
+<div id="wrapper" class="toggled">
+    <sidebar [selectedFarm]="selectedFarm"></sidebar>
+    <div id="page-content-wrapper">
+        <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
+        <map [fullMap]="true" [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" [sensors]="sensors" (selectSensor)="selectSensor($event)"></map>
+    </div>
+</div>

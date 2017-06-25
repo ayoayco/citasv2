@@ -36,15 +36,19 @@ import { PlantAnalysisPlantInfoComponent } from './plant-analysis.plant-info.com
 import { AppSensorAnalysisComponent } from './sensor-analysis.component';
 import { SensorAnalysisSensorInfoComponent } from './sensor-analysis.sensor-info.component';
 
+import { AppTotalAnalysisComponent } from './total-analysis.component';
+
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'edit-profile', component: AppEditProfileComponent },
   { path: 'dashboard', component: AppDashboardComponent },
   { path: 'plant-analysis', component: AppPlantAnalysisComponent },
   { path: 'sensor-analysis', component: AppSensorAnalysisComponent },
+  { path: 'total-analysis', component: AppTotalAnalysisComponent },
   { path: 'dashboard/:id', component: AppDashboardComponent },
   { path: 'plant-analysis/:id', component: AppPlantAnalysisComponent },
   { path: 'sensor-analysis/:id', component: AppSensorAnalysisComponent },
+  { path: 'total-analysis/:id', component: AppTotalAnalysisComponent },
   { path: 'registration', component: AppRegistrationComponent },
   { path: 'about-citas', component: AppAboutCitasComponent },
   { path: 'about-team', component: AppAboutTeamComponent },
@@ -79,7 +83,8 @@ const appRoutes: Routes = [
     SensorAnalysisSensorInfoComponent,
     MapComponent,
     DashboardPlantHealthComponent,
-    DashboardSidebarComponent
+    DashboardSidebarComponent,
+    AppTotalAnalysisComponent
   ],
   imports: [
     BrowserModule,

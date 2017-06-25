@@ -15,6 +15,7 @@ import { CitasApiService} from './citas.api.service';
 
 export class MapComponent implements OnChanges{
 
+    @Input() fullMap: boolean;
     @Input() height: number;
     @Input() disableInteraction: boolean;
 
@@ -52,7 +53,14 @@ export class MapComponent implements OnChanges{
         var trackResize = true;
         var scrollWheelZoom = true;
 
-        $('div#map-div').css('height', this.height+'px');
+        if(!this.fullMap){
+            $('div#map-div').css('height', this.height+'px');
+            console.log('Not full! Height of map should be: '+this.height);
+        }else{
+            var ht = $('map').parent().height();
+            console.log('Full Map! Height of map should be: '+ht);
+            $('div#map-div').css('height', ht+'px');
+        }
 
         if(this.disableInteraction){
             var dragging = false;
