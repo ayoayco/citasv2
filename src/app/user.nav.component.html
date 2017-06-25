@@ -3,9 +3,9 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header" id="select-farm-dropdown">
             <ul class="nav navbar-nav navbar-left">
-                <!--<li><a (click)="toggleSidebar()" class="btn btn-default" id="menu-toggle">Toggle Menu</a></li>-->
+                <li><a (click)="toggleSidebar()" id="menu-toggle">Menu</a></li>
                 <li class="dropdown bg-inverse">
-                    <a href="#" *ngIf="farms" id="select-farm-toggle" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{selectedFarm.farm_name}} <span class="caret"></span></a>
+                    <a *ngIf="farms" id="select-farm-toggle" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{selectedFarm.farm_name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li *ngFor="let farm of farms"><a (click)="OnSelectFarm(farm.farm_id)">{{farm.farm_name}}</a></li>
                     </ul>
