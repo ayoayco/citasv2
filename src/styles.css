@@ -308,3 +308,11 @@ body {
         margin-right: 0;
     }
 }
+
+
+/* bootstrap grid adjust */
+
+.col {
+    padding-right: 7px !important;
+    padding-left: 7px !important;
+}

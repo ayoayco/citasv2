@@ -16,12 +16,12 @@ h1 {
 }
 
 div#sensor-list-container {
-    margin-bottom: 30px;
+    margin-bottom: 14px;
 }
 
 div#sensor-list-div {
     padding-top: 30px;
     border: 1px solid #ccc;
-    margin-bottom: 30px;
+    margin-bottom: 14px;
     background: #ffffff;
 }

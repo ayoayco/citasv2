@@ -2,8 +2,8 @@ div#container {
     border: 1px solid #ccc;
     text-align: left;
     background: #ffffff;
-    margin-bottom: 30px;
     padding: 30px;
+    margin-bottom: 14px;
 }
 
 ul#tablist li a.selectedTab {
