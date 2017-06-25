@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnChanges, AfterViewInit, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, NgZone, Input, Output, OnChanges, AfterViewInit, EventEmitter, SimpleChanges } from '@angular/core';
 import { Farm } from './models/farm';
 import { AppSessionService } from './app.session.service';
 import { CitasApiService} from './citas.api.service';
@@ -37,12 +37,24 @@ export class MapComponent implements OnChanges{
 
     constructor(
         private apiService: CitasApiService,
-        private sessionService: AppSessionService
+        private sessionService: AppSessionService,
+        private ngZone: NgZone
     ){
         this.farmLayer = L.layerGroup([]);
         this.sitesLayer = L.layerGroup([]);
         this.plantsLayer = L.layerGroup([]);
         this.sensorsLayer = L.layerGroup([]);
+
+        window.onresize = (e) =>
+        {
+            //ngZone.run will help to run change detection
+            this.ngZone.run(() => {
+                var ht = $('map').parent().height();
+                console.log('Full Map! Height of map should be: '+ht);
+                $('div#map-div').css('height', ht+'px');
+            });
+        };
+
     }
 
     ngAfterViewInit(){
@@ -115,6 +127,9 @@ export class MapComponent implements OnChanges{
                             case "large": zoom = 14 ; break;
                             case "small": zoom = 16 ; break;
                             default: zoom = 14; break;
+                        }
+                        if(this.fullMap){
+                            zoom += 1;
                         }
                         this.mymap.setView(center, zoom);
                         let polygon = L.polygon(data.geometry, {color: 'black', fillOpacity: 0});
