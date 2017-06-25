@@ -20,7 +20,7 @@ export class DashboardPlantHealthComponent {
     options: Object;
     constructor(){
 
-        var categories = ['Jan', 'February', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        var categories = ['Jan', 'Feb', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
         var series1 = [5, 3, 4, 7, 2, 3, 4, 7, 2, 9, 2];
         var series2 = [2, 2, 3, 2, 1, 5, 3, 4, 7, 2, 5];
 
@@ -37,16 +37,6 @@ export class DashboardPlantHealthComponent {
             },
             yAxis: {
                 min: 0,
-                title: {
-                    text: 'Total fruit consumption'
-                },
-                stackLabels: {
-                    enabled: true,
-                    style: {
-                        fontWeight: 'bold',
-                        color: 'gray'
-                    }
-                }
             },
             legend: {
                 align: 'right',
@@ -67,7 +57,7 @@ export class DashboardPlantHealthComponent {
                 column: {
                     stacking: 'normal',
                     dataLabels: {
-                        enabled: true,
+                        enabled: false,
                         color: 'white'
                     }
                 }
