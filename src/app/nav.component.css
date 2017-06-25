@@ -4,6 +4,7 @@ nav {
     border: none;
     border-radius: 0;
     background: #ffffff;
+    min-width: 1280px !important;
 }
 
 ul.dropdown-menu {
