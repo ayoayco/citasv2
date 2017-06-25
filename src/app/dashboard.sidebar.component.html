@@ -1,10 +1,55 @@
-<div id="sidebar-wrapper">
+<div id="sidebar-wrapper" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <ul class="sidebar-nav">
         <li class="sidebar-brand">
             <a href="#"><i class="app-logo-white"></i></a>
         </li>
-        <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="['/dashboard', selectedFarm.farm_id]" routerLinkActive="active">Dashboard</a></li>
-        <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="[ '/plant-analysis', selectedFarm.farm_id]" routerLinkActive="active">Plant Analysis</a></li>
-        <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="[ '/sensor-analysis', selectedFarm.farm_id]" routerLinkActive="active">Soil Parameter Trends</a></li>
+        <li *ngIf="selectedFarm.farm_id !=0">
+            <a [routerLink]="['/dashboard', selectedFarm.farm_id]" routerLinkActive="active">Dashboard</a>
+        </li>
+        <li *ngIf="selectedFarm.farm_id !=0" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trends and Analysis <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="[ '/plant-analysis', selectedFarm.farm_id]" routerLinkActive="active">Plant Analysis</a></li>
+                <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="[ '/sensor-analysis', selectedFarm.farm_id]" routerLinkActive="active">Soil Parameter Trends</a></li>
+            </ul>
+        </li>
+        <li *ngIf="selectedFarm.farm_id !=0">
+            <a href="#">Total Analysis</a>
+        </li>
+        <li *ngIf="selectedFarm.farm_id !=0" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sets <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li *ngIf="selectedFarm.farm_id !=0">
+                    <a href="#">Plant Images</a>
+                </li>
+                <li *ngIf="selectedFarm.farm_id !=0">
+                    <a href="#">Sensor Data</a>
+                </li>
+                <li *ngIf="selectedFarm.farm_id !=0">
+                    <a href="#">Downloads</a>
+                </li>
+            </ul>
+        </li>
+        <li *ngIf="selectedFarm.farm_id !=0">
+            <a href="#">About PCARI-CITAS</a>
+        </li>
     </ul>
 </div>
+
+<!--
+
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Dropdown heading</li>
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </li>
+
+
+-->
