@@ -20,7 +20,6 @@ import { AppAboutTeamComponent } from './about-team.component';
 import { AppContactUsComponent } from './contact-us.component';
 import { AppEditProfileComponent } from './edit-profile.component';
 import { MapComponent } from './map.component';
-import { MySideMenuComponent } from './side-menu.component';
 
 import { UserNavComponent} from './user.nav.component';
 import { AppDashboardComponent } from './dashboard.component';
@@ -78,7 +77,6 @@ const appRoutes: Routes = [
     PlantAnalysisPlantInfoComponent,
     SensorAnalysisSensorInfoComponent,
     MapComponent,
-    MySideMenuComponent,
     DashboardPlantHealthComponent
   ],
   imports: [
