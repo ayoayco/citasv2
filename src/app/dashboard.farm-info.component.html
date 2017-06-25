@@ -3,6 +3,6 @@
     <p>Owned by ...</p>
     <map [height]="308" [disableInteraction]="true" [zoomControl]="false" [selectedFarm]="selectedFarm" [sensors]="sensors" [plants]="plants"></map>
     <div>
-        <a id="view-link" href="#" class="btn btn-default">View Total Analysis</a>
+        <a id="view-link" class="btn btn-default" [routerLink]="[ '/total-analysis', selectedFarm.farm_id]" routerLinkActive="active">View Total Analysis</a>
     </div>
 </div>
