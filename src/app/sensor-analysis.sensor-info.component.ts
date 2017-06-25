@@ -66,7 +66,7 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
             title: { text: chartTitle },
             colors: ["#19BD6C"],
             chart: {
-                width: 740
+                
             },
             series: [{
                 name: this.selectedSensorName,

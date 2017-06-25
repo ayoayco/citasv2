@@ -4,25 +4,20 @@
         <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
         <div class="container">
             <h1>Soil Parameter Trends</h1>
-            <sensor-info class="float-left" [readings]="selectedSensorReadings" [selectedSensorName]="selectedSensorName"></sensor-info>
-            <div id="sensor-list-container" class="float-left">
-                <label for="sampling_sites">Sampling Site: </label>
-                <select (change)="onselect($event.target.value)">
-            <option value="">All</option>
-            <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
-        </select>
-                <map [zoomControl]="true" [selectedFarm]="selectedFarm" [sensors]="sensors" (selectSensor)="selectSensor($event)"></map>
-                <!--<table>
-            <tr>
-                <th class="table-title" colspan="2">Map Plot: Sensors ({{sensors.length}})</th>
-            </tr>
-            <tr class="clickable-row" *ngFor="let sensor of sensors" (click)="selectSensor(sensor.sensor_name)">
-                <td>{{sensor.sensor_name}}</td>
-                <td>({{sensor.lat}}, {{sensor.lng}})</td>
-            </tr>
-        </table>-->
+            <div class="row">
+                <sensor-info class="col-md-9 col-sm-12 float-left" [readings]="selectedSensorReadings" [selectedSensorName]="selectedSensorName"></sensor-info>
+                <div id="sensor-list-container" class="col-md-3 col-sm-12 float-left">
+                    <div id="sensor-list-div">
+                        <label for="sampling_sites">Sampling Site: </label>
+                        <select (change)="onselect($event.target.value)">
+                            <option value="">All</option>
+                            <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
+                        </select>
+                        <map [zoomControl]="true" [selectedFarm]="selectedFarm" [sensors]="sensors" (selectSensor)="selectSensor($event)"></map>
+                    </div>
+                    <button class="btn btn-primary btn-block">Download Image Data</button>
+                </div>
             </div>
-            <div class="clear-both"></div>
         </div>
     </div>
 </div>

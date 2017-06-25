@@ -7,7 +7,7 @@ body {
     font-size: 14px;
     line-height: 1.42857143;
     color: #2d4137;
-    background-color: #fff;
+    background: #f3f3f3 !important;
     overflow-x: hidden;
 }
 
@@ -184,14 +184,12 @@ body {
 
 /* Toggle Styles */
 
-#wrapper,
-#wrapper nav {
+#wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-    background: #f3f3f3;
 }
 
 #wrapper.toggled {
