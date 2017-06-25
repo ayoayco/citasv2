@@ -29,11 +29,6 @@ ul.dropdown-menu a:hover {
     background-color: #ffffff;
 }
 
-ul.dropdown-menu li a {
-    padding: 15px;
-    margin: 0;
-}
-
 li a#select-farm-toggle {
     color: #00B95C;
     margin: 0;
@@ -50,6 +45,10 @@ li a.navbar-brand {
     height: 65px;
 }
 
+li a#menu-toggle {
+    border-right: 1px solid #ccc;
+}
+
 li a {
     text-transform: uppercase;
     color: #57675F;
@@ -57,7 +56,6 @@ li a {
     font-size: 14px;
     font-weight: bold;
     line-height: 18px;
-    margin-right: 30px;
 }
 
 li a:hover {
@@ -80,4 +78,8 @@ div#select-farm-dropdown {
     border-right: 1px solid #ccc;
     height: 100%;
     min-width: 220px;
+}
+
+nav div {
+    padding-left: 0 !important;
 }
