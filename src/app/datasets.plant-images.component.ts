@@ -51,7 +51,6 @@ export class DatasetsPlantImagesComponent {
             }
         );
 
-
         this.apiService.getFarmList(this.sessionService.getLoggedInKey())
         .then(
             res => {
