@@ -6,7 +6,7 @@
             <h1>{{selectedFarm.farm_name}} Overview</h1>
             <div class="row">
                 <div id="info-div" class="float-left col col-md-4 col-sm-12">
-                    <plants-info [plants]="plants"></plants-info>
+                    <plants-info [selectedFarm]="selectedFarm"></plants-info>
                     <sensors-info [sensors]="sensors"></sensors-info>
                 </div>
                 <farm-info class="float-left col col-md-5 col-sm-12" [plants]="plants" [sensors]="sensors" [selectedFarm]="selectedFarm"></farm-info>

@@ -79,6 +79,15 @@ export class AppDashboardComponent {
                         console.log('selected farm: ' + this.selectedFarm.farm_name);
                     }
 
+                    this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                    .then(
+                        res => {
+                            data = res.data[0];
+                            this.selectedFarm = data;
+                            console.log(this.selectedFarm);
+                        }
+                    );
+
                     this.apiService.getPlantList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
                     .then(
                         res => {

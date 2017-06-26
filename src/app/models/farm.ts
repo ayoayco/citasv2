@@ -10,6 +10,7 @@ export class Farm {
     foc_prevention: boolean;
     geocode: string;
     geometry: any[];
+    health_summary;
     soil_management: boolean;
 
     constructor(){
@@ -22,6 +23,11 @@ export class Farm {
         this.geocode = "";
         this.geometry = [];
         this.soil_management = false;
+        this.health_summary = {
+            "healthy" : 0,
+            "infected" : 0,
+            "unknown" : 0
+        }
     }
 
 }
