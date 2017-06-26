@@ -7,28 +7,58 @@ div#container {
     min-width: 650px;
 }
 
-div#images-div ul {
+div#images-grid ul {
     margin: 20px;
     list-style: none;
 }
 
-div#images-div ul li {
+div#images-grid ul li {
     display: block;
     width: 150px;
     float: left;
     margin: 0 5px 5px 0;
 }
 
-div#images-div ul li img {
+div#images-grid ul li img {
     width: 150px;
     border: 1px solid black;
 }
 
-span.imageType {
+div#images-grid span.imageType {
     font-size: small;
     color: white;
     padding: 5px;
     border-radius: 1px;
     position: absolute;
     text-transform: uppercase;
+}
+
+div#images-list ul {
+    list-style: none;
+}
+
+div#images-list ul li {
+    margin-bottom: 10px;
+}
+
+div#images-list span.imageType {
+    font-size: small;
+    color: white;
+    padding: 5px;
+    border-radius: 1px;
+    text-transform: uppercase;
+    margin-left: 30px;
+}
+
+div#images-list ul li img {
+    width: 100px;
+    border: 1px solid black;
+}
+
+#viewType-div {
+    margin: 20px 0 10px;
+}
+
+#viewType-div a {
+    cursor: pointer;
 }

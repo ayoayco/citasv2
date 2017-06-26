@@ -18,12 +18,14 @@ export class DatasetsPlantImagesGalleryComponent implements OnChanges {
     imageResult: string;
     sensorResult: string;
     plantImages: any;
+    viewType: string;
 
     constructor(
         private apiService: CitasApiService,
         private sessionService: AppSessionService
     ){
         console.log(this.selectedPlant);
+        this.viewType = "grid";
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -53,22 +55,13 @@ export class DatasetsPlantImagesGalleryComponent implements OnChanges {
             case "Leaf Analysis Image":  label="Leaf Analysis"; break;
             case "PlantScope Analysis Image":  label="PlantScope"; break;
             case "LampAssay Analysis Image":  label="Lamp Assay"; break;
+            default: label = "Unknown"; break;
         }
 
         return label;
     }
 
     public getTypeStyle(type: string){
-        /*
-            1 - Plant (Generic Plant Image)
-            2 - Leaf Pre-Analysis Image
-            3 - PlantScope Pre-Analysis Image
-            4 - LampAssay Processed Image
-            5 - Leaf Analysis Image
-            6 - PlantScope Analysis Image
-            7 - LampAssay Analysis Image
-        */
-
         var color ="";
         switch(type){
             case "Generic Plant Image": color="#19bd6c"; break;
@@ -78,8 +71,13 @@ export class DatasetsPlantImagesGalleryComponent implements OnChanges {
             case "Leaf Analysis Image":  color="#57675f"; break;
             case "PlantScope Analysis Image":  color="#ff8657"; break;
             case "LampAssay Analysis Image":  color="#2d3841"; break;
+            default: color = "#888888"; break;
         }
 
         return color;
+    }
+
+    public viewAs(type: string){
+        this.viewType = type;
     }
 }
