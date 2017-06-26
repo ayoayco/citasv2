@@ -15,7 +15,7 @@
                         </select>
                         <map [zoomControl]="true" [selectedFarm]="selectedFarm" [sensors]="sensors" (selectSensor)="selectSensor($event)"></map>
                     </div>
-                    <button class="btn btn-primary btn-block">Download Image Data</button>
+                    <button *ngIf="selectedSensorName" class="btn btn-primary btn-block">Download Sensor Data</button>
                 </div>
             </div>
         </div>
