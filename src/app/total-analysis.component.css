@@ -31,3 +31,7 @@ table#plantAnalysis-table td,
 table#plantAnalysis-table th {
     padding: 10px;
 }
+
+#plantAnalysisModal {
+    background: rgba( 3, 3, 3, .8) !important;
+}
