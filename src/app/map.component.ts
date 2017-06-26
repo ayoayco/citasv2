@@ -44,15 +44,17 @@ export class MapComponent implements OnChanges{
         this.sitesLayer = L.layerGroup([]);
         this.plantsLayer = L.layerGroup([]);
         this.sensorsLayer = L.layerGroup([]);
-
+        
         window.onresize = (e) =>
         {
-            //ngZone.run will help to run change detection
-            this.ngZone.run(() => {
-                var ht = $('map').parent().height();
-                console.log('Full Map! Height of map should be: '+ht);
-                $('div#map-div').css('height', ht+'px');
-            });
+            if(this.fullMap){
+                //ngZone.run will help to run change detection
+                this.ngZone.run(() => {
+                    var ht = $('map').parent().height();
+                    console.log('Full Map! Height of map should be: '+ht);
+                    $('div#map-div').css('height', ht+'px');
+                });
+            }
         };
 
     }
@@ -164,19 +166,28 @@ export class MapComponent implements OnChanges{
             );
         }  
 
+        var plantIcon = L.icon({
+            iconUrl: './assets/images/plant.healthy.png',
+
+            iconSize:     [25, 25] // size of the icon
+            // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
+
+        var sensorIcon = L.icon({
+            iconUrl: './assets/images/sensor.png',
+
+            iconSize:     [25, 25] // size of the icon
+            // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
+
         // plants changed
         if(changes.plants && changes.plants.firstChange == false ){
             console.log("Map Plants: " + this.plants.length);
 
             //to do: clear layers
             this.plantsLayer.clearLayers();
-            var plantIcon = L.icon({
-                iconUrl: './assets/images/plant.healthy.png',
-
-                iconSize:     [25, 25] // size of the icon
-                // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-                // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-            });
             
                 console.log(this.plants);
 
@@ -190,6 +201,13 @@ export class MapComponent implements OnChanges{
                         this.onSelect('plant', arg);
 
                         var layer: any;
+
+                        for(layer in this.sensorsLayer["_layers"]){
+                            var obj = this.sensorsLayer["_layers"][layer];
+                            obj.setIcon(sensorIcon);
+                            obj.setZIndexOffset(-1000);
+                        }
+
                         for(layer in this.plantsLayer["_layers"]){
                             var obj = this.plantsLayer["_layers"][layer];
                             obj.setIcon(plantIcon);
@@ -216,13 +234,6 @@ export class MapComponent implements OnChanges{
 
             //to do: clear layers
             this.sensorsLayer.clearLayers();
-            var sensorIcon = L.icon({
-                iconUrl: './assets/images/sensor.png',
-
-                iconSize:     [25, 25] // size of the icon
-                // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-                // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-            });
             
             for(var i=0; i<this.sensors.length; i++){
                 let arg = this.sensors[i];
@@ -236,6 +247,12 @@ export class MapComponent implements OnChanges{
                         for(layer in this.sensorsLayer["_layers"]){
                             var obj = this.sensorsLayer["_layers"][layer];
                             obj.setIcon(sensorIcon);
+                            obj.setZIndexOffset(-1000);
+                        }
+
+                        for(layer in this.plantsLayer["_layers"]){
+                            var obj = this.plantsLayer["_layers"][layer];
+                            obj.setIcon(plantIcon);
                             obj.setZIndexOffset(-1000);
                         }
 
