@@ -2,8 +2,8 @@ div.container {
     padding: 90px 0 30px;
 }
 
-body {
-    background-color: #eee;
+div.form-group {
+    padding: 0 50px;
 }
 
 *[role="form"] {

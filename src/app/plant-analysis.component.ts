@@ -16,7 +16,7 @@ import { Plant } from './models/plant';
     ]
 })
 
-export class AppPlantAnalysisComponent{
+export class AppPlantAnalysisComponent {
     
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
@@ -150,5 +150,4 @@ export class AppPlantAnalysisComponent{
             }
         );
     }
-
 }

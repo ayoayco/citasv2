@@ -31,7 +31,6 @@ export class AppDashboardComponent {
         private titleService: Title,
         private apiService: CitasApiService
     ){
-
         this.user = new User();
         let loggedIn: boolean = this.sessionService.isLoggedIn();
         if(!loggedIn){
