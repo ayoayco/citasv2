@@ -1,0 +1,8 @@
+div#container {
+    border: 1px solid #ccc;
+    padding: 30px;
+    text-align: left;
+    background: #ffffff;
+    margin-bottom: 14px;
+    min-width: 650px;
+}
