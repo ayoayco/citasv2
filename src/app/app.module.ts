@@ -38,6 +38,9 @@ import { SensorAnalysisSensorInfoComponent } from './sensor-analysis.sensor-info
 
 import { AppTotalAnalysisComponent } from './total-analysis.component';
 
+import { DatasetsPlantImagesComponent } from './datasets.plant-images.component';
+import { DatasetsPlantImagesGalleryComponent } from './datasets.plant-images.gallery.component';
+
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'edit-profile', component: AppEditProfileComponent },
@@ -45,6 +48,7 @@ const appRoutes: Routes = [
   { path: 'plant-analysis', component: AppPlantAnalysisComponent },
   { path: 'sensor-analysis', component: AppSensorAnalysisComponent },
   { path: 'total-analysis', component: AppTotalAnalysisComponent },
+  { path: 'plant-images', component: DatasetsPlantImagesComponent },
   { path: 'dashboard/:id', component: AppDashboardComponent },
   { path: 'plant-analysis/:id', component: AppPlantAnalysisComponent },
   { path: 'sensor-analysis/:id', component: AppSensorAnalysisComponent },
@@ -84,7 +88,9 @@ const appRoutes: Routes = [
     MapComponent,
     DashboardPlantHealthComponent,
     DashboardSidebarComponent,
-    AppTotalAnalysisComponent
+    AppTotalAnalysisComponent,
+    DatasetsPlantImagesComponent,
+    DatasetsPlantImagesGalleryComponent
   ],
   imports: [
     BrowserModule,

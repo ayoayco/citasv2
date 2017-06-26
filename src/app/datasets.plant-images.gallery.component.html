@@ -1,0 +1,10 @@
+<div id="container">
+    <div *ngIf="selectedPlant == undefined">
+        <h3>Selected Plant: <em>None Selected</em></h3>
+        <p>Select a plant marker to the right to view its details and the results of the analysis.</p>
+    </div>
+    <div *ngIf="selectedPlant != undefined">
+        <h3>Selected Plant: <strong>{{selectedPlant.plant_name}}</strong></h3>
+        <p>Select a plant marker to the right to view its details and the results of the analysis.</p>
+    </div>
+</div>
