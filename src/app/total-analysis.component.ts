@@ -32,6 +32,11 @@ export class AppTotalAnalysisComponent {
     sites: Site[];
     resize: number;
 
+    showSites: boolean;
+    showSensors: boolean;
+    showPlants: boolean;
+    showSamplings: boolean;
+
     constructor(
         private activeRoute: ActivatedRoute,
         private sessionService: AppSessionService,
@@ -39,6 +44,11 @@ export class AppTotalAnalysisComponent {
         private titleService: Title,
         private apiService: CitasApiService
     ){
+
+        this.showPlants = true;
+        this.showSamplings = true;
+        this.showSensors = true;
+        this.showSites = true;
 
         this.resize = 0;
 
@@ -188,5 +198,21 @@ export class AppTotalAnalysisComponent {
     public onMapResize(){
         this.resize++;
         console.log('map resize');
+    }
+
+    public toggleSites(){
+        this.showSites = !this.showSites;
+    }
+
+    public togglePlants(){
+        this.showPlants = !this.showPlants;
+    }
+
+    public toggleSensors(){
+        this.showSensors = !this.showSensors;
+    }
+
+    public toggleSamplings(){
+        this.showSamplings = !this.showSamplings;
     }
 }
