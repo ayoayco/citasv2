@@ -2,6 +2,10 @@ div.container {
     padding: 90px 0 30px;
 }
 
+div.form-group {
+    padding: 0 50px;
+}
+
 body {
     background-color: #eee;
 }

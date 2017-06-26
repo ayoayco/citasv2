@@ -3,5 +3,10 @@
     <div id="page-content-wrapper">
         <user-nav [farms]="farms" (mapResize)="onMapResize($event)" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
         <map [fullMap]="true" [resize]="resize" [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" [sensors]="sensors" (selectSensor)="selectSensor($event)"></map>
+        <div id="draggableMenu" class="ui-widget-content">
+            <strong>Layers</strong><br />
+            <input type="checkbox" id="toggleSensors" name="toggleSensors" checked> <label for="toggleSensors">Sensors</label><br />
+            <input type="checkbox" id="togglePlants" name="togglePlants" checked> <label for="togglePlants">Plants</label>
+        </div>
     </div>
 </div>
