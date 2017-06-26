@@ -210,6 +210,10 @@ export class MapComponent implements OnChanges{
                     marker.on('click', (e)=>{
                         this.onSelect('plant', arg);
 
+                        if(this.fullMap){
+                            this.openPlantAnalysis();
+                        }
+
                         var layer: any;
 
                         for(layer in this.sensorsLayer["_layers"]){
@@ -330,5 +334,9 @@ export class MapComponent implements OnChanges{
     private onSelect(type:string, arg){
         if(type == "plant") this.selectPlant.emit(arg.plant_id);
         if(type == "sensor") this.selectSensor.emit(arg.sensor_name);
+    }
+
+    private openPlantAnalysis(){
+        alert('oh no!');
     }
 }
