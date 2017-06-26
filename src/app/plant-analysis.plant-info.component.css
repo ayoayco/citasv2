@@ -56,3 +56,9 @@ div.result-div {
     font-size: large;
     font-weight: bold;
 }
+
+p.result-desc {
+    text-transform: uppercase;
+    font-size: small;
+    text-align: center;
+}

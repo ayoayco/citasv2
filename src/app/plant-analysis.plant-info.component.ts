@@ -18,33 +18,41 @@ export class PlantAnalysisPlantInfoComponent implements OnChanges {
         console.log(this.selectedPlant);
     }
 
+public getBgColor(result: string){
+    if(result == "Uninfected"){
+        return "#33c57d";
+    }
+    else if(result == "Infected"){
+        return "#FF8657";
+    }
+    else{
+        return "#888888";
+    }
+}
+
     ngOnChanges(changes: SimpleChanges){
         if(changes.selectedPlant && changes.selectedPlant.firstChange == false){
+
+            console.log('plant changed!');
+
             if(this.selectedPlant.analysis_result.image == "not_infected"){
                 this.imageResult = "Uninfected";
-                console.log($('.result-span:first-child'));
-                $('#image.result-span').css('color', '#33c57d');
             }
             else if(this.selectedPlant.analysis_result.image == "infected"){
                 this.imageResult = "Infected";
-                $('#image.result-span').css('color', '#FF8657');
             }
             else{
                 this.imageResult = "Unknown";
-                $('#image.result-span').css('color', '#888');
             }
 
             if(this.selectedPlant.analysis_result.sensor == "not_infected"){
                 this.sensorResult = "Uninfected";
-                $('#sensor.result-span').css('color', '#33c57d');
             }
             else if(this.selectedPlant.analysis_result.sensor == "infected"){
                 this.sensorResult = "Infected";
-                $('#sensor.result-span').css('color', '#FF8657');
             }
             else {
                 this.sensorResult = "Unknown";
-                $('#sensor.result-span').css('color', '#888');
             }
         }
     }

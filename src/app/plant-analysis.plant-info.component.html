@@ -43,13 +43,17 @@
                 <h4>Analysis Results</h4>
                 <div class="row">
                     <div class="col col-md-6 result-div">
-                        <span id="image" class="result-span">{{imageResult}}</span>
-                        <p>Image</p>
+                        <span [style.color]="getBgColor(imageResult)" id="image" class="result-span">{{imageResult}}</span>
+                        <p class="result-desc">Image</p>
                     </div>
                     <div class="col col-md-6 result-div">
-                        <span id="sensor" class="result-span">{{sensorResult}}</span>
-                        <p>Soil Sensors</p>
+                        <span [style.color]="getBgColor(sensorResult)" id="sensor" class="result-span">{{sensorResult}}</span>
+                        <p class="result-desc">Soil Sensors</p>
                     </div>
+                </div>
+                <h4>Infected Parts</h4>
+                <div class="row">
+                    <p class="result-desc"><em>No Infected Parts (Mock Data)</em></p>
                 </div>
             </div>
         </div>
