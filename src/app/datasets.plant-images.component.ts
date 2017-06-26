@@ -36,7 +36,7 @@ export class DatasetsPlantImagesComponent {
         if(!loggedIn){
             this.router.navigate(['/']);
         }else{
-            this.titleService.setTitle('Plant Analysis');
+            this.titleService.setTitle('Collected Plant Images');
         }
 
         let data : any;
