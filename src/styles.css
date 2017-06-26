@@ -150,7 +150,7 @@ img {
    for themselves. Background we set to 80% white with
    our animation centered, and no-repeating */
 
-.modal {
+.modal:not(#plantAnalysisModal) {
     display: none;
     position: fixed;
     z-index: 1000;

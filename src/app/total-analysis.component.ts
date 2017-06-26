@@ -215,4 +215,17 @@ export class AppTotalAnalysisComponent {
     public toggleSamplings(){
         this.showSamplings = !this.showSamplings;
     }
+
+    public togglePlantAnalysis(){
+        let data: any;
+        this.apiService.getPlantAnalysis(this.sessionService.getLoggedInKey(), this.selectedPlant.plant_id)
+        .then(
+            res => {
+                data = res;
+                console.log(data);
+                $('#plantAnalysisModal').modal('toggle');
+            }
+        )
+
+    }
 }
