@@ -11,7 +11,7 @@
                 <label for="email" class="control-label">Email</label>
                 <input [(ngModel)]="user.email" name="email" type="email" id="email" placeholder="Email" class="form-control">
                 <label for="mobileNumber" class="control-label">Mobile Number</label>
-                <input [(ngModel)]="user.mobile_number" name="mobile_number" type="text" id="mobileNumber" placeholder="Mobile Number" class="form-control">
+                <input maxlength="12" [(ngModel)]="user.mobile_number" name="mobile_number" type="text" id="mobileNumber" placeholder="639*********" class="form-control">
                 <label for="userType" class="control-label">User Type</label>
                 <select [(ngModel)]="user.user_type" name="userType" id="userType" class="form-control" placeholder="Choose User Type">
                             <option value="4">Farm Manager</option>
