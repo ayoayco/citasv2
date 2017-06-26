@@ -35,6 +35,7 @@ export class MapComponent implements OnChanges{
 
     @Output() selectPlant = new EventEmitter<{}>();
     @Output() selectSensor = new EventEmitter<{}>();
+    @Output() togglePlantAnalysis = new EventEmitter<{}>();
 
     mymap: L.Map;
     farmLayer: L.LayerGroup;
@@ -337,6 +338,6 @@ export class MapComponent implements OnChanges{
     }
 
     private openPlantAnalysis(){
-        alert('oh no!');
+        this.togglePlantAnalysis.emit()
     }
 }

@@ -2,7 +2,8 @@
     <sidebar [selectedFarm]="selectedFarm"></sidebar>
     <div id="page-content-wrapper">
         <user-nav [farms]="farms" (mapResize)="onMapResize($event)" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
-        <map [showPlants]="showPlants" [showSamplings]="showSamplings" [showSensors]="showSensors" [showSites]="showSites" [fullMap]="true" [resize]="resize" [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" [sensors]="sensors" (selectSensor)="selectSensor($event)">
+        <map [showPlants]="showPlants" [showSamplings]="showSamplings" [showSensors]="showSensors" [showSites]="showSites" [fullMap]="true" [resize]="resize" [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" [sensors]="sensors" (selectSensor)="selectSensor($event)"
+            (togglePlantAnalysis)="togglePlantAnalysis($event)">
         </map>
         <div id="draggableMenu" class="ui-widget-content">
             <strong>Map Options</strong><br />
@@ -13,5 +14,24 @@
                 <input (change)="toggleSamplings()" type="checkbox" id="toggleSamplings" name="toggleSamplings" disabled> <label for="toggleSamplings">Soil Samplings</label>
             </form>
         </div>
+    </div>
+</div>
+<div class="modal fade" id="plantAnalysisModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
     </div>
 </div>
