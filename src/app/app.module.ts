@@ -53,6 +53,7 @@ const appRoutes: Routes = [
   { path: 'plant-analysis/:id', component: AppPlantAnalysisComponent },
   { path: 'sensor-analysis/:id', component: AppSensorAnalysisComponent },
   { path: 'total-analysis/:id', component: AppTotalAnalysisComponent },
+  { path: 'plant-images/:id', component: DatasetsPlantImagesComponent },
   { path: 'registration', component: AppRegistrationComponent },
   { path: 'about-citas', component: AppAboutCitasComponent },
   { path: 'about-team', component: AppAboutTeamComponent },
