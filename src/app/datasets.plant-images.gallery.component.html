@@ -6,5 +6,16 @@
     <div *ngIf="selectedPlant != undefined">
         <h3>Selected Plant: <strong>{{selectedPlant.plant_name}}</strong></h3>
         <p>Select a plant marker to the right to view its details and the results of the analysis.</p>
+
+        <div id="images-div">
+            <ul>
+                <li *ngFor="let image of plantImages">
+                    <span [style.background-color]="getTypeStyle(image.image_type)" class="imageType">{{getLabel(image.image_type)}}</span>
+                    <img src="http://{{image.image_thumbnail_url}}" />
+                    <!--<img src="./assets/old-bg_header-min.jpg" />-->
+                </li>
+            </ul>
+            <div class="clear-both"></div>
+        </div>
     </div>
 </div>

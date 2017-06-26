@@ -137,8 +137,6 @@ export class DatasetsPlantImagesComponent {
         )
     }
 
-
-
     public onselect(val){
         this.plants = [];
         this.selectedPlant = undefined;
