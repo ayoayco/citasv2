@@ -9,6 +9,7 @@ import { SensorReading } from './models/sensor-reading';
 import { Sensor } from './models/sensor';
 import { Site } from './models/site';
 import { Plant } from './models/plant';
+import { PlantAnalysis } from './models/plant-analysis';
 
 @Component({
     selector: 'app-total-analysis',
@@ -31,6 +32,7 @@ export class AppTotalAnalysisComponent {
     selectedPlant: Plant = new Plant();
     sites: Site[];
     resize: number;
+    plantAnalysis: PlantAnalysis;
 
     showSites: boolean;
     showSensors: boolean;
@@ -44,6 +46,8 @@ export class AppTotalAnalysisComponent {
         private titleService: Title,
         private apiService: CitasApiService
     ){
+
+        this.plantAnalysis = new PlantAnalysis();
 
         this.showPlants = true;
         this.showSamplings = true;
@@ -218,14 +222,32 @@ export class AppTotalAnalysisComponent {
 
     public togglePlantAnalysis(){
         let data: any;
-        this.apiService.getPlantAnalysis(this.sessionService.getLoggedInKey(), this.selectedPlant.plant_id)
+        if(this.selectedPlant){
+            this.apiService.getPlantAnalysis(this.sessionService.getLoggedInKey(), this.selectedPlant.plant_id)
+            .then(
+                res => {
+                    data = res.data;
+                    this.plantAnalysis = data;
+                    console.log(this.plantAnalysis);
+                    $('#plantAnalysisModal').modal('toggle');
+                }
+            )
+        }
+
+    }
+
+    public selectPlant(plantID: string){
+        console.log('Plant '+ plantID + ' selected!');
+        let data: any;
+        this.apiService.getPlant(this.sessionService.getLoggedInKey(), plantID)
         .then(
             res => {
                 data = res;
                 console.log(data);
-                $('#plantAnalysisModal').modal('toggle');
+                this.selectedPlant = data.data;
+                this.togglePlantAnalysis();
+                //console.log(this.selectedPlant);
             }
         )
-
     }
 }

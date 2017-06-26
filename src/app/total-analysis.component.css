@@ -21,3 +21,13 @@
     border-radius: 5px;
     background: white;
 }
+
+table#plantAnalysis-table {
+    margin-left: 100px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+table#plantAnalysis-table td,
+table#plantAnalysis-table th {
+    padding: 10px;
+}
