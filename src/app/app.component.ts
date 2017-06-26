@@ -19,7 +19,10 @@ export class AppComponent implements OnInit{
   constructor(
     private router: Router,
     private sessionService: AppSessionService
-  ){}
+  ){
+
+
+  }
 
   ngOnInit(){
     this.isLoggedIn = this.sessionService.isLoggedIn();

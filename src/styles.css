@@ -7,9 +7,9 @@ body {
     font-size: 14px;
     line-height: 1.42857143;
     color: #2d4137;
-    background: #f3f3f3 !important;
     overflow-x: hidden;
     min-width: 770px !important;
+    background: #f3f3f3 !important;
 }
 
 #wrap {
