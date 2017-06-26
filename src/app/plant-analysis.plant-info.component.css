@@ -42,3 +42,17 @@ div#images-div ul li img {
     border: 1px solid black;
     margin: 0 0 5px 0;
 }
+
+h4 {
+    text-align: center;
+    font-weight: bold;
+}
+
+div.result-div {
+    text-align: center;
+}
+
+.result-span {
+    font-size: large;
+    font-weight: bold;
+}

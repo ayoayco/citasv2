@@ -20,6 +20,7 @@ export class Plant {
     roots_infected: boolean;
     sampling_site_id: number;
     stem_infected: boolean;
+    analysis_result: any;
 
     constructor(){
         this.growth_stage = "";

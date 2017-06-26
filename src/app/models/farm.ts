@@ -10,7 +10,7 @@ export class Farm {
     foc_prevention: boolean;
     geocode: string;
     geometry: any[];
-    health_summary;
+    health_summary: any;
     soil_management: boolean;
 
     constructor(){
