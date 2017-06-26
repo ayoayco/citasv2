@@ -30,6 +30,7 @@ export class AppTotalAnalysisComponent {
     plants: Plant[] = [];
     selectedPlant: Plant = new Plant();
     sites: Site[];
+    resize: number;
 
     constructor(
         private activeRoute: ActivatedRoute,
@@ -38,6 +39,8 @@ export class AppTotalAnalysisComponent {
         private titleService: Title,
         private apiService: CitasApiService
     ){
+
+        this.resize = 0;
 
         let loggedIn: boolean = this.sessionService.isLoggedIn();
         if(!loggedIn){
@@ -180,5 +183,10 @@ export class AppTotalAnalysisComponent {
                 console.log(this.sensors);
             }
         );
+    }
+
+    public onMapResize(){
+        this.resize++;
+        console.log('map resize');
     }
 }

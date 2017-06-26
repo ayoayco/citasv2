@@ -18,6 +18,7 @@ export class UserNavComponent {
     @Input() farms: Farm[];
     @Input() selectedFarm: Farm = new Farm();
     @Output() selectFarm = new EventEmitter<{}>();
+    @Output() mapResize = new EventEmitter<{}>();
 
     isLoggedIn: boolean;
     username: string;
@@ -49,5 +50,6 @@ export class UserNavComponent {
 
     public toggleSidebar(){
             $("#wrapper").toggleClass("toggled");
+            this.mapResize.emit();
     }
 }
