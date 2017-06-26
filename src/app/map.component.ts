@@ -25,7 +25,9 @@ export class MapComponent implements OnChanges{
 
     @Input() zoomControl: boolean = true;
     @Input() touchZoom: boolean = true;
-    
+
+    @Input() resize: number;
+
     @Output() selectPlant = new EventEmitter<{}>();
     @Output() selectSensor = new EventEmitter<{}>();
 
@@ -53,6 +55,7 @@ export class MapComponent implements OnChanges{
                     var ht = $('map').parent().height();
                     console.log('Full Map! Height of map should be: '+ht);
                     $('div#map-div').css('height', ht+'px');
+                    this.mymap.invalidateSize();
                 });
             }
         };
@@ -109,6 +112,12 @@ export class MapComponent implements OnChanges{
 
 
     ngOnChanges(changes: SimpleChanges){
+
+        if(changes.resize && changes.resize.firstChange == false ){
+            console.log('map resized for '+this.resize+' time(s)!' );
+            document.getElementById('map-div').style.display = 'block';
+            this.mymap.invalidateSize();
+        }
 
         // selectedFarm changed
         if(changes.selectedFarm && changes.selectedFarm.firstChange == false ){
