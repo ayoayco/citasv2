@@ -17,7 +17,7 @@
             <a [routerLink]="[ '/total-analysis', selectedFarm.farm_id]" routerLinkActive="active"><i class="icon fa fa-map"></i> Total Analysis</a>
         </li>
         <li *ngIf="selectedFarm.farm_id !=0" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-database"></i> Sets <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-database"></i> Data Sets <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li *ngIf="selectedFarm.farm_id !=0">
                     <a [routerLink]="[ '/plant-images', selectedFarm.farm_id]" routerLinkActive="active">Collected Plant Images</a>
