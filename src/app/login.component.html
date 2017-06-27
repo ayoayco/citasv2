@@ -19,10 +19,10 @@
                             <input type="password" id="passwordfield" class="form-control" [(ngModel)]="password" name="password" placeholder="Password" />
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="login-div">
-                            <button type="submit" class="login-btn btn btn-primary" (click)="login()" data-dismiss="modal">Login</button>
+                            <div *ngIf="err" [innerHTML]="err" class="alert alert-danger"></div>
+                            <button type="submit" class="login-btn btn btn-primary" (click)="login()">Login</button>
                         </div>
                     </div>
                     <div class="form-group">
