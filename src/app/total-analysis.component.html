@@ -6,13 +6,24 @@
             [sensors]="sensors" (selectSensor)="selectSensor($event)">
         </map>
         <div id="draggableMenu" class="ui-widget-content">
-            <strong>Map Options</strong><br />
-            <form id="menu-options">
-                <input (change)="toggleSites()" type="checkbox" id="toggleSites" name="toggleSites" checked> <label for="toggleSites">Sampling Sites</label><br />
-                <input (change)="toggleSensors()" type="checkbox" id="toggleSensors" name="toggleSensors" checked> <label for="toggleSensors">Soil Sensors</label><br />
-                <input (change)="togglePlants()" type="checkbox" id="togglePlants" name="togglePlants" checked> <label for="togglePlants">Plant Locations</label><br />
-                <input (change)="toggleSamplings()" type="checkbox" id="toggleSamplings" name="toggleSamplings" disabled> <label for="toggleSamplings">Soil Samplings</label>
-            </form>
+            <h4 class="clickable" onclick="$('#hidable').toggleClass('hideMe')">Map Options <span _ngcontent-c3="" class="caret"></span></h4>
+            <div class="row" id="hidable">
+                <form class="col-md-6" id="menu-options">
+                    <h5>Layers</h5>
+                    <input (change)="toggleSites()" type="checkbox" id="toggleSites" name="toggleSites" checked> <label for="toggleSites">Sampling Sites</label><br />
+                    <input (change)="toggleSensors()" type="checkbox" id="toggleSensors" name="toggleSensors" checked> <label for="toggleSensors">Soil Sensors</label><br />
+                    <input (change)="togglePlants()" type="checkbox" id="togglePlants" name="togglePlants" checked> <label for="togglePlants">Plant Locations</label><br />
+                    <input (change)="toggleSamplings()" type="checkbox" id="toggleSamplings" name="toggleSamplings" disabled> <label for="toggleSamplings">Soil Samplings</label>
+                </form>
+                <form class="col-md-6" id="weather-options">
+                    <h5>Weather Data</h5>
+                    <input type="checkbox" id="toggleTemp" name="toggleTemp"> <label for="toggleTemp">Temperature</label><br />
+                    <input type="checkbox" id="toggleTemp" name="toggleTemp"> <label for="toggleTemp">Pressure</label><br />
+                    <input type="checkbox" id="toggleTemp" name="toggleTemp"> <label for="toggleTemp">Humidity</label><br />
+                    <input type="checkbox" id="toggleTemp" name="toggleTemp"> <label for="toggleTemp">Weather Stations</label><br />
+                    <input type="checkbox" id="toggleTemp" name="toggleTemp"> <label for="toggleTemp">Weather Forecast</label><br />
+                </form>
+            </div>
         </div>
     </div>
 </div>
