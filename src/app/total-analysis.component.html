@@ -7,7 +7,7 @@
         </map>
         <div id="draggableMenu" class="ui-widget-content">
             <h4 class="clickable" onclick="$('#hidable').toggleClass('hideMe')">Map Options <span _ngcontent-c3="" class="caret"></span></h4>
-            <div class="row" id="hidable">
+            <div class="row" id="hidable" class="hideMe">
                 <form class="col-md-6" id="menu-options">
                     <h5>Layers</h5>
                     <input (change)="toggleSites()" type="checkbox" id="toggleSites" name="toggleSites" checked> <label for="toggleSites">Sampling Sites</label><br />
@@ -18,10 +18,10 @@
                 <form class="col-md-6" id="weather-options">
                     <h5>Weather Data</h5>
                     <input type="checkbox" id="toggleTemp" name="toggleTemp"> <label for="toggleTemp">Temperature</label><br />
-                    <input type="checkbox" id="toggleTemp" name="toggleTemp"> <label for="toggleTemp">Pressure</label><br />
-                    <input type="checkbox" id="toggleTemp" name="toggleTemp"> <label for="toggleTemp">Humidity</label><br />
-                    <input type="checkbox" id="toggleTemp" name="toggleTemp"> <label for="toggleTemp">Weather Stations</label><br />
-                    <input type="checkbox" id="toggleTemp" name="toggleTemp"> <label for="toggleTemp">Weather Forecast</label><br />
+                    <input type="checkbox" id="togglePress" name="togglePress"> <label for="togglePress">Pressure</label><br />
+                    <input type="checkbox" id="toggleHumid" name="toggleHumid"> <label for="toggleHumid">Humidity</label><br />
+                    <input type="checkbox" id="toggleStations" name="toggleStations" disabled> <label for="toggleStations">Weather Stations</label><br />
+                    <input type="checkbox" id="toggleFore" name="toggleFore" disabled> <label for="toggleFore">Weather Forecast</label><br />
                 </form>
             </div>
         </div>
