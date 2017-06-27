@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
 import { Farm } from './models/farm';
 import { Plant } from './models/plant';
+import { PlantAnalysis } from './models/plant-analysis';
 
 @Component({
     selector: 'app-plant-analysis',
@@ -23,6 +24,7 @@ export class AppPlantAnalysisComponent {
     plants: Plant[] = [];
     selectedPlant: Plant = new Plant();
     sites: any[];
+    plantAnalysis: PlantAnalysis = new PlantAnalysis();
 
     constructor(
         private activeRoute: ActivatedRoute,
@@ -129,6 +131,17 @@ export class AppPlantAnalysisComponent {
                 console.log(data);
                 this.selectedPlant = data.data;
                 //console.log(this.selectedPlant);
+
+                this.apiService.getPlantAnalysis(this.sessionService.getLoggedInKey(), this.selectedPlant.plant_id)
+                .then(
+                    res => {
+                        data = res;
+                        if(data.data){
+                            this.plantAnalysis = data.data;
+                            console.log(this.plantAnalysis);
+                        }
+                    }
+                )
             }
         )
     }

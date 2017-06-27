@@ -62,3 +62,10 @@ p.result-desc {
     font-size: small;
     text-align: center;
 }
+
+div.analysis-label {
+    text-align: right;
+    padding-left: 10px !important;
+    text-transform: uppercase;
+    font-size: small;
+}

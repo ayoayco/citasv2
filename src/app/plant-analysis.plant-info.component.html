@@ -43,17 +43,39 @@
                 <h4>Analysis Results</h4>
                 <div class="row">
                     <div class="col col-md-6 result-div">
-                        <span [style.color]="getBgColor(imageResult)" id="image" class="result-span">{{imageResult}}</span>
+                        <span [style.color]="getBgColor(getLabel(selectedPlant.analysis_result.image))" id="image" class="result-span">{{getLabel(selectedPlant.analysis_result.image)}}</span>
                         <p class="result-desc">Image</p>
                     </div>
                     <div class="col col-md-6 result-div">
-                        <span [style.color]="getBgColor(sensorResult)" id="sensor" class="result-span">{{sensorResult}}</span>
+                        <span [style.color]="getBgColor(getLabel(selectedPlant.analysis_result.sensor))" id="sensor" class="result-span">{{getLabel(selectedPlant.analysis_result.sensor)}}</span>
                         <p class="result-desc">Soil Sensors</p>
                     </div>
                 </div>
                 <h4>Infected Parts</h4>
                 <div class="row">
-                    <p class="result-desc"><em>No Infected Parts (Mock Data)</em></p>
+                    <div class="analysis-label col col-md-4">&nbsp;</div>
+                    <div class="col col-md-4">Actual</div>
+                    <div class="col col-md-4">Predicted</div>
+                </div>
+                <div class="row">
+                    <div class="analysis-label col col-md-4">Sensor:</div>
+                    <div class="col col-md-4">{{getLabel(plantAnalysis.sensor_actual)}}</div>
+                    <div class="col col-md-4">{{getLabel(plantAnalysis.sensor_analysis)}}</div>
+                </div>
+                <div class="row">
+                    <div class="analysis-label col col-md-4">Leaf:</div>
+                    <div class="col col-md-4">{{getLabel(plantAnalysis.leaf_actual)}}</div>
+                    <div class="col col-md-4">{{getLabel(plantAnalysis.leaf_analysis)}}</div>
+                </div>
+                <div class="row">
+                    <div class="analysis-label col col-md-4">PlantScope:</div>
+                    <div class="col col-md-4">{{getLabel(plantAnalysis.plantscope_actual)}}</div>
+                    <div class="col col-md-4">{{getLabel(plantAnalysis.plantscope_analysis)}}</div>
+                </div>
+                <div class="row">
+                    <div class="analysis-label col col-md-4">Llamp Assay:</div>
+                    <div class="col col-md-4">{{getLabel(plantAnalysis.lampassay_actual)}}</div>
+                    <div class="col col-md-4">{{getLabel(plantAnalysis.lampassay_analysis)}}</div>
                 </div>
             </div>
         </div>
