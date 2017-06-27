@@ -40,6 +40,7 @@ import { AppTotalAnalysisComponent } from './total-analysis.component';
 
 import { DatasetsPlantImagesComponent } from './datasets.plant-images.component';
 import { DatasetsPlantImagesGalleryComponent } from './datasets.plant-images.gallery.component';
+import { DatasetsSensorDataComponent } from './datasets.sensor-data.component';
 
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
@@ -49,11 +50,13 @@ const appRoutes: Routes = [
   { path: 'sensor-analysis', component: AppSensorAnalysisComponent },
   { path: 'total-analysis', component: AppTotalAnalysisComponent },
   { path: 'plant-images', component: DatasetsPlantImagesComponent },
+  { path: 'sensor-data', component: DatasetsSensorDataComponent },
   { path: 'dashboard/:id', component: AppDashboardComponent },
   { path: 'plant-analysis/:id', component: AppPlantAnalysisComponent },
   { path: 'sensor-analysis/:id', component: AppSensorAnalysisComponent },
   { path: 'total-analysis/:id', component: AppTotalAnalysisComponent },
   { path: 'plant-images/:id', component: DatasetsPlantImagesComponent },
+  { path: 'sensor-data/:id', component: DatasetsSensorDataComponent },
   { path: 'registration', component: AppRegistrationComponent },
   { path: 'about-citas', component: AppAboutCitasComponent },
   { path: 'about-team', component: AppAboutTeamComponent },
@@ -91,7 +94,8 @@ const appRoutes: Routes = [
     DashboardSidebarComponent,
     AppTotalAnalysisComponent,
     DatasetsPlantImagesComponent,
-    DatasetsPlantImagesGalleryComponent
+    DatasetsPlantImagesGalleryComponent,
+    DatasetsSensorDataComponent
   ],
   imports: [
     BrowserModule,
