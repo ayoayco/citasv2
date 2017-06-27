@@ -251,3 +251,17 @@ export class AppTotalAnalysisComponent {
         )
     }
 }
+
+/*
+
+NOAH URLs
+
+temperature: http://noah.dost.gov.ph/static/img/latest_contours/air_temperature_contour.png
+
+pressure: http://noah.dost.gov.ph/static/img/latest_contours/air_pressure_contour.png
+
+humidity: http://noah.dost.gov.ph/static/img/latest_contours/air_humidity_contour.png
+
+weather station icon: http://citas.ph/citas/public/img/weather-station-v3_32x32.png
+
+*/
