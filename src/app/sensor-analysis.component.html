@@ -5,7 +5,7 @@
         <div class="container">
             <h1>Soil Parameter Trends</h1>
             <div class="row">
-                <sensor-info class="col col-md-9 col-sm-12 float-left" [readings]="selectedSensorReadings" [selectedSensorName]="selectedSensorName"></sensor-info>
+                <sensor-info [type]="'chart'" class="col col-md-9 col-sm-12 float-left" [readings]="selectedSensorReadings" [selectedSensorName]="selectedSensorName"></sensor-info>
                 <div id="sensor-list-container" class="col col-md-3 col-sm-12 float-left">
                     <div id="sensor-list-div">
                         <label for="sampling_sites">Sampling Site: </label>

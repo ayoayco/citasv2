@@ -19,6 +19,7 @@ export function highchartsFactory() {
 export class SensorAnalysisSensorInfoComponent implements OnChanges {
     @Input() readings: any = undefined;
     @Input() selectedSensorName: string = "";
+    @Input() type: string;
 
     selectedTab = '';
     options: Object;
