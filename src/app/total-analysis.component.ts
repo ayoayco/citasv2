@@ -23,6 +23,17 @@ import { PlantAnalysis } from './models/plant-analysis';
 
 export class AppTotalAnalysisComponent {
     
+    
+    tempOptions = {
+        url: 'http://noah.dost.gov.ph/static/img/latest_contours/air_temperature_contour.png',
+        bounds: {
+            north: 21.628,
+            south: 3.99,
+            east: 128.285,
+            west: 115.35
+        }
+    };
+
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
     sensors: Sensor[] = [];
@@ -39,6 +50,8 @@ export class AppTotalAnalysisComponent {
     showPlants: boolean;
     showSamplings: boolean;
 
+    showTemp: boolean;
+
     constructor(
         private activeRoute: ActivatedRoute,
         private sessionService: AppSessionService,
@@ -53,6 +66,8 @@ export class AppTotalAnalysisComponent {
         this.showSamplings = true;
         this.showSensors = true;
         this.showSites = true;
+
+        this.showTemp = false;
 
         this.resize = 0;
 
@@ -204,6 +219,10 @@ export class AppTotalAnalysisComponent {
         console.log('map resize');
     }
 
+    public toggleTemp(){
+        this.showTemp = !this.showTemp;
+    }
+
     public toggleSites(){
         this.showSites = !this.showSites;
     }
@@ -250,6 +269,7 @@ export class AppTotalAnalysisComponent {
             }
         )
     }
+
 }
 
 /*
