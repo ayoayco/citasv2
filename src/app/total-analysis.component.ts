@@ -216,7 +216,11 @@ export class AppTotalAnalysisComponent {
 
     public toggleOverlay(type: string){
         switch(type){
-            case "none": this.clearOverlay = true; break;
+            case "none":
+                this.showTemp = false;
+                this.showPress = false;
+                this.showHumid = false;
+                this.clearOverlay = true; break;
             case "temp":
                 this.showTemp = true;
                 this.showPress = false;
@@ -225,9 +229,11 @@ export class AppTotalAnalysisComponent {
             case "press":
                 this.showPress = true;
                 this.showTemp = false;
+                this.showTemp = false;
                 this.clearOverlay = false; break;
             case "humid":
                 this.showHumid = true;
+                this.showTemp = false;
                 this.showPress = false;
                 this.clearOverlay = false; break;
         }
