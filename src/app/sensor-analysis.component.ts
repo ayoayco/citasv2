@@ -39,7 +39,7 @@ export class AppSensorAnalysisComponent {
         if(!loggedIn){
             this.router.navigate(['/']);
         }else{
-            this.titleService.setTitle('Sensor Analysis');
+            this.titleService.setTitle('Soil Parameter Trends');
         }
 
         let data : any;
