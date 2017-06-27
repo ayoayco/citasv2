@@ -4,20 +4,20 @@
             <a href="#"><i class="app-logo-white"></i></a>
         </li>
         <li *ngIf="selectedFarm.farm_id !=0">
-            <a [routerLink]="['/dashboard', selectedFarm.farm_id]" routerLinkActive="active">Dashboard</a>
+            <a [routerLink]="['/dashboard', selectedFarm.farm_id]" routerLinkActive="active"><i class="icon fa fa-tachometer"></i> Dashboard</a>
         </li>
         <li *ngIf="selectedFarm.farm_id !=0" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Trends and Analysis <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-bar-chart"></i> Trends and Analysis <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="[ '/plant-analysis', selectedFarm.farm_id]" routerLinkActive="active">Plant Analysis</a></li>
                 <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="[ '/sensor-analysis', selectedFarm.farm_id]" routerLinkActive="active">Soil Parameter Trends</a></li>
             </ul>
         </li>
         <li *ngIf="selectedFarm.farm_id !=0">
-            <a [routerLink]="[ '/total-analysis', selectedFarm.farm_id]" routerLinkActive="active">Total Analysis</a>
+            <a [routerLink]="[ '/total-analysis', selectedFarm.farm_id]" routerLinkActive="active"><i class="icon fa fa-map"></i> Total Analysis</a>
         </li>
         <li *ngIf="selectedFarm.farm_id !=0" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sets <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-database"></i> Sets <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li *ngIf="selectedFarm.farm_id !=0">
                     <a [routerLink]="[ '/plant-images', selectedFarm.farm_id]" routerLinkActive="active">Collected Plant Images</a>
@@ -31,7 +31,7 @@
             </ul>
         </li>
         <li *ngIf="selectedFarm.farm_id !=0">
-            <a href="#">About PCARI-CITAS</a>
+            <a href="#"><i class="icon fa fa-leaf"></i> About PCARI-CITAS</a>
         </li>
     </ul>
 </div>
