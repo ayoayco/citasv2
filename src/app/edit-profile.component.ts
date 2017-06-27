@@ -76,6 +76,10 @@ export class AppEditProfileComponent {
             this.msg += "<li> Mobile Number should start with '639'</li>";
             this.err = true;
         }
+        if(this.user.mobile_number.length < 12){
+            this.msg += "<li> Mobile Number should have 12 digits</li>";
+            this.err = true;
+        }
 
         this.msg += "</ol>"
 
