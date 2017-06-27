@@ -23,17 +23,6 @@ import { PlantAnalysis } from './models/plant-analysis';
 
 export class AppTotalAnalysisComponent {
     
-    
-    tempOptions = {
-        url: 'http://noah.dost.gov.ph/static/img/latest_contours/air_temperature_contour.png',
-        bounds: {
-            north: 21.628,
-            south: 3.99,
-            east: 128.285,
-            west: 115.35
-        }
-    };
-
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
     sensors: Sensor[] = [];
@@ -51,6 +40,9 @@ export class AppTotalAnalysisComponent {
     showSamplings: boolean;
 
     showTemp: boolean;
+    showPress: boolean;
+    showHumid: boolean;
+    clearOverlay: boolean;
 
     constructor(
         private activeRoute: ActivatedRoute,
@@ -68,6 +60,9 @@ export class AppTotalAnalysisComponent {
         this.showSites = true;
 
         this.showTemp = false;
+        this.showPress = false;
+        this.showHumid = false;
+        this.clearOverlay = true;
 
         this.resize = 0;
 
@@ -219,8 +214,27 @@ export class AppTotalAnalysisComponent {
         console.log('map resize');
     }
 
-    public toggleTemp(){
-        this.showTemp = !this.showTemp;
+    public toggleOverlay(type: string){
+        switch(type){
+            case "none": this.clearOverlay = true; break;
+            case "temp":
+                this.showTemp = true;
+                this.showPress = false;
+                this.showHumid = false;
+                this.clearOverlay = false; break;
+            case "press":
+                this.showPress = true;
+                this.showTemp = false;
+                this.clearOverlay = false; break;
+            case "humid":
+                this.showHumid = true;
+                this.showPress = false;
+                this.clearOverlay = false; break;
+        }
+
+        console.log("show temp: "+this.showTemp);
+        console.log("show press: "+this.showPress);
+        console.log("show humid: "+this.showHumid);
     }
 
     public toggleSites(){

@@ -15,7 +15,9 @@ import { CitasApiService} from './citas.api.service';
 
 export class MapComponent implements OnChanges{
     
-    @Input() tempOptions;
+    @Input() clearOverlay:boolean;
+    @Input() showHumid: boolean;
+    @Input() showPress: boolean;
     @Input() showTemp: boolean;
 
     @Input() showSites: boolean;
@@ -48,6 +50,14 @@ export class MapComponent implements OnChanges{
 
     plantIcon: any;
     sensorIcon: any;
+
+    overlayBounds = {
+        north: 21.628,
+        south: 3.99,
+        east: 128.285,
+        west: 115.35
+    };
+
 
     constructor(
         private apiService: CitasApiService,
@@ -283,28 +293,77 @@ export class MapComponent implements OnChanges{
         }
     }
 
-    private plotTemp(){
-        var southWest = L.latLng(this.tempOptions.bounds.south, this.tempOptions.bounds.west),
-            northEast = L.latLng(this.tempOptions.bounds.north, this.tempOptions.bounds.east),
+    private plotPress(){
+        this.weatherLayer.clearLayers();
+        var southWest = L.latLng(this.overlayBounds.south, this.overlayBounds.west),
+            northEast = L.latLng(this.overlayBounds.north, this.overlayBounds.east),
             bounds = new L.LatLngBounds(southWest, northEast);
 
-        var overlay = new L.ImageOverlay(this.tempOptions.url, bounds, {
+        var overlay = new L.ImageOverlay("http://noah.dost.gov.ph/static/img/latest_contours/air_pressure_contour.png", bounds, {
 			opacity: 0.4,
 			interactive: true,
-			attribution: 'Temparature Data &copy; UP-NOAH'
+			attribution: 'Air Pressure Contour &copy; UP-NOAH'
 		});
 
-            this.weatherLayer.addLayer(overlay);
-            this.weatherLayer.addTo(this.mymap);
+        this.weatherLayer.addLayer(overlay);
+        this.weatherLayer.addTo(this.mymap);
+    }
+
+    private plotTemp(){
+        this.weatherLayer.clearLayers();
+        var southWest = L.latLng(this.overlayBounds.south, this.overlayBounds.west),
+            northEast = L.latLng(this.overlayBounds.north, this.overlayBounds.east),
+            bounds = new L.LatLngBounds(southWest, northEast);
+
+        var overlay = new L.ImageOverlay("http://noah.dost.gov.ph/static/img/latest_contours/air_temperature_contour.png", bounds, {
+			opacity: 0.4,
+			interactive: true,
+			attribution: 'Air Temparature Contour &copy; UP-NOAH'
+		});
+
+        this.weatherLayer.addLayer(overlay);
+        this.weatherLayer.addTo(this.mymap);
+    }
+
+    private plotHumid(){
+        this.weatherLayer.clearLayers();
+        var southWest = L.latLng(this.overlayBounds.south, this.overlayBounds.west),
+            northEast = L.latLng(this.overlayBounds.north, this.overlayBounds.east),
+            bounds = new L.LatLngBounds(southWest, northEast);
+
+        var overlay = new L.ImageOverlay("http://noah.dost.gov.ph/static/img/latest_contours/air_humidity_contour.png", bounds, {
+			opacity: 0.4,
+			interactive: true,
+			attribution: 'Air Humidity Contour &copy; UP-NOAH'
+		});
+
+        this.weatherLayer.addLayer(overlay);
+        this.weatherLayer.addTo(this.mymap);
     }
 
     ngOnChanges(changes: SimpleChanges){
 
+        if(changes.clearOverlay && changes.clearOverlay.firstChange == false){
+            if(this.clearOverlay){
+                this.weatherLayer.clearLayers();
+            }
+        }
+
+        if(changes.showHumid && changes.showHumid.firstChange == false){
+            if(this.showHumid){
+                this.plotHumid();
+            }
+        }
+
+        if(changes.showPress && changes.showPress.firstChange == false){
+            if(this.showPress){
+                this.plotPress();
+            }
+        }
+
         if(changes.showTemp && changes.showTemp.firstChange == false){
             if(this.showTemp){
                 this.plotTemp();
-            }else{
-                this.weatherLayer.clearLayers();
             }
         }
 
