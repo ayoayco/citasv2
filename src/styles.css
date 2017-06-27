@@ -410,11 +410,16 @@ html {
     transition: width .2s ease-in;
 }
 
+.sidebar-nav li:not(.sidebar-brand) a i {
+    margin-left: -20px;
+    margin-right: 10px;
+}
+
 .sidebar-nav li:not(.sidebar-brand) a {
     display: block;
     color: #ddd;
     text-decoration: none;
-    padding: 10px 15px 10px 30px;
+    padding: 10px 0;
 }
 
 .sidebar-nav li a:hover,
