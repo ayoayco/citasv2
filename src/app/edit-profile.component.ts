@@ -53,7 +53,6 @@ export class AppEditProfileComponent {
 
         this.msg = "<strong>Update Failed!</strong> Please correct the following error(s):<br /><ol>";
         this.err = false;
-        this.success = false;
 
         if(this.user.fullname == ""){
             this.msg += "<li> Fullname Empty</li>";
@@ -73,6 +72,10 @@ export class AppEditProfileComponent {
             this.msg += "<li> Mobile Number empty</li>";
             this.err = true;
         }
+        if(this.user.mobile_number.substring(0,3) != "639"){
+            this.msg += "<li> Mobile Number should start with '639'</li>";
+            this.err = true;
+        }
 
         this.msg += "</ol>"
 
@@ -84,7 +87,7 @@ export class AppEditProfileComponent {
                         this.user.fullname = data.fullname;
                         this.user.mobile_number = data.mobile_number;
                         this.user.email = data.email;
-                        this.success = true;
+                        $('#editUserModal').modal('hide');
                     }
                 });
         }
