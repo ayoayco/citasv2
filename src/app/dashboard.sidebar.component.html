@@ -23,10 +23,10 @@
                     <a [routerLink]="[ '/plant-images', selectedFarm.farm_id]" routerLinkActive="active">Collected Plant Images</a>
                 </li>
                 <li *ngIf="selectedFarm.farm_id !=0">
-                    <a href="#">Collected Sensor Data</a>
+                    <a [routerLink]="[ '/sensor-data', selectedFarm.farm_id]" routerLinkActive="active">Collected Sensor Data</a>
                 </li>
                 <li *ngIf="selectedFarm.farm_id !=0">
-                    <a href="#">Downloads</a>
+                    <a class="clickable" onclick="$('#noFeatureModal').modal('toggle')">Downloads</a>
                 </li>
             </ul>
         </li>
