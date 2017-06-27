@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Plant } from './models/plant';
+import { PlantAnalysis } from './models/plant-analysis';
 
 declare let jssor_1_slider_init: any;
 
@@ -11,12 +12,23 @@ declare let jssor_1_slider_init: any;
 
 export class PlantAnalysisPlantInfoComponent implements OnChanges {
     @Input() selectedPlant: Plant = new Plant();
-    imageResult: string;
-    sensorResult: string;
+    @Input() plantAnalysis: PlantAnalysis = new PlantAnalysis();
 
     constructor(){
         console.log(this.selectedPlant);
     }
+
+public getLabel(result: string){
+    if(result == "not_infected"){
+        return "Uninfected";
+    }
+    else if(result == "infected"){
+        return "Infected";
+    }
+    else{
+        return "Unknown";
+    }
+}
 
 public getBgColor(result: string){
     if(result == "Uninfected"){
@@ -35,25 +47,6 @@ public getBgColor(result: string){
 
             console.log('plant changed!');
 
-            if(this.selectedPlant.analysis_result.image == "not_infected"){
-                this.imageResult = "Uninfected";
-            }
-            else if(this.selectedPlant.analysis_result.image == "infected"){
-                this.imageResult = "Infected";
-            }
-            else{
-                this.imageResult = "Unknown";
-            }
-
-            if(this.selectedPlant.analysis_result.sensor == "not_infected"){
-                this.sensorResult = "Uninfected";
-            }
-            else if(this.selectedPlant.analysis_result.sensor == "infected"){
-                this.sensorResult = "Infected";
-            }
-            else {
-                this.sensorResult = "Unknown";
-            }
         }
     }
 }
