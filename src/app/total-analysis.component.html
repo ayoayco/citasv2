@@ -2,8 +2,8 @@
     <sidebar [selectedFarm]="selectedFarm"></sidebar>
     <div id="page-content-wrapper">
         <user-nav [farms]="farms" (mapResize)="onMapResize($event)" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
-        <map [tempOptions]="tempOptions" [showTemp]="showTemp" (selectPlant)="selectPlant($event)" [showPlants]="showPlants" [showSamplings]="showSamplings" [showSensors]="showSensors" [showSites]="showSites" [fullMap]="true" [resize]="resize" [zoomControl]="true"
-            [selectedFarm]="selectedFarm" [plants]="plants" [sensors]="sensors" (selectSensor)="selectSensor($event)">
+        <map [clearOverlay]="clearOverlay" [showHumid]="showHumid" [showPress]="showPress" [showTemp]="showTemp" (selectPlant)="selectPlant($event)" [showPlants]="showPlants" [showSamplings]="showSamplings" [showSensors]="showSensors" [showSites]="showSites"
+            [fullMap]="true" [resize]="resize" [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" [sensors]="sensors" (selectSensor)="selectSensor($event)">
         </map>
         <div id="draggableMenu" class="ui-widget-content">
             <h4 class="clickable" onclick="$('#hidable').toggleClass('hideMe')">Map Options <span _ngcontent-c3="" class="caret"></span></h4>
@@ -17,11 +17,12 @@
                 </form>
                 <form class="col-md-6" id="weather-options">
                     <h5>Weather Data</h5>
-                    <input (change)="toggleTemp()" type="checkbox" id="toggleTemp" name="toggleTemp"> <label for="toggleTemp">Temperature</label><br />
-                    <input type="checkbox" id="togglePress" name="togglePress"> <label for="togglePress">Pressure</label><br />
-                    <input type="checkbox" id="toggleHumid" name="toggleHumid"> <label for="toggleHumid">Humidity</label><br />
-                    <input type="checkbox" id="toggleStations" name="toggleStations" disabled> <label for="toggleStations">Weather Stations</label><br />
-                    <input type="checkbox" id="toggleFore" name="toggleFore" disabled> <label for="toggleFore">Weather Forecast</label><br />
+                    <input type="radio" id="toggleNone" name="toggleOverlay" value="temp" (click)="toggleOverlay('none')" checked> <label>None</label><br />
+                    <input type="radio" id="toggleTemp" name="toggleOverlay" value="temp" (click)="toggleOverlay('temp')"> <label>Temperature</label><br />
+                    <input type="radio" id="togglePress" name="toggleOverlay" value="press" (click)="toggleOverlay('press')"> <label>Pressure</label><br />
+                    <input type="radio" id="toggleHumid" name="toggleOverlay" value="humid" (click)="toggleOverlay('humid')"> <label>Humidity</label><br />
+                    <input type="radio" id="toggleStations" name="toggleOverlay" disabled> <label>Weather Stations</label><br />
+                    <input type="radio" id="toggleFore" name="toggleOverlay" disabled> <label>Weather Forecast</label><br />
                 </form>
             </div>
         </div>
