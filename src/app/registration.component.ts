@@ -56,11 +56,11 @@ export class AppRegistrationComponent {
             this.msg += "<li> Mobile Number empty</li>";
             this.err = true;
         }
-        if(this.user.mobile_number.substring(0,3) != "639"){
+        if(this.user.user_type == 4 && this.user.mobile_number.substring(0,3) != "639"){
             this.msg += "<li> Mobile Number should start with '639'</li>";
             this.err = true;
         }
-        if(this.user.mobile_number.length < 12){
+        if(this.user.user_type == 4 && this.user.mobile_number.length < 12){
             this.msg += "<li> Mobile Number should have 12 digits</li>";
             this.err = true;
         }
