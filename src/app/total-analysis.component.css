@@ -12,7 +12,7 @@
     position: absolute;
     top: 70px;
     right: 20px;
-    width: 220px;
+    width: 300px;
     font-size: 16px;
     padding: 10px;
     z-index: 8;
@@ -34,4 +34,18 @@ table#plantAnalysis-table th {
 
 #plantAnalysisModal {
     background: rgba( 3, 3, 3, .8) !important;
+}
+
+h3 {
+    margin: 0;
+    font-weight: bold;
+}
+
+.hideMe {
+    display: none;
+}
+
+form label {
+    font-size: small;
+    font-weight: normal;
 }
