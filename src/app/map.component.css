@@ -1,3 +1,4 @@
 div#map-div {
     height: 400px;
+    z-index: 1;
 }

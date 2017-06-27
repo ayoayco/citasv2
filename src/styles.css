@@ -12,12 +12,6 @@ body {
     background: #f3f3f3 !important;
 }
 
-html,
-body,
-#map-div {
-    z-index: 1;
-}
-
 #wrap {
     min-height: calc(100% - 100px);
 }
