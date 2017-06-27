@@ -22,6 +22,7 @@ export class AppLoginComponent {
     username : "",
     key : ""
   };
+  err: string = "";
 
   constructor(
     private apiService: CitasApiService,
@@ -45,15 +46,26 @@ export class AppLoginComponent {
           if(data){
             // login success, start session
             console.log(data);
-            if(this.sessionService.startSession(data.user, data.key)){
-              location.reload();
+            if(data.Success == true){
+              $('#loginModal').modal('hide');
+              if(this.sessionService.startSession(data.user, data.key)){
+                location.reload();
+              }
+            }else if(data.err == "Wrong username/password"){
+              this.err = "Wrong username or password.";
+              console.log(this.err);
+            }else {
+              this.err = "Something went wrong. Please try again.";
+              console.log(this.err);
             }
           }else{
             // login fail
             console.log("Failed to authenticate.");
+            this.err = "Something went wrong. Please try again.";
           }
         }
         // set user.username and user.key
+
     );
     
   }
