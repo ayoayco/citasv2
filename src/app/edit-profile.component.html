@@ -1,28 +1,32 @@
-<user-nav></user-nav>
-
-<div class="container">
-    <form class="form-horizontal" role="form">
-        <i class="app-logo "></i>
-        <h2>Edit User</h2>
-        <div class="form-group">
-            <label for="userName" class="control-label">Username</label>
-            <input readonly="readonly" [(ngModel)]="user.username" name="username" type="text" id="userName" placeholder="Username" class="form-control" autofocus>
-            <label for="fullname" class="control-label">Full Name</label>
-            <input [(ngModel)]="user.fullname" name="fullname" type="text" id="fullname" placeholder="Full Name" class="form-control" autofocus>
-            <label for="mobileNumber" class="control-label">Mobile Number</label>
-            <input [(ngModel)]="user.mobile_number" name="mobile_number" type="text" id="mobileNumber" placeholder="Mobile Number" class="form-control">
-            <label for="email" class="control-label">Email</label>
-            <input [(ngModel)]="user.email" name="email" type="email" id="email" placeholder="Email" class="form-control">
-            <br />
-            <div *ngIf="success" class="alert alert-success">
-                <strong>Success!</strong> Your information was successfully updated.
-                <a routerLink="/dashboard" routerLinkActive="active">Go to Dashboard.</a>
+<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="app-logo "></i>
             </div>
-            <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
-            <button (click)="editUser()" class="btn btn-primary btn-block">Update User Info</button>
-            <a routerLink="/dashboard" routerLinkActive="active" class="btn btn-default btn-block">Cancel</a>
+
+            <div class="modal-body">
+                <form id="editForm" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="login-div">
+                            <label for="userName" class="control-label">Username</label>
+                            <input readonly="readonly" [(ngModel)]="user.username" name="username" type="text" id="userName" placeholder="Username" class="form-control" autofocus>
+                            <label for="fullname" class="control-label">Full Name</label>
+                            <input [(ngModel)]="user.fullname" name="fullname" type="text" id="fullname" placeholder="Full Name" class="form-control" autofocus>
+                            <label for="mobileNumber" class="control-label">Mobile Number</label>
+                            <input [(ngModel)]="user.mobile_number" name="mobile_number" type="text" id="mobileNumber" placeholder="639*********" class="form-control" maxlength="12">
+                            <label for="email" class="control-label">Email</label>
+                            <input [(ngModel)]="user.email" name="email" type="email" id="email" placeholder="Email" class="form-control">
+                            <br />
+                            <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
+                            <button (click)="editUser()" class="btn btn-primary btn-block">Update User Info</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-    </form>
-    <!-- /form -->
+    </div>
 </div>
-<!-- ./container -->
