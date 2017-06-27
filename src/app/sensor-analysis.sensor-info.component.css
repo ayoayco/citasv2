@@ -29,3 +29,18 @@ ul#tablist {
     padding: 3px;
     border-bottom: 1px solid #19BD6C;
 }
+
+td,
+th {
+    border: 1px solid #555;
+    padding: 5px;
+}
+
+tr {
+    cursor: pointer;
+}
+
+tr:hover {
+    background: #ccc;
+    color: #fff;
+}

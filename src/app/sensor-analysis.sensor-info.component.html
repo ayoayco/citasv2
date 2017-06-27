@@ -7,7 +7,7 @@
         <h3>Selected Sensor: {{selectedSensorName}}</h3>
         <p>Select a plant marker to the right to view its details and the results of the analysis.</p>
 
-        <ul id="tablist">
+        <ul *ngIf="type=='chart'" id="tablist">
             <li><a id="soil_temp" class="selectedTab" (click)="updateChart('soil_temp')">Soil Temperature</a></li>
             <li><a id="air_temp" (click)="updateChart('air_temp')">Air Temperature</a></li>
             <li><a id="pH" (click)="updateChart('pH')">pH Level</a></li>
@@ -16,7 +16,26 @@
             <li><a id="moisture" (click)="updateChart('moisture')">Soil Moisture</a></li>
         </ul>
 
-        <chart [options]="options"></chart>
+        <chart *ngIf="type=='chart'" [options]="options"></chart>
+
+        <table *ngIf="type=='table'" id="sensorDataTable">
+            <tr>
+                <th>Soil Temperature</th>
+                <th>Air Temperature</th>
+                <th>pH Level</th>
+                <th>Conductivity</th>
+                <th>Amount of Light</th>
+                <th>Soil Moisture</th>
+            </tr>
+            <tr *ngFor="let reading of readings">
+                <td>{{reading.soil_temp | number : '1.2-2'}}</td>
+                <td>{{reading.air_temp | number : '1.2-2'}}</td>
+                <td>{{reading.pH}}</td>
+                <td>{{reading.conductivity}}</td>
+                <td>{{reading.light}}</td>
+                <td>{{reading.moisture}}</td>
+            </tr>
+        </table>
 
     </div>
 </div>
