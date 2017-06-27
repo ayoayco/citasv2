@@ -17,7 +17,7 @@
                         </select>
                         <map [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" (selectPlant)="selectPlant($event)"></map>
                     </div>
-                    <button *ngIf="selectedPlant" class="btn btn-primary btn-block">Download Image Data</button>
+                    <button onclick="$('#noFeatureModal').modal('toggle')" *ngIf="selectedPlant" class="btn btn-primary btn-block">Download Image Data</button>
                 </div>
             </div>
         </div>
