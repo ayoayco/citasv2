@@ -220,22 +220,27 @@ export class AppTotalAnalysisComponent {
                 this.showTemp = false;
                 this.showPress = false;
                 this.showHumid = false;
-                this.clearOverlay = true; break;
+                this.clearOverlay = true;
+                $('.legend').hide(); break;
             case "temp":
                 this.showTemp = true;
                 this.showPress = false;
                 this.showHumid = false;
-                this.clearOverlay = false; break;
+                this.clearOverlay = false;
+                $('.legend').hide();
+                $('#tempLegend').show(); break;
             case "press":
                 this.showPress = true;
                 this.showTemp = false;
                 this.showTemp = false;
-                this.clearOverlay = false; break;
+                $('.legend').hide();
+                $('#pressLegend').show(); break;
             case "humid":
                 this.showHumid = true;
                 this.showTemp = false;
                 this.showPress = false;
-                this.clearOverlay = false; break;
+                $('.legend').hide();
+                $('#humidLegend').show(); break;
         }
 
         console.log("show temp: "+this.showTemp);
