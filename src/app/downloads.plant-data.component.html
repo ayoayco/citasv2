@@ -1,0 +1,16 @@
+<div id="container">
+    <h3>Download Plant Data</h3>
+    <p>Choose start date and end date for the sensor data you want to download. File wil be in a .zip format.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="from">Start Date</label>
+            <input type="date" name="from" id="from" [(ngModel)]="from" />
+        </div>
+        <div *ngIf="from" class="col-md-6">
+            <label for="to">End Date</label>
+            <input type="date" name="to" id="to" [(ngModel)]="to" min="{{from | date:'y-MM-dd'}}" />
+        </div>
+    </div>
+    <p *ngIf="to" class="text-success text-center">Download data from <strong>{{from | date:'mediumDate'}}</strong> to <strong>{{to | date:'mediumDate'}}</strong>?</p>
+    <button *ngIf="to" onclick="$('#noFeatureModal').modal('toggle')" class="btn btn-primary btn-block">Download Plant Data</button>
+</div>

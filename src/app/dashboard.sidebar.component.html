@@ -26,7 +26,7 @@
                     <a [routerLink]="[ '/sensor-data', selectedFarm.farm_id]" routerLinkActive="active">Collected Sensor Data</a>
                 </li>
                 <li *ngIf="selectedFarm.farm_id !=0">
-                    <a class="clickable" onclick="$('#noFeatureModal').modal('toggle')">Downloads</a>
+                    <a [routerLink]="[ '/downloads', selectedFarm.farm_id]" routerLinkActive="active">Downloads</a>
                 </li>
             </ul>
         </li>
