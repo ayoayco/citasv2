@@ -15,7 +15,6 @@ import { AppHomeComponent } from './home.component';
 import { AppPageNotFoundComponent } from './notfound.component';
 import { AppRegistrationComponent } from './registration.component';
 import { AppAboutCitasComponent } from './about-citas.component';
-import { AppNavPagesComponent } from './nav.pages.component';
 import { AppAboutTeamComponent } from './about-team.component';
 import { AppContactUsComponent } from './contact-us.component';
 import { AppEditProfileComponent } from './edit-profile.component';
@@ -75,7 +74,6 @@ const appRoutes: Routes = [
     AppPageNotFoundComponent,
     AppRegistrationComponent,
     AppAboutCitasComponent,
-    AppNavPagesComponent,
     AppAboutTeamComponent,
     AppContactUsComponent,
     AppEditProfileComponent,
