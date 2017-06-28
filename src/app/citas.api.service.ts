@@ -146,6 +146,7 @@ export class CitasApiService {
 
     public contactUs(email: string, name: string, message: string){
 
+        $("body").addClass("loading");
         let url = this.APIURL + "/contactus";
 
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });

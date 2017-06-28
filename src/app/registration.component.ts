@@ -89,7 +89,6 @@ export class AppRegistrationComponent {
 
         
         if(!this.err){
-            this.success = true;
             this.apiService.addUser(this.user)
             .then(res => {
                 data = res;
@@ -97,11 +96,12 @@ export class AppRegistrationComponent {
                     //add success
                     // login success, start session
                     console.log(data);
+                    this.success = true;
+                    /*
                     if(this.sessionService.startSession(data.user, data.key)){
                         this.router.navigate(['/']);
                     }
-
-                    this.router.navigate(['/']);
+                    */
                     //prompt user to check email
                 }else{
                     // login fail

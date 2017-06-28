@@ -28,7 +28,7 @@
                 </div>
                 <br />
                 <div *ngIf="success" class="alert alert-success">
-                    <strong>Please check your email!</strong> Your have successfully registered.
+                    <strong>Please check your email for your username!</strong> You have successfully registered.
                 </div>
                 <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
                 <button (click)="addUser()" class="btn btn-primary btn-block">Register</button>

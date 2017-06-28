@@ -16,12 +16,14 @@ export class AppContactUsComponent{
     message: string;
     msg: string;
     err: boolean = false;
+    success: boolean = false;
     constructor(
         private apiService: CitasApiService
     ){}
     sendMessage(){
 
         this.err = false;
+        this.success = false;
         this.msg = "<strong>Registration Failed!</strong> Please correct the following error(s):<br /><ol>";
         let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -40,6 +42,7 @@ export class AppContactUsComponent{
             .then(
                 res => {
                     let data: any = res;
+                    this.success = true;
                     console.log(data);
                 }
             );
