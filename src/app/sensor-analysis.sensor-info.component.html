@@ -20,12 +20,13 @@
 
         <table *ngIf="type=='table'" id="sensorDataTable">
             <tr>
-                <th>Soil Temperature</th>
-                <th>Air Temperature</th>
+                <th>Soil Temp.</th>
+                <th>Air Temp.</th>
                 <th>pH Level</th>
                 <th>Conductivity</th>
-                <th>Amount of Light</th>
-                <th>Soil Moisture</th>
+                <th>Light</th>
+                <th>Moisture</th>
+                <th>Time Stamp</th>
             </tr>
             <tr *ngFor="let reading of readings">
                 <td>{{reading.soil_temp | number : '1.2-2'}}</td>
@@ -34,6 +35,7 @@
                 <td>{{reading.conductivity}}</td>
                 <td>{{reading.light}}</td>
                 <td>{{reading.moisture}}</td>
+                <td>{{reading.timestamp | date: 'shortTime'}}, {{reading.timestamp | date: 'mediumDate'}}</td>
             </tr>
         </table>
 
