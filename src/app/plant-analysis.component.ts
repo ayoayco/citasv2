@@ -158,7 +158,7 @@ export class AppPlantAnalysisComponent {
             .then(
                 res => {
                     data = res;
-                    window.open('http://'+data.dl_link, '_blank');
+                    window.open(data.dl_link, '_blank');
                     console.log(data);
                 }
             );

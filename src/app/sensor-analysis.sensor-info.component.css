@@ -80,3 +80,7 @@ table th {
     color: white;
     text-transform: uppercase;
 }
+
+h3 {
+    margin-top: 0;
+}

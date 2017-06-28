@@ -79,3 +79,7 @@ div.analysis-label {
     width: 100%;
     text-align: center;
 }
+
+h3 {
+    margin-top: 0;
+}

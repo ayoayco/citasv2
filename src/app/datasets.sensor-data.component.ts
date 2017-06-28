@@ -174,7 +174,7 @@ export class DatasetsSensorDataComponent {
                 res => {
                     data = res;
                     console.log(data);
-                    window.open('http://'+data.dl_link, '_blank');
+                    window.open(data.dl_link, '_blank');
                 }
             )
         }
