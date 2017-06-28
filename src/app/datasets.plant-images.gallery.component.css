@@ -62,3 +62,7 @@ div#images-list ul li img {
 #viewType-div a {
     cursor: pointer;
 }
+
+h3 {
+    margin-top: 0;
+}
