@@ -1,0 +1,20 @@
+div#container {
+    border: 1px solid #ccc;
+    text-align: left;
+    background: #ffffff;
+    padding: 30px;
+    margin-bottom: 14px;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+button.btn-primary {
+    width: 250px;
+    margin: 14px auto 0;
+}
+
+input {
+    margin-bottom: 20px;
+}

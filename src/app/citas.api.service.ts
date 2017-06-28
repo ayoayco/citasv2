@@ -15,6 +15,23 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http){}
 
+    public getSensorsAllDownloadLink(key: string, from: Date, to: Date){
+        $("body").addClass("loading");
+
+        console.log(from);
+
+        // let fromDate = from.getFullYear()+"-"+("0" + from.getMonth()).slice(-2)+"-"+("0" + from.getDate()).slice(-2);
+        // let toDate = to.getFullYear()+"-"+("0" + to.getMonth()).slice(-2)+"-"+("0" + to.getDate()).slice(-2);
+
+        let url = this.APIURL + "/download/sensor/all?key=" + key +"&d1="+from+"&d2="+to;
+
+        console.log(url);
+         return this.http.get(url)
+         .toPromise()
+         .then(this.extractData)
+         .catch(this.handleError);
+    }
+
     public getSensorCSVDownloadLink(key: string, sensorName: string){
         $("body").addClass("loading");
         let url = this.APIURL + "/download/sensor/"+sensorName + "?key=" + key;

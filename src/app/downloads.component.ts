@@ -6,17 +6,18 @@ import { CitasApiService } from './citas.api.service';
 import { Farm } from './models/farm';
 
 @Component({
-    selector: 'about',
-    templateUrl: './about.component.html',
-    styleUrls: ['./about.component.css'],
+    selector: 'downloads',
+    templateUrl: './downloads.component.html',
+    styleUrls: ['./downloads.component.css'],
     providers: [
         AppSessionService,
         CitasApiService
     ]
 })
 
-export class AboutComponent {
+export class DownloadsComponent{
     
+    farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
 
     constructor(
@@ -26,14 +27,11 @@ export class AboutComponent {
         private titleService: Title,
         private apiService: CitasApiService
     ){
-
-        $('#select-farm-dropdown').css("border", "0px");
-
         let loggedIn: boolean = this.sessionService.isLoggedIn();
         if(!loggedIn){
             this.router.navigate(['/']);
         }else{
-            this.titleService.setTitle('About PCARI-CITAS');
+            this.titleService.setTitle('Downloads');
         }
 
         let data : any;
@@ -45,14 +43,29 @@ export class AboutComponent {
             }
         );
 
-        this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id)
+        this.apiService.getFarmList(this.sessionService.getLoggedInKey())
         .then(
             res => {
-                data = res.data;
-                this.selectedFarm = data[0]
-                console.log(this.selectedFarm);
+                data = res;
+                this.selectedFarm.farm_name = 'Loading...';
+                if(data.data){
+                    this.farms = data.data;
+
+                    if(farm_id == undefined){
+                        this.selectedFarm = this.farms[0];
+                    }else{
+                        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == farm_id });
+                        this.selectedFarm = selectedArr[0];
+                    }
+
+                }
+                //console.log(this.farms);
             }
-        )
+        );
     }
 
+    public selectFarm(id: number){
+        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == id });
+        this.selectedFarm = selectedArr[0];
+    }
 }

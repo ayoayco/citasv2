@@ -42,6 +42,10 @@ import { DatasetsPlantImagesComponent } from './datasets.plant-images.component'
 import { DatasetsPlantImagesGalleryComponent } from './datasets.plant-images.gallery.component';
 import { DatasetsSensorDataComponent } from './datasets.sensor-data.component';
 
+import { DownloadsComponent } from './downloads.component';
+import { DownloadSensorDataComponent } from './downloads.sensor-data.component';
+import { DownloadPlantDataComponent } from './downloads.plant-data.component';
+
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'edit-profile', component: AppEditProfileComponent },
@@ -63,6 +67,8 @@ const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'about/:id', component: AboutComponent },
   { path: 'contact-us', component: AppContactUsComponent },
+  { path: 'downloads', component: DownloadsComponent },
+  { path: 'downloads/:id', component: DownloadsComponent },
   { path: '**', component: AppPageNotFoundComponent }
 ];
 
@@ -97,7 +103,10 @@ const appRoutes: Routes = [
     DatasetsPlantImagesComponent,
     DatasetsPlantImagesGalleryComponent,
     DatasetsSensorDataComponent,
-    AboutComponent
+    AboutComponent,
+    DownloadsComponent,
+    DownloadSensorDataComponent,
+    DownloadPlantDataComponent
   ],
   imports: [
     BrowserModule,
