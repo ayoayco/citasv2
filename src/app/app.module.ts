@@ -19,6 +19,7 @@ import { AppAboutTeamComponent } from './about-team.component';
 import { AppContactUsComponent } from './contact-us.component';
 import { AppEditProfileComponent } from './edit-profile.component';
 import { MapComponent } from './map.component';
+import { AboutComponent } from './about.component'
 
 import { UserNavComponent} from './user.nav.component';
 import { AppDashboardComponent } from './dashboard.component';
@@ -59,6 +60,8 @@ const appRoutes: Routes = [
   { path: 'registration', component: AppRegistrationComponent },
   { path: 'about-citas', component: AppAboutCitasComponent },
   { path: 'about-team', component: AppAboutTeamComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'about/:id', component: AboutComponent },
   { path: 'contact-us', component: AppContactUsComponent },
   { path: '**', component: AppPageNotFoundComponent }
 ];
@@ -93,7 +96,8 @@ const appRoutes: Routes = [
     AppTotalAnalysisComponent,
     DatasetsPlantImagesComponent,
     DatasetsPlantImagesGalleryComponent,
-    DatasetsSensorDataComponent
+    DatasetsSensorDataComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

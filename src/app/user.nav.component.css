@@ -45,10 +45,6 @@ li a.navbar-brand {
     height: 65px;
 }
 
-li a#menu-toggle {
-    border-right: 1px solid #ccc;
-}
-
 li a {
     text-transform: uppercase;
     color: #57675F;
@@ -75,9 +71,12 @@ a {
 }
 
 div#select-farm-dropdown {
-    border-right: 1px solid #ccc;
     height: 100%;
     min-width: 220px;
+}
+
+li a {
+    border-right: 1px solid #ccc;
 }
 
 nav div {

@@ -31,7 +31,7 @@
             </ul>
         </li>
         <li *ngIf="selectedFarm.farm_id !=0">
-            <a href="#"><i class="icon fa fa-leaf"></i> About PCARI-CITAS</a>
+            <a [routerLink]="[ '/about', selectedFarm.farm_id]" routerLinkActive="active"><i class="icon fa fa-leaf"></i> About PCARI-CITAS</a>
         </li>
     </ul>
 </div>
