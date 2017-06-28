@@ -40,7 +40,6 @@ td,
 th {
     border-bottom: 1px solid #ccc;
     padding: 5px;
-    font-size: small;
 }
 
 tr {
@@ -62,6 +61,7 @@ table td,
 table th {
     border: 1px solid #ddd;
     padding: 8px;
+    font-size: x-small;
 }
 
 table tr:nth-child(even) {
@@ -69,13 +69,14 @@ table tr:nth-child(even) {
 }
 
 table tr:hover {
-    background-color: #ddd;
+    background-color: #99e2be;
 }
 
 table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #4CAF50;
+    background-color: #19BD6C;
     color: white;
+    text-transform: uppercase;
 }
