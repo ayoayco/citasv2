@@ -15,7 +15,7 @@
                         </select>
                         <map [zoomControl]="true" [selectedFarm]="selectedFarm" [sensors]="sensors" (selectSensor)="selectSensor($event)"></map>
                     </div>
-                    <button onclick="$('#noFeatureModal').modal('toggle')" *ngIf="selectedSensorName" class="btn btn-primary btn-block">Download Sensor Data</button>
+                    <button (click)="downloadSensor()" *ngIf="selectedSensorName" class="btn btn-primary btn-block">Download Sensor Data</button>
                 </div>
             </div>
         </div>
