@@ -152,7 +152,7 @@ img {
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba( 3, 3, 3, .8) url('assets/images/ajax-loader.gif') 50% 50% no-repeat;
+    background: rgba( 3, 3, 3, .8) url('assets/images/ajax-loader.gif') 50% 50% no-repeat !important;
 }
 
 

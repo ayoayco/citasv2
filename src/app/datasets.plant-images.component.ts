@@ -154,4 +154,18 @@ export class DatasetsPlantImagesComponent {
             }
         );
     }
+
+    public downloadPlant(){
+        if(this.selectedPlant.plant_id != ""){
+            let data: any;
+            this.apiService.getPlantImagesDownloadLink(this.sessionService.getLoggedInKey(), this.selectedPlant.plant_id)
+            .then(
+                res => {
+                    data = res;
+                    window.open('http://'+data.dl_link, '_blank');
+                    console.log(data);
+                }
+            );
+        }
+    }
 }

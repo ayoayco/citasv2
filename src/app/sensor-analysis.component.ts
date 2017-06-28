@@ -165,4 +165,18 @@ export class AppSensorAnalysisComponent {
             }
         );
     }
+
+    public downloadSensor(){
+        if(this.selectedSensorName != ""){
+            let data: any;
+            this.apiService.getSensorCSVDownloadLink(this.sessionService.getLoggedInKey(), this.selectedSensorName)
+            .then(
+                res => {
+                    data = res;
+                    console.log(data);
+                    window.open('http://'+data.dl_link, '_blank');
+                }
+            )
+        }
+    }
 }
