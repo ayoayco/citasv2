@@ -53,6 +53,14 @@
                 </div>
                 <div class="row">
                     <h4>Infected Parts</h4>
+                    <ul id="infectedList">
+                        <li *ngIf="no_infected"><i class="fa fa-check"></i> No infected parts.</li>
+                        <li *ngIf="selectedPlant.leaves_infected"><i class="fa fa-check"></i> Leaves</li>
+                        <li *ngIf="selectedPlant.roots_infected"><i class="fa fa-check"></i> Roots</li>
+                        <li *ngIf="selectedPlant.stem_infected"><i class="fa fa-check"></i> Stem</li>
+                        <li *ngIf="selectedPlant.rhizome_infected"><i class="fa fa-check"></i> Rhizome</li>
+                        <li *ngIf="selectedPlant.rhizosphere_infected"><i class="fa fa-check"></i> Rhizosphere</li>
+                    </ul>
                 </div>
             </div>
         </div>
