@@ -69,3 +69,13 @@ div.analysis-label {
     text-transform: uppercase;
     font-size: small;
 }
+
+#infectedList {
+    list-style: none;
+    padding: 0;
+}
+
+#infectedList li {
+    width: 100%;
+    text-align: center;
+}

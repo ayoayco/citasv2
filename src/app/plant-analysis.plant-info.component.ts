@@ -14,6 +14,8 @@ export class PlantAnalysisPlantInfoComponent implements OnChanges {
     @Input() selectedPlant: Plant = new Plant();
     @Input() plantAnalysis: PlantAnalysis = new PlantAnalysis();
 
+    no_infected: boolean = false;
+
     constructor(){
         console.log(this.selectedPlant);
     }
@@ -44,7 +46,15 @@ public getBgColor(result: string){
 
     ngOnChanges(changes: SimpleChanges){
         if(changes.selectedPlant && changes.selectedPlant.firstChange == false){
-
+            
+            if(
+                !this.selectedPlant.leaves_infected &&
+                !this.selectedPlant.rhizome_infected &&
+                !this.selectedPlant.rhizosphere_infected &&
+                !this.selectedPlant.roots_infected &&
+                !this.selectedPlant.stem_infected ){
+                this.no_infected = true;
+            }
             console.log('plant changed!');
 
         }
