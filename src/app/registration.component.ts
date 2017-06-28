@@ -85,7 +85,7 @@ export class AppRegistrationComponent {
         }
 
 
-        this.msg += "</ol>"
+        this.msg += "</ol>";
 
         
         if(!this.err){
