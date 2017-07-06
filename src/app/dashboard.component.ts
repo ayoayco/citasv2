@@ -45,7 +45,7 @@ export class AppDashboardComponent {
         .then(
             res => {
                 data = res;
-                //console.log(data);
+                ////console.log(data);
                 if(data){
                     this.user = data;
                     this.user.user_type = data.role;
@@ -72,11 +72,11 @@ export class AppDashboardComponent {
 
                     if(farm_id == undefined){
                         this.selectedFarm = this.farms[0];
-                        console.log('selected farm: ' + this.selectedFarm.farm_name);
+                        //console.log('selected farm: ' + this.selectedFarm.farm_name);
                     }else{
                         let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == farm_id });
                         this.selectedFarm = selectedArr[0];
-                        console.log('selected farm: ' + this.selectedFarm.farm_name);
+                        //console.log('selected farm: ' + this.selectedFarm.farm_name);
                     }
 
                     this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
@@ -104,7 +104,7 @@ export class AppDashboardComponent {
                     );
 
                 }
-                //console.log(this.farms);
+                ////console.log(this.farms);
             }
         );
     }
@@ -122,7 +122,7 @@ export class AppDashboardComponent {
             res => {
                 data = res.data[0];
                 this.selectedFarm = data;
-                console.log(this.selectedFarm);
+                //console.log(this.selectedFarm);
             }
         );
 

@@ -70,15 +70,15 @@ export class AppSensorAnalysisComponent {
                         this.selectedFarm = selectedArr[0];
                     }
 
-                    console.log('selected farm: ' + this.selectedFarm.farm_name);
+                    //console.log('selected farm: ' + this.selectedFarm.farm_name);
 
                     this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
                     .then(
                         response => {
                             data = response;
                             this.sites = data.data;
-                            console.log('sites!');
-                            console.log(this.sites);
+                            //console.log('sites!');
+                            //console.log(this.sites);
                         }
                     );
 
@@ -87,13 +87,13 @@ export class AppSensorAnalysisComponent {
                         res => {
                             data = res;
                             this.sensors = data.data;
-                            console.log("sensor count: "+this.sensors.length);
-                            console.log(this.sensors);
+                            //console.log("sensor count: "+this.sensors.length);
+                            //console.log(this.sensors);
                         }
                     );
 
                 }
-                //console.log(this.farms);
+                ////console.log(this.farms);
             }
         );
     }
@@ -108,15 +108,15 @@ export class AppSensorAnalysisComponent {
 
         let data: any;
 
-        console.log('selected farm: ' + this.selectedFarm.farm_name);
+        //console.log('selected farm: ' + this.selectedFarm.farm_name);
 
         this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
         .then(
             response => {
                 data = response;
                 this.sites = data.data;
-                console.log('sites!');
-                console.log(this.sites);
+                //console.log('sites!');
+                //console.log(this.sites);
             }
         );
 
@@ -125,14 +125,14 @@ export class AppSensorAnalysisComponent {
             res => {
                 data = res;
                 this.sensors = data.data;
-                console.log("sensor count: "+this.sensors.length);
-                console.log(this.sensors);
+                //console.log("sensor count: "+this.sensors.length);
+                //console.log(this.sensors);
             }
         );
 
     }
     public selectSensor(sensorID: string){
-        console.log('sensor '+ sensorID + ' selected!');
+        //console.log('sensor '+ sensorID + ' selected!');
         let data: any;
         this.apiService.getSensor(this.sessionService.getLoggedInKey(), sensorID)
         .then(
@@ -140,7 +140,7 @@ export class AppSensorAnalysisComponent {
                 data = res;
                 this.selectedSensorReadings = data.data;
                 this.selectedSensorName = sensorID;
-                console.log(this.selectedSensorReadings);
+                //console.log(this.selectedSensorReadings);
             }
         )
     }
@@ -154,14 +154,14 @@ export class AppSensorAnalysisComponent {
 
     public selectSite(siteID: number){
         let data: any;
-        console.log('selected site: ' + siteID)
+        //console.log('selected site: ' + siteID)
         this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), siteID.toString())
         .then(
             res => {
                 data = res;
                 this.sensors = data.data;
-                console.log("sensor count: "+this.sensors.length);
-                console.log(this.sensors);
+                //console.log("sensor count: "+this.sensors.length);
+                //console.log(this.sensors);
             }
         );
     }
@@ -173,7 +173,7 @@ export class AppSensorAnalysisComponent {
             .then(
                 res => {
                     data = res;
-                    console.log(data);
+                    //console.log(data);
                     window.open(data.dl_link, '_blank');
                 }
             )

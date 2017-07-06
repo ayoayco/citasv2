@@ -95,7 +95,7 @@ export class AppRegistrationComponent {
                 if(data){
                     //add success
                     // login success, start session
-                    console.log(data);
+                    //console.log(data);
                     this.success = true;
                     /*
                     if(this.sessionService.startSession(data.user, data.key)){
@@ -105,7 +105,7 @@ export class AppRegistrationComponent {
                     //prompt user to check email
                 }else{
                     // login fail
-                    console.log("Failed to authenticate.");
+                    //console.log("Failed to authenticate.");
                 }
             });
         }

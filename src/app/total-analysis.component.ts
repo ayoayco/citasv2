@@ -101,7 +101,7 @@ export class AppTotalAnalysisComponent {
                         this.selectedFarm = selectedArr[0];
                     }
 
-                    console.log('selected farm: ' + this.selectedFarm.farm_name);
+                    //console.log('selected farm: ' + this.selectedFarm.farm_name);
 
                     this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
                     .then(
@@ -128,7 +128,7 @@ export class AppTotalAnalysisComponent {
                     );
 
                 }
-                //console.log(this.farms);
+                ////console.log(this.farms);
             }
         );
     }
@@ -143,15 +143,15 @@ export class AppTotalAnalysisComponent {
 
         let data: any;
 
-        console.log('selected farm: ' + this.selectedFarm.farm_name);
+        //console.log('selected farm: ' + this.selectedFarm.farm_name);
 
         this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
         .then(
             response => {
                 data = response;
                 this.sites = data.data;
-                console.log('sites!');
-                console.log(this.sites);
+                //console.log('sites!');
+                //console.log(this.sites);
             }
         );
 
@@ -160,8 +160,8 @@ export class AppTotalAnalysisComponent {
             res => {
                 data = res;
                 this.sensors = data.data;
-                console.log("sensor count: "+this.sensors.length);
-                console.log(this.sensors);
+                //console.log("sensor count: "+this.sensors.length);
+                //console.log(this.sensors);
             }
         );
 
@@ -175,7 +175,7 @@ export class AppTotalAnalysisComponent {
 
     }
     public selectSensor(sensorID: string){
-        console.log('sensor '+ sensorID + ' selected!');
+        //console.log('sensor '+ sensorID + ' selected!');
         let data: any;
         this.apiService.getSensor(this.sessionService.getLoggedInKey(), sensorID)
         .then(
@@ -183,7 +183,7 @@ export class AppTotalAnalysisComponent {
                 data = res;
                 this.selectedSensorReadings = data.data;
                 this.selectedSensorName = sensorID;
-                console.log(this.selectedSensorReadings);
+                //console.log(this.selectedSensorReadings);
             }
         )
     }
@@ -197,21 +197,21 @@ export class AppTotalAnalysisComponent {
 
     public selectSite(siteID: number){
         let data: any;
-        console.log('selected site: ' + siteID)
+        //console.log('selected site: ' + siteID)
         this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), siteID.toString())
         .then(
             res => {
                 data = res;
                 this.sensors = data.data;
-                console.log("sensor count: "+this.sensors.length);
-                console.log(this.sensors);
+                //console.log("sensor count: "+this.sensors.length);
+                //console.log(this.sensors);
             }
         );
     }
 
     public onMapResize(){
         this.resize++;
-        console.log('map resize');
+        //console.log('map resize');
     }
 
     public toggleOverlay(type: string){
@@ -243,9 +243,9 @@ export class AppTotalAnalysisComponent {
                 $('#humidLegend').show(); break;
         }
 
-        console.log("show temp: "+this.showTemp);
-        console.log("show press: "+this.showPress);
-        console.log("show humid: "+this.showHumid);
+        //console.log("show temp: "+this.showTemp);
+        //console.log("show press: "+this.showPress);
+        //console.log("show humid: "+this.showHumid);
     }
 
     public toggleSites(){
@@ -272,7 +272,7 @@ export class AppTotalAnalysisComponent {
                 res => {
                     data = res.data;
                     this.plantAnalysis = data;
-                    console.log(this.plantAnalysis);
+                    //console.log(this.plantAnalysis);
                     $('#plantAnalysisModal').modal('toggle');
                 }
             )
@@ -281,16 +281,16 @@ export class AppTotalAnalysisComponent {
     }
 
     public selectPlant(plantID: string){
-        console.log('Plant '+ plantID + ' selected!');
+        //console.log('Plant '+ plantID + ' selected!');
         let data: any;
         this.apiService.getPlant(this.sessionService.getLoggedInKey(), plantID)
         .then(
             res => {
                 data = res;
-                console.log(data);
+                //console.log(data);
                 this.selectedPlant = data.data;
                 this.togglePlantAnalysis();
-                //console.log(this.selectedPlant);
+                ////console.log(this.selectedPlant);
             }
         )
     }

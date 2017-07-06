@@ -44,8 +44,8 @@ export class AppSessionService{
 
     public startSession(username: string, key: string): void {
         
-        console.log('started session for user: '+ username);
-        // console.log('key: '+ key);
+        //console.log('started session for user: '+ username);
+        // //console.log('key: '+ key);
 
         // set cookies!
         this.cookieService.put("key", key);

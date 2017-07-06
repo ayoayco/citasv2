@@ -35,7 +35,7 @@ export class UserNavComponent {
             res => {
                 data = res;
                 this.username = data.fullname;
-                //console.log(data);
+                ////console.log(data);
             }
         );
     }
