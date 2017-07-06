@@ -85,7 +85,7 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
         }
 
         series.push({
-                name: this.selectedSensorName,
+                name: this.selectedSensorName+' Readings',
                 data: values,
                 color: "#19BD6C"
         });
@@ -101,7 +101,8 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
                 dashStyle: 'dash',
                 marker: {
                     enabled: false
-                }
+                },
+                lineWidth: 1
             });
         }
 
@@ -116,7 +117,8 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
                 dashStyle: 'dash',
                 marker: {
                     enabled: false
-                }
+                },
+                lineWidth: 1
             });
         }
 
