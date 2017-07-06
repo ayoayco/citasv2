@@ -31,7 +31,14 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
     updateChart(tab) {
         var chartTitle = '';
         var yAxisLabel = '';
+        var values = [];
+        var labels = [];
+        var high = [];
+        var low = [];
+        var up = undefined;
+        var down = undefined;
         this.selectedTab = tab;
+        var series = [];
 
         var links = $('ul#tablist li a.selectedTab');
         
@@ -43,36 +50,82 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
 
         switch(this.selectedTab){
             case 'soil_temp': chartTitle = 'Soil Temperature';
-                yAxisLabel = 'Temperature (°C)'; break;
+                yAxisLabel = 'Temperature (°C)';
+                up = 35;
+                down = 15;
+                break;
             case 'air_temp': chartTitle = 'Air Temperature';
-                yAxisLabel = 'Temperature (°C)'; break;
-            case 'pH': chartTitle = 'pH Level'; break;
-            case 'conductivity': chartTitle = 'Conductivity';break;
+                yAxisLabel = 'Temperature (°C)';
+                down = 8;
+                break;
+            case 'pH': chartTitle = 'pH Level';
+                up = 7;
+                down = 5;
+                break;
+            case 'conductivity': chartTitle = 'Conductivity';
+                down = 1;
+                break;
             case 'light': chartTitle = 'Amount of Light';break;
             case 'moisture': chartTitle = 'Soil Moisture';break;
             default: chartTitle = 'Chart'; yAxisLabel = 'Values'; break;
         }
 
         if (this.readings) {
-            var values = [];
-            var labels = [];
 
             for (var i = 0; i < this.readings.length; i++) {
                 values.push(this.readings[i][this.selectedTab]);
+                if(up){
+                    high.push(up);
+                }
+                if(down){
+                    low.push(down);
+                }
                 labels.push(this.readings[i].timestamp);
             }
         }
 
-        this.options = {
-            title: { text: chartTitle },
-            colors: ["#19BD6C"],
-            chart: {
-                
-            },
-            series: [{
+        series.push({
                 name: this.selectedSensorName,
                 data: values,
-            }],
+                color: "#19BD6C"
+        });
+
+        if(high.length > 0){
+            series.push({
+                type: 'line',
+                name: 'Critical High',
+                data: high,
+                color: 'red',
+                animation: false,
+                enableMouseTracking: false,
+                dashStyle: 'dash',
+                marker: {
+                    enabled: false
+                }
+            });
+        }
+
+        if(low.length > 0){
+            series.push({
+                type: 'line',
+                name: 'Critical Low',
+                data: low,
+                color: 'blue',
+                animation: false,
+                enableMouseTracking: false,
+                dashStyle: 'dash',
+                marker: {
+                    enabled: false
+                }
+            });
+        }
+
+        this.options = {
+            title: { text: chartTitle },
+            chart: {
+                type: 'line'
+            },
+            series: series,
             xAxis: {
                 categories: labels,
                 lineWidth: 2,
