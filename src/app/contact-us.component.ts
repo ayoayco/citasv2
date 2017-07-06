@@ -43,7 +43,7 @@ export class AppContactUsComponent{
                 res => {
                     let data: any = res;
                     this.success = true;
-                    console.log(data);
+                    //console.log(data);
                 }
             );
         }

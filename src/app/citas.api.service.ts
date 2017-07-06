@@ -27,7 +27,7 @@ export class CitasApiService {
 
         let body = "new_password=" + password;
 
-        //console.log(body);
+        ////console.log(body);
 
         return this.http.post(url, body, options)
             .toPromise()
@@ -46,7 +46,7 @@ export class CitasApiService {
 
         let body = "username=" + username;
 
-        //console.log(body);
+        ////console.log(body);
 
         return this.http.post(url, body, options)
             .toPromise()
@@ -58,14 +58,14 @@ export class CitasApiService {
     public getSensorsAllDownloadLink(key: string, from: Date, to: Date) {
         $("body").addClass("loading");
 
-        console.log(from);
+        //console.log(from);
 
         // let fromDate = from.getFullYear()+"-"+("0" + from.getMonth()).slice(-2)+"-"+("0" + from.getDate()).slice(-2);
         // let toDate = to.getFullYear()+"-"+("0" + to.getMonth()).slice(-2)+"-"+("0" + to.getDate()).slice(-2);
 
         let url = this.APIURL + "/download/sensor/all?key=" + key + "&d1=" + from + "&d2=" + to;
 
-        console.log(url);
+        //console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(this.extractData)
@@ -76,7 +76,7 @@ export class CitasApiService {
         $("body").addClass("loading");
         let url = this.APIURL + "/download/sensor/" + sensorName + "?key=" + key;
 
-        //console.log(url);
+        ////console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(this.extractData)
@@ -87,7 +87,7 @@ export class CitasApiService {
         $("body").addClass("loading");
         let url = this.APIURL + "/download/image/" + plantID + "?key=" + key;
 
-        //console.log(url);
+        ////console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(this.extractData)
@@ -98,7 +98,7 @@ export class CitasApiService {
         $("body").addClass("loading");
         let url = this.APIURL + "/plantimages/" + plantID + "?key=" + key;
 
-        //console.log(url);
+        ////console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(this.extractData)
@@ -109,7 +109,7 @@ export class CitasApiService {
         $("body").addClass("loading");
         let url = this.APIURL + "/plantanalysis/" + plantID + "?key=" + key;
 
-        //console.log(url);
+        ////console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(this.extractData)
@@ -123,7 +123,7 @@ export class CitasApiService {
         if (siteID) url += "/" + siteID;
         url += "?key=" + key;
 
-        //console.log(url);
+        ////console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(this.extractData)
@@ -134,7 +134,7 @@ export class CitasApiService {
         $("body").addClass("loading");
         let url = this.APIURL + "/sensor/" + sensorName + "?key=" + key;
 
-        //console.log(url);
+        ////console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(this.extractData)
@@ -145,7 +145,7 @@ export class CitasApiService {
         $("body").addClass("loading");
         let url = this.APIURL + "/plant/" + plantID + "?key=" + key;
 
-        //console.log(url);
+        ////console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(this.extractData)
@@ -159,7 +159,7 @@ export class CitasApiService {
         if (siteID) url += "/" + siteID;
         url += "?key=" + key;
 
-        //console.log(url);
+        ////console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(this.extractData)
@@ -173,7 +173,7 @@ export class CitasApiService {
         if (siteID) url += "/" + siteID;
         url += "?key=" + key;
 
-        //console.log(url);
+        ////console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(this.extractData)
@@ -184,7 +184,7 @@ export class CitasApiService {
         $("body").addClass("loading");
         let url = this.APIURL + "/farm/" + farmID + "?key=" + key;
 
-        //console.log(url);
+        ////console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(this.extractData)
@@ -194,7 +194,7 @@ export class CitasApiService {
     public getFarmList(key: string) {
         $("body").addClass("loading");
         let url = this.APIURL + "/farmlist?key=" + key;
-        //console.log(url);
+        ////console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(this.extractData)
@@ -213,7 +213,7 @@ export class CitasApiService {
             "&name=" + name +
             "&message=" + message;
 
-        //console.log(body);
+        ////console.log(body);
 
         return this.http.post(url, body, options)
             .toPromise()
@@ -234,7 +234,7 @@ export class CitasApiService {
             "&mobile_number=" + user.mobile_number +
             "&email=" + user.email;
 
-        //console.log(body);
+        ////console.log(body);
 
         return this.http.post(url, body, options)
             .toPromise()
@@ -246,7 +246,7 @@ export class CitasApiService {
         $("body").addClass("loading");
         let url = this.APIURL + "/profile?key=" + key;
 
-        //console.log(url);
+        ////console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(this.extractData)
@@ -267,7 +267,7 @@ export class CitasApiService {
             "&email=" + user.email +
             "&mobile_number=" + user.mobile_number;
 
-        //console.log(body);
+        ////console.log(body);
 
         return this.http.post(url, body, options)
             .toPromise()

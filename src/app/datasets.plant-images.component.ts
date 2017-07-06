@@ -66,14 +66,14 @@ export class DatasetsPlantImagesComponent {
                     }
 
 
-                    console.log('selected farm: ' + this.selectedFarm.farm_name);
+                    //console.log('selected farm: ' + this.selectedFarm.farm_name);
                     this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
                     .then(
                         response => {
                             data = response;
                             this.sites = data.data;
-                            console.log('sites');
-                            console.log(this.sites);
+                            //console.log('sites');
+                            //console.log(this.sites);
                         }
                     );
 
@@ -86,7 +86,7 @@ export class DatasetsPlantImagesComponent {
                     );
 
                 }
-                //console.log(this.farms);
+                ////console.log(this.farms);
             }
         );
 
@@ -102,13 +102,13 @@ export class DatasetsPlantImagesComponent {
 
         let data: any;
 
-        console.log('selected farm: ' + this.selectedFarm.farm_name);
+        //console.log('selected farm: ' + this.selectedFarm.farm_name);
         this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
         .then(
             response => {
                 data = response;
                 this.sites = data.data;
-                console.log(this.sites);
+                //console.log(this.sites);
             }
         );
         
@@ -124,15 +124,15 @@ export class DatasetsPlantImagesComponent {
 
 
     public selectPlant(plantID: string){
-        console.log('Plant '+ plantID + ' selected!');
+        //console.log('Plant '+ plantID + ' selected!');
         let data: any;
         this.apiService.getPlant(this.sessionService.getLoggedInKey(), plantID)
         .then(
             res => {
                 data = res;
-                console.log(data);
+                //console.log(data);
                 this.selectedPlant = data.data;
-                //console.log(this.selectedPlant);
+                ////console.log(this.selectedPlant);
             }
         )
     }
@@ -145,7 +145,7 @@ export class DatasetsPlantImagesComponent {
 
     public selectSite(siteID: number){
         let data: any;
-        console.log('selected site: ' + siteID)
+        //console.log('selected site: ' + siteID)
         this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), siteID.toString())
         .then(
             res => {
@@ -163,7 +163,7 @@ export class DatasetsPlantImagesComponent {
                 res => {
                     data = res;
                     window.open(data.dl_link, '_blank');
-                    console.log(data);
+                    //console.log(data);
                 }
             );
         }

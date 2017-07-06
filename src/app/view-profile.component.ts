@@ -64,7 +64,7 @@ export class ViewProfileComponent{
                         this.imgFile = "avatar-researcher-min.png";
                         break;
                 }
-                console.log(this.user);
+                //console.log(this.user);
             }
         );
 
@@ -84,7 +84,7 @@ export class ViewProfileComponent{
                     }
 
                 }
-                //console.log(this.farms);
+                ////console.log(this.farms);
             }
         );
     }
@@ -109,7 +109,7 @@ export class ViewProfileComponent{
                         this.imgFile = "avatar-researcher-min.png";
                         break;
                 }
-                console.log(this.user);
+                //console.log(this.user);
             }
         );
     }

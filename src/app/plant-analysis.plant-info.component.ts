@@ -15,7 +15,7 @@ export class PlantAnalysisPlantInfoComponent implements OnChanges {
     no_infected: boolean = false;
 
     constructor(){
-        console.log(this.selectedPlant);
+        //console.log(this.selectedPlant);
     }
 
 public getLabel(result: string){
@@ -54,7 +54,7 @@ public getBgColor(result: string){
                 !this.selectedPlant.stem_infected ){
                 this.no_infected = true;
             }
-            console.log('plant changed!');
+            //console.log('plant changed!');
 
         }
     }

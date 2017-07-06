@@ -24,7 +24,7 @@ export class DatasetsPlantImagesGalleryComponent implements OnChanges {
         private apiService: CitasApiService,
         private sessionService: AppSessionService
     ){
-        console.log(this.selectedPlant);
+        //console.log(this.selectedPlant);
         this.viewType = "grid";
     }
 
@@ -38,7 +38,7 @@ export class DatasetsPlantImagesGalleryComponent implements OnChanges {
                 res => {
                     data = res.images;
                     this.plantImages = data;
-                    console.log(this.plantImages);
+                    //console.log(this.plantImages);
                 }
             )
         }

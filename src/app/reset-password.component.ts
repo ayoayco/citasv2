@@ -67,7 +67,7 @@ export class AppResetPasswordComponent{
                     if(data.Success){
                         this.success = true;
                     }
-                    console.log(data);
+                    //console.log(data);
                 }
             );
         }

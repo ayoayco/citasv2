@@ -29,17 +29,17 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.isLoggedIn = this.sessionService.isLoggedIn();
-        console.log("isLoggedIn: " + this.isLoggedIn);
+        //console.log("isLoggedIn: " + this.isLoggedIn);
         var params = [];
         var path = this.location.path();
 
         params = path.split('/');
         /*for(var i=0; i<params.length; i++){
-            console.log(i+" : "+params[i]);
+            //console.log(i+" : "+params[i]);
         }*/
         switch(params[1]){
             case 'reset-password':
-            console.log('reset password!!!!');
+            //console.log('reset password!!!!');
             this.router.navigate(['/reset-password', params[2]]);break;
             //this.router.navigate(['/contact-us']);break;
         }
