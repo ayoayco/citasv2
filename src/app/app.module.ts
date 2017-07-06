@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppNavComponent } from './nav.component';
 import { AppFooterComponent } from './footer.component';
 import { AppLoginComponent } from './login.component';
+import { AppLoginForgotPasswordComponent } from './login.forgot-password.component';
 import { AppHeaderComponent } from './header.component';
 import { AppHomeComponent } from './home.component';
 import { AppPageNotFoundComponent } from './notfound.component';
@@ -21,6 +22,7 @@ import { AppEditProfileComponent } from './edit-profile.component';
 import { ViewProfileComponent } from './view-profile.component';
 import { MapComponent } from './map.component';
 import { AboutComponent } from './about.component'
+import { AppResetPasswordComponent } from './reset-password.component';
 
 import { UserNavComponent} from './user.nav.component';
 import { AppDashboardComponent } from './dashboard.component';
@@ -64,6 +66,8 @@ const appRoutes: Routes = [
   { path: 'plant-images/:id', component: DatasetsPlantImagesComponent },
   { path: 'sensor-data/:id', component: DatasetsSensorDataComponent },
   { path: 'registration', component: AppRegistrationComponent },
+  { path: 'reset-password/:id', component: AppResetPasswordComponent },
+  { path: 'reset-password', component: AppResetPasswordComponent },
   { path: 'about-citas', component: AppAboutCitasComponent },
   { path: 'about-team', component: AppAboutTeamComponent },
   { path: 'about', component: AboutComponent },
@@ -109,7 +113,9 @@ const appRoutes: Routes = [
     DownloadsComponent,
     DownloadSensorDataComponent,
     DownloadPlantDataComponent,
-    ViewProfileComponent
+    ViewProfileComponent,
+    AppLoginForgotPasswordComponent,
+    AppResetPasswordComponent
   ],
   imports: [
     BrowserModule,
