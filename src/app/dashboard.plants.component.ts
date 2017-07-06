@@ -15,11 +15,13 @@ export class DashboardPlantsComponent implements OnChanges{
     total: number;
     healthy: number;
     infected: number;
+    unknown: number;
     constructor(
     ){
         this.total = 0;
         this.healthy = 0;
         this.infected = 0;
+        this.unknown = 0;
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -31,6 +33,7 @@ export class DashboardPlantsComponent implements OnChanges{
                 this.total = this.selectedFarm.health_summary.healthy + this.selectedFarm.health_summary.infected + this.selectedFarm.health_summary.unknown;
                 this.healthy = this.selectedFarm.health_summary.healthy;
                 this.infected = this.selectedFarm.health_summary.infected;
+                this.unknown =  this.selectedFarm.health_summary.unknown;
             }
         }
 
