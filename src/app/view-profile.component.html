@@ -1,0 +1,24 @@
+<div id="wrapper" class="toggled">
+    <sidebar [selectedFarm]="selectedFarm"></sidebar>
+    <div id="page-content-wrapper">
+        <user-nav></user-nav>
+        <div class="container">
+            <h1>User Profile</h1>
+            <div class="row" id="details">
+                <div class="col-md-3">
+                    <img *ngIf="imgFile != ''" src="../assets/{{imgFile}}" alt="Researcher Avatar" />
+                </div>
+                <div class="col-md-3 info-div">
+                    <strong>{{user.fullname}}<br /></strong>
+                    <span *ngIf="role || role!=''">{{role}}<br /></span>
+                    <hr />
+                    <span *ngIf="user.email || user.email!=''">{{user.email}}<br /></span>
+                    <span *ngIf="user.mobile_number || user.mobile_number!=''">{{user.mobile_number}}<br /></span>
+                </div>
+                <div class="col-md-3 info-div">
+                    <a class="btn btn-default" onclick="$('#editUserModal').modal('toggle')">Edit User Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
