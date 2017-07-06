@@ -1,0 +1,42 @@
+div.container {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    text-align: center;
+    font-weight: 300;
+    background: #f3f3f3;
+    padding: 30px !important;
+    max-width: 1000px;
+    float: left;
+}
+
+h1 {
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+div#details {
+    border: 1px solid #ccc;
+    padding: 30px;
+    text-align: left;
+    background: #ffffff;
+    margin-bottom: 14px;
+    min-width: 650px;
+}
+
+strong {
+    font-size: large;
+}
+
+img {
+    border-radius: 50%;
+}
+
+div.info-div {
+    padding-top: 30px;
+}
+
+.btn {
+    padding: 15px;
+    margin-top: 30px;
+}

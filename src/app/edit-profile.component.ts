@@ -92,7 +92,6 @@ export class AppEditProfileComponent {
                         this.user.mobile_number = data.mobile_number;
                         this.user.email = data.email;
                         $('#editUserModal').modal('hide');
-                        this.router.navigate(['/']);
                     }
                 });
         }

@@ -18,6 +18,7 @@ import { AppAboutCitasComponent } from './about-citas.component';
 import { AppAboutTeamComponent } from './about-team.component';
 import { AppContactUsComponent } from './contact-us.component';
 import { AppEditProfileComponent } from './edit-profile.component';
+import { ViewProfileComponent } from './view-profile.component';
 import { MapComponent } from './map.component';
 import { AboutComponent } from './about.component'
 
@@ -48,7 +49,8 @@ import { DownloadPlantDataComponent } from './downloads.plant-data.component';
 
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
-  { path: 'edit-profile', component: AppEditProfileComponent },
+  { path: 'view-profile', component: ViewProfileComponent },
+  { path: 'view-profile/:id', component: ViewProfileComponent },
   { path: 'dashboard', component: AppDashboardComponent },
   { path: 'plant-analysis', component: AppPlantAnalysisComponent },
   { path: 'sensor-analysis', component: AppSensorAnalysisComponent },
@@ -106,7 +108,8 @@ const appRoutes: Routes = [
     AboutComponent,
     DownloadsComponent,
     DownloadSensorDataComponent,
-    DownloadPlantDataComponent
+    DownloadPlantDataComponent,
+    ViewProfileComponent
   ],
   imports: [
     BrowserModule,
