@@ -10,6 +10,7 @@ body {
     overflow-x: hidden;
     min-width: 770px !important;
     background: #f3f3f3 !important;
+    padding: 0 !important;
 }
 
 #wrap {
