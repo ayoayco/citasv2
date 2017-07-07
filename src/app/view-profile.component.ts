@@ -57,11 +57,11 @@ export class ViewProfileComponent{
                 switch(this.user.user_type){
                     case 4:
                         this.role = "Farm Manager";
-                        this.imgFile = "avatar-farmer-min.png";
+                        this.imgFile = "avatar-farmer.png";
                         break;
                     case 5:
                         this.role = "Researcher";
-                        this.imgFile = "avatar-researcher-min.png";
+                        this.imgFile = "avatar-researcher.png";
                         break;
                 }
                 //console.log(this.user);
