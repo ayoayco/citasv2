@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { AppSessionService } from './app.session.service';
 
-declare
-let sha256: any;
+declare let sha256: any;
 
 @Component({
     selector: 'app-login',
