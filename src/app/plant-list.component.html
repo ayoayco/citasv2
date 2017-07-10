@@ -6,6 +6,9 @@
                             <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
                         </select>
         <input (focus)="searchPlants(searchPlant.value)" (keyup)="searchPlants(searchPlant.value)" #searchPlant id="searchPlant" placeholder="Search plant..." />
+        <button (click)="clearSearchPlant()" id="xButton" aria-label="Close" class="close" type="button">
+            <span>×</span>
+        </button>
         <ul id="searchList">
             <li *ngFor="let plant of plants">
                 <a (click)="onSelectPlant(plant.plant_id)">{{plant.plant_name}}</a>

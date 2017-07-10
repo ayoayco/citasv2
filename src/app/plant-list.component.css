@@ -58,3 +58,9 @@ input#searchPlant {
     background-color: #eee;
     /* Add a hover effect to all links, except for headers */
 }
+
+#xButton {
+    position: absolute;
+    top: 78px;
+    right: 30px;
+}
