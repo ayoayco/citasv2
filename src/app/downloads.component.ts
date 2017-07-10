@@ -59,7 +59,7 @@ export class DownloadsComponent{
                     }
 
                 }
-                //console.log(this.farms);
+                ////console.log(this.farms);
             }
         );
     }

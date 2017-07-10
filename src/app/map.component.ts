@@ -93,7 +93,7 @@ export class MapComponent implements OnChanges{
                 //ngZone.run will help to run change detection
                 this.ngZone.run(() => {
                     var ht = $('map').parent().height();
-                    console.log('Full Map! Height of map should be: '+ht);
+                    //console.log('Full Map! Height of map should be: '+ht);
                     $('div#map-div').css('height', ht+'px');
                     this.mymap.invalidateSize();
                 });
@@ -112,10 +112,10 @@ export class MapComponent implements OnChanges{
 
         if(!this.fullMap){
             $('div#map-div').css('height', this.height+'px');
-            console.log('Not full! Height of map should be: '+this.height);
+            //console.log('Not full! Height of map should be: '+this.height);
         }else{
             var ht = $('map').parent().height();
-            console.log('Full Map! Height of map should be: '+ht);
+            //console.log('Full Map! Height of map should be: '+ht);
             $('div#map-div').css('height', ht+'px');
         }
 
@@ -151,7 +151,7 @@ export class MapComponent implements OnChanges{
     }
 
     private plotFarm(){
-        console.log("Map Farm: " + this.selectedFarm.farm_name);
+        //console.log("Map Farm: " + this.selectedFarm.farm_name);
         let data: any;
 
         //get farm details
@@ -209,12 +209,12 @@ export class MapComponent implements OnChanges{
 
     private plotPlants(){
         {
-            console.log("Map Plants: " + this.plants.length);
+            //console.log("Map Plants: " + this.plants.length);
 
             //to do: clear layers
             this.plantsLayer.clearLayers();
             
-            console.log(this.plants);
+            //console.log(this.plants);
 
             for(var i=0; i<this.plants.length; i++){
                 let arg = this.plants[i];
@@ -255,7 +255,7 @@ export class MapComponent implements OnChanges{
     }
 
     private plotSensors(){
-        console.log("Map Sensors: " + this.sensors.length);
+        //console.log("Map Sensors: " + this.sensors.length);
 
         //to do: clear layers
         this.sensorsLayer.clearLayers();
@@ -392,7 +392,7 @@ export class MapComponent implements OnChanges{
         }
 
         if(changes.resize && changes.resize.firstChange == false ){
-            console.log('map resized for '+this.resize+' time(s)!' );
+            //console.log('map resized for '+this.resize+' time(s)!' );
             document.getElementById('map-div').style.display = 'block';
             this.mymap.invalidateSize();
         }

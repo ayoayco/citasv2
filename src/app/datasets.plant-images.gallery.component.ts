@@ -24,7 +24,7 @@ export class DatasetsPlantImagesGalleryComponent implements OnChanges {
         private apiService: CitasApiService,
         private sessionService: AppSessionService
     ){
-        console.log(this.selectedPlant);
+        //console.log(this.selectedPlant);
         this.viewType = "grid";
     }
 
@@ -38,7 +38,7 @@ export class DatasetsPlantImagesGalleryComponent implements OnChanges {
                 res => {
                     data = res.images;
                     this.plantImages = data;
-                    console.log(this.plantImages);
+                    //console.log(this.plantImages);
                 }
             )
         }
@@ -49,12 +49,12 @@ export class DatasetsPlantImagesGalleryComponent implements OnChanges {
         var label ="";
         switch(type){
             case "Generic Plant Image": label="Plant"; break;
-            case "Leaf Pre-Analysis Image": label="Leaf (Pre-Analysis)"; break;
-            case "PlantScope Pre-Analysis Image":  label="PlantScope (Pre-Analysis)"; break;
-            case "LampAssay Processed Image":  label="Lamp Assay (Processed)"; break;
-            case "Leaf Analysis Image":  label="Leaf Analysis"; break;
-            case "PlantScope Analysis Image":  label="PlantScope"; break;
-            case "LampAssay Analysis Image":  label="Lamp Assay"; break;
+            case "Leaf Pre-Analysis Image": label="Actual"; break;
+            case "PlantScope Pre-Analysis Image":  label="Actual"; break;
+            case "LampAssay Processed Image":  label="Actual"; break;
+            case "Leaf Analysis Image":  label="Processed"; break;
+            case "PlantScope Analysis Image":  label="Processed"; break;
+            case "LampAssay Analysis Image":  label="Processed"; break;
             default: label = "Unknown"; break;
         }
 
