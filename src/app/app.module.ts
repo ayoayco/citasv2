@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppNavComponent } from './nav.component';
 import { AppFooterComponent } from './footer.component';
 import { AppLoginComponent } from './login.component';
+import { AppLoginForgotPasswordComponent } from './login.forgot-password.component';
 import { AppHeaderComponent } from './header.component';
 import { AppHomeComponent } from './home.component';
 import { AppPageNotFoundComponent } from './notfound.component';
@@ -18,8 +19,10 @@ import { AppAboutCitasComponent } from './about-citas.component';
 import { AppAboutTeamComponent } from './about-team.component';
 import { AppContactUsComponent } from './contact-us.component';
 import { AppEditProfileComponent } from './edit-profile.component';
+import { ViewProfileComponent } from './view-profile.component';
 import { MapComponent } from './map.component';
 import { AboutComponent } from './about.component'
+import { AppResetPasswordComponent } from './reset-password.component';
 
 import { UserNavComponent} from './user.nav.component';
 import { AppDashboardComponent } from './dashboard.component';
@@ -48,7 +51,8 @@ import { DownloadPlantDataComponent } from './downloads.plant-data.component';
 
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
-  { path: 'edit-profile', component: AppEditProfileComponent },
+  { path: 'view-profile', component: ViewProfileComponent },
+  { path: 'view-profile/:id', component: ViewProfileComponent },
   { path: 'dashboard', component: AppDashboardComponent },
   { path: 'plant-analysis', component: AppPlantAnalysisComponent },
   { path: 'sensor-analysis', component: AppSensorAnalysisComponent },
@@ -62,6 +66,8 @@ const appRoutes: Routes = [
   { path: 'plant-images/:id', component: DatasetsPlantImagesComponent },
   { path: 'sensor-data/:id', component: DatasetsSensorDataComponent },
   { path: 'registration', component: AppRegistrationComponent },
+  { path: 'reset-password/:id', component: AppResetPasswordComponent },
+  { path: 'reset-password', component: AppResetPasswordComponent },
   { path: 'about-citas', component: AppAboutCitasComponent },
   { path: 'about-team', component: AppAboutTeamComponent },
   { path: 'about', component: AboutComponent },
@@ -106,7 +112,10 @@ const appRoutes: Routes = [
     AboutComponent,
     DownloadsComponent,
     DownloadSensorDataComponent,
-    DownloadPlantDataComponent
+    DownloadPlantDataComponent,
+    ViewProfileComponent,
+    AppLoginForgotPasswordComponent,
+    AppResetPasswordComponent
   ],
   imports: [
     BrowserModule,

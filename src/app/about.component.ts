@@ -50,7 +50,7 @@ export class AboutComponent {
             res => {
                 data = res.data;
                 this.selectedFarm = data[0]
-                console.log(this.selectedFarm);
+                //console.log(this.selectedFarm);
             }
         )
     }

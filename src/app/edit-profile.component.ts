@@ -39,7 +39,7 @@ export class AppEditProfileComponent {
             this.apiService.getUser(this.key)
             .then(res => {
                 data = res;
-                //console.log(data);
+                ////console.log(data);
                 if(data){
                     this.user = data;
                     this.user.user_type = data.role;
@@ -68,17 +68,19 @@ export class AppEditProfileComponent {
                 this.err = true;
             }
         }
-        if(this.user.user_type == 4 && this.user.mobile_number == ""){
-            this.msg += "<li> Mobile Number empty</li>";
-            this.err = true;
-        }
-        if(this.user.mobile_number.substring(0,3) != "639"){
-            this.msg += "<li> Mobile Number should start with '639'</li>";
-            this.err = true;
-        }
-        if(this.user.mobile_number.length < 12){
-            this.msg += "<li> Mobile Number should have 12 digits</li>";
-            this.err = true;
+        if(this.user.user_type == 4){
+            if(this.user.mobile_number == ""){
+                this.msg += "<li> Mobile Number empty</li>";
+                this.err = true;
+            }
+            if(this.user.mobile_number.substring(0,3) != "639"){
+                this.msg += "<li> Mobile Number should start with '639'</li>";
+                this.err = true;
+            }
+            if(this.user.mobile_number.length < 12){
+                this.msg += "<li> Mobile Number should have 12 digits</li>";
+                this.err = true;
+            }
         }
 
         this.msg += "</ol>"
@@ -91,8 +93,7 @@ export class AppEditProfileComponent {
                         this.user.fullname = data.fullname;
                         this.user.mobile_number = data.mobile_number;
                         this.user.email = data.email;
-                        $('#editUserModal').modal('hide');
-                        this.router.navigate(['/']);
+                        window.location.reload();
                     }
                 });
         }

@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Plant } from './models/plant';
-import { PlantAnalysis } from './models/plant-analysis';
 
 declare let jssor_1_slider_init: any;
 
@@ -12,12 +11,11 @@ declare let jssor_1_slider_init: any;
 
 export class PlantAnalysisPlantInfoComponent implements OnChanges {
     @Input() selectedPlant: Plant = new Plant();
-    @Input() plantAnalysis: PlantAnalysis = new PlantAnalysis();
 
     no_infected: boolean = false;
 
     constructor(){
-        console.log(this.selectedPlant);
+        //console.log(this.selectedPlant);
     }
 
 public getLabel(result: string){
@@ -47,7 +45,8 @@ public getBgColor(result: string){
     ngOnChanges(changes: SimpleChanges){
         if(changes.selectedPlant && changes.selectedPlant.firstChange == false){
             
-            if(
+                this.no_infected = false;
+            if( this.selectedPlant != undefined &&
                 !this.selectedPlant.leaves_infected &&
                 !this.selectedPlant.rhizome_infected &&
                 !this.selectedPlant.rhizosphere_infected &&
@@ -55,7 +54,7 @@ public getBgColor(result: string){
                 !this.selectedPlant.stem_infected ){
                 this.no_infected = true;
             }
-            console.log('plant changed!');
+            //console.log('plant changed!');
 
         }
     }
