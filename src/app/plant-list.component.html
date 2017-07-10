@@ -5,7 +5,12 @@
                             <option value="">All</option>
                             <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
                         </select>
-        <input id="searchPlant" placeholder="Search plant..." />
+        <input (focus)="searchPlants(searchPlant.value)" (keyup)="searchPlants(searchPlant.value)" #searchPlant id="searchPlant" placeholder="Search plant..." />
+        <ul id="searchList">
+            <li *ngFor="let plant of plants">
+                <a (click)="onSelectPlant(plant.plant_id)">{{plant.plant_name}}</a>
+            </li>
+        </ul>
         <map [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" (selectPlant)="onSelectPlant($event)"></map>
     </div>
     <button (click)="downloadPlant()" *ngIf="selectedPlant" class="btn btn-primary btn-block">Download Image Data</button>
