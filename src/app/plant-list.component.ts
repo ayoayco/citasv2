@@ -36,6 +36,7 @@ export class PlantListComponent implements AfterViewInit{
     public onSelectPlant(id: string){
         console.log("Select plant: " + id);
         this.selectPlant.emit(id);
+        this.hideListNow();
     }
 
     public onSelectSite(val){
