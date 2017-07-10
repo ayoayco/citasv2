@@ -14,7 +14,7 @@
                 <a (click)="onSelectPlant(plant.plant_id)">{{plant.plant_name}}</a>
             </li>
         </ul>
-        <map [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" (selectPlant)="onSelectPlant($event)"></map>
+        <map [zoomTo]="zoomTo" [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" (selectPlant)="onSelectPlant($event)"></map>
     </div>
     <button (click)="downloadPlant()" *ngIf="selectedPlant" class="btn btn-primary btn-block">Download Image Data</button>
 </div>

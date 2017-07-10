@@ -15,6 +15,8 @@ import { CitasApiService} from './citas.api.service';
 
 export class MapComponent implements OnChanges{
     
+    @Input() zoomTo: number[];
+
     @Input() clearOverlay:boolean;
     @Input() showHumid: boolean;
     @Input() showPress: boolean;
@@ -342,6 +344,14 @@ export class MapComponent implements OnChanges{
     }
 
     ngOnChanges(changes: SimpleChanges){
+
+        if(changes.zoomTo && changes.zoomTo.firstChange == false){
+            if(this.zoomTo != undefined){
+                let center = new L.LatLng(this.zoomTo[0], this.zoomTo[1]);
+                let zoom = 20;
+                this.mymap.setView(center, zoom);
+            }
+        }
 
         if(changes.clearOverlay && changes.clearOverlay.firstChange == false){
             if(this.clearOverlay){
