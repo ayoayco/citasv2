@@ -1,0 +1,15 @@
+div#plant-list-container {
+    margin-bottom: 14px;
+}
+
+div#plant-list-div {
+    padding-top: 30px;
+    border: 1px solid #ccc;
+    margin-bottom: 14px;
+    background: #ffffff;
+}
+
+input#searchPlant {
+    margin: 15px;
+    padding: 5px;
+}

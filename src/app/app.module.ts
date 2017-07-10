@@ -49,6 +49,8 @@ import { DownloadsComponent } from './downloads.component';
 import { DownloadSensorDataComponent } from './downloads.sensor-data.component';
 import { DownloadPlantDataComponent } from './downloads.plant-data.component';
 
+import { PlantListComponent } from './plant-list.component';
+
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'view-profile', component: ViewProfileComponent },
@@ -115,7 +117,8 @@ const appRoutes: Routes = [
     DownloadPlantDataComponent,
     ViewProfileComponent,
     AppLoginForgotPasswordComponent,
-    AppResetPasswordComponent
+    AppResetPasswordComponent,
+    PlantListComponent
   ],
   imports: [
     BrowserModule,
