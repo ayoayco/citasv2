@@ -30,6 +30,7 @@ export class PlantListComponent implements AfterViewInit{
         var hideList = ($('#searchPlant').val() == "" || $('#searchPlant').val() == undefined);
         if(hideList){
             $('#searchList').hide();
+            $('#xButton').hide();
         }
     }
 
@@ -77,8 +78,10 @@ export class PlantListComponent implements AfterViewInit{
         var hideList = ($('#searchPlant').val() == "" || $('#searchPlant').val() == undefined);
         if(hideList){
             $('#searchList').hide();
+            $('#xButton').hide();
         }else{
             $('#searchList').show();
+            $('#xButton').show();
         }
 
 
@@ -100,5 +103,11 @@ export class PlantListComponent implements AfterViewInit{
             }
         }
 
+    }
+
+    public clearSearchPlant(){
+        $('#searchPlant').val("");
+        $('#xButton').hide();
+        $('#searchList').hide();
     }
 }
