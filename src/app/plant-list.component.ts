@@ -17,8 +17,10 @@ export class PlantListComponent implements AfterViewInit{
     @Input() plants: Plant[] = [];
     @Input() selectedPlant: Plant = new Plant();
     @Input() sites: Site[];
+    zoomTo: number[] = undefined;
     
     @Output() selectPlant = new EventEmitter<{}>();
+    @Output() setZoom = new EventEmitter<{}>();
 
     constructor(
         private sessionService: AppSessionService,
@@ -37,6 +39,11 @@ export class PlantListComponent implements AfterViewInit{
     public onSelectPlant(id: string){
         console.log("Select plant: " + id);
         this.selectPlant.emit(id);
+        let selected: any = $.grep(this.plants, function(e){ return e.plant_id == id });
+        console.log(selected[0]);
+        $('#searchPlant').val(selected[0].plant_name);
+        this.zoomTo = [selected[0].lat, selected[0].lng];
+        console.log(this.zoomTo);
         this.hideListNow();
     }
 
@@ -73,7 +80,6 @@ export class PlantListComponent implements AfterViewInit{
     }
 
     public searchPlants(str: string){
-        console.log(str);
         
         var hideList = ($('#searchPlant').val() == "" || $('#searchPlant').val() == undefined);
         if(hideList){
@@ -92,7 +98,6 @@ export class PlantListComponent implements AfterViewInit{
         ul = $('#searchList');
         li = ul.find('li');
 
-            console.log(li);
         // Loop through all list items, and hide those who don't match the search query
         for (i = 0; i < li.length; i++) {
             a = li[i].getElementsByTagName("a")[0];
