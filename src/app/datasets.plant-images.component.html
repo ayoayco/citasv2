@@ -9,17 +9,7 @@
 
                 <plant-images-gallery class="col col-md-9 col-sm-12 float-left" [selectedPlant]="selectedPlant"></plant-images-gallery>
 
-                <div id="plant-list-container" class="col col-md-3 col-sm-12 float-left">
-                    <div id="plant-list-div">
-                        <label for="sampling_sites">Sampling Site: </label>
-                        <select (change)="onselect($event.target.value)">
-                            <option value="">All</option>
-                            <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
-                        </select>
-                        <map [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" (selectPlant)="selectPlant($event)"></map>
-                    </div>
-                    <button (click)="downloadPlant()" *ngIf="selectedPlant" class="btn btn-primary btn-block">Download Image Data</button>
-                </div>
+                <plant-list (selectPlant)="selectPlant($event)" [sites]="sites" [selectedFarm]="selectedFarm" [plants]="plants" [selectedPlant]="selectedPlant"></plant-list>
             </div>
         </div>
     </div>
