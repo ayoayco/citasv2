@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { AppSessionService } from './app.session.service';
 import { CitasApiService } from './citas.api.service';
 
@@ -12,7 +12,7 @@ import { Site } from './models/site';
     styleUrls: ['./plant-list.component.css']
 })
 
-export class PlantListComponent{
+export class PlantListComponent implements AfterViewInit{
     @Input() selectedFarm: Farm = new Farm();
     @Input() plants: Plant[] = [];
     @Input() selectedPlant: Plant = new Plant();
@@ -24,10 +24,17 @@ export class PlantListComponent{
         private sessionService: AppSessionService,
         private apiService: CitasApiService
         ){
+    }
 
+    ngAfterViewInit(){
+        var hideList = ($('#searchPlant').val() == "" || $('#searchPlant').val() == undefined);
+        if(hideList){
+            $('#searchList').hide();
+        }
     }
 
     public onSelectPlant(id: string){
+        console.log("Select plant: " + id);
         this.selectPlant.emit(id);
     }
 
@@ -57,5 +64,40 @@ export class PlantListComponent{
                 }
             );
         }
+    }
+
+    public hideListNow(){
+        $('#searchList').hide();
+    }
+
+    public searchPlants(str: string){
+        console.log(str);
+        
+        var hideList = ($('#searchPlant').val() == "" || $('#searchPlant').val() == undefined);
+        if(hideList){
+            $('#searchList').hide();
+        }else{
+            $('#searchList').show();
+        }
+
+
+        // Declare variables
+        var input, filter, ul, li, a, i;
+        input = $('#searchPlant');
+        filter = input.val().toUpperCase();
+        ul = $('#searchList');
+        li = ul.find('li');
+
+            console.log(li);
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+
     }
 }
