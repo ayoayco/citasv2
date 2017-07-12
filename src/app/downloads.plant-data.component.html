@@ -31,5 +31,6 @@
         </div>
     </div>
     <p *ngIf="to" class="text-success text-center">Download images of Plants with <strong>{{getLabel(health)}}</strong> health status from <strong>{{from | date:'longDate'}}</strong> to <strong>{{to | date:'longDate'}}</strong>?</p>
+    <p *ngIf="error!=''" class="text-danger text-center">{{this.error}}</p>
     <button *ngIf="to" (click)="downloadPlantData()" class="btn btn-primary btn-block">Download Plant Images</button>
 </div>
