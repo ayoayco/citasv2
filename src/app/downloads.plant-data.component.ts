@@ -59,7 +59,7 @@ export class DownloadPlantDataComponent{
                 }else{
                     this.error = data.err;
                     $('.text-success').hide();
-                    console.log(this.error);
+                    //console.log(this.error);
                 }
             }
         );
