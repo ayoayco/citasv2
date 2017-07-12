@@ -55,6 +55,23 @@ export class CitasApiService {
 
     }
 
+    public getPlantsFilterDownloadLink(key: string, farmID: string, siteID: string, health: string, from: Date, to: Date){
+        $("body").addClass("loading");
+
+        //console.log(from);
+
+        // let fromDate = from.getFullYear()+"-"+("0" + from.getMonth()).slice(-2)+"-"+("0" + from.getDate()).slice(-2);
+        // let toDate = to.getFullYear()+"-"+("0" + to.getMonth()).slice(-2)+"-"+("0" + to.getDate()).slice(-2);
+
+        let url = this.APIURL + "/download/image/filter?key=" + key + "&f="+ farmID+ "&s=" + siteID + "&h="+ health + "&d1=" + from + "&d2=" + to;
+
+        //console.log(url);
+        return this.http.get(url)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleError);
+    }
+
     public getSensorsFilterDownloadLink(key: string, farmID: string, siteID: string, from: Date, to: Date) {
         $("body").addClass("loading");
 
@@ -63,9 +80,9 @@ export class CitasApiService {
         // let fromDate = from.getFullYear()+"-"+("0" + from.getMonth()).slice(-2)+"-"+("0" + from.getDate()).slice(-2);
         // let toDate = to.getFullYear()+"-"+("0" + to.getMonth()).slice(-2)+"-"+("0" + to.getDate()).slice(-2);
 
-        let url = this.APIURL + "/download/sensor/filter?key=" + key + "&f="+ farmID+ "&d=" + siteID + "&d1=" + from + "&d2=" + to;
+        let url = this.APIURL + "/download/sensor/filter?key=" + key + "&f="+ farmID+ "&s=" + siteID + "&d1=" + from + "&d2=" + to;
 
-        console.log(url);
+        //console.log(url);
         return this.http.get(url)
             .toPromise()
             .then(this.extractData)
