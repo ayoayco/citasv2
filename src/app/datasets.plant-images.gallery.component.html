@@ -11,13 +11,19 @@
             </div>
         </div>
         <p>Select a plant marker to the right to view its details and the results of the analysis.</p>
-
+        <div class="row">
+            <div class="col-md-3">
+                <strong>Filters: </strong>
+            </div>
+            <div class="col-md-3"><input type="checkbox" [checked]="showPlants" (change)="togglePlantImages()" /> Plant</div>
+            <div class="col-md-3"><input type="checkbox" [checked]="showActual" (change)="toggleActualImages()" /> Actual</div>
+            <div class="col-md-3"><input type="checkbox" [checked]="showProcessed" (change)="toggleProcessedImages()" /> Processed</div>
+        </div>
         <div *ngIf="viewType=='grid'" id="images-grid">
             <ul>
                 <li *ngFor="let image of plantImages">
-                    <span [style.background-color]="getTypeStyle(image.image_type)" class="imageType">{{getLabel(image.image_type)}}</span>
-                    <img src="http://{{image.image_thumbnail_url}}" />
-                    <!--<img src="./assets/old-bg_header-min.jpg" />-->
+                    <span *ngIf="showMe(image.image_type)" [style.background-color]="getTypeStyle(image.image_type)" class="imageType">{{getLabel(image.image_type)}}</span>
+                    <img *ngIf="showMe(image.image_type)" src="http://{{image.image_thumbnail_url}}" />
                 </li>
             </ul>
             <div class="clear-both"></div>

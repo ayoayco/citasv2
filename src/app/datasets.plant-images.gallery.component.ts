@@ -19,6 +19,9 @@ export class DatasetsPlantImagesGalleryComponent implements OnChanges {
     sensorResult: string;
     plantImages: any;
     viewType: string;
+    showPlants: boolean = true;
+    showProcessed: boolean = true;
+    showActual: boolean = true;
 
     constructor(
         private apiService: CitasApiService,
@@ -41,6 +44,28 @@ export class DatasetsPlantImagesGalleryComponent implements OnChanges {
                     //console.log(this.plantImages);
                 }
             )
+        }
+    }
+
+    public togglePlantImages(){
+        this.showPlants = !this.showPlants;
+    }
+    public toggleActualImages(){
+        this.showActual = !this.showActual;
+    }
+    public toggleProcessedImages(){
+        this.showProcessed = !this.showProcessed;
+    }
+
+    public showMe(type: string){
+        switch(type){
+            case "Generic Plant Image": if(this.showPlants) return true; break;
+            case "Leaf Pre-Analysis Image": if(this.showActual) return true; break;
+            case "PlantScope Pre-Analysis Image": if(this.showActual) return true; break;
+            case "LampAssay Processed Image": if(this.showActual) return true; break;
+            case "Leaf Analysis Image": if(this.showProcessed) return true; break;
+            case "PlantScope Analysis Image": if(this.showProcessed) return true; break;
+            case "LampAssay Analysis Image": if(this.showProcessed) return true; break;
         }
     }
 
