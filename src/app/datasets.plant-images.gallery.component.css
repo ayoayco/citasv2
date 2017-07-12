@@ -7,21 +7,10 @@ div#container {
     min-width: 650px;
 }
 
-div#images-grid ul {
-    margin: 20px;
-    list-style: none;
-}
-
-div#images-grid ul li {
-    display: block;
-    width: 150px;
-    float: left;
-    margin: 0 5px 5px 0;
-}
-
-div#images-grid ul li img {
+div#images-grid div img {
     width: 150px;
     border: 1px solid black;
+    margin: 0 7px 7px 0;
 }
 
 div#images-grid span.imageType {
@@ -33,14 +22,6 @@ div#images-grid span.imageType {
     text-transform: uppercase;
 }
 
-div#images-list ul {
-    list-style: none;
-}
-
-div#images-list ul li {
-    margin-bottom: 10px;
-}
-
 div#images-list span.imageType {
     font-size: small;
     color: white;
@@ -50,7 +31,11 @@ div#images-list span.imageType {
     margin-left: 30px;
 }
 
-div#images-list ul li img {
+div#images-list div {
+    margin-bottom: 10px;
+}
+
+div#images-list div img {
     width: 100px;
     border: 1px solid black;
 }
@@ -65,4 +50,8 @@ div#images-list ul li img {
 
 h3 {
     margin-top: 0;
+}
+
+.row {
+    margin-bottom: 20px;
 }

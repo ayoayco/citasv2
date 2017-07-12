@@ -58,7 +58,6 @@ export class DownloadPlantDataComponent{
                     window.open(data.dl_link, '_blank');
                 }else{
                     this.error = data.err;
-                    $('.text-success').hide();
                     //console.log(this.error);
                 }
             }
