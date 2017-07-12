@@ -1,6 +1,7 @@
 <div id="container">
-    <h3>Download Plant Data</h3>
-    <p>Choose start date and end date for the plant data you want to download. File wil be in a .zip format.</p>
+    <h3>Download Plant Images</h3>
+    <h4>{{selectedFarm.farm_name}}</h4>
+    <p>Choose start date and end date for the plant images you want to download. File wil be in a .zip format.</p>
     <div class="row">
         <div class="col-md-6">
             <label for="from">Start Date</label>
@@ -11,6 +12,24 @@
             <input type="date" name="to" id="to" [(ngModel)]="to" min="{{from | date:'y-MM-dd'}}" />
         </div>
     </div>
-    <p *ngIf="to" class="text-success text-center">Download data from <strong>{{from | date:'mediumDate'}}</strong> to <strong>{{to | date:'mediumDate'}}</strong>?</p>
-    <button *ngIf="to" onclick="$('#noFeatureModal').modal('toggle')" class="btn btn-primary btn-block">Download Plant Data</button>
+    <div *ngIf="to" class="row">
+        <div class="col-md-6">
+            <label>Site</label>
+            <select [(ngModel)]="selectedSiteID">
+                <option [ngValue]="'all'">All</option>
+                <option *ngFor="let site of sites" [ngValue]="site.sampling_site_id">{{site.sampling_site_name}}</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label>Plant Health</label>
+            <select [(ngModel)]="health">
+                <option [ngValue]="'all'">All</option>
+                <option [ngValue]="'infected'">Infected</option>
+                <option [ngValue]="'not_infected'">Healthy</option>
+                <option [ngValue]="'unknown'">Unknown</option>
+            </select>
+        </div>
+    </div>
+    <p *ngIf="to" class="text-success text-center">Download images of Plants with <strong>{{getLabel(health)}}</strong> health status from <strong>{{from | date:'longDate'}}</strong> to <strong>{{to | date:'longDate'}}</strong>?</p>
+    <button *ngIf="to" (click)="downloadPlantData()" class="btn btn-primary btn-block">Download Plant Images</button>
 </div>

@@ -6,7 +6,7 @@
             <h1>Downloads</h1>
             <div class="row">
                 <download-sensor-data [sites]="sites" [selectedFarm]="selectedFarm" class="col col-md-6"></download-sensor-data>
-                <download-plant-data class="col col-md-6"></download-plant-data>
+                <download-plant-data [sites]="sites" [selectedFarm]="selectedFarm" class="col col-md-6"></download-plant-data>
             </div>
         </div>
     </div>
