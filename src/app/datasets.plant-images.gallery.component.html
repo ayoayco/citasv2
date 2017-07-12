@@ -20,22 +20,19 @@
             <div class="col-md-3"><input type="checkbox" [checked]="showProcessed" (change)="toggleProcessedImages()" /> Processed</div>
         </div>
         <div *ngIf="viewType=='grid'" id="images-grid">
-            <ul>
-                <li *ngFor="let image of plantImages">
-                    <span *ngIf="showMe(image.image_type)" [style.background-color]="getTypeStyle(image.image_type)" class="imageType">{{getLabel(image.image_type)}}</span>
-                    <img *ngIf="showMe(image.image_type)" src="http://{{image.image_thumbnail_url}}" />
-                </li>
-            </ul>
+            <div *ngFor="let image of plantImages" class="float-left">
+                <span *ngIf="showMe(image.image_type)" [style.background-color]="getTypeStyle(image.image_type)" class="imageType">{{getLabel(image.image_type)}}</span>
+                <img *ngIf="showMe(image.image_type)" src="http://{{image.image_thumbnail_url}}" />
+            </div>
             <div class="clear-both"></div>
         </div>
         <div *ngIf="viewType=='list'" id="images-list">
-            <ul>
-                <li *ngFor="let image of plantImages">
-                    <img src="http://{{image.image_thumbnail_url}}" />
-                    <span [style.background-color]="getTypeStyle(image.image_type)" class="imageType">{{getLabel(image.image_type)}}</span>
-                    <!--<img src="./assets/old-bg_header-min.jpg" />-->
-                </li>
-            </ul>
+            <div>
+                <div *ngFor="let image of plantImages">
+                    <img *ngIf="showMe(image.image_type)" src="http://{{image.image_thumbnail_url}}" />
+                    <span *ngIf="showMe(image.image_type)" [style.background-color]="getTypeStyle(image.image_type)" class="imageType">{{getLabel(image.image_type)}}</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
