@@ -1,5 +1,6 @@
 <div id="container">
     <h3>Download Sensor Data</h3>
+    <h4>{{selectedFarm.farm_name}}</h4>
     <p>Choose start date and end date for the sensor data you want to download. File wil be in a .csv format.</p>
     <div class="row">
         <div class="col-md-6">
@@ -12,11 +13,11 @@
         </div>
     </div>
     <div class="row">
-        <div *ngIf="to" class="col-md-6">
+        <div *ngIf="to" class="col-md-4">
             <label>Site</label>
-            <select>
-                <option>All</option>
-                <option *ngFor="let site of sites">{{site.sampling_site_name}}</option>
+            <select [(ngModel)]="selectedSiteID">
+                <option selected [ngValue]="'all'">All</option>
+                <option *ngFor="let site of sites" [ngValue]="site.sampling_site_id">{{site.sampling_site_name}}</option>
             </select>
         </div>
     </div>

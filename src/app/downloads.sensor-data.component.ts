@@ -20,10 +20,11 @@ import { Site } from './models/site';
 export class DownloadSensorDataComponent{
     from: Date;
     to: Date;
-    sites: Site[];
-    farms: Farm[];
 
     @Input() selectedFarm: Farm;
+    @Input() sites: Site[];
+
+    selectedSiteID: number;
     
     constructor(
         private activeRoute: ActivatedRoute,
@@ -32,63 +33,24 @@ export class DownloadSensorDataComponent{
         private titleService: Title,
         private apiService: CitasApiService
     ){
-        let loggedIn: boolean = this.sessionService.isLoggedIn();
-        if(!loggedIn){
-            this.router.navigate(['/']);
-        }else{
-            this.titleService.setTitle('Soil Parameter Trends');
-        }
-
-        let data : any;
-
-        let farm_id = undefined;
-        this.activeRoute.params.forEach(
-            (params : Params) => {
-                farm_id = params["id"];
-            }
-        );
-
-        this.apiService.getFarmList(this.sessionService.getLoggedInKey())
-        .then(
-            res => {
-                data = res;
-                this.selectedFarm.farm_name = 'Loading...';
-                if(data.data){
-                    this.farms = data.data;
-
-                    if(farm_id == undefined){
-                        this.selectedFarm = this.farms[0];
-                    }else{
-                        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == farm_id });
-                        this.selectedFarm = selectedArr[0];
-                    }
-
-                    //console.log('selected farm: ' + this.selectedFarm.farm_name);
-
-                    this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .then(
-                        response => {
-                            data = response;
-                            this.sites = data.data;
-                            //console.log('sites!');
-                            //console.log(this.sites);
-                        }
-                    );
-
-                }
-                ////console.log(this.farms);
-            }
-        );
     }
 
     public downloadSensorData(){
         let data: any;
-        this.apiService.getSensorsAllDownloadLink(this.sessionService.getLoggedInKey(), this.from, this.to)
-        .then(
+        // console.log(this.from);
+        // console.log(this.to);
+        // console.log(this.selectedSiteID);
+        this.apiService.getSensorsFilterDownloadLink(
+            this.sessionService.getLoggedInKey(),
+            this.selectedFarm.farm_id.toString(),
+            this.selectedSiteID.toString(),
+            this.from,
+            this.to
+        ).then(
             res => {
                 data = res;
-                //console.log(data);
-                window.open(data.dl_link, '_blank');
+                console.log(data);
+                //window.open(data.dl_link, '_blank');
             }
         );
     }
