@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
 import { Farm } from './models/farm';
+import { Site } from './models/site';
 
 @Component({
     selector: 'downloads',
@@ -19,6 +20,7 @@ export class DownloadsComponent{
     
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
+    sites: Site[];
 
     constructor(
         private activeRoute: ActivatedRoute,
@@ -27,6 +29,7 @@ export class DownloadsComponent{
         private titleService: Title,
         private apiService: CitasApiService
     ){
+
         let loggedIn: boolean = this.sessionService.isLoggedIn();
         if(!loggedIn){
             this.router.navigate(['/']);
@@ -58,6 +61,18 @@ export class DownloadsComponent{
                         this.selectedFarm = selectedArr[0];
                     }
 
+                    //console.log('selected farm: ' + this.selectedFarm.farm_name);
+
+                    this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                    .then(
+                        response => {
+                            data = response;
+                            this.sites = data.data;
+                            //console.log('sites!');
+                            //console.log(this.sites);
+                        }
+                    );
+
                 }
                 ////console.log(this.farms);
             }
@@ -67,5 +82,18 @@ export class DownloadsComponent{
     public selectFarm(id: number){
         let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == id });
         this.selectedFarm = selectedArr[0];
+        let data: any;
+
+        //console.log('selected farm: ' + this.selectedFarm.farm_name);
+
+        this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+        .then(
+            response => {
+                data = response;
+                this.sites = data.data;
+                //console.log('sites!');
+                //console.log(this.sites);
+            }
+        );
     }
 }
