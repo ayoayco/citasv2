@@ -1,0 +1,20 @@
+<div id="sensor-list-container" class="col col-md-3 col-sm-12 float-left">
+    <div id="sensor-list-div">
+        <label for="sampling_sites">Sampling Site: </label>
+        <select (change)="onSelectSite($event.target.value)">
+                            <option value="">All</option>
+                            <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
+                        </select>
+        <input (focus)="searchSensors(searchSensor.value)" (keyup)="searchSensors(searchSensor.value)" #searchSensor id="searchSensor" placeholder="Search plant..." />
+        <button (click)="clearSearchSensor()" id="xButton" aria-label="Close" class="close" type="button">
+            <span>×</span>
+        </button>
+        <ul id="searchList">
+            <li *ngFor="let sensor of sensors">
+                <a (click)="onSelectSensor(sensor.sensor_name)">{{sensor.sensor_name}}</a>
+            </li>
+        </ul>
+        <map [zoomTo]="zoomTo" [zoomControl]="true" [selectedFarm]="selectedFarm" [sensors]="sensors" (selectSensor)="onSelectSensor($event)"></map>
+    </div>
+    <button (click)="downloadSensor()" *ngIf="selectedSensorName" class="btn btn-primary btn-block">Download Sensor Data</button>
+</div>

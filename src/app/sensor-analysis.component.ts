@@ -144,39 +144,4 @@ export class AppSensorAnalysisComponent {
             }
         )
     }
-
-    public onselect(val){
-        this.sensors = [];
-        this.selectedSensorReadings = undefined;
-        this.selectedSensorName = "";
-        this.selectSite(val);
-    }
-
-    public selectSite(siteID: number){
-        let data: any;
-        //console.log('selected site: ' + siteID)
-        this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), siteID.toString())
-        .then(
-            res => {
-                data = res;
-                this.sensors = data.data;
-                //console.log("sensor count: "+this.sensors.length);
-                //console.log(this.sensors);
-            }
-        );
-    }
-
-    public downloadSensor(){
-        if(this.selectedSensorName != ""){
-            let data: any;
-            this.apiService.getSensorCSVDownloadLink(this.sessionService.getLoggedInKey(), this.selectedSensorName)
-            .then(
-                res => {
-                    data = res;
-                    //console.log(data);
-                    window.open(data.dl_link, '_blank');
-                }
-            )
-        }
-    }
 }

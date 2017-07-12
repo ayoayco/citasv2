@@ -1,0 +1,20 @@
+<div id="plant-list-container" class="col col-md-3 col-sm-12 float-left">
+    <div id="plant-list-div">
+        <label for="sampling_sites">Sampling Site: </label>
+        <select (change)="onSelectSite($event.target.value)">
+                            <option value="">All</option>
+                            <option *ngFor="let site of sites" value="{{site.sampling_site_id}}">{{site.sampling_site_id}} : {{site.sampling_site_name}}</option>
+                        </select>
+        <input (focus)="searchPlants(searchPlant.value)" (keyup)="searchPlants(searchPlant.value)" #searchPlant id="searchPlant" placeholder="Search plant..." />
+        <button (click)="clearSearchPlant()" id="xButton" aria-label="Close" class="close" type="button">
+            <span>×</span>
+        </button>
+        <ul id="searchList">
+            <li *ngFor="let plant of plants">
+                <a (click)="onSelectPlant(plant.plant_id)">{{plant.plant_name}}</a>
+            </li>
+        </ul>
+        <map [zoomTo]="zoomTo" [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" (selectPlant)="onSelectPlant($event)"></map>
+    </div>
+    <button (click)="downloadPlant()" *ngIf="selectedPlant" class="btn btn-primary btn-block">Download Image Data</button>
+</div>

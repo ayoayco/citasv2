@@ -133,35 +133,4 @@ export class AppPlantAnalysisComponent {
         )
     }
 
-    public onselect(val){
-        this.plants = [];
-        this.selectedPlant = undefined;
-        this.selectSite(val);
-    }
-
-    public selectSite(siteID: number){
-        let data: any;
-        //console.log('selected site: ' + siteID)
-        this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), siteID.toString())
-        .then(
-            res => {
-                data = res;
-                this.plants = data.data;
-            }
-        );
-    }
-
-    public downloadPlant(){
-        if(this.selectedPlant.plant_id != ""){
-            let data: any;
-            this.apiService.getPlantImagesDownloadLink(this.sessionService.getLoggedInKey(), this.selectedPlant.plant_id)
-            .then(
-                res => {
-                    data = res;
-                    window.open(data.dl_link, '_blank');
-                    //console.log(data);
-                }
-            );
-        }
-    }
 }
