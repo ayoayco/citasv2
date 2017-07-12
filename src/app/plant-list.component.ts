@@ -37,13 +37,13 @@ export class PlantListComponent implements AfterViewInit{
     }
 
     public onSelectPlant(id: string){
-        console.log("Select plant: " + id);
+        //console.log("Select plant: " + id);
         this.selectPlant.emit(id);
         let selected: any = $.grep(this.plants, function(e){ return e.plant_id == id });
-        console.log(selected[0]);
+        //console.log(selected[0]);
         $('#searchPlant').val(selected[0].plant_name);
         this.zoomTo = [selected[0].lat, selected[0].lng];
-        console.log(this.zoomTo);
+        //console.log(this.zoomTo);
         this.hideListNow();
     }
 
