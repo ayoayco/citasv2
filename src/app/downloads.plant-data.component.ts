@@ -19,6 +19,7 @@ export class DownloadPlantDataComponent{
     from: Date;
     to: Date;
     health: string = 'all';
+    error: string = "";
 
     @Input() selectedFarm: Farm;
     @Input() sites: Site[];
@@ -52,8 +53,14 @@ export class DownloadPlantDataComponent{
         ).then(
             res => {
                 data = res;
-                console.log(data);
-                //window.open(data.dl_link, '_blank');
+                // console.log(data);
+                if(data.Success){
+                    window.open(data.dl_link, '_blank');
+                }else{
+                    this.error = data.err;
+                    $('.text-success').hide();
+                    console.log(this.error);
+                }
             }
         );
     }
