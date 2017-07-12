@@ -11,6 +11,15 @@
             <input type="date" name="to" id="to" [(ngModel)]="to" min="{{from | date:'y-MM-dd'}}" />
         </div>
     </div>
+    <div class="row">
+        <div *ngIf="to" class="col-md-6">
+            <label>Site</label>
+            <select>
+                <option>All</option>
+                <option *ngFor="let site of sites">{{site.sampling_site_name}}</option>
+            </select>
+        </div>
+    </div>
     <p *ngIf="to" class="text-success text-center">Download data from <strong>{{from | date:'mediumDate'}}</strong> to <strong>{{to | date:'mediumDate'}}</strong>?</p>
     <button *ngIf="to" (click)="downloadSensorData()" class="btn btn-primary btn-block">Download Sensor Data</button>
 </div>
