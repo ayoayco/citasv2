@@ -35,4 +35,36 @@ export class AppAboutTrainingsComponent {
             return false;
         }
     }
+    
+
+    public clearSearchResearch(){
+        $('#searchResearch').val("");
+    }
+
+    public search(str: string){
+
+        var hideList = ($('#searchResearch').val() == "" || $('#searchResearch').val() == undefined);
+        if(hideList){
+            $('#xButton').hide();
+        }else{
+            $('#xButton').show();
+        }
+        // Declare variables
+        var input, filter, ul, li, a, i;
+        input = $('#searchResearch');
+        filter = input.val().toUpperCase();
+        ul = $('#searchList');
+        li = ul.find('li');
+
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("h4")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+
+    }
 }
