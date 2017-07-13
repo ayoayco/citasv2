@@ -7,6 +7,10 @@ div.container {
     border: 1px solid #ccc;
     padding: 20px;
     margin: 0 10px 20px;
+    min-height: 210px;
+    -moz-box-shadow: 0px 2px 5px 3px #ccc;
+    -webkit-box-shadow: 0px 2px 5px 3px #ccc;
+    box-shadow: 0px 2px 5px 3px #ccc;
 }
 
 .date-div {
@@ -14,7 +18,7 @@ div.container {
 }
 
 h2 {
-    margin-top: -10px;
+    margin-top: -5px;
 }
 
 h1,
