@@ -5,13 +5,13 @@
         <div *ngFor="let event of events " class="col col-md-4">
             <div class="row event-div">
                 <div class="col col-md-4 date-div text-center">
-                    <h1>{{event.date_from | date:'MMM'}}</h1>
-                    <h2 *ngIf="!isOneDay(event)">{{event.date_from | date:'dd'}} - {{event.date_to | date:'dd'}}</h2>
-                    <h2 *ngIf="isOneDay(event)">{{event.date_from | date:'dd'}}</h2>
-                    <h2>{{event.date_from | date:'y'}}</h2>
+                    <h2>{{event.date_from | date:'MMM'}}</h2>
+                    <h3 *ngIf="!isOneDay(event)">{{event.date_from | date:'dd'}} - {{event.date_to | date:'dd'}}</h3>
+                    <h3 *ngIf="isOneDay(event)">{{event.date_from | date:'dd'}}</h3>
+                    <h3>{{event.date_from | date:'y'}}</h3>
                 </div>
                 <div class="col col-md-8">
-                    <h3>{{event.event_name}}</h3>
+                    <h3 class="title">{{event.event_name}}</h3>
                     <p>
                         <strong>Venue:</strong> {{event.event_venue}}
                     </p>

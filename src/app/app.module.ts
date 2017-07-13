@@ -19,6 +19,7 @@ import { AppAboutCitasComponent } from './about-citas.component';
 import { AppAboutTeamComponent } from './about-team.component';
 import { AppAboutEventsComponent } from './about-events.component';
 import { AppAboutResearchComponent}  from './about-research.component';
+import { AppAboutTrainingsComponent } from './about-trainings.component';
 import { AppContactUsComponent } from './contact-us.component';
 import { AppEditProfileComponent } from './edit-profile.component';
 import { ViewProfileComponent } from './view-profile.component';
@@ -77,6 +78,7 @@ const appRoutes: Routes = [
   { path: 'about-team', component: AppAboutTeamComponent },
   { path: 'about-events', component: AppAboutEventsComponent },
   { path: 'about-research', component: AppAboutResearchComponent },
+  { path: 'about-trainings', component: AppAboutTrainingsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'about/:id', component: AboutComponent },
   { path: 'contact-us', component: AppContactUsComponent },
@@ -126,7 +128,8 @@ const appRoutes: Routes = [
     PlantListComponent,
     SensorListComponent,
     AppAboutEventsComponent,
-    AppAboutResearchComponent
+    AppAboutResearchComponent,
+    AppAboutTrainingsComponent
   ],
   imports: [
     BrowserModule,
