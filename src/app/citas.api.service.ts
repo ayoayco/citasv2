@@ -15,6 +15,17 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public getResearch(){
+        $("body").addClass("loading");
+        let url = this.APIURL + "/research";
+
+        ////console.log(url);
+        return this.http.get(url)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleError);
+    }
+
     public getEvents(){
         $("body").addClass("loading");
         let url = this.APIURL + "/events";
