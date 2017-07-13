@@ -1,6 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
-import { TruncatePipe } from './pipes/truncate';
 
 @Component({
     selector: 'app-about-research',

@@ -54,8 +54,6 @@ import { DownloadPlantDataComponent } from './downloads.plant-data.component';
 import { PlantListComponent } from './plant-list.component';
 import { SensorListComponent } from './sensor-list.component';
 
-import { TruncatePipe } from './pipes/truncate';
-
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'view-profile', component: ViewProfileComponent },
@@ -128,8 +126,7 @@ const appRoutes: Routes = [
     PlantListComponent,
     SensorListComponent,
     AppAboutEventsComponent,
-    AppAboutResearchComponent,
-    TruncatePipe
+    AppAboutResearchComponent
   ],
   imports: [
     BrowserModule,
