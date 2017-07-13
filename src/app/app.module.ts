@@ -18,6 +18,7 @@ import { AppRegistrationComponent } from './registration.component';
 import { AppAboutCitasComponent } from './about-citas.component';
 import { AppAboutTeamComponent } from './about-team.component';
 import { AppAboutEventsComponent } from './about-events.component';
+import { AppAboutResearchComponent}  from './about-research.component';
 import { AppContactUsComponent } from './contact-us.component';
 import { AppEditProfileComponent } from './edit-profile.component';
 import { ViewProfileComponent } from './view-profile.component';
@@ -53,6 +54,8 @@ import { DownloadPlantDataComponent } from './downloads.plant-data.component';
 import { PlantListComponent } from './plant-list.component';
 import { SensorListComponent } from './sensor-list.component';
 
+import { TruncatePipe } from './pipes/truncate';
+
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'view-profile', component: ViewProfileComponent },
@@ -75,6 +78,7 @@ const appRoutes: Routes = [
   { path: 'about-citas', component: AppAboutCitasComponent },
   { path: 'about-team', component: AppAboutTeamComponent },
   { path: 'about-events', component: AppAboutEventsComponent },
+  { path: 'about-research', component: AppAboutResearchComponent },
   { path: 'about', component: AboutComponent },
   { path: 'about/:id', component: AboutComponent },
   { path: 'contact-us', component: AppContactUsComponent },
@@ -123,7 +127,9 @@ const appRoutes: Routes = [
     AppResetPasswordComponent,
     PlantListComponent,
     SensorListComponent,
-    AppAboutEventsComponent
+    AppAboutEventsComponent,
+    AppAboutResearchComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
