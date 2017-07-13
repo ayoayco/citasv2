@@ -17,6 +17,7 @@ import { AppPageNotFoundComponent } from './notfound.component';
 import { AppRegistrationComponent } from './registration.component';
 import { AppAboutCitasComponent } from './about-citas.component';
 import { AppAboutTeamComponent } from './about-team.component';
+import { AppAboutEventsComponent } from './about-events.component';
 import { AppContactUsComponent } from './contact-us.component';
 import { AppEditProfileComponent } from './edit-profile.component';
 import { ViewProfileComponent } from './view-profile.component';
@@ -73,6 +74,7 @@ const appRoutes: Routes = [
   { path: 'reset-password', component: AppResetPasswordComponent },
   { path: 'about-citas', component: AppAboutCitasComponent },
   { path: 'about-team', component: AppAboutTeamComponent },
+  { path: 'about-events', component: AppAboutEventsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'about/:id', component: AboutComponent },
   { path: 'contact-us', component: AppContactUsComponent },
@@ -120,7 +122,8 @@ const appRoutes: Routes = [
     AppLoginForgotPasswordComponent,
     AppResetPasswordComponent,
     PlantListComponent,
-    SensorListComponent
+    SensorListComponent,
+    AppAboutEventsComponent
   ],
   imports: [
     BrowserModule,

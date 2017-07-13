@@ -15,7 +15,16 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public getEvents(){
+        $("body").addClass("loading");
+        let url = this.APIURL + "/events";
 
+        ////console.log(url);
+        return this.http.get(url)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleError);
+    }
 
     public resetPassword(key: string, password: string) {
 
