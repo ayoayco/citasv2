@@ -1,0 +1,24 @@
+<app-nav></app-nav>
+<div id="main" class="container">
+    <div class="row" id="wrap">
+        <h1 class="page-header text-center">Trainings</h1>
+        <div *ngFor="let training of trainings " class="col col-md-4">
+            <div class="row training-div">
+                <div class="col col-md-4 date-div text-center">
+                    <h2>{{training.date_from | date:'MMM'}}</h2>
+                    <h3 *ngIf="!isOneDay(training)">{{training.date_from | date:'dd'}} - {{training.date_to | date:'dd'}}</h3>
+                    <h3 *ngIf="isOneDay(training)">{{training.date_from | date:'dd'}}</h3>
+                    <h3>{{training.date_from | date:'y'}}</h3>
+                </div>
+                <div class="col col-md-8">
+                    <h3 class="title">{{training.training_name}}</h3>
+                    <p>
+                        <strong>Venue:</strong> {{training.training_venue}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
