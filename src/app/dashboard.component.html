@@ -5,15 +5,15 @@
         <div class="container">
             <h1>{{selectedFarm.farm_name}} Overview</h1>
             <div class="row">
-                <div id="info-div" class="float-left col col-md-4 col-sm-12">
+                <div id="info-div" class="col col-md-4 col-sm-12">
                     <plants-info [selectedFarm]="selectedFarm"></plants-info>
                     <sensors-info [sensors]="sensors"></sensors-info>
                 </div>
-                <farm-info class="float-left col col-md-5 col-sm-12" [plants]="plants" [sensors]="sensors" [selectedFarm]="selectedFarm"></farm-info>
-                <farms-list class="float-left col col-md-3 col-sm-12" *ngIf="user.user_type == 5" [farms]="farms" (selectFarm)="selectFarm($event)"></farms-list>
+                <farm-info class="col col-md-5 col-sm-12" [plants]="plants" [sensors]="sensors" [selectedFarm]="selectedFarm"></farm-info>
+                <farms-list class="col col-md-3 col-sm-12" *ngIf="user.user_type == 5" [farms]="farms" (selectFarm)="selectFarm($event)"></farms-list>
             </div>
             <div class="row">
-                <plant-health class=" col col-md-9 col-sm-12 float-left"></plant-health>
+                <plant-health class=" col col-md-9 col-sm-12 "></plant-health>
             </div>
         </div>
     </div>
