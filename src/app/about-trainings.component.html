@@ -8,10 +8,10 @@
                 <h4>{{training.training_name}}</h4>
                 <p>
                     <strong>Venue: </strong>{{training.training_venue}}<br />
-                    <strong>Delegates: </strong><span *ngFor="let delegate of training.participants">{{delegate}}, </span><br />
                     <strong>Duration: </strong>{{training.date_from | date: "MMMM"}}
                     <span *ngIf="!isOneDay(training)">{{training.date_from | date:'dd'}} - {{training.date_to | date:'dd'}},</span>
                     <span *ngIf="isOneDay(training)">{{training.date_from | date:'dd'}},</span> {{training.date_from | date:'y'}}<br />
+                    <strong>Delegates: </strong><span *ngFor="let delegate of training.participants">{{delegate}}, </span><br />
                 </p>
             </li>
         </ol>
