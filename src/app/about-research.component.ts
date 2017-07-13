@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { CitasApiService } from './citas.api.service';
     ]
 })
 
-export class AppAboutResearchComponent implements AfterViewInit {
+export class AppAboutResearchComponent{
     research: any[];
     constructor(private apiService: CitasApiService){
         let data: any;
@@ -26,18 +26,14 @@ export class AppAboutResearchComponent implements AfterViewInit {
             }
         );
     }
-
-    ngAfterViewInit(){
-        var hideList = ($('#searchResearch').val() == "" || $('#searchResearch').val() == undefined);
-        if(hideList){
-            $('#xButton').hide();
-        }else{
-            $('#xButton').show();
+    
+    public isOneDay(event){
+        if(event.date_from == event.date_to){
+            return true;
         }
-    }
-
-    public clearSearchResearch(){
-        $('#searchResearch').val("");
+        else{
+            return false;
+        }
     }
 
     public search(str: string){

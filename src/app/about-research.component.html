@@ -9,6 +9,10 @@
                 <p>
                     <strong>Conference: </strong>{{item.research_conference}}<br />
                     <strong>Venue: </strong>{{item.research_venue}}<br />
+                    <strong>Delegates: </strong><span *ngFor="let delegate of item.delegates">{{delegate}}, </span><br />
+                    <strong>Duration: </strong>{{item.date_from | date: "MMMM"}}
+                    <span *ngIf="!isOneDay(item)">{{item.date_from | date:'dd'}} - {{item.date_to | date:'dd'}},</span>
+                    <span *ngIf="isOneDay(item)">{{item.date_from | date:'dd'}},</span> {{item.date_from | date:'y'}}<br />
                 </p>
             </li>
         </ol>

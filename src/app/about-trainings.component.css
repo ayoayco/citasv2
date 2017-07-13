@@ -2,28 +2,64 @@ div.container {
     padding: 90px 0 30px;
 }
 
-.training-div {
-    /* width: 350px; */
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin: 0 10px 20px;
-    min-height: 210px;
-    -moz-box-shadow: 0px 2px 5px 3px #ccc;
-    -webkit-box-shadow: 0px 2px 5px 3px #ccc;
-    box-shadow: 0px 2px 5px 3px #ccc;
-}
-
-.date-div {
-    height: 100%;
-}
-
-h3:not(.title) {
-    margin-top: -5px;
-}
-
 h1,
 h2,
 h3,
 h4 {
     font-weight: bold;
+}
+
+input#searchResearch {
+    margin: 15px;
+    padding: 5px;
+    width: 220px;
+}
+
+ol#searchList li {
+    margin-bottom: 10px;
+    padding: 10px 30px;
+}
+
+#searchList {
+    /* Remove default list styling */
+    padding: 10px;
+    margin: 0 0 10px;
+}
+
+#searchList li a {
+    text-align: left;
+    border: 1px solid #ddd;
+    /* Add a border to all links */
+    margin-top: -1px;
+    /* Prevent double borders */
+    background-color: #f6f6f6;
+    /* Grey background color */
+    padding: 12px;
+    /* Add some padding */
+    text-decoration: none;
+    /* Remove default text underline */
+    font-size: 18px;
+    /* Increase the font-size */
+    color: black;
+    /* Add a black text color */
+    display: block;
+    /* Make it into a block element to fill the whole list */
+    cursor: pointer;
+}
+
+#searchList li a.header {
+    background-color: #e2e2e2;
+    /* Add a darker background color for headers */
+    cursor: default;
+    /* Change cursor style */
+}
+
+#searchList li a:hover:not(.header) {
+    background-color: #eee;
+    /* Add a hover effect to all links, except for headers */
+}
+
+#wrap {
+    width: 800px;
+    margin: 0 auto;
 }
