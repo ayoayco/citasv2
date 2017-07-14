@@ -35,38 +35,44 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Plant Analysis</h4>
+                <h4 class="modal-title">{{this.selectedPlant.plant_name}}</h4>
             </div>
             <div class="modal-body">
-
-                <table id="plantAnalysis-table">
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th>Actual</th>
-                        <th>Predicted</th>
-                    </tr>
-                    <tr>
-                        <td>Sensor:</td>
-                        <td>{{plantAnalysis.sensor_actual | analysis}}</td>
-                        <td>{{plantAnalysis.sensor_analysis | analysis}}</td>
-                    </tr>
-                    <tr>
-                        <td>Leaf:</td>
-                        <td>{{plantAnalysis.leaf_actual | analysis}}</td>
-                        <td>{{plantAnalysis.leaf_analysis | analysis}}</td>
-                    </tr>
-                    <tr>
-                        <td>PlantScope:</td>
-                        <td>{{plantAnalysis.plantscope_actual | analysis}}</td>
-                        <td>{{plantAnalysis.plantscope_analysis | analysis}}</td>
-                    </tr>
-                    <tr>
-                        <td>Llamp Assay:</td>
-                        <td>{{plantAnalysis.lampassay_actual | analysis}}</td>
-                        <td>{{plantAnalysis.lampassay_analysis | analysis}}</td>
-                    </tr>
-                </table>
-
+                <div class="row">
+                    <div class="col-md-6">
+                        <img *ngIf="this.selectedPlant.images.length > 0" src="http://{{this.selectedPlant.images[0].image_thumbnail_url}}" width="250px" alt="Plant Image" />
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="text-center">Analysis: <span [style.color]="getBgColor(plantAnalysis.total_analysis)">{{plantAnalysis.total_analysis | analysis}}</span></h2>
+                        <table id="plantAnalysis-table">
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th class="text-center">Actual</th>
+                                <th class="text-center">Predicted</th>
+                            </tr>
+                            <tr>
+                                <td class="text-right">Sensor:</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.sensor_actual)">{{plantAnalysis.sensor_actual | analysis}}</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.sensor_analysis)">{{plantAnalysis.sensor_analysis | analysis}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">Leaf:</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.leaf_actual)">{{plantAnalysis.leaf_actual | analysis}}</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.leaf_analysis)">{{plantAnalysis.leaf_analysis | analysis}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">PlantScope:</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.plantscope_actual)">{{plantAnalysis.plantscope_actual | analysis}}</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.plantscope_analysis)">{{plantAnalysis.plantscope_analysis | analysis}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">Llamp Assay:</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.lampassay_actual)">{{plantAnalysis.lampassay_actual | analysis}}</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.lampassay_analysis)">{{plantAnalysis.lampassay_analysis | analysis}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
