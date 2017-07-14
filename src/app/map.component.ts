@@ -380,6 +380,10 @@ export class MapComponent implements OnChanges{
             }
         }
 
+        if(changes.showSamplings && changes.showSamplings.firstChange == false){
+            console.log("show samplings: " + this.showSamplings);
+        }
+
         if(changes.showSensors && changes.showSensors.firstChange == false ){
             if(this.showSensors){
                 this.plotSensors();

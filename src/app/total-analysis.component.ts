@@ -56,7 +56,7 @@ export class AppTotalAnalysisComponent {
         this.plantAnalysis = new PlantAnalysis();
 
         this.showPlants = true;
-        this.showSamplings = true;
+        this.showSamplings = false;
         this.showSensors = true;
         this.showSites = true;
 
@@ -257,6 +257,9 @@ export class AppTotalAnalysisComponent {
 
     public toggleSites(){
         this.showSites = !this.showSites;
+        if(this.showSamplings && this.showSites){
+            this.showSamplings = !this.showSamplings;
+        }
     }
 
     public togglePlants(){
@@ -269,6 +272,9 @@ export class AppTotalAnalysisComponent {
 
     public toggleSamplings(){
         this.showSamplings = !this.showSamplings;
+        if(this.showSamplings && this.showSites){
+            this.showSites = !this.showSites;
+        }
     }
 
     public togglePlantAnalysis(){
@@ -298,7 +304,7 @@ export class AppTotalAnalysisComponent {
             return "#888888";
         }
     }
-    
+
     public selectPlant(plantID: string){
         //console.log('Plant '+ plantID + ' selected!');
         let data: any;
