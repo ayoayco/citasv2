@@ -10,10 +10,10 @@
             <div class="row" id="hidable" class="hideMe">
                 <form class="col-md-6" id="menu-options">
                     <h5>Layers</h5>
-                    <input (change)="toggleSites()" type="checkbox" id="toggleSites" name="toggleSites" checked> <label for="toggleSites">Sampling Sites</label><br />
-                    <input (change)="toggleSensors()" type="checkbox" id="toggleSensors" name="toggleSensors" checked> <label for="toggleSensors">Soil Sensors</label><br />
-                    <input (change)="togglePlants()" type="checkbox" id="togglePlants" name="togglePlants" checked> <label for="togglePlants">Plant Locations</label><br />
-                    <input (change)="toggleSamplings()" type="checkbox" id="toggleSamplings" name="toggleSamplings" disabled> <label for="toggleSamplings">Soil Characteristics</label>
+                    <input (change)="toggleSites()" [checked]="showSites" type="checkbox" id="toggleSites" name="toggleSites"> <label for="toggleSites">Sampling Sites</label><br />
+                    <input (change)="toggleSensors()" [checked]="showSensors" type="checkbox" id="toggleSensors" name="toggleSensors" checked> <label for="toggleSensors">Soil Sensors</label><br />
+                    <input (change)="togglePlants()" [checked]="showPlants" type="checkbox" id="togglePlants" name="togglePlants" checked> <label for="togglePlants">Plant Locations</label><br />
+                    <input (change)="toggleSamplings()" [checked]="showSamplings" type="checkbox" id="toggleSamplings" name="toggleSamplings"> <label for="toggleSamplings">Soil Characteristics</label>
                 </form>
                 <form class="col-md-6" id="weather-options">
                     <h5>Weather Data</h5>
