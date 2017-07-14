@@ -23,6 +23,7 @@ import { PlantAnalysis } from './models/plant-analysis';
 
 export class AppTotalAnalysisComponent {
     
+    zoomTo: number[] = undefined;
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
     sensors: Sensor[] = [];
@@ -272,7 +273,7 @@ export class AppTotalAnalysisComponent {
                 res => {
                     data = res.data;
                     this.plantAnalysis = data;
-                    //console.log(this.plantAnalysis);
+                    console.log(this.plantAnalysis);
                     $('#plantAnalysisModal').modal('toggle');
                 }
             )
@@ -287,12 +288,17 @@ export class AppTotalAnalysisComponent {
         .then(
             res => {
                 data = res;
-                //console.log(data);
+                console.log(data.data);
                 this.selectedPlant = data.data;
                 this.togglePlantAnalysis();
                 ////console.log(this.selectedPlant);
             }
-        )
+        );
+
+        let selected: any = $.grep(this.plants, function(e){ return e.plant_id == plantID });
+        //console.log(selected[0]);
+        $('#searchPlant').val(selected[0].plant_name);
+        this.zoomTo = [selected[0].lat, selected[0].lng];
     }
 
 }
