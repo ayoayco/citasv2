@@ -15,6 +15,17 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public getSamplingsGeoJSON(){
+        $("body").addClass("loading");
+        let url = "http://d3rjwxvgw19cvv.cloudfront.net/sanjose_soilchar.geojson";
+
+        ////console.log(url);
+        return this.http.get(url)
+            .toPromise()
+            .then(this.extractData)
+            .catch(this.handleError);
+    }
+
     public getTrainings(){
         $("body").addClass("loading");
         let url = this.APIURL + "/trainings";

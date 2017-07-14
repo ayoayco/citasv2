@@ -1,7 +1,7 @@
 import { Component, NgZone, Input, Output, OnChanges, AfterViewInit, EventEmitter, SimpleChanges } from '@angular/core';
 import { Farm } from './models/farm';
 import { AppSessionService } from './app.session.service';
-import { CitasApiService} from './citas.api.service';
+import { CitasApiService } from './citas.api.service';
 
 @Component({
     selector: 'map',
@@ -13,11 +13,11 @@ import { CitasApiService} from './citas.api.service';
     ]
 })
 
-export class MapComponent implements OnChanges{
-    
+export class MapComponent implements OnChanges {
+
     @Input() zoomTo: number[];
 
-    @Input() clearOverlay:boolean;
+    @Input() clearOverlay: boolean;
     @Input() showHumid: boolean;
     @Input() showPress: boolean;
     @Input() showTemp: boolean;
@@ -40,8 +40,8 @@ export class MapComponent implements OnChanges{
 
     @Input() resize: number;
 
-    @Output() selectPlant = new EventEmitter<{}>();
-    @Output() selectSensor = new EventEmitter<{}>();
+    @Output() selectPlant = new EventEmitter < {} > ();
+    @Output() selectSensor = new EventEmitter < {} > ();
 
     mymap: L.Map;
     farmLayer: L.LayerGroup;
@@ -49,6 +49,7 @@ export class MapComponent implements OnChanges{
     plantsLayer: L.LayerGroup;
     sensorsLayer: L.LayerGroup;
     weatherLayer: L.LayerGroup;
+    samplingsLayer: L.LayerGroup;
 
     plantIcon: any;
     sensorIcon: any;
@@ -65,38 +66,38 @@ export class MapComponent implements OnChanges{
         private apiService: CitasApiService,
         private sessionService: AppSessionService,
         private ngZone: NgZone
-    ){
+    ) {
         this.farmLayer = L.layerGroup([]);
         this.sitesLayer = L.layerGroup([]);
         this.plantsLayer = L.layerGroup([]);
         this.sensorsLayer = L.layerGroup([]);
         this.weatherLayer = L.layerGroup([]);
-        
+        this.samplingsLayer = L.layerGroup([]);
+
 
         this.plantIcon = L.icon({
             iconUrl: './assets/images/plant.healthy.png',
 
-            iconSize:     [25, 25] // size of the icon
-            // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-            // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            iconSize: [25, 25] // size of the icon
+                // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
         });
 
         this.sensorIcon = L.icon({
             iconUrl: './assets/images/sensor.png',
 
-            iconSize:     [25, 25] // size of the icon
-            // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-            // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            iconSize: [25, 25] // size of the icon
+                // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
         });
 
-        window.onresize = (e) =>
-        {
-            if(this.fullMap){
+        window.onresize = (e) => {
+            if (this.fullMap) {
                 //ngZone.run will help to run change detection
                 this.ngZone.run(() => {
                     var ht = $('map').parent().height();
                     //console.log('Full Map! Height of map should be: '+ht);
-                    $('div#map-div').css('height', ht+'px');
+                    $('div#map-div').css('height', ht + 'px');
                     this.mymap.invalidateSize();
                 });
             }
@@ -104,7 +105,7 @@ export class MapComponent implements OnChanges{
 
     }
 
-    ngAfterViewInit(){
+    ngAfterViewInit() {
 
         var dragging = true;
         var doubleClickZoom = true;
@@ -112,16 +113,16 @@ export class MapComponent implements OnChanges{
         var trackResize = true;
         var scrollWheelZoom = true;
 
-        if(!this.fullMap){
-            $('div#map-div').css('height', this.height+'px');
+        if (!this.fullMap) {
+            $('div#map-div').css('height', this.height + 'px');
             //console.log('Not full! Height of map should be: '+this.height);
-        }else{
+        } else {
             var ht = $('map').parent().height();
             //console.log('Full Map! Height of map should be: '+ht);
-            $('div#map-div').css('height', ht+'px');
+            $('div#map-div').css('height', ht + 'px');
         }
 
-        if(this.disableInteraction){
+        if (this.disableInteraction) {
             var dragging = false;
             var doubleClickZoom = false;
             var boxZoom = false;
@@ -145,97 +146,110 @@ export class MapComponent implements OnChanges{
         L.control.scale().addTo(this.mymap);
 
         // base map
-        let googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+        let googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
             maxZoom: 20,
-            subdomains:['mt0','mt1','mt2','mt3']
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         }).addTo(this.mymap);
 
     }
 
-    private plotFarm(){
+    private plotFarm() {
         //console.log("Map Farm: " + this.selectedFarm.farm_name);
         let data: any;
 
         //get farm details
         this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-        .then(
-            res => {
-                data = res.data[0];
-                if(data){
-                    // to do: clear previous layer
-                    this.farmLayer.clearLayers();
-                    let center = new L.LatLng(data.center[0], data.center[1]);
-                    let zoom = 0;
-                    switch(data.farm_size){
-                        case "large": zoom = 14 ; break;
-                        case "small": zoom = 16 ; break;
-                        default: zoom = 14; break;
+            .then(
+                res => {
+                    data = res.data[0];
+                    if (data) {
+                        // to do: clear previous layer
+                        this.farmLayer.clearLayers();
+                        let center = new L.LatLng(data.center[0], data.center[1]);
+                        let zoom = 0;
+                        switch (data.farm_size) {
+                            case "large":
+                                zoom = 14;
+                                break;
+                            case "small":
+                                zoom = 16;
+                                break;
+                            default:
+                                zoom = 14;
+                                break;
+                        }
+                        if (this.fullMap) {
+                            zoom += 1;
+                        }
+                        this.mymap.setView(center, zoom);
+                        let polygon = L.polygon(data.geometry, { color: 'black', fillOpacity: 0 });
+                        this.farmLayer.addLayer(polygon);
+                        this.farmLayer.addTo(this.mymap);
                     }
-                    if(this.fullMap){
-                        zoom += 1;
-                    }
-                    this.mymap.setView(center, zoom);
-                    let polygon = L.polygon(data.geometry, {color: 'black', fillOpacity: 0});
-                    this.farmLayer.addLayer(polygon);
-                    this.farmLayer.addTo(this.mymap);
                 }
-            }
-        );
+            );
     }
 
-    private plotSites(){// get sites in farm
+    private plotSites() { // get sites in farm
         let data: any;
         this.apiService.getSites(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-        .then(
-            res => {
-                data = res.data;
-                if(data){
-                    // to do: clear previous layer
-                    this.sitesLayer.clearLayers();
-                    for(let i=0; i<data.length; i++){
-                        let color = 'white';
-                        switch(data[i].status){
-                            case "infected": color = 'red'; break;
-                            case "not_infected": color = 'green'; break;
-                            case "unknown": color = 'white'; break;
-                            default: color = 'white';
+            .then(
+                res => {
+                    data = res.data;
+                    if (data) {
+                        // to do: clear previous layer
+                        this.sitesLayer.clearLayers();
+                        for (let i = 0; i < data.length; i++) {
+                            let color = 'white';
+                            switch (data[i].status) {
+                                case "infected":
+                                    color = 'red';
+                                    break;
+                                case "not_infected":
+                                    color = 'green';
+                                    break;
+                                case "unknown":
+                                    color = 'white';
+                                    break;
+                                default:
+                                    color = 'white';
+                            }
+                            let polygon = L.polygon(data[i].geometry, { color: color });
+                            this.sitesLayer.addLayer(polygon);
+                            this.sitesLayer.addTo(this.mymap);
                         }
-                        let polygon = L.polygon(data[i].geometry, {color: color});
-                        this.sitesLayer.addLayer(polygon);
-                        this.sitesLayer.addTo(this.mymap);
                     }
                 }
-            }
-        );
+            );
     }
 
-    private plotPlants(){
+    private plotPlants() {
         {
             //console.log("Map Plants: " + this.plants.length);
 
             //to do: clear layers
             this.plantsLayer.clearLayers();
-            
+
             //console.log(this.plants);
 
-            for(var i=0; i<this.plants.length; i++){
+            for (var i = 0; i < this.plants.length; i++) {
                 let arg = this.plants[i];
                 let latlng = new L.LatLng(arg.lat, arg.lng);
-                let marker = L.marker(latlng, {icon: this.plantIcon});
+                let marker = L.marker(latlng, { icon: this.plantIcon });
 
-                if(!this.disableInteraction){
-                    marker.on('click', (e)=>{
+                if (!this.disableInteraction) {
+                    marker.on('click', (e) => {
                         this.onSelect('plant', arg);
 
                         var layer: any;
 
-                        for(layer in this.sensorsLayer["_layers"]){
+                        for (layer in this.sensorsLayer["_layers"]) {
                             var obj = this.sensorsLayer["_layers"][layer];
                             obj.setIcon(this.sensorIcon);
                             obj.setZIndexOffset(-1000);
                         }
 
-                        for(layer in this.plantsLayer["_layers"]){
+                        for (layer in this.plantsLayer["_layers"]) {
                             var obj = this.plantsLayer["_layers"][layer];
                             obj.setIcon(this.plantIcon);
                             obj.setZIndexOffset(-1000);
@@ -256,28 +270,40 @@ export class MapComponent implements OnChanges{
         }
     }
 
-    private plotSensors(){
+    private plotSamplings() {
+        this.samplingsLayer.clearLayers();
+        let features;
+        this.apiService.getSamplingsGeoJSON()
+            .then(
+                res => {
+                    features = res.features;
+                    console.log(features);
+                }
+            );
+    }
+
+    private plotSensors() {
         //console.log("Map Sensors: " + this.sensors.length);
 
         //to do: clear layers
         this.sensorsLayer.clearLayers();
-        
-        for(var i=0; i<this.sensors.length; i++){
+
+        for (var i = 0; i < this.sensors.length; i++) {
             let arg = this.sensors[i];
             let latlng = new L.LatLng(arg.lat, arg.lng);
-            let marker = L.marker(latlng, {icon: this.sensorIcon});
-            if(!this.disableInteraction){
-                marker.on('click', (e)=>{
+            let marker = L.marker(latlng, { icon: this.sensorIcon });
+            if (!this.disableInteraction) {
+                marker.on('click', (e) => {
                     this.onSelect('sensor', arg);
 
                     var layer: any;
-                    for(layer in this.sensorsLayer["_layers"]){
+                    for (layer in this.sensorsLayer["_layers"]) {
                         var obj = this.sensorsLayer["_layers"][layer];
                         obj.setIcon(this.sensorIcon);
                         obj.setZIndexOffset(-1000);
                     }
 
-                    for(layer in this.plantsLayer["_layers"]){
+                    for (layer in this.plantsLayer["_layers"]) {
                         var obj = this.plantsLayer["_layers"][layer];
                         obj.setIcon(this.plantIcon);
                         obj.setZIndexOffset(-1000);
@@ -295,144 +321,146 @@ export class MapComponent implements OnChanges{
         }
     }
 
-    private plotPress(){
+    private plotPress() {
         this.weatherLayer.clearLayers();
         var southWest = L.latLng(this.overlayBounds.south, this.overlayBounds.west),
             northEast = L.latLng(this.overlayBounds.north, this.overlayBounds.east),
             bounds = new L.LatLngBounds(southWest, northEast);
 
         var overlay = new L.ImageOverlay("http://noah.dost.gov.ph/static/img/latest_contours/air_pressure_contour.png", bounds, {
-			opacity: 0.4,
-			interactive: true,
-			attribution: 'Air Pressure Contour &copy; UP-NOAH'
-		});
+            opacity: 0.4,
+            interactive: true,
+            attribution: 'Air Pressure Contour &copy; UP-NOAH'
+        });
 
         this.weatherLayer.addLayer(overlay);
         this.weatherLayer.addTo(this.mymap);
     }
 
-    private plotTemp(){
+    private plotTemp() {
         this.weatherLayer.clearLayers();
         var southWest = L.latLng(this.overlayBounds.south, this.overlayBounds.west),
             northEast = L.latLng(this.overlayBounds.north, this.overlayBounds.east),
             bounds = new L.LatLngBounds(southWest, northEast);
 
         var overlay = new L.ImageOverlay("http://noah.dost.gov.ph/static/img/latest_contours/air_temperature_contour.png", bounds, {
-			opacity: 0.4,
-			interactive: true,
-			attribution: 'Air Temparature Contour &copy; UP-NOAH'
-		});
+            opacity: 0.4,
+            interactive: true,
+            attribution: 'Air Temparature Contour &copy; UP-NOAH'
+        });
 
         this.weatherLayer.addLayer(overlay);
         this.weatherLayer.addTo(this.mymap);
     }
 
-    private plotHumid(){
+    private plotHumid() {
         this.weatherLayer.clearLayers();
         var southWest = L.latLng(this.overlayBounds.south, this.overlayBounds.west),
             northEast = L.latLng(this.overlayBounds.north, this.overlayBounds.east),
             bounds = new L.LatLngBounds(southWest, northEast);
 
         var overlay = new L.ImageOverlay("http://noah.dost.gov.ph/static/img/latest_contours/air_humidity_contour.png", bounds, {
-			opacity: 0.4,
-			interactive: true,
-			attribution: 'Air Humidity Contour &copy; UP-NOAH'
-		});
+            opacity: 0.4,
+            interactive: true,
+            attribution: 'Air Humidity Contour &copy; UP-NOAH'
+        });
 
         this.weatherLayer.addLayer(overlay);
         this.weatherLayer.addTo(this.mymap);
     }
 
-    ngOnChanges(changes: SimpleChanges){
+    ngOnChanges(changes: SimpleChanges) {
 
-        if(changes.zoomTo && changes.zoomTo.firstChange == false){
-            if(this.zoomTo != undefined){
+        if (changes.zoomTo && changes.zoomTo.firstChange == false) {
+            if (this.zoomTo != undefined) {
                 let center = new L.LatLng(this.zoomTo[0], this.zoomTo[1]);
                 let zoom = 18;
-                if(this.fullMap){
+                if (this.fullMap) {
                     zoom++;
                 }
                 this.mymap.setView(center, zoom);
             }
         }
 
-        if(changes.clearOverlay && changes.clearOverlay.firstChange == false){
-            if(this.clearOverlay){
+        if (changes.clearOverlay && changes.clearOverlay.firstChange == false) {
+            if (this.clearOverlay) {
                 this.weatherLayer.clearLayers();
             }
         }
 
-        if(changes.showHumid && changes.showHumid.firstChange == false){
-            if(this.showHumid){
+        if (changes.showHumid && changes.showHumid.firstChange == false) {
+            if (this.showHumid) {
                 this.plotHumid();
             }
         }
 
-        if(changes.showPress && changes.showPress.firstChange == false){
-            if(this.showPress){
+        if (changes.showPress && changes.showPress.firstChange == false) {
+            if (this.showPress) {
                 this.plotPress();
             }
         }
 
-        if(changes.showTemp && changes.showTemp.firstChange == false){
-            if(this.showTemp){
+        if (changes.showTemp && changes.showTemp.firstChange == false) {
+            if (this.showTemp) {
                 this.plotTemp();
             }
         }
 
-        if(changes.showSamplings && changes.showSamplings.firstChange == false){
-            console.log("show samplings: " + this.showSamplings);
+        if (changes.showSamplings && changes.showSamplings.firstChange == false) {
+            if (this.showSamplings) {
+                this.plotSamplings();
+            }
         }
 
-        if(changes.showSensors && changes.showSensors.firstChange == false ){
-            if(this.showSensors){
+        if (changes.showSensors && changes.showSensors.firstChange == false) {
+            if (this.showSensors) {
                 this.plotSensors();
-            }else{
+            } else {
                 this.sensorsLayer.clearLayers();
             }
         }
 
-        if(changes.showPlants && changes.showPlants.firstChange == false ){
-            if(this.showPlants){
+        if (changes.showPlants && changes.showPlants.firstChange == false) {
+            if (this.showPlants) {
                 this.plotPlants();
-            }else{
+            } else {
                 this.plantsLayer.clearLayers();
             }
         }
-        
-        if(changes.showSites && changes.showSites.firstChange == false ){
-            if(this.showSites){
+
+        if (changes.showSites && changes.showSites.firstChange == false) {
+            if (this.showSites) {
                 this.plotSites();
-            }else{
+            } else {
                 this.sitesLayer.clearLayers();
             }
         }
 
-        if(changes.resize && changes.resize.firstChange == false ){
+        if (changes.resize && changes.resize.firstChange == false) {
             //console.log('map resized for '+this.resize+' time(s)!' );
             document.getElementById('map-div').style.display = 'block';
             this.mymap.invalidateSize();
         }
 
         // selectedFarm changed
-        if(changes.selectedFarm && changes.selectedFarm.firstChange == false ){
+        if (changes.selectedFarm && changes.selectedFarm.firstChange == false) {
             this.plotFarm();
             this.plotSites();
-        }  
+        }
 
         // plants changed
-        if(changes.plants && changes.plants.firstChange == false ){
+        if (changes.plants && changes.plants.firstChange == false) {
             this.plotPlants();
         }
 
         // sensors changed
-        if(changes.sensors && changes.sensors.firstChange == false ){
+        if (changes.sensors && changes.sensors.firstChange == false) {
             this.plotSensors();
         }
     }
 
-    private onSelect(type:string, arg){
-        if(type == "plant") this.selectPlant.emit(arg.plant_id);
-        if(type == "sensor") this.selectSensor.emit(arg.sensor_name);
+    private onSelect(type: string, arg) {
+        if (type == "plant") this.selectPlant.emit(arg.plant_id);
+        if (type == "sensor") this.selectSensor.emit(arg.sensor_name);
     }
 }
