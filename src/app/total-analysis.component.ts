@@ -23,6 +23,7 @@ import { PlantAnalysis } from './models/plant-analysis';
 
 export class AppTotalAnalysisComponent {
     
+    zoomTo: number[] = undefined;
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
     sensors: Sensor[] = [];
@@ -55,7 +56,7 @@ export class AppTotalAnalysisComponent {
         this.plantAnalysis = new PlantAnalysis();
 
         this.showPlants = true;
-        this.showSamplings = true;
+        this.showSamplings = false;
         this.showSensors = true;
         this.showSites = true;
 
@@ -185,7 +186,13 @@ export class AppTotalAnalysisComponent {
                 this.selectedSensorName = sensorID;
                 //console.log(this.selectedSensorReadings);
             }
-        )
+        );
+        
+
+        let selected: any = $.grep(this.sensors, function(e){ return e.sensor_name == sensorID });
+        //console.log(selected[0]);
+        $('#searchPlant').val(selected[0].plant_name);
+        this.zoomTo = [selected[0].lat, selected[0].lng];
     }
 
     public onselect(val){
@@ -250,6 +257,9 @@ export class AppTotalAnalysisComponent {
 
     public toggleSites(){
         this.showSites = !this.showSites;
+        if(this.showSamplings && this.showSites){
+            this.showSamplings = !this.showSamplings;
+        }
     }
 
     public togglePlants(){
@@ -262,6 +272,9 @@ export class AppTotalAnalysisComponent {
 
     public toggleSamplings(){
         this.showSamplings = !this.showSamplings;
+        if(this.showSamplings && this.showSites){
+            this.showSites = !this.showSites;
+        }
     }
 
     public togglePlantAnalysis(){
@@ -272,12 +285,24 @@ export class AppTotalAnalysisComponent {
                 res => {
                     data = res.data;
                     this.plantAnalysis = data;
-                    //console.log(this.plantAnalysis);
+                    console.log(this.plantAnalysis);
                     $('#plantAnalysisModal').modal('toggle');
                 }
             )
         }
 
+    }
+
+    public getBgColor(result: string){
+        if(result == "not_infected"){
+            return "#33c57d";
+        }
+        else if(result == "infected"){
+            return "#FF8657";
+        }
+        else{
+            return "#888888";
+        }
     }
 
     public selectPlant(plantID: string){
@@ -287,12 +312,17 @@ export class AppTotalAnalysisComponent {
         .then(
             res => {
                 data = res;
-                //console.log(data);
+                console.log(data.data);
                 this.selectedPlant = data.data;
                 this.togglePlantAnalysis();
                 ////console.log(this.selectedPlant);
             }
-        )
+        );
+
+        let selected: any = $.grep(this.plants, function(e){ return e.plant_id == plantID });
+        //console.log(selected[0]);
+        $('#searchPlant').val(selected[0].plant_name);
+        this.zoomTo = [selected[0].lat, selected[0].lng];
     }
 
 }

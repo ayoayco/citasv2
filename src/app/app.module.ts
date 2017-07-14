@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CookieModule } from 'ngx-cookie';
 import { ChartModule } from 'angular2-highcharts/index';
 
+import { AnalysisPipe } from './pipes/analysis.pipe';
+
 import { AppComponent } from './app.component';
 import { AppNavComponent } from './nav.component';
 import { AppFooterComponent } from './footer.component';
@@ -129,7 +131,8 @@ const appRoutes: Routes = [
     SensorListComponent,
     AppAboutEventsComponent,
     AppAboutResearchComponent,
-    AppAboutTrainingsComponent
+    AppAboutTrainingsComponent,
+    AnalysisPipe
   ],
   imports: [
     BrowserModule,

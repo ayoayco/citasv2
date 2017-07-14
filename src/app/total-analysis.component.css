@@ -23,13 +23,12 @@
 }
 
 table#plantAnalysis-table {
-    margin-left: 100px;
     font-family: 'Montserrat', sans-serif;
 }
 
 table#plantAnalysis-table td,
 table#plantAnalysis-table th {
-    padding: 10px;
+    padding: 5px;
 }
 
 #plantAnalysisModal {
@@ -37,7 +36,11 @@ table#plantAnalysis-table th {
 }
 
 h3 {
-    margin: 0;
+    margin: -10px 0 10px;
+}
+
+h1,
+h3 {
     font-weight: bold;
 }
 
