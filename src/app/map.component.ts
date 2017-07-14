@@ -197,7 +197,6 @@ export class MapComponent implements OnChanges {
 
     private plotSites() { // get sites in farm
         let data: any;
-        this.setSoilChar.emit(undefined);
         this.apiService.getSites(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
             .then(
                 res => {
@@ -492,6 +491,7 @@ export class MapComponent implements OnChanges {
                 this.plotSamplings();
             }else{
                 this.samplingsLayer.clearLayers();
+                this.setSoilChar.emit(undefined);
             }
         }
 
