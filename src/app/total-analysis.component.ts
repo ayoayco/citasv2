@@ -35,6 +35,8 @@ export class AppTotalAnalysisComponent {
     resize: number;
     plantAnalysis: PlantAnalysis;
 
+    soilChar: any[];
+
     showSites: boolean;
     showSensors: boolean;
     showPlants: boolean;
@@ -323,6 +325,11 @@ export class AppTotalAnalysisComponent {
         //console.log(selected[0]);
         $('#searchPlant').val(selected[0].plant_name);
         this.zoomTo = [selected[0].lat, selected[0].lng];
+    }
+
+    public setSoilChar(s){
+        this.soilChar = s;
+        console.log(this.soilChar);
     }
 
 }

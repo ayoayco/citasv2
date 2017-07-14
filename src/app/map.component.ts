@@ -42,6 +42,7 @@ export class MapComponent implements OnChanges {
 
     @Output() selectPlant = new EventEmitter < {} > ();
     @Output() selectSensor = new EventEmitter < {} > ();
+    @Output() setSoilChar = new EventEmitter < {} > ();
 
     mymap: L.Map;
     farmLayer: L.LayerGroup;
@@ -50,6 +51,8 @@ export class MapComponent implements OnChanges {
     sensorsLayer: L.LayerGroup;
     weatherLayer: L.LayerGroup;
     samplingsLayer: L.LayerGroup;
+    center: L.LatLng;
+    zoom: number;
 
     plantIcon: any;
     sensorIcon: any;
@@ -166,6 +169,7 @@ export class MapComponent implements OnChanges {
                         // to do: clear previous layer
                         this.farmLayer.clearLayers();
                         let center = new L.LatLng(data.center[0], data.center[1]);
+                        this.center = center;
                         let zoom = 0;
                         switch (data.farm_size) {
                             case "large":
@@ -181,8 +185,8 @@ export class MapComponent implements OnChanges {
                         if (this.fullMap) {
                             zoom += 1;
                         }
+                        this.zoom = zoom;
                         this.mymap.setView(center, zoom);
-                        console.log(data.geometry);
                         let polygon = L.polygon(data.geometry, { color: 'black', fillOpacity: 0 });
                         this.farmLayer.addLayer(polygon);
                         this.farmLayer.addTo(this.mymap);
@@ -193,6 +197,7 @@ export class MapComponent implements OnChanges {
 
     private plotSites() { // get sites in farm
         let data: any;
+        this.setSoilChar.emit(undefined);
         this.apiService.getSites(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
             .then(
                 res => {
@@ -222,6 +227,7 @@ export class MapComponent implements OnChanges {
                             );
                             this.sitesLayer.addLayer(polygon);
                             this.sitesLayer.addTo(this.mymap);
+                            this.resetView();
                         }
                     }
                 }
@@ -324,6 +330,14 @@ export class MapComponent implements OnChanges {
                 ]
             };
 
+            var soilChar: any[] = [];
+
+            for(var i=0; i<g.features.length; i++){
+                soilChar.push(g.features[i].properties);
+            }
+
+            this.setSoilChar.emit(soilChar);
+
             var geoJSON: L.GeoJSON = L.geoJSON(g,{
                 style: function(feature){
                     var color = "green";
@@ -337,8 +351,16 @@ export class MapComponent implements OnChanges {
                     }
                 }
             }
-            ).addTo(this.mymap);
+            );
+
+            this.samplingsLayer.addLayer(geoJSON);
+            this.samplingsLayer.addTo(this.mymap);
+            this.resetView();
         }
+    }
+
+    private resetView(){
+        this.mymap.setView(this.center, this.zoom);
     }
 
     private plotSensors() {
@@ -468,6 +490,8 @@ export class MapComponent implements OnChanges {
         if (changes.showSamplings && changes.showSamplings.firstChange == false) {
             if (this.showSamplings) {
                 this.plotSamplings();
+            }else{
+                this.samplingsLayer.clearLayers();
             }
         }
 
