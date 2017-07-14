@@ -285,7 +285,7 @@ export class AppTotalAnalysisComponent {
                 res => {
                     data = res.data;
                     this.plantAnalysis = data;
-                    console.log(this.plantAnalysis);
+                    // console.log(this.plantAnalysis);
                     $('#plantAnalysisModal').modal('toggle');
                 }
             )
@@ -312,7 +312,7 @@ export class AppTotalAnalysisComponent {
         .then(
             res => {
                 data = res;
-                console.log(data.data);
+                // console.log(data.data);
                 this.selectedPlant = data.data;
                 this.togglePlantAnalysis();
                 ////console.log(this.selectedPlant);
