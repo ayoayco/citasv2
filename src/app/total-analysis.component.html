@@ -2,7 +2,7 @@
     <sidebar [selectedFarm]="selectedFarm"></sidebar>
     <div id="page-content-wrapper">
         <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
-        <map [clearOverlay]="clearOverlay" [showHumid]="showHumid" [showPress]="showPress" [showTemp]="showTemp" (selectPlant)="selectPlant($event)" [showPlants]="showPlants" [showSamplings]="showSamplings" [showSensors]="showSensors" [showSites]="showSites"
+        <map [zoomTo]="zoomTo" [clearOverlay]="clearOverlay" [showHumid]="showHumid" [showPress]="showPress" [showTemp]="showTemp" (selectPlant)="selectPlant($event)" [showPlants]="showPlants" [showSamplings]="showSamplings" [showSensors]="showSensors" [showSites]="showSites"
             [fullMap]="true" [resize]="resize" [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" [sensors]="sensors" (selectSensor)="selectSensor($event)">
         </map>
         <div id="draggableMenu" class="ui-widget-content">
@@ -47,23 +47,23 @@
                     </tr>
                     <tr>
                         <td>Sensor:</td>
-                        <td>{{plantAnalysis.sensor_actual}}</td>
-                        <td>{{plantAnalysis.sensor_analysis}}</td>
+                        <td>{{plantAnalysis.sensor_actual | analysis}}</td>
+                        <td>{{plantAnalysis.sensor_analysis | analysis}}</td>
                     </tr>
                     <tr>
                         <td>Leaf:</td>
-                        <td>{{plantAnalysis.leaf_actual}}</td>
-                        <td>{{plantAnalysis.leaf_analysis}}</td>
+                        <td>{{plantAnalysis.leaf_actual | analysis}}</td>
+                        <td>{{plantAnalysis.leaf_analysis | analysis}}</td>
                     </tr>
                     <tr>
                         <td>PlantScope:</td>
-                        <td>{{plantAnalysis.plantscope_actual}}</td>
-                        <td>{{plantAnalysis.plantscope_analysis}}</td>
+                        <td>{{plantAnalysis.plantscope_actual | analysis}}</td>
+                        <td>{{plantAnalysis.plantscope_analysis | analysis}}</td>
                     </tr>
                     <tr>
                         <td>Llamp Assay:</td>
-                        <td>{{plantAnalysis.lampassay_actual}}</td>
-                        <td>{{plantAnalysis.lampassay_analysis}}</td>
+                        <td>{{plantAnalysis.lampassay_actual | analysis}}</td>
+                        <td>{{plantAnalysis.lampassay_analysis | analysis}}</td>
                     </tr>
                 </table>
 

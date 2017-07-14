@@ -32,15 +32,6 @@ export class DownloadPlantDataComponent{
     ){
     }
 
-    public getLabel(str: string){
-        switch(str){
-            case 'not_infected': return 'Healthy';
-            case 'infected': return 'Infected';
-            case 'all': return 'All';
-            case 'unknown': return 'Unknown';
-        }
-    }
-
     public downloadPlantData(){
         let data: any;
         this.apiService.getPlantsFilterDownloadLink(

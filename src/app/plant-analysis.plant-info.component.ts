@@ -18,23 +18,11 @@ export class PlantAnalysisPlantInfoComponent implements OnChanges {
         //console.log(this.selectedPlant);
     }
 
-public getLabel(result: string){
-    if(result == "not_infected"){
-        return "Uninfected";
-    }
-    else if(result == "infected"){
-        return "Infected";
-    }
-    else{
-        return "Unknown";
-    }
-}
-
 public getBgColor(result: string){
-    if(result == "Uninfected"){
+    if(result == "not_infected"){
         return "#33c57d";
     }
-    else if(result == "Infected"){
+    else if(result == "infected"){
         return "#FF8657";
     }
     else{
