@@ -22,6 +22,24 @@
     background: white;
 }
 
+#soilChar-table {
+    font-size: small;
+}
+
+#soilChar-div {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 350px;
+    font-size: 16px;
+    padding: 10px;
+    z-index: 8;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    background-clip: padding-box;
+    border-radius: 5px;
+    background: white;
+}
+
 table#plantAnalysis-table {
     font-family: 'Montserrat', sans-serif;
 }
@@ -61,4 +79,34 @@ form label {
     position: absolute;
     top: 60px;
     right: 20px;
+}
+
+table {
+    font-family: "Montserrat", sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td,
+table th {
+    border: 1px solid #ddd;
+    padding: 3px;
+    font-size: x-small;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #19BD6C;
+    color: white;
+    text-transform: uppercase;
+}
+
+tr td tbody {
+    width: 100%;
+}
+
+tr td tr {
+    border: 1px solid #ddd;
 }
