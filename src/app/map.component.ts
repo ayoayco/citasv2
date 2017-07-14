@@ -349,6 +349,9 @@ export class MapComponent implements OnChanges{
             if(this.zoomTo != undefined){
                 let center = new L.LatLng(this.zoomTo[0], this.zoomTo[1]);
                 let zoom = 18;
+                if(this.fullMap){
+                    zoom++;
+                }
                 this.mymap.setView(center, zoom);
             }
         }

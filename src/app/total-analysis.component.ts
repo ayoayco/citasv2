@@ -186,7 +186,13 @@ export class AppTotalAnalysisComponent {
                 this.selectedSensorName = sensorID;
                 //console.log(this.selectedSensorReadings);
             }
-        )
+        );
+        
+
+        let selected: any = $.grep(this.sensors, function(e){ return e.sensor_name == sensorID });
+        //console.log(selected[0]);
+        $('#searchPlant').val(selected[0].plant_name);
+        this.zoomTo = [selected[0].lat, selected[0].lng];
     }
 
     public onselect(val){
