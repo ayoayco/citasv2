@@ -287,6 +287,18 @@ export class AppTotalAnalysisComponent {
 
     }
 
+    public getBgColor(result: string){
+        if(result == "not_infected"){
+            return "#33c57d";
+        }
+        else if(result == "infected"){
+            return "#FF8657";
+        }
+        else{
+            return "#888888";
+        }
+    }
+    
     public selectPlant(plantID: string){
         //console.log('Plant '+ plantID + ' selected!');
         let data: any;
