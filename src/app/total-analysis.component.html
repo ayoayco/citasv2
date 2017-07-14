@@ -2,7 +2,7 @@
     <sidebar [selectedFarm]="selectedFarm"></sidebar>
     <div id="page-content-wrapper">
         <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
-        <map [clearOverlay]="clearOverlay" [showHumid]="showHumid" [showPress]="showPress" [showTemp]="showTemp" (selectPlant)="selectPlant($event)" [showPlants]="showPlants" [showSamplings]="showSamplings" [showSensors]="showSensors" [showSites]="showSites"
+        <map [zoomTo]="zoomTo" [clearOverlay]="clearOverlay" [showHumid]="showHumid" [showPress]="showPress" [showTemp]="showTemp" (selectPlant)="selectPlant($event)" [showPlants]="showPlants" [showSamplings]="showSamplings" [showSensors]="showSensors" [showSites]="showSites"
             [fullMap]="true" [resize]="resize" [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" [sensors]="sensors" (selectSensor)="selectSensor($event)">
         </map>
         <div id="draggableMenu" class="ui-widget-content">
@@ -10,10 +10,10 @@
             <div class="row" id="hidable" class="hideMe">
                 <form class="col-md-6" id="menu-options">
                     <h5>Layers</h5>
-                    <input (change)="toggleSites()" type="checkbox" id="toggleSites" name="toggleSites" checked> <label for="toggleSites">Sampling Sites</label><br />
-                    <input (change)="toggleSensors()" type="checkbox" id="toggleSensors" name="toggleSensors" checked> <label for="toggleSensors">Soil Sensors</label><br />
-                    <input (change)="togglePlants()" type="checkbox" id="togglePlants" name="togglePlants" checked> <label for="togglePlants">Plant Locations</label><br />
-                    <input (change)="toggleSamplings()" type="checkbox" id="toggleSamplings" name="toggleSamplings" disabled> <label for="toggleSamplings">Soil Characteristics</label>
+                    <input (change)="toggleSites()" [checked]="showSites" type="checkbox" id="toggleSites" name="toggleSites"> <label for="toggleSites">Sampling Sites</label><br />
+                    <input (change)="toggleSensors()" [checked]="showSensors" type="checkbox" id="toggleSensors" name="toggleSensors" checked> <label for="toggleSensors">Soil Sensors</label><br />
+                    <input (change)="togglePlants()" [checked]="showPlants" type="checkbox" id="togglePlants" name="togglePlants" checked> <label for="togglePlants">Plant Locations</label><br />
+                    <input (change)="toggleSamplings()" [checked]="showSamplings" type="checkbox" id="toggleSamplings" name="toggleSamplings" disabled="disabled"> <label for="toggleSamplings">Soil Characteristics</label>
                 </form>
                 <form class="col-md-6" id="weather-options">
                     <h5>Weather Data</h5>
@@ -21,8 +21,8 @@
                     <input type="radio" id="toggleTemp" name="toggleOverlay" value="temp" (click)="toggleOverlay('temp')"> <label>Temperature</label><br />
                     <input type="radio" id="togglePress" name="toggleOverlay" value="press" (click)="toggleOverlay('press')"> <label>Pressure</label><br />
                     <input type="radio" id="toggleHumid" name="toggleOverlay" value="humid" (click)="toggleOverlay('humid')"> <label>Humidity</label><br />
-                    <input type="radio" id="toggleStations" name="toggleOverlay" disabled> <label>Weather Stations</label><br />
-                    <input type="radio" id="toggleFore" name="toggleOverlay" disabled> <label>Weather Forecast</label><br />
+                    <input type="radio" id="toggleStations" name="toggleOverlay" disabled="disabled"> <label>Weather Stations</label><br />
+                    <input type="radio" id="toggleFore" name="toggleOverlay" disabled="disabled"> <label>Weather Forecast</label><br />
                 </form>
             </div>
         </div>
@@ -35,38 +35,44 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Plant Analysis</h4>
+                <h4 class="modal-title">{{this.selectedPlant.plant_name}}</h4>
             </div>
             <div class="modal-body">
-
-                <table id="plantAnalysis-table">
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th>Actual</th>
-                        <th>Predicted</th>
-                    </tr>
-                    <tr>
-                        <td>Sensor:</td>
-                        <td>{{plantAnalysis.sensor_actual}}</td>
-                        <td>{{plantAnalysis.sensor_analysis}}</td>
-                    </tr>
-                    <tr>
-                        <td>Leaf:</td>
-                        <td>{{plantAnalysis.leaf_actual}}</td>
-                        <td>{{plantAnalysis.leaf_analysis}}</td>
-                    </tr>
-                    <tr>
-                        <td>PlantScope:</td>
-                        <td>{{plantAnalysis.plantscope_actual}}</td>
-                        <td>{{plantAnalysis.plantscope_analysis}}</td>
-                    </tr>
-                    <tr>
-                        <td>Llamp Assay:</td>
-                        <td>{{plantAnalysis.lampassay_actual}}</td>
-                        <td>{{plantAnalysis.lampassay_analysis}}</td>
-                    </tr>
-                </table>
-
+                <div class="row">
+                    <div class="col-md-6">
+                        <img *ngIf="this.selectedPlant.images.length > 0" src="http://{{this.selectedPlant.images[0].image_thumbnail_url}}" width="250px" alt="Plant Image" />
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="text-center">Analysis: <span [style.color]="getBgColor(plantAnalysis.total_analysis)">{{plantAnalysis.total_analysis | analysis}}</span></h2>
+                        <table id="plantAnalysis-table">
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th class="text-center">Actual</th>
+                                <th class="text-center">Predicted</th>
+                            </tr>
+                            <tr>
+                                <td class="text-right">Sensor:</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.sensor_actual)">{{plantAnalysis.sensor_actual | analysis}}</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.sensor_analysis)">{{plantAnalysis.sensor_analysis | analysis}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">Leaf:</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.leaf_actual)">{{plantAnalysis.leaf_actual | analysis}}</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.leaf_analysis)">{{plantAnalysis.leaf_analysis | analysis}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">PlantScope:</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.plantscope_actual)">{{plantAnalysis.plantscope_actual | analysis}}</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.plantscope_analysis)">{{plantAnalysis.plantscope_analysis | analysis}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">Llamp Assay:</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.lampassay_actual)">{{plantAnalysis.lampassay_actual | analysis}}</td>
+                                <td class="text-center" [style.color]="getBgColor(plantAnalysis.lampassay_analysis)">{{plantAnalysis.lampassay_analysis | analysis}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
