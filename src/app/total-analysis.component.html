@@ -13,7 +13,7 @@
                     <input (change)="toggleSites()" [checked]="showSites" type="checkbox" id="toggleSites" name="toggleSites"> <label for="toggleSites">Sampling Sites</label><br />
                     <input (change)="toggleSensors()" [checked]="showSensors" type="checkbox" id="toggleSensors" name="toggleSensors" checked> <label for="toggleSensors">Soil Sensors</label><br />
                     <input (change)="togglePlants()" [checked]="showPlants" type="checkbox" id="togglePlants" name="togglePlants" checked> <label for="togglePlants">Plant Locations</label><br />
-                    <input (change)="toggleSamplings()" [checked]="showSamplings" type="checkbox" id="toggleSamplings" name="toggleSamplings"> <label for="toggleSamplings">Soil Characteristics</label>
+                    <input (change)="toggleSamplings()" [checked]="showSamplings" type="checkbox" id="toggleSamplings" name="toggleSamplings" disabled="disabled"> <label for="toggleSamplings">Soil Characteristics</label>
                 </form>
                 <form class="col-md-6" id="weather-options">
                     <h5>Weather Data</h5>
@@ -21,8 +21,8 @@
                     <input type="radio" id="toggleTemp" name="toggleOverlay" value="temp" (click)="toggleOverlay('temp')"> <label>Temperature</label><br />
                     <input type="radio" id="togglePress" name="toggleOverlay" value="press" (click)="toggleOverlay('press')"> <label>Pressure</label><br />
                     <input type="radio" id="toggleHumid" name="toggleOverlay" value="humid" (click)="toggleOverlay('humid')"> <label>Humidity</label><br />
-                    <input type="radio" id="toggleStations" name="toggleOverlay" disabled> <label>Weather Stations</label><br />
-                    <input type="radio" id="toggleFore" name="toggleOverlay" disabled> <label>Weather Forecast</label><br />
+                    <input type="radio" id="toggleStations" name="toggleOverlay" disabled="disabled"> <label>Weather Stations</label><br />
+                    <input type="radio" id="toggleFore" name="toggleOverlay" disabled="disabled"> <label>Weather Forecast</label><br />
                 </form>
             </div>
         </div>
