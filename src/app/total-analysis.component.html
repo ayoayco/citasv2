@@ -32,7 +32,7 @@
                 <tr>
                     <th>Depth</th>
                     <th>Soil Char.</th>
-                    <th *ngFor="let sampling of soilChar">#{{sampling.id}} - {{sampling.foc}}</th>
+                    <th *ngFor="let sampling of soilChar" [style.background]="getBgColor(sampling.foc)">{{sampling.foc}}</th>
                 </tr>
                 <tr>
                     <td rowspan="6">0 - 10 cm.</td>
