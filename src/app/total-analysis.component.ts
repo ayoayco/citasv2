@@ -296,7 +296,7 @@ export class AppTotalAnalysisComponent {
     }
 
     public getBgColor(result: string){
-        if(result == "not_infected"){
+        if(result == "clean"){
             return "#33c57d";
         }
         else if(result == "infected"){
