@@ -154,11 +154,29 @@ export class MapComponent implements OnChanges {
             var drawControl = new L.Control.Draw({
                 edit: {
                     featureGroup: drawnItems
+                },
+                draw: {
+                    polygon: {
+                        allowIntersection: false,
+                        showArea: true
+                    }
                 }
             });
             this.mymap.addControl(drawControl);
+
+            let data: any;
+
+            this.mymap.on(L.Draw.Event.CREATED, 
+                res => {
+                    data = res;
+                    var layer = data.layer;
+
+                    drawnItems.addLayer(layer);
+                }
+            );
         }
         
+
         L.control.scale().addTo(this.mymap);
 
         // base map
