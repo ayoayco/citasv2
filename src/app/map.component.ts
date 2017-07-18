@@ -170,7 +170,11 @@ export class MapComponent implements OnChanges {
                 res => {
                     data = res;
                     let layer = data.layer;
-                    console.log(layer._latlngs[0]);
+                    if(layer._latlngs){
+                        console.log(layer._latlngs);
+                    }else if(layer){
+                        console.log(layer);
+                    }
                     drawnItems.addLayer(layer);
                 }
             );
