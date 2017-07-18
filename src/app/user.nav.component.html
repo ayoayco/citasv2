@@ -21,7 +21,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi, {{username}}! <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <!--<li><a onclick="$('#editUserModal').modal('toggle')">Edit User Profile</a></li>-->
-                        <li><a [routerLink]="[ '/view-profile', selectedFarm.farm_id]" routerLinkActive="active">User Profile</a></li>
+                        <li><a [routerLink]="[ '/view-profile', selectedFarm.farm_id]" routerLinkActive="active">View User Profile</a></li>
+                        <li><a [routerLink]="[ '/register-farm', selectedFarm.farm_id]" routerLinkActive="active">Register New Farm</a></li>
                         <!--<li role="separator" class="divider"></li>-->
                         <li><a href="#" (click)="logout()">Logout</a></li>
                     </ul>

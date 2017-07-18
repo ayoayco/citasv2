@@ -1,0 +1,9 @@
+#page-content-wrapper,
+#wrapper {
+    height: 100%;
+}
+
+#page-content-wrapper {
+    padding: 0;
+    padding-top: 50px;
+}

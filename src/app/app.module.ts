@@ -57,6 +57,8 @@ import { DownloadPlantDataComponent } from './downloads.plant-data.component';
 import { PlantListComponent } from './plant-list.component';
 import { SensorListComponent } from './sensor-list.component';
 
+import { RegisterFarmComponent } from './register-farm.component';
+
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'view-profile', component: ViewProfileComponent },
@@ -83,6 +85,8 @@ const appRoutes: Routes = [
   { path: 'about-trainings', component: AppAboutTrainingsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'about/:id', component: AboutComponent },
+  { path: 'register-farm', component: RegisterFarmComponent },
+  { path: 'register-farm/:id', component: RegisterFarmComponent },
   { path: 'contact-us', component: AppContactUsComponent },
   { path: 'downloads', component: DownloadsComponent },
   { path: 'downloads/:id', component: DownloadsComponent },
@@ -132,7 +136,8 @@ const appRoutes: Routes = [
     AppAboutEventsComponent,
     AppAboutResearchComponent,
     AppAboutTrainingsComponent,
-    AnalysisPipe
+    AnalysisPipe,
+    RegisterFarmComponent
   ],
   imports: [
     BrowserModule,
