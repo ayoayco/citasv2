@@ -17,7 +17,7 @@ import { User } from './models/user';
 })
 
 export class RegisterFarmComponent{
-    
+
     farms: Farm[];
     selectedFarm: Farm = new Farm();
     user: User;
@@ -38,18 +38,6 @@ export class RegisterFarmComponent{
         }
 
         let data : any;
-
-        this.apiService.getUser(this.sessionService.getLoggedInKey())
-        .then(
-            res => {
-                data = res;
-                ////console.log(data);
-                if(data){
-                    this.user = data;
-                    this.user.user_type = data.role;
-                }
-            }
-        );
 
         let farm_id = undefined;
         this.activeRoute.params.forEach(

@@ -15,6 +15,7 @@ import { CitasApiService } from './citas.api.service';
 
 export class MapComponent implements OnChanges {
 
+    @Input() drawControl: boolean;
     @Input() zoomTo: number[];
 
     @Input() clearOverlay: boolean;
@@ -146,6 +147,18 @@ export class MapComponent implements OnChanges {
             scrollWheelZoom: scrollWheelZoom
         });
 
+        if(this.drawControl){
+            // FeatureGroup is to store editable layers
+            var drawnItems = new L.FeatureGroup();
+            this.mymap.addLayer(drawnItems);
+            var drawControl = new L.Control.Draw({
+                edit: {
+                    featureGroup: drawnItems
+                }
+            });
+            this.mymap.addControl(drawControl);
+        }
+        
         L.control.scale().addTo(this.mymap);
 
         // base map
