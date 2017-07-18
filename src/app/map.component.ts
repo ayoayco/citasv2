@@ -169,8 +169,8 @@ export class MapComponent implements OnChanges {
             this.mymap.on(L.Draw.Event.CREATED, 
                 res => {
                     data = res;
-                    var layer = data.layer;
-
+                    let layer = data.layer;
+                    console.log(layer._latlngs[0]);
                     drawnItems.addLayer(layer);
                 }
             );
