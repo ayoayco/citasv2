@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
+import {
+    Http,
+    RequestOptions,
+    RequestOptionsArgs,
+    Response,
+    Request,
+    Headers,
+    XHRBackend
+} from '@angular/http';
 import { User } from './models/user';
 
 import 'rxjs/add/operator/catch';
@@ -15,51 +24,95 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
-    public getSamplingsGeoJSON(){
+    public getSamplingsGeoJSON(): Observable <{}>{
         $("body").addClass("loading");
         let url = "http://d3rjwxvgw19cvv.cloudfront.net/sanjose_soilchar.geojson";
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getTrainings(){
+    public getTrainings(): Observable <{}>{
         $("body").addClass("loading");
         let url = this.APIURL + "/trainings";
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getResearch(){
+    public getResearch(): Observable <{}>{
         $("body").addClass("loading");
         let url = this.APIURL + "/research";
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getEvents(){
+    public getEvents(): Observable <{}>{
         $("body").addClass("loading");
         let url = this.APIURL + "/events";
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public resetPassword(key: string, password: string) {
+    public resetPassword(key: string, password: string): Observable <{}> {
 
         $("body").addClass("loading");
         let url = this.APIURL + "/reset_password?key="+key;
@@ -72,13 +125,24 @@ export class CitasApiService {
         ////console.log(body);
 
         return this.http.post(url, body, options)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
 
     }
 
-    public forgotPassword(username: string) {
+    public forgotPassword(username: string): Observable <{}> {
 
         $("body").addClass("loading");
         let url = this.APIURL + "/forgot_password";
@@ -91,13 +155,24 @@ export class CitasApiService {
         ////console.log(body);
 
         return this.http.post(url, body, options)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
 
     }
 
-    public getPlantsFilterDownloadLink(key: string, farmID: string, siteID: string, health: string, from: Date, to: Date){
+    public getPlantsFilterDownloadLink(key: string, farmID: string, siteID: string, health: string, from: Date, to: Date): Observable <{}>{
         $("body").addClass("loading");
 
         //console.log(from);
@@ -109,12 +184,23 @@ export class CitasApiService {
 
         //console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getSensorsFilterDownloadLink(key: string, farmID: string, siteID: string, from: Date, to: Date) {
+    public getSensorsFilterDownloadLink(key: string, farmID: string, siteID: string, from: Date, to: Date): Observable <{}> {
         $("body").addClass("loading");
 
         //console.log(from);
@@ -126,56 +212,111 @@ export class CitasApiService {
 
         //console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getSensorCSVDownloadLink(key: string, sensorName: string) {
+    public getSensorCSVDownloadLink(key: string, sensorName: string): Observable <{}> {
         $("body").addClass("loading");
         let url = this.APIURL + "/download/sensor/" + sensorName + "?key=" + key;
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getPlantImagesDownloadLink(key: string, plantID: string) {
+    public getPlantImagesDownloadLink(key: string, plantID: string): Observable <{}> {
         $("body").addClass("loading");
         let url = this.APIURL + "/download/image/" + plantID + "?key=" + key;
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getPlantImages(key: string, plantID: string) {
+    public getPlantImages(key: string, plantID: string): Observable <{}> {
         $("body").addClass("loading");
         let url = this.APIURL + "/plantimages/" + plantID + "?key=" + key;
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getPlantAnalysis(key: string, plantID: string) {
+    public getPlantAnalysis(key: string, plantID: string): Observable <{}>  {
         $("body").addClass("loading");
         let url = this.APIURL + "/plantanalysis/" + plantID + "?key=" + key;
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getSites(key: string, farmID ? : string, siteID ? : string) {
+    public getSites(key: string, farmID ? : string, siteID ? : string): Observable <{}>  {
         $("body").addClass("loading");
         let url = this.APIURL + "/sites";
         if (farmID) url += "/" + farmID;
@@ -184,34 +325,67 @@ export class CitasApiService {
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getSensor(key: string, sensorName: string) {
+    public getSensor(key: string, sensorName: string): Observable <{}>  {
         $("body").addClass("loading");
         let url = this.APIURL + "/sensor/" + sensorName + "?key=" + key;
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getPlant(key: string, plantID: string) {
+    public getPlant(key: string, plantID: string): Observable <{}>  {
         $("body").addClass("loading");
         let url = this.APIURL + "/plant/" + plantID + "?key=" + key;
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getSensorList(key: string, farmID ? : string, siteID ? : string) {
+    public getSensorList(key: string, farmID ? : string, siteID ? : string): Observable <{}> {
         $("body").addClass("loading");
         let url = this.APIURL + "/sensorlist";
         if (farmID) url += "/" + farmID;
@@ -220,12 +394,23 @@ export class CitasApiService {
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getPlantList(key: string, farmID ? : string, siteID ? : string) {
+    public getPlantList(key: string, farmID ? : string, siteID ? : string): Observable <{}> {
         $("body").addClass("loading");
         let url = this.APIURL + "/plantlist";
         if (farmID) url += "/" + farmID;
@@ -234,33 +419,66 @@ export class CitasApiService {
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getFarm(key: string, farmID: string) {
+    public getFarm(key: string, farmID: string): Observable <{}>  {
         $("body").addClass("loading");
         let url = this.APIURL + "/farm/" + farmID + "?key=" + key;
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getFarmList(key: string) {
+    public getFarmList(key: string): Observable <{}>  {
         $("body").addClass("loading");
         let url = this.APIURL + "/farmlist?key=" + key;
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public contactUs(email: string, name: string, message: string) {
+    public contactUs(email: string, name: string, message: string): Observable <{}>  {
 
         $("body").addClass("loading");
         let url = this.APIURL + "/contactus";
@@ -275,13 +493,24 @@ export class CitasApiService {
         ////console.log(body);
 
         return this.http.post(url, body, options)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
 
     }
 
-    public editUser(user: User, key: string): Promise < User > {
+    public editUser(user: User, key: string): Observable <{}> {
         $("body").addClass("loading");
 
         let url = this.APIURL + "/profile?key=" + key;
@@ -296,23 +525,45 @@ export class CitasApiService {
         ////console.log(body);
 
         return this.http.post(url, body, options)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public getUser(key: string) {
+    public getUser(key: string): Observable <{}>  {
         $("body").addClass("loading");
         let url = this.APIURL + "/profile?key=" + key;
 
         ////console.log(url);
         return this.http.get(url)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public addUser(user: User): Promise < User > {
+    public addUser(user: User): Observable <{}>  {
         $("body").addClass("loading");
         let url = this.APIURL + "/register";
 
@@ -329,12 +580,23 @@ export class CitasApiService {
         ////console.log(body);
 
         return this.http.post(url, body, options)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
     }
 
-    public authenticateUser(username: string, password: string): Promise < Response > {
+    public authenticateUser(username: string, password: string): Observable <{}> {
         $("body").addClass("loading");
 
         let url = this.APIURL + "/login";
@@ -345,30 +607,36 @@ export class CitasApiService {
         let body = "username=" + username + "&password=" + password;
 
         return this.http.post(url, body, options)
-            .toPromise()
-            .then(this.extractData)
-            .catch(this.handleError);
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error)
+                }
+            )
+            .finally(
+                ()=>{
+                    this.onEnd();
+                }
+            )
+    }
+    
+    private onCatch(error: any, caught: Observable<any>): Observable<any> {
+        return Observable.throw(error);
     }
 
-    private extractData(res: Response) {
+    private onSuccess(res: Response): void {
+        // console.log('Request successful');
+    }
+    
+    private onError(res: Response): void {
+        console.error('Error, status code: ' + res.status);
+    }
+    
+    private onEnd(): void {
         $("body").removeClass("loading");
-        let body = res.json();
-        return body || {};
     }
 
-
-    private handleError(error: Response | any) {
-        $("body").removeClass("loading");
-        // In a real world app, you might use a remote logging infrastructure
-        let errMsg: string;
-        if (error instanceof Response) {
-            const body = error.json() || '';
-            const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-        } else {
-            errMsg = error.message ? error.message : error.toString();
-        }
-        console.error("Error logging in: " + errMsg);
-    }
-
-}
+} 

@@ -51,9 +51,10 @@ export class AppPlantAnalysisComponent {
         );
 
         this.apiService.getFarmList(this.sessionService.getLoggedInKey())
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 if(data.data){
                     this.farms = data.data;
 
@@ -67,9 +68,10 @@ export class AppPlantAnalysisComponent {
 
                     //console.log('selected farm: ' + this.selectedFarm.farm_name);
                     this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .then(
+                    .subscribe(
                         response => {
                             data = response;
+                            data = JSON.parse(data._body);
                             this.sites = data.data;
                             //console.log('sites');
                             //console.log(this.sites);
@@ -77,9 +79,10 @@ export class AppPlantAnalysisComponent {
                     );
 
                     this.apiService.getPlantList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .then(
+                    .subscribe(
                         res => {
                             data = res;
+                            data = JSON.parse(data._body);
                             this.plants = data.data;
                         }
                     );
@@ -101,18 +104,20 @@ export class AppPlantAnalysisComponent {
 
         //console.log('selected farm: ' + this.selectedFarm.farm_name);
         this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-        .then(
+        .subscribe(
             response => {
                 data = response;
+                data = JSON.parse(data._body);
                 this.sites = data.data;
                 //console.log(this.sites);
             }
         );
         
         this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-        .then(
-            res => {
-                data = res;
+            .subscribe(
+                res => {
+                    data = res;
+                    data = JSON.parse(data._body);
                 this.plants = data.data;
             }
         );
@@ -123,9 +128,10 @@ export class AppPlantAnalysisComponent {
         //console.log('Plant '+ plantID + ' selected!');
         let data: any;
         this.apiService.getPlant(this.sessionService.getLoggedInKey(), plantID)
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 //console.log(data);
                 this.selectedPlant = data.data;
                 ////console.log(this.selectedPlant);

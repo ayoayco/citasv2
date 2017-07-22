@@ -53,9 +53,10 @@ export class PlantListComponent implements AfterViewInit{
         let data: any;
         //console.log('selected site: ' + siteID)
         this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), val.toString())
-        .then(
-            res => {
-                data = res;
+            .subscribe(
+                res => {
+                    data = res;
+                    data = JSON.parse(data._body);
                 this.plants = data.data;
             }
         );
@@ -65,9 +66,10 @@ export class PlantListComponent implements AfterViewInit{
         if(this.selectedPlant.plant_id != ""){
             let data: any;
             this.apiService.getPlantImagesDownloadLink(this.sessionService.getLoggedInKey(), this.selectedPlant.plant_id)
-            .then(
+            .subscribe(
                 res => {
                     data = res;
+                    data = JSON.parse(data._body);
                     window.open(data.dl_link, '_blank');
                     //console.log(data);
                 }

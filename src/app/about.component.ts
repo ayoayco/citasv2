@@ -46,9 +46,11 @@ export class AboutComponent {
         );
 
         this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id)
-        .then(
+        .subscribe(
             res => {
-                data = res.data;
+                data = res;
+                data = JSON.parse(data._body);
+                data = data.data;
                 this.selectedFarm = data[0]
                 //console.log(this.selectedFarm);
             }

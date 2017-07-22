@@ -15,9 +15,10 @@ export class AppAboutEventsComponent {
     constructor(private apiService: CitasApiService){
         let data: any;
         this.apiService.getEvents()
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 this.events = data.data;
                 this.events.sort(function(a,b){
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());

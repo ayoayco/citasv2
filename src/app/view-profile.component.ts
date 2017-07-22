@@ -49,9 +49,10 @@ export class ViewProfileComponent{
         );
 
         this.apiService.getUser(this.sessionService.getLoggedInKey())
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 this.user = data;
                 this.user.user_type = data.role;
                 switch(this.user.user_type){
@@ -69,9 +70,11 @@ export class ViewProfileComponent{
         );
 
         this.apiService.getFarmList(this.sessionService.getLoggedInKey())
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
+                
                 this.selectedFarm.farm_name = 'Loading...';
                 if(data.data){
                     this.farms = data.data;
@@ -94,10 +97,12 @@ export class ViewProfileComponent{
         let data: any;
 
         this.apiService.getUser(this.sessionService.getLoggedInKey())
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 this.user = data;
+                console.log(res);
                 this.user.user_type = data.role;
                 switch(this.user.user_type){
                     case 4:

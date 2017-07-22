@@ -38,12 +38,13 @@ export class AppContactUsComponent{
         this.msg += "</ol>";
 
         if(!this.err){
+            let data: any
             this.apiService.contactUs(this.email, this.name, this.message)
-            .then(
-                res => {
-                    let data: any = res;
+            .subscribe(
+                res => { 
+                    data = res;
+                    data = JSON.parse(data._body);
                     this.success = true;
-                    //console.log(data);
                 }
             );
         }

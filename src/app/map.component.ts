@@ -197,9 +197,11 @@ export class MapComponent implements OnChanges {
 
         //get farm details
         this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-            .then(
-                res => {
-                    data = res.data[0];
+        .subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                data = data.data[0];
                     if (data) {
                         // to do: clear previous layer
                         this.farmLayer.clearLayers();
@@ -233,9 +235,12 @@ export class MapComponent implements OnChanges {
     private plotSites() { // get sites in farm
         let data: any;
         this.apiService.getSites(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-            .then(
-                res => {
-                    data = res.data;
+        .subscribe(
+            response => {
+                data = response;
+                data = JSON.parse(data._body);
+                data = data.data;
+                console.log(data);
                     if (data) {
                         // to do: clear previous layer
                         this.sitesLayer.clearLayers();

@@ -37,9 +37,11 @@ export class DatasetsPlantImagesGalleryComponent implements OnChanges {
         if(changes.selectedPlant && changes.selectedPlant.firstChange == false){
             let data: any;
             this.apiService.getPlantImages(this.sessionService.getLoggedInKey(), this.selectedPlant.plant_id)
-            .then(
+            .subscribe(
                 res => {
-                    data = res.images;
+                    data = res;
+                    data = JSON.parse(data._body);
+                    data = data.images;
                     this.plantImages = data;
                     //console.log(this.plantImages);
                 }

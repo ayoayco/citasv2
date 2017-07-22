@@ -42,7 +42,7 @@ export class AppDashboardComponent {
         let data : any;
 
         this.apiService.getUser(this.sessionService.getLoggedInKey())
-        .then(
+        .do(
             res => {
                 data = res;
                 ////console.log(data);
@@ -61,10 +61,10 @@ export class AppDashboardComponent {
         );
 
         this.apiService.getFarmList(this.sessionService.getLoggedInKey())
-        .then(
+        .subscribe(
             res => {
                 data = res;
-                
+                data = JSON.parse(data._body);
 
                 if(data.data){
 
@@ -80,25 +80,29 @@ export class AppDashboardComponent {
                     }
 
                     this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                    .then(
+                    .subscribe(
                         res => {
-                            data = res.data[0];
-                            this.selectedFarm = data;
+                            data = res;
+                            data = JSON.parse(data._body);
+                            data = data.data;
+                            this.selectedFarm = data[0];
                         }
                     );
 
                     this.apiService.getPlantList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .then(
+                    .subscribe(
                         res => {
                             data = res;
+                            data = JSON.parse(data._body);
                             this.plants = data.data;
                         }
                     );
 
                     this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .then(
+                    .subscribe(
                         res => {
                             data = res;
+                            data = JSON.parse(data._body);
                             this.sensors = data.data;
                         }
                     );
@@ -118,26 +122,30 @@ export class AppDashboardComponent {
         let data: any;
 
         this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-        .then(
+        .subscribe(
             res => {
-                data = res.data[0];
-                this.selectedFarm = data;
+                data = res;
+                data = JSON.parse(data._body);
+                data = data.data;
+                this.selectedFarm = data[0];
                 //console.log(this.selectedFarm);
             }
         );
 
         this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-        .then(
-            res => {
-                data = res;
+            .subscribe(
+                res => {
+                    data = res;
+                    data = JSON.parse(data._body);
                 this.plants = data.data;
             }
         );
 
         this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 this.sensors = data.data;
             }
         );

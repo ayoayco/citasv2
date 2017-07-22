@@ -47,9 +47,10 @@ export class DownloadsComponent{
         );
 
         this.apiService.getFarmList(this.sessionService.getLoggedInKey())
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 this.selectedFarm.farm_name = 'Loading...';
                 if(data.data){
                     this.farms = data.data;
@@ -64,9 +65,10 @@ export class DownloadsComponent{
                     //console.log('selected farm: ' + this.selectedFarm.farm_name);
 
                     this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .then(
+                    .subscribe(
                         response => {
                             data = response;
+                            data = JSON.parse(data._body);
                             this.sites = data.data;
                             //console.log('sites!');
                             //console.log(this.sites);
@@ -87,9 +89,10 @@ export class DownloadsComponent{
         //console.log('selected farm: ' + this.selectedFarm.farm_name);
 
         this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-        .then(
-            response => {
-                data = response;
+         .subscribe(
+             response => {
+                 data = response;
+                 data = JSON.parse(data._body);
                 this.sites = data.data;
                 //console.log('sites!');
                 //console.log(this.sites);

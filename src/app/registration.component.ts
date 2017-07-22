@@ -90,22 +90,13 @@ export class AppRegistrationComponent {
         
         if(!this.err){
             this.apiService.addUser(this.user)
-            .then(res => {
+            .subscribe(res => {
                 data = res;
+                data = JSON.parse(data._body);
                 if(data){
-                    //add success
-                    // login success, start session
-                    //console.log(data);
                     this.success = true;
-                    /*
-                    if(this.sessionService.startSession(data.user, data.key)){
-                        this.router.navigate(['/']);
-                    }
-                    */
-                    //prompt user to check email
                 }else{
-                    // login fail
-                    //console.log("Failed to authenticate.");
+                    
                 }
             });
         }

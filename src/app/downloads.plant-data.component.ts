@@ -41,9 +41,10 @@ export class DownloadPlantDataComponent{
             this.health,
             this.from,
             this.to
-        ).then(
+        ).subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 // console.log(data);
                 if(data.Success){
                     window.open(data.dl_link, '_blank');
