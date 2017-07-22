@@ -61,9 +61,10 @@ export class AppResetPasswordComponent{
         if(!this.err){
             let data: any;
             this.apiService.resetPassword(this.key, sha256(this.password))
-            .then(
+            .subscribe(
                 res => {
                     data = res;
+                    data = JSON.parse(data._body);
                     if(data.Success){
                         this.success = true;
                     }

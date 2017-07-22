@@ -47,10 +47,10 @@ export class RegisterFarmComponent{
         );
 
         this.apiService.getFarmList(this.sessionService.getLoggedInKey())
-        .then(
+        .subscribe(
             res => {
                 data = res;
-                
+                data = JSON.parse(data._body);
 
                 if(data.data){
 
@@ -66,9 +66,11 @@ export class RegisterFarmComponent{
                     }
 
                     this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                    .then(
+                    .subscribe(
                         res => {
-                            data = res.data[0];
+                            data = res;
+                            data = JSON.parse(data._body);
+                            data = data.data[0];
                             this.selectedFarm = data;
                         }
                     );
@@ -85,9 +87,11 @@ export class RegisterFarmComponent{
         let data: any;
 
         this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-        .then(
+        .subscribe(
             res => {
-                data = res.data[0];
+                data = res;
+                data = JSON.parse(data._body);
+                data = data.data[0];
                 this.selectedFarm = data;
                 //console.log(this.selectedFarm);
             }

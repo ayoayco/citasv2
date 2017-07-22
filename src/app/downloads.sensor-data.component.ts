@@ -41,9 +41,10 @@ export class DownloadSensorDataComponent{
             this.selectedSiteID,
             this.from,
             this.to
-        ).then(
+        ).subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 //console.log(data);
                 window.open(data.dl_link, '_blank');
             }

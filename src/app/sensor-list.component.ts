@@ -57,9 +57,10 @@ export class SensorListComponent implements AfterViewInit{
         let data: any;
         //console.log('selected site: ' + siteID)
         this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), val.toString())
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 this.sensors = data.data;
             }
         );
@@ -69,10 +70,10 @@ export class SensorListComponent implements AfterViewInit{
         if(this.selectedSensorName != ""){
             let data: any;
             this.apiService.getSensorCSVDownloadLink(this.sessionService.getLoggedInKey(), this.selectedSensorName)
-            .then(
+            .subscribe(
                 res => {
                     data = res;
-                    //console.log(data);
+                    data = JSON.parse(data._body);
                     window.open(data.dl_link, '_blank');
                 }
             )
@@ -133,9 +134,10 @@ export class SensorListComponent implements AfterViewInit{
         let data: any;
         //console.log('selected site: ' + siteID)
         this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), siteID.toString())
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 this.sensors = data.data;
                 //console.log("sensor count: "+this.sensors.length);
                 //console.log(this.sensors);

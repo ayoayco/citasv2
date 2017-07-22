@@ -90,9 +90,11 @@ export class AppTotalAnalysisComponent {
         );
 
         this.apiService.getFarmList(this.sessionService.getLoggedInKey())
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
+                
                 this.selectedFarm.farm_name = 'Loading...';
                 if(data.data){
                     this.farms = data.data;
@@ -107,25 +109,28 @@ export class AppTotalAnalysisComponent {
                     //console.log('selected farm: ' + this.selectedFarm.farm_name);
 
                     this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .then(
+                    .subscribe(
                         response => {
                             data = response;
+                            data = JSON.parse(data._body);
                             this.sites = data.data;
                         }
                     );
 
                     this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .then(
+                    .subscribe(
                         res => {
                             data = res;
+                            data = JSON.parse(data._body);
                             this.sensors = data.data;
                         }
                     );
 
                     this.apiService.getPlantList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .then(
+                    .subscribe(
                         res => {
                             data = res;
+                            data = JSON.parse(data._body);
                             this.plants = data.data;
                         }
                     );
@@ -149,9 +154,10 @@ export class AppTotalAnalysisComponent {
         //console.log('selected farm: ' + this.selectedFarm.farm_name);
 
         this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-        .then(
+        .subscribe(
             response => {
                 data = response;
+                data = JSON.parse(data._body);
                 this.sites = data.data;
                 //console.log('sites!');
                 //console.log(this.sites);
@@ -159,9 +165,10 @@ export class AppTotalAnalysisComponent {
         );
 
         this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 this.sensors = data.data;
                 //console.log("sensor count: "+this.sensors.length);
                 //console.log(this.sensors);
@@ -169,9 +176,10 @@ export class AppTotalAnalysisComponent {
         );
 
         this.apiService.getPlantList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 this.plants = data.data;
             }
         );
@@ -181,9 +189,10 @@ export class AppTotalAnalysisComponent {
         //console.log('sensor '+ sensorID + ' selected!');
         let data: any;
         this.apiService.getSensor(this.sessionService.getLoggedInKey(), sensorID)
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 this.selectedSensorReadings = data.data;
                 this.selectedSensorName = sensorID;
                 //console.log(this.selectedSensorReadings);
@@ -208,9 +217,10 @@ export class AppTotalAnalysisComponent {
         let data: any;
         //console.log('selected site: ' + siteID)
         this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), siteID.toString())
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 this.sensors = data.data;
                 //console.log("sensor count: "+this.sensors.length);
                 //console.log(this.sensors);
@@ -283,9 +293,11 @@ export class AppTotalAnalysisComponent {
         let data: any;
         if(this.selectedPlant){
             this.apiService.getPlantAnalysis(this.sessionService.getLoggedInKey(), this.selectedPlant.plant_id)
-            .then(
+            .subscribe(
                 res => {
-                    data = res.data;
+                    data = res;
+                    data = JSON.parse(data._body);
+                    data = data.data;
                     this.plantAnalysis = data;
                     // console.log(this.plantAnalysis);
                     $('#plantAnalysisModal').modal('toggle');
@@ -311,9 +323,10 @@ export class AppTotalAnalysisComponent {
         //console.log('Plant '+ plantID + ' selected!');
         let data: any;
         this.apiService.getPlant(this.sessionService.getLoggedInKey(), plantID)
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 // console.log(data.data);
                 this.selectedPlant = data.data;
                 this.togglePlantAnalysis();

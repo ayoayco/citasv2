@@ -21,9 +21,10 @@ export class AppLoginForgotPasswordComponent {
 
     forgotPassword() {
         this.apiService.forgotPassword(this.username)
-        .then(
+        .subscribe(
             res => {
                 this.data = res;
+                this.data = JSON.parse(this.data._body);
                 //console.log(this.data);
             }
         )

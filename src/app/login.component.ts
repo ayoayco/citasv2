@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { AppSessionService } from './app.session.service';
+import { Response } from '@angular/http';
 
+import { Router } from '@angular/router'
 declare let sha256: any;
 
 @Component({
@@ -40,11 +42,13 @@ export class AppLoginComponent {
         let hash = sha256(this.password);
         let strkey = "";
         this.apiService.authenticateUser(this.username, hash)
-            .then(
+            .subscribe(
                 res => {
                     data = res;
+                    data = JSON.parse(data._body)
+                    // console.log(data);
                     if (data) {
-                        // login success, start session
+                        // login success, start session 
                         // //console.log(data);
                         if (data.Success == true) {
                             $('#loginModal').modal('hide');

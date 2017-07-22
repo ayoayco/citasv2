@@ -31,7 +31,7 @@ export class UserNavComponent {
         this.username = this.sessionService.getLoggedInUser();
         let data: any;
         this.apiService.getUser(this.sessionService.getLoggedInKey())
-        .then(
+        .do(
             res => {
                 data = res;
                 this.username = data.fullname;

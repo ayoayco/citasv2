@@ -15,9 +15,10 @@ export class AppAboutTrainingsComponent {
     constructor(private apiService: CitasApiService){
         let data: any;
         this.apiService.getTrainings()
-        .then(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 this.trainings = data.data;
                 this.trainings.sort(function(a,b){
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());

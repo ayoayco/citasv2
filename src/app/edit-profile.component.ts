@@ -18,7 +18,6 @@ import { CitasApiService } from './citas.api.service';
 
 export class AppEditProfileComponent {
     
-    key: string = this.sessionService.getLoggedInKey();
     success: boolean = false;
     err: boolean = false;
     msg: string;
@@ -36,10 +35,11 @@ export class AppEditProfileComponent {
             this.user.username = username;
             let data: any;
             // get user infor from API
-            this.apiService.getUser(this.key)
-            .then(res => {
+            this.apiService.getUser(this.sessionService.getLoggedInKey())
+            .subscribe(res => {
                 data = res;
-                ////console.log(data);
+                data = JSON.parse(data._body);
+                //console.log(data);
                 if(data){
                     this.user = data;
                     this.user.user_type = data.role;
@@ -86,9 +86,11 @@ export class AppEditProfileComponent {
         this.msg += "</ol>"
 
         if(!this.err){
-            this.apiService.editUser(this.user, this.key)
-            .then(res => {
+            this.apiService.editUser(this.user, this.sessionService.getLoggedInKey())
+            .subscribe(
+                res => {
                     data = res;
+                    data = JSON.parse(data._body)
                     if(data){
                         this.user.fullname = data.fullname;
                         this.user.mobile_number = data.mobile_number;
