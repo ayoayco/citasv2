@@ -31,11 +31,11 @@ export class UserNavComponent {
         this.username = this.sessionService.getLoggedInUser();
         let data: any;
         this.apiService.getUser(this.sessionService.getLoggedInKey())
-        .do(
+        .subscribe(
             res => {
                 data = res;
+                data = JSON.parse(data._body);
                 this.username = data.fullname;
-                ////console.log(data);
             }
         );
     }
