@@ -71,6 +71,7 @@ export class MapComponent implements OnChanges {
         private sessionService: AppSessionService,
         private ngZone: NgZone
     ) {
+        $("body").addClass("loading");
         this.farmLayer = L.layerGroup([]);
         this.sitesLayer = L.layerGroup([]);
         this.plantsLayer = L.layerGroup([]);
@@ -134,11 +135,13 @@ export class MapComponent implements OnChanges {
             var scrollWheelZoom = false;
         }
 
+        let center = new L.LatLng(12.4, 122.4);
+
         // initialize map
         this.mymap = new L.Map("map-div", {
             zoomControl: this.zoomControl,
             touchZoom: this.touchZoom,
-            center: new L.LatLng(12.4, 122.4),
+            center: center,
             zoom: 5.5,
             dragging: dragging,
             doubleClickZoom: doubleClickZoom,
@@ -193,43 +196,35 @@ export class MapComponent implements OnChanges {
 
     private plotFarm() {
         //console.log("Map Farm: " + this.selectedFarm.farm_name);
-        let data: any;
+        let data: Farm = this.selectedFarm;
 
         //get farm details
-        this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-        .subscribe(
-            res => {
-                data = res;
-                data = JSON.parse(data._body);
-                data = data.data[0];
-                    if (data) {
-                        // to do: clear previous layer
-                        this.farmLayer.clearLayers();
-                        let center = new L.LatLng(data.center[0], data.center[1]);
-                        this.center = center;
-                        let zoom = 0;
-                        switch (data.farm_size) {
-                            case "large":
-                                zoom = 14;
-                                break;
-                            case "small":
-                                zoom = 16;
-                                break;
-                            default:
-                                zoom = 14;
-                                break;
-                        }
-                        if (this.fullMap) {
-                            zoom += 1;
-                        }
-                        this.zoom = zoom;
-                        this.mymap.setView(center, zoom);
-                        let polygon = L.polygon(data.geometry, { color: 'black', fillOpacity: 0 });
-                        this.farmLayer.addLayer(polygon);
-                        this.farmLayer.addTo(this.mymap);
-                    }
-                }
-            );
+        if (data.center) {
+            // to do: clear previous layer
+            this.farmLayer.clearLayers();
+            let center = new L.LatLng(data.center[0], data.center[1]);
+            this.center = center;
+            let zoom = 0;
+            switch (data.farm_size) {
+                case "large":
+                    zoom = 14;
+                    break;
+                case "small":
+                    zoom = 16;
+                    break;
+                default:
+                    zoom = 14;
+                    break;
+            }
+            if (this.fullMap) {
+                zoom += 1;
+            }
+            this.zoom = zoom;
+            this.mymap.setView(center, zoom);
+            let polygon = L.polygon(data.geometry, { color: 'black', fillOpacity: 0 });
+            this.farmLayer.addLayer(polygon);
+            this.farmLayer.addTo(this.mymap);
+        }
     }
 
     private plotSites() { // get sites in farm
@@ -240,7 +235,6 @@ export class MapComponent implements OnChanges {
                 data = response;
                 data = JSON.parse(data._body);
                 data = data.data;
-                console.log(data);
                     if (data) {
                         // to do: clear previous layer
                         this.sitesLayer.clearLayers();

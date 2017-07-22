@@ -55,84 +55,84 @@ export class AppSensorAnalysisComponent {
             }
         );
 
-        this.apiService.getFarmList(this.sessionService.getLoggedInKey())
+        this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id.toString())
         .subscribe(
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                
-                this.selectedFarm.farm_name = 'Loading...';
-                if(data.data){
-                    this.farms = data.data;
+                data = data.data[0];
+                this.selectedFarm = data;
 
-                    if(farm_id == undefined){
-                        this.selectedFarm = this.farms[0];
-                    }else{
-                        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == farm_id });
-                        this.selectedFarm = selectedArr[0];
+                this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                .subscribe(
+                    response => {
+                        data = response;
+                        data = JSON.parse(data._body);
+                        this.sites = data.data;
                     }
+                );
 
-                    //console.log('selected farm: ' + this.selectedFarm.farm_name);
+                this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                .subscribe(
+                    res => {
+                        data = res;
+                        data = JSON.parse(data._body);
+                        this.sensors = data.data;
+                    }
+                );
 
-                    this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .subscribe(
-                        response => {
-                            data = response;
-                            data = JSON.parse(data._body);
-                            this.sites = data.data;
-                            //console.log('sites!');
-                            //console.log(this.sites);
+                this.apiService.getFarmList(this.sessionService.getLoggedInKey())
+                .subscribe(
+                    res => {
+                        data = res;
+                        data = JSON.parse(data._body);
+                        
+                        if(data.data){
+                            this.farms = data.data;
                         }
-                    );
-
-                    this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .subscribe(
-                        res => {
-                            data = res;
-                            data = JSON.parse(data._body);
-                            this.sensors = data.data;
-                            //console.log("sensor count: "+this.sensors.length);
-                            //console.log(this.sensors);
-                        }
-                    );
-
-                }
-                ////console.log(this.farms);
+                    }
+                );
             }
         );
     }
 
     public selectFarm(id: number){
         
+        let data: any;
         this.sensors = [];
         this.selectedSensorReadings = undefined;
         this.selectedSensorName = "";
-        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == id });
-        this.selectedFarm = selectedArr[0];
-
-        let data: any;
-
-        //console.log('selected farm: ' + this.selectedFarm.farm_name);
-
-        this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-        .subscribe(
-            response => {
-                data = response;
-                data = JSON.parse(data._body);
-                this.sites = data.data;
-                //console.log('sites!');
-                //console.log(this.sites);
-            }
-        );
-
-        this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+        this.apiService.getFarm(this.sessionService.getLoggedInKey(), id.toString())
         .subscribe(
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                this.sensors = data.data;
-                //console.log("sensor count: "+this.sensors.length);
-                //console.log(this.sensors);
+                data = data.data[0];
+                this.selectedFarm = data;
+
+                //console.log('selected farm: ' + this.selectedFarm.farm_name);
+
+                this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                .subscribe(
+                    response => {
+                        data = response;
+                        data = JSON.parse(data._body);
+                        this.sites = data.data;
+                        //console.log('sites!');
+                        //console.log(this.sites);
+                    }
+                );
+
+                this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                .subscribe(
+                    res => {
+                        data = res;
+                        data = JSON.parse(data._body);
+                        this.sensors = data.data;
+                        //console.log("sensor count: "+this.sensors.length);
+                        //console.log(this.sensors);
+                    }
+                );
             }
         );
 
