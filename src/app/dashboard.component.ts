@@ -42,10 +42,10 @@ export class AppDashboardComponent {
         let data : any;
 
         this.apiService.getUser(this.sessionService.getLoggedInKey())
-        .do(
+        .subscribe(
             res => {
                 data = res;
-                ////console.log(data);
+                data = JSON.parse(data._body);
                 if(data){
                     this.user = data;
                     this.user.user_type = data.role;
