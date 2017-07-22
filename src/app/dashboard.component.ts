@@ -41,17 +41,6 @@ export class AppDashboardComponent {
 
         let data : any;
 
-        this.apiService.getUser(this.sessionService.getLoggedInKey())
-        .subscribe(
-            res => {
-                data = res;
-                data = JSON.parse(data._body);
-                if(data){
-                    this.user = data;
-                    this.user.user_type = data.role;
-                }
-            }
-        );
 
         let farm_id = undefined;
         this.activeRoute.params.forEach(
@@ -60,93 +49,78 @@ export class AppDashboardComponent {
             }
         );
 
-        this.apiService.getFarmList(this.sessionService.getLoggedInKey())
+        this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id.toString())
         .subscribe(
             res => {
                 data = res;
                 data = JSON.parse(data._body);
+                data = data.data[0];
+                this.selectedFarm = data;
 
-                if(data.data){
-
-                    this.farms = data.data;
-
-                    if(farm_id == undefined){
-                        this.selectedFarm = this.farms[0];
-                        //console.log('selected farm: ' + this.selectedFarm.farm_name);
-                    }else{
-                        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == farm_id });
-                        this.selectedFarm = selectedArr[0];
-                        //console.log('selected farm: ' + this.selectedFarm.farm_name);
+                this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                .subscribe(
+                    res => {
+                        data = res;
+                        data = JSON.parse(data._body);
+                        this.sensors = data.data;
                     }
+                );
 
-                    this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                    .subscribe(
-                        res => {
-                            data = res;
-                            data = JSON.parse(data._body);
-                            data = data.data;
-                            this.selectedFarm = data[0];
+                this.apiService.getPlantList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                .subscribe(
+                    res => {
+                        data = res;
+                        data = JSON.parse(data._body);
+                        this.plants = data.data;
+                    }
+                );
+
+                this.apiService.getFarmList(this.sessionService.getLoggedInKey())
+                .subscribe(
+                    res => {
+                        data = res;
+                        data = JSON.parse(data._body);
+                        
+                        if(data.data){
+                            this.farms = data.data;
                         }
-                    );
+                    }
+                );
 
-                    this.apiService.getPlantList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .subscribe(
-                        res => {
-                            data = res;
-                            data = JSON.parse(data._body);
-                            this.plants = data.data;
-                        }
-                    );
-
-                    this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .subscribe(
-                        res => {
-                            data = res;
-                            data = JSON.parse(data._body);
-                            this.sensors = data.data;
-                        }
-                    );
-
-                }
-                ////console.log(this.farms);
             }
         );
     }
 
     public selectFarm(id: number){
-        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == id });
-        this.selectedFarm = selectedArr[0];
         this.plants = [];
         this.sensors = []
 
         let data: any;
-
-        this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+        this.apiService.getFarm(this.sessionService.getLoggedInKey(), id.toString())
         .subscribe(
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                data = data.data;
-                this.selectedFarm = data[0];
-                //console.log(this.selectedFarm);
-            }
-        );
+                data = data.data[0];
+                this.selectedFarm = data;
 
-        this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-            .subscribe(
-                res => {
-                    data = res;
-                    data = JSON.parse(data._body);
-                this.plants = data.data;
-            }
-        );
+                this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                .subscribe(
+                    res => {
+                        data = res;
+                        data = JSON.parse(data._body);
+                        this.sensors = data.data;
+                    }
+                );
 
-        this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-        .subscribe(
-            res => {
-                data = res;
-                data = JSON.parse(data._body);
-                this.sensors = data.data;
+                this.apiService.getPlantList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                .subscribe(
+                    res => {
+                        data = res;
+                        data = JSON.parse(data._body);
+                        this.plants = data.data;
+                    }
+                );
             }
         );
     }

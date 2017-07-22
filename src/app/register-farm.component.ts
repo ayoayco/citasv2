@@ -46,54 +46,49 @@ export class RegisterFarmComponent{
             }
         );
 
-        this.apiService.getFarmList(this.sessionService.getLoggedInKey())
-        .subscribe(
-            res => {
-                data = res;
-                data = JSON.parse(data._body);
-
-                if(data.data){
-
-                    this.farms = data.data;
-
-                    if(farm_id == undefined){
-                        this.selectedFarm = this.farms[0];
-                        //console.log('selected farm: ' + this.selectedFarm.farm_name);
-                    }else{
-                        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == farm_id });
-                        this.selectedFarm = selectedArr[0];
-                        //console.log('selected farm: ' + this.selectedFarm.farm_name);
-                    }
-
-                    this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                    .subscribe(
-                        res => {
-                            data = res;
-                            data = JSON.parse(data._body);
-                            data = data.data[0];
-                            this.selectedFarm = data;
-                        }
-                    );
-                }
-                ////console.log(this.farms);
-            }
-        );
-    }
-
-    public selectFarm(id: number){
-        let selectedArr = $.grep(this.farms, function(e){ return e.farm_id == id });
-        this.selectedFarm = selectedArr[0];
-
-        let data: any;
-
-        this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+        this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id.toString())
         .subscribe(
             res => {
                 data = res;
                 data = JSON.parse(data._body);
                 data = data.data[0];
                 this.selectedFarm = data;
-                //console.log(this.selectedFarm);
+            }
+        );
+
+        this.apiService.getFarmList(this.sessionService.getLoggedInKey())
+        .subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                
+                if(data.data){
+                    this.farms = data.data;
+                }
+            }
+        );
+    }
+
+    public selectFarm(id: number){
+        let data: any;
+        this.apiService.getFarm(this.sessionService.getLoggedInKey(), id.toString())
+        .subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                data = data.data[0];
+                this.selectedFarm = data;
+
+                this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                .subscribe(
+                    res => {
+                        data = res;
+                        data = JSON.parse(data._body);
+                        data = data.data[0];
+                        this.selectedFarm = data;
+                        //console.log(this.selectedFarm);
+                    }
+                );
             }
         );
     }

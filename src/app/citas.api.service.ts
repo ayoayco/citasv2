@@ -634,7 +634,7 @@ export class CitasApiService {
     private onError(res: Response): void {
         console.error('Error, status code: ' + res.status);
     }
-    
+
     private onEnd(): void {
         $("body").removeClass("loading");
     }
