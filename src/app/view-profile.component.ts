@@ -48,48 +48,81 @@ export class ViewProfileComponent{
             }
         );
 
-        this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id.toString())
-        .subscribe(
-            res => {
-                data = res;
-                data = JSON.parse(data._body);
-                data = data.data[0];
-                this.selectedFarm = data;
+        if(farm_id != undefined){
+            this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id.toString())
+            .subscribe(
+                res => {
+                    data = res;
+                    data = JSON.parse(data._body);
+                    data = data.data[0];
+                    this.selectedFarm = data;
 
-                this.apiService.getUser(this.sessionService.getLoggedInKey())
-                .subscribe(
-                    res => {
-                        data = res;
-                        data = JSON.parse(data._body);
-                        this.user = data;
-                        this.user.user_type = data.role;
-                        switch(this.user.user_type){
-                            case 4:
-                                this.role = "Farm Manager";
-                                this.imgFile = "avatar-farmer.png";
-                                break;
-                            case 5:
-                                this.role = "Researcher";
-                                this.imgFile = "avatar-researcher.png";
-                                break;
+                    this.apiService.getUser(this.sessionService.getLoggedInKey())
+                    .subscribe(
+                        res => {
+                            data = res;
+                            data = JSON.parse(data._body);
+                            this.user = data;
+                            this.user.user_type = data.role;
+                            switch(this.user.user_type){
+                                case 4:
+                                    this.role = "Farm Manager";
+                                    this.imgFile = "avatar-farmer.png";
+                                    break;
+                                case 5:
+                                    this.role = "Researcher";
+                                    this.imgFile = "avatar-researcher.png";
+                                    break;
+                            }
+                            //console.log(this.user);
                         }
-                        //console.log(this.user);
-                    }
-                );
+                    );
 
-                this.apiService.getFarmList(this.sessionService.getLoggedInKey())
-                .subscribe(
-                    res => {
-                        data = res;
-                        data = JSON.parse(data._body);
-                        
-                        if(data.data){
-                            this.farms = data.data;
+                    this.apiService.getFarmList(this.sessionService.getLoggedInKey())
+                    .subscribe(
+                        res => {
+                            data = res;
+                            data = JSON.parse(data._body);
+                            
+                            if(data.data){
+                                this.farms = data.data;
+                            }
                         }
-                    }
-                );
-            }
-        );
+                    );
+                }
+            );
+        }else{
+            this.apiService.getFarmList(this.sessionService.getLoggedInKey())
+            .subscribe(
+                res => {
+                    data = res;
+                    data = JSON.parse(data._body);
+                    this.farms = data.data;
+
+                    this.apiService.getUser(this.sessionService.getLoggedInKey())
+                    .subscribe(
+                        res => {
+                            data = res;
+                            data = JSON.parse(data._body);
+                            this.user = data;
+                            this.user.user_type = data.role;
+                        }
+                    )
+
+                    this.selectedFarm = this.farms[0];
+                    this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                    .subscribe(
+                        res => {
+                            data = res;
+                            data = JSON.parse(data._body);
+                            data = data.data[0];
+                            this.selectedFarm = data;
+                        }
+                    );
+                }
+            );
+            
+        }
     }
 
     updateUser(){
