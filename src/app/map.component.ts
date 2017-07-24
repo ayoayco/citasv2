@@ -152,7 +152,7 @@ export class MapComponent implements OnChanges {
 
         if(this.drawControl){
             // FeatureGroup is to store editable layers
-            var drawnItems = new L.FeatureGroup();
+            var drawnItems = new L.FeatureGroup([]);
             this.mymap.addLayer(drawnItems);
             var drawControl = new L.Control.Draw({
                 edit: {
