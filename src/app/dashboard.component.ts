@@ -41,7 +41,6 @@ export class AppDashboardComponent {
 
         let data : any;
 
-
         let farm_id = undefined;
         this.activeRoute.params.forEach(
             (params : Params) => {
