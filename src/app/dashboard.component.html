@@ -3,7 +3,7 @@
     <div id="page-content-wrapper">
         <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
         <div class="container">
-            <h1>{{selectedFarm.farm_name}} <span *ngIf="selectedFarm.center == undefined || selectedFarm.center == []">Overview</span></h1>
+            <h1>{{selectedFarm.farm_name}} <span *ngIf="selectedFarm.farm_name != 'Loading...'">Overview</span></h1>
             <div class="row">
                 <div id="info-div" class="col col-md-4 col-sm-12">
                     <plants-info [selectedFarm]="selectedFarm"></plants-info>
