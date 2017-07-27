@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { debounce } from 'rxjs/operator/debounce';
+import { Component, OnInit } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { User } from './models/user';
 import { AppSessionService } from './app.session.service';
@@ -17,7 +18,7 @@ declare let sha256: any;
     ]
 })
 
-export class AppRegistrationComponent {
+export class AppRegistrationComponent implements OnInit {
 
     success: boolean = false;
     msg: string;
@@ -30,9 +31,21 @@ export class AppRegistrationComponent {
         private apiService: CitasApiService,
         private router: Router,
         private sessionService: AppSessionService
-    ){}
+    ){
+    }
 
-    addUser(): void{
+    ngOnInit() {
+        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+        //Add 'implements OnInit' to the class.
+        
+        $('.step').hide();
+        $('.step-1').show();
+    }
+
+    public addUser(): void{
+
+        console.dir(this.user);
+
         this.msg = "<strong>Registration Failed!</strong> Please correct the following error(s):<br /><ol>";
         this.err = false;
         let data: any;
@@ -103,5 +116,26 @@ export class AppRegistrationComponent {
 
         
     }
+    
+    public choseUserType(int: number): void{
+        this.user.user_type = int;
+        this.show('step-2');
+    }
 
+    public show(str: string): void{
+        $('.step').hide();
+        $('.'+str).show("slide");
+    }
+
+    public getUserType(): string{
+        let str: string = "";
+
+        switch(this.user.user_type){
+            case 4: str = "Farm Owner"; break;
+            case 5: str = "Researcher"; break;
+            default: str = "User";
+        }
+
+        return str;
+    }
 }

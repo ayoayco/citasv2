@@ -15,7 +15,7 @@ export class Farm {
 
     constructor(){
         this.center = [];
-        this.farm_id = 0;
+        this.farm_id = undefined;
         this.farm_name = "Loading...";
         this.farm_size = "";
         this.foc_present = false;

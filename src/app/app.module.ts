@@ -58,9 +58,11 @@ import { PlantListComponent } from './plant-list.component';
 import { SensorListComponent } from './sensor-list.component';
 
 import { RegisterFarmComponent } from './register-farm.component';
+import { BlankComponent } from './blank.component';
 
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
+  { path: 'blank', component: BlankComponent },
   { path: 'view-profile', component: ViewProfileComponent },
   { path: 'view-profile/:id', component: ViewProfileComponent },
   { path: 'dashboard', component: AppDashboardComponent },
@@ -137,7 +139,8 @@ const appRoutes: Routes = [
     AppAboutResearchComponent,
     AppAboutTrainingsComponent,
     AnalysisPipe,
-    RegisterFarmComponent
+    RegisterFarmComponent,
+    BlankComponent
   ],
   imports: [
     BrowserModule,
