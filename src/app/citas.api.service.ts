@@ -565,7 +565,7 @@ export class CitasApiService {
 
     public addUser(user: User): Observable <{}>  {
         $("body").addClass("loading");
-        let url = this.APIURL + "/register";
+        let url = this.APIURL + "/registerv2";
 
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers });
@@ -575,7 +575,22 @@ export class CitasApiService {
             "&user_type=" + user.user_type +
             "&fullname=" + user.fullname +
             "&email=" + user.email +
-            "&mobile_number=" + user.mobile_number;
+            "&mobile_number=" + user.mobile_number+
+            "&designation=" + user.details.designation+
+            "&organization=" + user.details.organization+
+            "&department=" + user.details.department+
+            "&research_text=" + user.details.details_text+
+            "&email_subscription=" + user.details.email_subscription;
+
+            /*
+            
+    designation: string,
+    organization: string,
+    department: string,
+    details_text: string,
+    email_subscription: boolean
+            
+            */
 
         ////console.log(body);
 

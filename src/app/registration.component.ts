@@ -77,6 +77,18 @@ export class AppRegistrationComponent implements OnInit {
             this.msg += "<li> Mobile Number should have 12 digits</li>";
             this.err = true;
         }
+        if(this.user.user_type == 4 && this.user.details.organization == ""){
+            this.msg += "<li> Corporation empty</li>";
+            this.err = true;
+        }
+        if(this.user.user_type == 5 && this.user.details.organization == ""){
+            this.msg += "<li> Organization empty</li>";
+            this.err = true;
+        }
+        if(this.user.user_type == 5 && this.user.details.details_text == ""){
+            this.msg += "<li> Reason for research empty</li>";
+            this.err = true;
+        }
         if(this.user.user_type == 0){
             this.msg += "<li> User Type empty</li>";
             this.err = true;
@@ -107,7 +119,13 @@ export class AppRegistrationComponent implements OnInit {
                 data = res;
                 data = JSON.parse(data._body);
                 if(data){
-                    this.success = true;
+                    if(data.Success){
+                        this.success = true;
+                    }else{
+                        this.err = true;
+                        this.msg = data.err+". Please contact the addministrator.";
+                    }
+                    console.log(data);
                 }else{
                     
                 }

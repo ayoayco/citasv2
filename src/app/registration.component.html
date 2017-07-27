@@ -30,13 +30,22 @@
                     <input [(ngModel)]="user.fullname" name="fullname" type="text" id="fullname" placeholder="Full Name" class="form-control" autofocus>
 
                     <label *ngIf="user.user_type == 4" for="corporation" class="control-label">Corporation</label>
-                    <input *ngIf="user.user_type == 4" [(ngModel)]="user.details.corporation" name="corporation" type="text" id="corporation" placeholder="Corporation" class="form-control">
+                    <input *ngIf="user.user_type == 4" [(ngModel)]="user.details.organization" name="corporation" type="text" id="corporation" placeholder="Corporation" class="form-control">
+
+                    <label *ngIf="user.user_type == 4" for="designation" class="control-label">Designation</label>
+                    <input *ngIf="user.user_type == 4" [(ngModel)]="user.details.designation" name="designation" type="text" id="designation" placeholder="Ex. CEO, Manager" class="form-control">
 
                     <label *ngIf="user.user_type == 5" for="organization" class="control-label">Organization</label>
                     <input *ngIf="user.user_type == 5" [(ngModel)]="user.details.organization" name="organization" type="text" id="organization" placeholder="Organization" class="form-control">
 
-                    <label *ngIf="user.user_type == 5" for="institution" class="control-label">Institution</label>
-                    <input *ngIf="user.user_type == 5" [(ngModel)]="user.details.institution" name="institution" type="text" id="institution" placeholder="Institution" class="form-control">
+                    <label *ngIf="user.user_type == 5" for="department" class="control-label">Department</label>
+                    <input *ngIf="user.user_type == 5" [(ngModel)]="user.details.department" name="department" type="text" id="department" placeholder="Department" class="form-control">
+
+                    <label *ngIf="user.user_type == 5" for="designation" class="control-label">Designation</label>
+                    <input *ngIf="user.user_type == 5" [(ngModel)]="user.details.designation" name="designation" type="text" id="designation" placeholder="Ex. Student, Instructor" class="form-control">
+
+                    <label *ngIf="user.user_type == 5" for="details_text" class="control-label">Reason for research</label>
+                    <textarea *ngIf="user.user_type == 5" [(ngModel)]="user.details.details_text" name="details_text" type="text" id="details_text" placeholder="Why do you need an account?" class="form-control"></textarea>
 
                     <label for="email" class="control-label">Email <span *ngIf="user.user_type == 4">(Optional)</span></label>
                     <input [(ngModel)]="user.email" name="email" type="email" id="email" placeholder="Email" class="form-control">
@@ -59,8 +68,8 @@
                     <br />
 
                     <div *ngIf="success" class="alert alert-success">
-                        <strong>Please check the <span *ngIf="user.user_type == 5">email sent to the email address</span> <span *ngIf="user.user_type == 4">SMS sent to the mobile number</span> you provided for your username!</strong>
-                        <span> have successfully registered</span>.
+                        <strong>You have successfully registered</strong>
+                        Please check the <span *ngIf="user.user_type == 5">email sent to the email address</span> <span *ngIf="user.user_type == 4">SMS sent to the mobile number</span> you provided for your username!.
                     </div>
 
                     <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
