@@ -18,7 +18,7 @@ import { User } from './models/user';
 
 export class AppDashboardComponent {
     
-    farms: Farm[];
+    farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
     plants: any[] = [];
     sensors: any[] = [];
@@ -63,7 +63,8 @@ export class AppDashboardComponent {
                             data = res;
                             data = JSON.parse(data._body);
                             this.user = data;
-                            this.user.user_type = data.role;
+                            if(data.organization)
+                                this.user.details.organization = data.organization;
                         }
                     )
 
@@ -91,6 +92,8 @@ export class AppDashboardComponent {
                             data = res;
                             data = JSON.parse(data._body);
                             
+                            console.log(data);
+
                             if(data.data){
                                 this.farms = data.data;
                             }
@@ -105,7 +108,12 @@ export class AppDashboardComponent {
                 res => {
                     data = res;
                     data = JSON.parse(data._body);
-                    this.farms = data.data;
+
+                    console.log(data);
+
+                    if(data.data){
+                        this.farms = data.data;
+                    }
 
                     this.apiService.getUser(this.sessionService.getLoggedInKey())
                     .subscribe(
@@ -113,38 +121,38 @@ export class AppDashboardComponent {
                             data = res;
                             data = JSON.parse(data._body);
                             this.user = data;
-                            this.user.user_type = data.role;
                         }
                     )
+                    if(this.farms.length > 0){
+                        this.selectedFarm = this.farms[0];
+                        this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                        .subscribe(
+                            res => {
+                                data = res;
+                                data = JSON.parse(data._body);
+                                data = data.data[0];
+                                this.selectedFarm = data;
+                            }
+                        );
 
-                    this.selectedFarm = this.farms[0];
-                    this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                    .subscribe(
-                        res => {
-                            data = res;
-                            data = JSON.parse(data._body);
-                            data = data.data[0];
-                            this.selectedFarm = data;
-                        }
-                    );
+                        this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                        .subscribe(
+                            res => {
+                                data = res;
+                                data = JSON.parse(data._body);
+                                this.sensors = data.data;
+                            }
+                        );
 
-                    this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .subscribe(
-                        res => {
-                            data = res;
-                            data = JSON.parse(data._body);
-                            this.sensors = data.data;
-                        }
-                    );
-
-                    this.apiService.getPlantList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
-                    .subscribe(
-                        res => {
-                            data = res;
-                            data = JSON.parse(data._body);
-                            this.plants = data.data;
-                        }
-                    );
+                        this.apiService.getPlantList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                        .subscribe(
+                            res => {
+                                data = res;
+                                data = JSON.parse(data._body);
+                                this.plants = data.data;
+                            }
+                        );
+                    }
                 }
             );
             

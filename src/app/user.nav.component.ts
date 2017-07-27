@@ -15,7 +15,7 @@ import { Farm } from './models/farm';
 })
 
 export class UserNavComponent {
-    @Input() farms: Farm[];
+    @Input() farms: Farm[] = [];
     @Input() selectedFarm: Farm = new Farm();
     @Output() selectFarm = new EventEmitter<{}>();
     @Output() mapResize = new EventEmitter<{}>();
@@ -30,14 +30,6 @@ export class UserNavComponent {
         this.isLoggedIn = this.sessionService.isLoggedIn();
         this.username = this.sessionService.getLoggedInUser();
         let data: any;
-        this.apiService.getUser(this.sessionService.getLoggedInKey())
-        .subscribe(
-            res => {
-                data = res;
-                data = JSON.parse(data._body);
-                this.username = data.fullname;
-            }
-        );
     }
 
     public logout(){

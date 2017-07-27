@@ -459,7 +459,7 @@ export class CitasApiService {
 
     public getFarmList(key: string): Observable <{}>  {
         $("body").addClass("loading");
-        let url = this.APIURL + "/farmlist?key=" + key;
+        let url = this.APIURL + "/userfarms?key=" + key;
         ////console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)

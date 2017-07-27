@@ -1,42 +1,78 @@
 <app-nav [isTransparent]="false"></app-nav>
 
 <div class="container">
-    <form class="form-horizontal" role="form">
-        <i class="app-logo "></i>
-        <h2>New User</h2>
-        <div class="form-group">
-            <div>
-                <label for="fullname" class="control-label">Full Name</label>
-                <input [(ngModel)]="user.fullname" name="fullname" type="text" id="fullname" placeholder="Full Name" class="form-control" autofocus>
-                <label for="email" class="control-label">Email</label>
-                <input [(ngModel)]="user.email" name="email" type="email" id="email" placeholder="Email" class="form-control">
-                <label for="mobileNumber" class="control-label">Mobile Number</label>
-                <input maxlength="12" [(ngModel)]="user.mobile_number" name="mobile_number" type="text" id="mobileNumber" placeholder="639*********" class="form-control">
-                <label for="userType" class="control-label">User Type</label>
-                <select [(ngModel)]="user.user_type" name="userType" id="userType" class="form-control" placeholder="Choose User Type">
-                            <option value="4">Farm Manager</option>
-                            <option value="5">Researcher</option>
-                        </select>
-                <label for="password" class="control-label">Password</label>
-                <input [(ngModel)]="user.password" name="password" type="password" id="password" placeholder="Password" class="form-control">
-                <label for="password2" class="control-label">Confirm Password</label>
-                <input [(ngModel)]="password2" name="password2" type="password" id="password2" placeholder="Confirm Password" class="form-control">
-                <div class="checkbox">
-                    <label>
-                        <input [(ngModel)]="accept" name="accept" type="checkbox" /> I accept <a routerLink="/terms" routerLinkActive="active">terms</a>
-                    </label>
+
+    <div id="content">
+        <div class="step step-1">
+            <i class="app-logo "></i>
+            <h2>Are you a...</h2>
+            <div class=" row">
+                <div class="col-md-5 clickable" (click)="choseUserType(4)">
+                    <img src="./assets/avatar-farmer-min.png" alt="farmer" /> Farm Owner
                 </div>
-                <br />
-                <div *ngIf="success" class="alert alert-success">
-                    <strong>Please check your email for your username!</strong> You have successfully registered.
+                <div class="col-md-2">
+                    Or
                 </div>
-                <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
-                <button (click)="addUser()" class="btn btn-primary btn-block">Register</button>
-                <a routerLink="/dashboard" routerLinkActive="active" class="btn btn-default btn-block">Cancel</a>
+                <div class="col-md-5 clickable" (click)="choseUserType(5)">
+                    <img src="./assets/avatar-researcher-min.png" alt="researcher" /> Researcher
+                </div>
             </div>
+            <a routerLink="/blank" routerLinkActive="active">Why are you asking?</a>
         </div>
-    </form>
-    <!-- /form -->
+
+        <form class="step step-2 form-horizontal" role="form">
+            <i class="app-logo "></i>
+            <h2>New {{getUserType()}}</h2>
+            <div class="form-group">
+                <div>
+
+                    <label for="fullname" class="control-label">Full Name</label>
+                    <input [(ngModel)]="user.fullname" name="fullname" type="text" id="fullname" placeholder="Full Name" class="form-control" autofocus>
+
+                    <label *ngIf="user.user_type == 4" for="corporation" class="control-label">Corporation</label>
+                    <input *ngIf="user.user_type == 4" [(ngModel)]="user.details.corporation" name="corporation" type="text" id="corporation" placeholder="Corporation" class="form-control">
+
+                    <label *ngIf="user.user_type == 5" for="organization" class="control-label">Organization</label>
+                    <input *ngIf="user.user_type == 5" [(ngModel)]="user.details.organization" name="organization" type="text" id="organization" placeholder="Organization" class="form-control">
+
+                    <label *ngIf="user.user_type == 5" for="institution" class="control-label">Institution</label>
+                    <input *ngIf="user.user_type == 5" [(ngModel)]="user.details.institution" name="institution" type="text" id="institution" placeholder="Institution" class="form-control">
+
+                    <label for="email" class="control-label">Email <span *ngIf="user.user_type == 4">(Optional)</span></label>
+                    <input [(ngModel)]="user.email" name="email" type="email" id="email" placeholder="Email" class="form-control">
+
+                    <label for="mobileNumber" class="control-label">Mobile Number <span *ngIf="user.user_type == 5">(Optional)</span></label>
+                    <input maxlength="12" [(ngModel)]="user.mobile_number" name="mobile_number" type="text" id="mobileNumber" placeholder="639*********" class="form-control">
+
+                    <label for="password" class="control-label">Password</label>
+                    <input [(ngModel)]="user.password" name="password" type="password" id="password" placeholder="Password" class="form-control">
+
+                    <label for="password2" class="control-label">Confirm Password</label>
+                    <input [(ngModel)]="password2" name="password2" type="password" id="password2" placeholder="Confirm Password" class="form-control">
+
+                    <div class="checkbox">
+                        <label>
+                            <input [(ngModel)]="accept" name="accept" type="checkbox" /> I accept <a routerLink="/blank" routerLinkActive="active">terms</a>
+                        </label>
+                    </div>
+
+                    <br />
+
+                    <div *ngIf="success" class="alert alert-success">
+                        <strong>Please check the <span *ngIf="user.user_type == 5">email sent to the email address</span> <span *ngIf="user.user_type == 4">SMS sent to the mobile number</span> you provided for your username!</strong>
+                        <span> have successfully registered</span>.
+                    </div>
+
+                    <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
+
+                    <button (click)="addUser()" class="btn btn-primary btn-block">Register</button>
+
+                    <a (click)="show('step-1')" class="btn btn-default btn-block">Cancel</a>
+                </div>
+            </div>
+        </form>
+        <!-- /form -->
+    </div>
 </div>
 <!-- ./container -->
 

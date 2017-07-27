@@ -9,6 +9,28 @@ div.container {
     float: left;
 }
 
+div.container-none {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    text-align: center;
+    font-weight: 300;
+    width: 100%;
+    background: #f3f3f3;
+    padding: 30px !important;
+    float: left;
+}
+
+div#content {
+    max-width: 600px;
+    padding: 30px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 0.3em;
+    min-height: 450px;
+    margin-top: 30px;
+    text-align: left;
+}
+
 h1 {
     text-align: left;
     font-weight: bold;
