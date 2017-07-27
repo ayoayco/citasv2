@@ -20,7 +20,6 @@ export class ViewProfileComponent{
     user: User = new User();
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
-    role: string;
     imgFile: string;
     constructor(
         private activeRoute: ActivatedRoute,
@@ -29,8 +28,6 @@ export class ViewProfileComponent{
         private titleService: Title,
         private apiService: CitasApiService
     ){
-
-        this.role = "";
         this.imgFile = "";
         let loggedIn: boolean = this.sessionService.isLoggedIn();
         if(!loggedIn){
@@ -56,7 +53,6 @@ export class ViewProfileComponent{
                     data = JSON.parse(data._body);
                     if(data){
                         this.farms = data.data;
-                        console.log(this.farms);
                     }
 
                     this.apiService.getUser(this.sessionService.getLoggedInKey())
@@ -65,16 +61,13 @@ export class ViewProfileComponent{
                             data = res;
                             data = JSON.parse(data._body);
                             this.user = data;
-                            console.dir(this.user);
-                            console.log(data);
+                            console.log(this.user);
                             this.user = data;
                             switch(this.user.user_type){
                                 case 4:
-                                    this.role = "Farm Manager";
                                     this.imgFile = "avatar-farmer-min.png";
                                     break;
                                 case 5:
-                                    this.role = "Researcher";
                                     this.imgFile = "avatar-researcher-min.png";
                                     break;
                             }
@@ -83,7 +76,6 @@ export class ViewProfileComponent{
 
                     if(this.farms.length > 0){
                         this.selectedFarm = this.farms[0];
-                        console.log("!!!!!");
                         this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                         .subscribe(
                             res => {
@@ -112,14 +104,12 @@ export class ViewProfileComponent{
                             data = res;
                             data = JSON.parse(data._body);
                             this.user = data;
-                            console.dir(this.user);
+                            console.log(this.user);
                             switch(this.user.user_type){
                                 case 4:
-                                    this.role = "Farm Manager";
                                     this.imgFile = "avatar-farmer-min.png";
                                     break;
                                 case 5:
-                                    this.role = "Researcher";
                                     this.imgFile = "avatar-researcher-min.png";
                                     break;
                             }
@@ -141,6 +131,9 @@ export class ViewProfileComponent{
                 }
             );
         }
+
+
+        if(this.user.details.department || this.user.details.department !="") console.log("department+ "+this.user.details.department);
     }
 
     updateUser(){
@@ -156,11 +149,9 @@ export class ViewProfileComponent{
                 console.log(this.user);
                 switch(this.user.user_type){
                     case 4:
-                        this.role = "Farm Manager";
                         this.imgFile = "avatar-farmer-min.png";
                         break;
                     case 5:
-                        this.role = "Researcher";
                         this.imgFile = "avatar-researcher-min.png";
                         break;
                 }

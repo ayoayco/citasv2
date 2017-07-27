@@ -6,17 +6,19 @@
             <h1>User Profile</h1>
             <div id="details">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <img *ngIf="imgFile != ''" src="./assets/{{imgFile}}" alt="Avatar" />
                     </div>
-                    <div class="col-md-3 info-div">
-                        <strong>{{user.fullname}}<br /></strong>
-                        <span *ngIf="role || role!=''">{{role}}<br /></span>
+                    <div class="col-md-4">
+                        <strong>{{user.fullname}}</strong><br />
+                        <span *ngIf="user.details.designation">{{user.details.designation}}</span>
+                        <span *ngIf="user.details.department">, {{user.details.department}}</span>
+                        <span *ngIf="user.details.organization">, {{user.details.organization}}</span>
                         <hr />
-                        <span *ngIf="user.email || user.email!=''">{{user.email}}<br /></span>
-                        <span *ngIf="user.mobile_number || user.mobile_number!=''">{{user.mobile_number}}<br /></span>
+                        <span *ngIf="user.email">{{user.email}}<br /></span>
+                        <span *ngIf="user.mobile_number">{{user.mobile_number}}<br /></span>
                     </div>
-                    <div class="col-md-3 info-div">
+                    <div class="col-md-4">
                         <a class="btn btn-default" onclick="$('#editUserModal').modal('toggle')">Edit User Profile</a>
                     </div>
                 </div>
