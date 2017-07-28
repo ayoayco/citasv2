@@ -2,7 +2,7 @@
     <sidebar [selectedFarm]="selectedFarm"></sidebar>
     <div id="page-content-wrapper">
         <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
-        <div *ngIf="farms.length > 0" class="container">
+        <div *ngIf="farms != undefined && farms.length > 0" class="container">
             <h1>{{selectedFarm.farm_name}} <span *ngIf="selectedFarm.farm_name != 'Loading...'">Overview</span></h1>
             <div class="row">
                 <div id="info-div" class="col col-md-4 col-sm-12">
@@ -16,7 +16,7 @@
                 <plant-health class=" col col-md-9 col-sm-12 "></plant-health>
             </div>
         </div>
-        <div *ngIf="farms.length == 0" class="container-none">
+        <div *ngIf="farms != undefined && farms.length == 0" class="container-none">
             <div id="content">
                 <h1>No farms registered yet.</h1>
                 <div class="row">
@@ -28,6 +28,11 @@
                         <button class="btn btn-primary btn-block">Register New Farm</button>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div *ngIf="farms == undefined" class="container-none">
+            <div id="content">
+                <h1>Loading...</h1>
             </div>
         </div>
     </div>
