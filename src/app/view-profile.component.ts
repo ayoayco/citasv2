@@ -74,7 +74,7 @@ export class ViewProfileComponent{
                         }
                     )
 
-                    if(this.farms != undefined){
+                    if(this.farms != undefined && this.farms.length>0){
                         this.selectedFarm = this.farms[0];
                         this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                         .subscribe(
