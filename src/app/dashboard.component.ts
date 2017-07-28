@@ -18,7 +18,7 @@ import { User } from './models/user';
 
 export class AppDashboardComponent {
     
-    farms: Farm[] = [];
+    farms: Farm[] = undefined;
     selectedFarm: Farm = new Farm();
     plants: any[] = [];
     sensors: any[] = [];
@@ -91,8 +91,6 @@ export class AppDashboardComponent {
                         res => {
                             data = res;
                             data = JSON.parse(data._body);
-                            
-                            console.log(data);
 
                             if(data.data){
                                 this.farms = data.data;
@@ -108,8 +106,6 @@ export class AppDashboardComponent {
                 res => {
                     data = res;
                     data = JSON.parse(data._body);
-
-                    console.log(data);
 
                     if(data.data){
                         this.farms = data.data;

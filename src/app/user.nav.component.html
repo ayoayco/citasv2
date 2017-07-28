@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top headroom navbar-affix affix-top" data-spy="affix" data-offset-top="60">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div *ngIf=" farms.length > 0" class="navbar-header" id="select-farm-dropdown">
+        <div *ngIf=" farms != undefined" class="navbar-header" id="select-farm-dropdown">
             <ul class="nav navbar-nav navbar-left">
                 <li><a (click)="toggleSidebar()" id="menu-toggle">Menu</a></li>
                 <li class="dropdown bg-inverse">
