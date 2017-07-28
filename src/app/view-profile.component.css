@@ -44,3 +44,7 @@ div.info-div {
 .row {
     padding: 30px;
 }
+
+div.dp {
+    width: 200px;
+}
