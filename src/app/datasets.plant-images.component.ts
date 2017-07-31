@@ -44,15 +44,10 @@ export class DatasetsPlantImagesComponent {
         this.plants = [];
         this.selectedPlant = undefined;
         
-        let farm_id = undefined;
-        this.activeRoute.params.forEach(
-            (params : Params) => {
-                farm_id = params["id"];
-            }
-        );
+        let farm_id = this.sessionService.retriveData('farm_id');
 
-        if(farm_id != undefined){
-            this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id.toString())
+        if(farm_id != null){
+            this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id)
             .subscribe(
                 res => {
                     data = res;
@@ -99,8 +94,8 @@ export class DatasetsPlantImagesComponent {
                     data = res;
                     data = JSON.parse(data._body);
                     this.farms = data.data;
-
                     this.selectedFarm = this.farms[0];
+                    this.sessionService.saveData('farm_id', this.selectedFarm.farm_id.toString());
                     this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                     .subscribe(
                         res => {
@@ -132,6 +127,7 @@ export class DatasetsPlantImagesComponent {
         let data: any;
         this.plants = [];
         this.selectedPlant = undefined;
+        this.sessionService.saveData('farm_id', this.selectedFarm.farm_id.toString());
         this.apiService.getFarm(this.sessionService.getLoggedInKey(), id.toString())
         .subscribe(
             res => {

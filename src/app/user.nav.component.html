@@ -1,10 +1,10 @@
 <nav class="navbar navbar-inverse navbar-fixed-top headroom navbar-affix affix-top" data-spy="affix" data-offset-top="60">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div *ngIf=" farms != undefined && farms.length > 0" class="navbar-header" id="select-farm-dropdown">
+        <div class="navbar-header" id="select-farm-dropdown">
             <ul class="nav navbar-nav navbar-left">
                 <li><a (click)="toggleSidebar()" id="menu-toggle">Menu</a></li>
-                <li class="dropdown bg-inverse">
+                <li *ngIf=" farms != undefined && farms.length > 0" class="dropdown bg-inverse">
                     <a *ngIf="farms" id="select-farm-toggle" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{selectedFarm.farm_name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li *ngFor="let farm of farms"><a (click)="OnSelectFarm(farm.farm_id)">{{farm.farm_name}}</a></li>
@@ -21,8 +21,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi, {{username}}! <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <!--<li><a onclick="$('#editUserModal').modal('toggle')">Edit User Profile</a></li>-->
-                        <li><a [routerLink]="[ '/view-profile', selectedFarm.farm_id]" routerLinkActive="active">View User Profile</a></li>
-                        <li><a [routerLink]="[ '/register-farm', selectedFarm.farm_id]" routerLinkActive="active">Register New Farm</a></li>
+                        <li><a routerLink="/view-profile" routerLinkActive="active">View User Profile</a></li>
+                        <li><a routerLink="/register-farm" routerLinkActive="active">Register New Farm</a></li>
                         <!--<li role="separator" class="divider"></li>-->
                         <li><a href="#" (click)="logout()">Logout</a></li>
                     </ul>

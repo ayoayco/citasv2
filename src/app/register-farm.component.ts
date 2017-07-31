@@ -18,9 +18,6 @@ import { User } from './models/user';
 
 export class RegisterFarmComponent{
 
-    farms: Farm[];
-    selectedFarm: Farm = new Farm();
-
     constructor(
         private activeRoute: ActivatedRoute,
         private sessionService: AppSessionService,
@@ -32,86 +29,9 @@ export class RegisterFarmComponent{
         if(!loggedIn){
             this.router.navigate(['/']);
         }else{
-            this.titleService.setTitle('Dashboard');
+            this.titleService.setTitle('Register New Farm');
         }
 
-        let data : any;
-
-        let farm_id = undefined;
-        this.activeRoute.params.forEach(
-            (params : Params) => {
-                farm_id = params["id"];
-            }
-        );
-
-        if(farm_id != undefined){
-            this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id.toString())
-            .subscribe(
-                res => {
-                    data = res;
-                    data = JSON.parse(data._body);
-                    data = data.data[0];
-                    this.selectedFarm = data;
-
-                    this.apiService.getFarmList(this.sessionService.getLoggedInKey())
-                    .subscribe(
-                        res => {
-                            data = res;
-                            data = JSON.parse(data._body);
-                            
-                            if(data.data){
-                                this.farms = data.data;
-                            }
-                        }
-                    );
-                }
-            );
-        }else{
-            this.apiService.getFarmList(this.sessionService.getLoggedInKey())
-            .subscribe(
-                res => {
-                    data = res;
-                    data = JSON.parse(data._body);
-                    this.farms = data.data;
-
-                    this.selectedFarm = this.farms[0];
-                    this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                    .subscribe(
-                        res => {
-                            data = res;
-                            data = JSON.parse(data._body);
-                            data = data.data[0];
-                            this.selectedFarm = data;
-                        }
-                    );
-                }
-            );
-            
-        }
-    }
-
-    public selectFarm(id: number){
-        let data: any;
-        this.apiService.getFarm(this.sessionService.getLoggedInKey(), id.toString())
-        .subscribe(
-            res => {
-                data = res;
-                data = JSON.parse(data._body);
-                data = data.data[0];
-                this.selectedFarm = data;
-
-                this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-                .subscribe(
-                    res => {
-                        data = res;
-                        data = JSON.parse(data._body);
-                        data = data.data[0];
-                        this.selectedFarm = data;
-                        //console.log(this.selectedFarm);
-                    }
-                );
-            }
-        );
     }
 
 }

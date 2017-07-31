@@ -1,7 +1,7 @@
-<div id="wrapper" [ngClass]="{'toggled': selectedFarm.farm_name!='Loading...'}">
-    <sidebar [selectedFarm]="selectedFarm"></sidebar>
+<div id="wrapper" class="toggled">
+    <sidebar></sidebar>
     <div id="page-content-wrapper">
-        <user-nav [selectedFarm]="selectedFarm"></user-nav>
+        <user-nav></user-nav>
         <map [fullMap]="true" [drawControl]="true">
         </map>
     </div>

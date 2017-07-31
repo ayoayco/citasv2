@@ -1,5 +1,5 @@
-<div id="wrapper" [ngClass]="{'toggled': selectedFarm.farm_name!='Loading...'}">
-    <sidebar [selectedFarm]="selectedFarm"></sidebar>
+<div id="wrapper" class="toggled">
+    <sidebar></sidebar>
     <div id="page-content-wrapper">
         <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
         <map [zoomTo]="zoomTo" [clearOverlay]="clearOverlay" [showHumid]="showHumid" [showPress]="showPress" [showTemp]="showTemp" (selectPlant)="selectPlant($event)" [showPlants]="showPlants" [showSamplings]="showSamplings" [showSensors]="showSensors" [showSites]="showSites"

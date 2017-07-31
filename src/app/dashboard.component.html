@@ -1,8 +1,8 @@
-<div id="wrapper" [ngClass]="{'toggled': selectedFarm.farm_name!='Loading...'}">
-    <sidebar [selectedFarm]="selectedFarm"></sidebar>
+<div id="wrapper" class="toggled">
+    <sidebar></sidebar>
     <div id="page-content-wrapper">
         <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
-        <div *ngIf="farms != undefined && farms.length > 0" class="container">
+        <div class="container">
             <h1>{{selectedFarm.farm_name}} <span *ngIf="selectedFarm.farm_name != 'Loading...'">Overview</span></h1>
             <div class="row">
                 <div id="info-div" class="col col-md-4 col-sm-12">
@@ -14,25 +14,6 @@
             </div>
             <div class="row">
                 <plant-health class=" col col-md-9 col-sm-12 "></plant-health>
-            </div>
-        </div>
-        <div *ngIf="farms != undefined && farms.length == 0" class="container-none">
-            <div id="content">
-                <h1>No farms registered yet.</h1>
-                <div class="row">
-                    <div class="col col-md-12">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper placerat pretium. Fusce ut dapibus lacus. Donec pulvinar lacinia sagittis. Mauris at tristique metus, et dapibus velit. Curabitur est odio, maximus ac auctor vecongues.
-                            Ut nec gravida ipsum. Integer at interdum lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum eu lobortis felis, imperdiet laoreet tortor. Vestibulum eu nulla blandit,
-                            dictum sapien sit amet, posuere eros. Mauris in erat accumsan, mollis lectus a, sollicitudin ante. Morbi vehicula justo vitae eros interdum condimentum. Duis eget sagittis dui. Nullam vitae neque congue, dictum sem nec, luctus
-                            nisi. Ut bibendum nisi sit amet sem convallis, placerat venenatis risus fermentum.</p>
-                        <button class="btn btn-primary btn-block">Register New Farm</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div *ngIf="farms == undefined" class="container-none">
-            <div id="content">
-                <h1>Loading...</h1>
             </div>
         </div>
     </div>

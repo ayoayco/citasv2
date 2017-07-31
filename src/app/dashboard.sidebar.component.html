@@ -3,53 +3,37 @@
         <li class="sidebar-brand">
             <a href="#"><i class="app-logo-white"></i></a>
         </li>
-        <li *ngIf="selectedFarm.farm_id !=0">
-            <a [routerLink]="['/dashboard', selectedFarm.farm_id]" routerLinkActive="active"><i class="icon fa fa-tachometer"></i> Dashboard</a>
+        <li>
+            <a routerLink="/dashboard" routerLinkActive="active"><i class="icon fa fa-tachometer"></i> Dashboard</a>
         </li>
-        <li *ngIf="selectedFarm.farm_id !=0" class="dropdown">
+        <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-bar-chart"></i> Trends and Analysis <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="[ '/plant-analysis', selectedFarm.farm_id]" routerLinkActive="active">Plant Analysis</a></li>
-                <li *ngIf="selectedFarm.farm_id !=0"><a [routerLink]="[ '/sensor-analysis', selectedFarm.farm_id]" routerLinkActive="active">Soil Parameter Trends</a></li>
+                <li>
+                    <a routerLink="/plant-analysis" routerLinkActive="active">Plant Analysis</a></li>
+                <li>
+                    <a routerLink="/sensor-analysis" routerLinkActive="active">Soil Parameter Trends</a></li>
             </ul>
         </li>
-        <li *ngIf="selectedFarm.farm_id !=0">
-            <a [routerLink]="[ '/total-analysis', selectedFarm.farm_id]" routerLinkActive="active"><i class="icon fa fa-map"></i> Total Analysis</a>
+        <li>
+            <a routerLink="/total-analysis" routerLinkActive="active"><i class="icon fa fa-map"></i> Total Analysis</a>
         </li>
-        <li *ngIf="selectedFarm.farm_id !=0" class="dropdown">
+        <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon fa fa-database"></i> Data Sets <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li *ngIf="selectedFarm.farm_id !=0">
-                    <a [routerLink]="[ '/plant-images', selectedFarm.farm_id]" routerLinkActive="active">Collected Plant Images</a>
+                <li>
+                    <a routerLink="/plant-images" routerLinkActive="active">Collected Plant Images</a>
                 </li>
-                <li *ngIf="selectedFarm.farm_id !=0">
-                    <a [routerLink]="[ '/sensor-data', selectedFarm.farm_id]" routerLinkActive="active">Collected Sensor Data</a>
+                <li>
+                    <a routerLink="/sensor-data" routerLinkActive="active">Collected Sensor Data</a>
                 </li>
-                <li *ngIf="selectedFarm.farm_id !=0">
-                    <a [routerLink]="[ '/downloads', selectedFarm.farm_id]" routerLinkActive="active">Downloads</a>
+                <li>
+                    <a routerLink="/downloads" routerLinkActive="active">Downloads</a>
                 </li>
             </ul>
         </li>
-        <li *ngIf="selectedFarm.farm_id !=0">
-            <a [routerLink]="[ '/about', selectedFarm.farm_id]" routerLinkActive="active"><i class="icon fa fa-leaf"></i> About PCARI-CITAS</a>
+        <li>
+            <a routerLink="/about" routerLinkActive="active"><i class="icon fa fa-leaf"></i> About PCARI-CITAS</a>
         </li>
     </ul>
 </div>
-
-<!--
-
-
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Dropdown heading</li>
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>
-                  </ul>
-                </li>
-
-
--->
