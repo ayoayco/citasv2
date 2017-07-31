@@ -8,5 +8,4 @@ import { Farm } from './models/farm';
 })
 
 export class DashboardSidebarComponent {
-    @Input() selectedFarm: Farm;
 }

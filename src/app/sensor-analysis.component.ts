@@ -48,14 +48,9 @@ export class AppSensorAnalysisComponent {
         this.selectedSensorReadings = undefined;
         this.selectedSensorName = "";
 
-        let farm_id = undefined;
-        this.activeRoute.params.forEach(
-            (params : Params) => {
-                farm_id = params["id"];
-            }
-        );
+        let farm_id = this.sessionService.retriveData('farm_id');
 
-        if(farm_id != undefined){
+        if(farm_id != null){
             this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id.toString())
             .subscribe(
                 res => {
@@ -104,6 +99,7 @@ export class AppSensorAnalysisComponent {
                     this.farms = data.data;
 
                     this.selectedFarm = this.farms[0];
+                    this.sessionService.saveData('farm_id', this.selectedFarm.farm_id.toString());
                     this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                     .subscribe(
                         res => {
@@ -134,6 +130,8 @@ export class AppSensorAnalysisComponent {
         this.sensors = [];
         this.selectedSensorReadings = undefined;
         this.selectedSensorName = "";
+
+        this.sessionService.saveData('farm_id', id.toString());
         this.apiService.getFarm(this.sessionService.getLoggedInKey(), id.toString())
         .subscribe(
             res => {

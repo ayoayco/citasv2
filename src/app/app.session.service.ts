@@ -17,7 +17,13 @@ export class AppSessionService{
         private router: Router
     ){}
 
+    public saveData(id: string, value: string):void {
+        sessionStorage.setItem(id, value);
+    }
 
+    public retriveData(id: string): string{
+        return sessionStorage.getItem(id);
+    }    
 
     public getLoggedInKey(): string{
         let key: string;
@@ -60,6 +66,7 @@ export class AppSessionService{
     }
 
     public endSession(){
+        sessionStorage.clear();
         this.cookieService.removeAll();
         location.assign('/');
     }

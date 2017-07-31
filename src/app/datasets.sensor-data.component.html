@@ -1,5 +1,5 @@
-<div id="wrapper" [ngClass]="{'toggled': selectedFarm.farm_name!='Loading...'}">
-    <sidebar [selectedFarm]="selectedFarm"></sidebar>
+<div id="wrapper" class="toggled">
+    <sidebar></sidebar>
     <div id="page-content-wrapper">
         <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
         <div class="container">

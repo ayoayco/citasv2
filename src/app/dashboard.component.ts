@@ -40,15 +40,10 @@ export class AppDashboardComponent {
 
         let data : any;
 
-        let farm_id = undefined;
-        this.activeRoute.params.forEach(
-            (params : Params) => {
-                farm_id = params["id"];
-            }
-        );
+        let farm_id = this.sessionService.retriveData('farm_id');
 
-        if(farm_id != undefined){
-            this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id.toString())
+        if(farm_id != null){
+            this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id)
             .subscribe(
                 res => {
                     data = res;
@@ -101,6 +96,8 @@ export class AppDashboardComponent {
                     
                     if(this.farms.length > 0){
                         this.selectedFarm = this.farms[0];
+                        this.sessionService.saveData('farm_id', this.selectedFarm.farm_id.toString());
+
                         this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                         .subscribe(
                             res => {
@@ -138,6 +135,8 @@ export class AppDashboardComponent {
     public selectFarm(id: number){
         this.plants = [];
         this.sensors = []
+
+        this.sessionService.saveData('farm_id', id.toString());
 
         let data: any;
         this.apiService.getFarm(this.sessionService.getLoggedInKey(), id.toString())
