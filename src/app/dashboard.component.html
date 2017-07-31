@@ -10,7 +10,7 @@
                     <sensors-info [sensors]="sensors"></sensors-info>
                 </div>
                 <farm-info class="col col-md-5 col-sm-12" [plants]="plants" [sensors]="sensors" [selectedFarm]="selectedFarm"></farm-info>
-                <farms-list class="col col-md-3 col-sm-12" *ngIf="user.user_type == 5" [farms]="farms" (selectFarm)="selectFarm($event)"></farms-list>
+                <farms-list class="col col-md-3 col-sm-12" *ngIf="user_type == 5" [farms]="farms" (selectFarm)="selectFarm($event)"></farms-list>
             </div>
             <div class="row">
                 <plant-health class=" col col-md-9 col-sm-12 "></plant-health>

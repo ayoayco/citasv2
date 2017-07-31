@@ -17,6 +17,8 @@ export class AppSessionService{
         private router: Router
     ){}
 
+
+
     public getLoggedInKey(): string{
         let key: string;
 
@@ -37,12 +39,32 @@ export class AppSessionService{
         }
     }
 
+    public getLoggedInUserType(): number{
+        let user: number;
+
+        if(this.isLoggedIn()){
+            return user = parseInt(this.cookieService.get("user_type"));
+        }else{
+            return;
+        }
+    }
+
+    public getLoggedInUserFullname(): string{
+        let user: string;
+
+        if(this.isLoggedIn()){
+            return user = this.cookieService.get("fullname");
+        }else{
+            return;
+        }
+    }
+
     public endSession(){
         this.cookieService.removeAll();
         location.assign('/');
     }
 
-    public startSession(username: string, key: string): void {
+    public startSession(username: string, key: string, fullname: string, user_type: number): void {
         
         //console.log('started session for user: '+ username);
         // //console.log('key: '+ key);
@@ -50,6 +72,8 @@ export class AppSessionService{
         // set cookies!
         this.cookieService.put("key", key);
         this.cookieService.put("username", username);
+        this.cookieService.put("user_type", user_type.toString());
+        this.cookieService.put("fullname", fullname);
 
         this.router.navigate(['/dashboard']);
     }

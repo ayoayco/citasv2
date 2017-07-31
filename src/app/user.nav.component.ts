@@ -28,7 +28,7 @@ export class UserNavComponent {
         private apiService: CitasApiService
     ){
         this.isLoggedIn = this.sessionService.isLoggedIn();
-        this.username = this.sessionService.getLoggedInUser();
+        this.username = this.sessionService.getLoggedInUserFullname();
         let data: any;
     }
 

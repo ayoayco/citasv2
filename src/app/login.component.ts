@@ -52,7 +52,7 @@ export class AppLoginComponent {
                         // //console.log(data);
                         if (data.Success == true) {
                             $('#loginModal').modal('hide');
-                            if (this.sessionService.startSession(data.user, data.key)) {
+                            if (this.sessionService.startSession(data.user, data.key, data.fullname, data.user_type)) {
                                 location.reload();
                             }
                         } else if (data.err == "Wrong username/password") {

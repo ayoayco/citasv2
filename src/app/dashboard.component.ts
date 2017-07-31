@@ -4,7 +4,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
 import { Farm } from './models/farm';
-import { User } from './models/user';
 
 @Component ({
     selector: 'app-dashboard',
@@ -22,7 +21,7 @@ export class AppDashboardComponent {
     selectedFarm: Farm = new Farm();
     plants: any[] = [];
     sensors: any[] = [];
-    user: User;
+    user_type: number;
 
     constructor(
         private activeRoute: ActivatedRoute,
@@ -31,7 +30,7 @@ export class AppDashboardComponent {
         private titleService: Title,
         private apiService: CitasApiService
     ){
-        this.user = new User();
+        this.user_type = this.sessionService.getLoggedInUserType();
         let loggedIn: boolean = this.sessionService.isLoggedIn();
         if(!loggedIn){
             this.router.navigate(['/']);
@@ -56,17 +55,6 @@ export class AppDashboardComponent {
                     data = JSON.parse(data._body);
                     data = data.data[0];
                     this.selectedFarm = data;
-
-                    this.apiService.getUser(this.sessionService.getLoggedInKey())
-                    .subscribe(
-                        res => {
-                            data = res;
-                            data = JSON.parse(data._body);
-                            this.user = data;
-                            if(data.organization)
-                                this.user.details.organization = data.organization;
-                        }
-                    )
 
                     this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
                     .subscribe(
@@ -110,15 +98,7 @@ export class AppDashboardComponent {
                     if(data.data){
                         this.farms = data.data;
                     }
-
-                    this.apiService.getUser(this.sessionService.getLoggedInKey())
-                    .subscribe(
-                        res => {
-                            data = res;
-                            data = JSON.parse(data._body);
-                            this.user = data;
-                        }
-                    )
+                    
                     if(this.farms.length > 0){
                         this.selectedFarm = this.farms[0];
                         this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
