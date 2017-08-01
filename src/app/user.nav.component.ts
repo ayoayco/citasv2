@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { AppSessionService } from './app.session.service';
-import { CitasApiService } from './citas.api.service';
 
 import { Farm } from './models/farm';
 
@@ -9,8 +8,7 @@ import { Farm } from './models/farm';
     templateUrl: './user.nav.component.html',
     styleUrls: ['./user.nav.component.css'],
     providers: [
-        AppSessionService,
-        CitasApiService
+        AppSessionService
     ]
 })
 
@@ -24,8 +22,7 @@ export class UserNavComponent {
     username: string;
 
     constructor(
-        private sessionService: AppSessionService,
-        private apiService: CitasApiService
+        private sessionService: AppSessionService
     ){
         this.isLoggedIn = this.sessionService.isLoggedIn();
         this.username = this.sessionService.getLoggedInUserFullname();
