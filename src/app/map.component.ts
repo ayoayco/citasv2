@@ -191,7 +191,7 @@ export class MapComponent implements OnChanges {
     }
 
     private plotFarm() {
-        console.log('plot farm');
+        // console.log('plot farm');
         let data: Farm = this.selectedFarm;
 
         //get farm details
@@ -224,7 +224,7 @@ export class MapComponent implements OnChanges {
     }
 
     private plotSites() { // get sites in farm
-        console.log('plot sites');
+        // console.log('plot sites');
 
         this.sitesLayer.clearLayers();
 
@@ -255,8 +255,7 @@ export class MapComponent implements OnChanges {
     }
 
     private plotPlants() {
-        console.log('plot plants');
-        //console.log("Map Plants: " + this.plants.length);
+        // console.log('plot plants');
 
         //to do: clear layers
         this.plantsLayer.clearLayers();
@@ -301,7 +300,7 @@ export class MapComponent implements OnChanges {
     }
 
     private plotSamplings() {
-        console.log('plot samplings');
+        // console.log('plot samplings');
         if(this.selectedFarm.farm_id == 4){
             this.samplingsLayer.clearLayers();
             
@@ -385,7 +384,7 @@ export class MapComponent implements OnChanges {
     }
 
     private plotSensors() {
-        console.log('plot sensors');
+        // console.log('plot sensors');
 
         //to do: clear layers
         this.sensorsLayer.clearLayers();
