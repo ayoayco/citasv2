@@ -103,6 +103,10 @@ export class AppDashboardComponent {
 
                     if(data.data){
                         this.farms = data.data;
+                        if(this.farms.length == 0){
+                            // no farms yet, navigate to add new farm
+                            this.router.navigate(['/register-farm']);
+                        }
                     }
                     
                     if(this.farms.length > 0){
