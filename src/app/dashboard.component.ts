@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
 import { Farm } from './models/farm';
+import { Site } from './models/site';
 
 @Component ({
     selector: 'app-dashboard',
@@ -21,6 +22,7 @@ export class AppDashboardComponent {
     selectedFarm: Farm = new Farm();
     plants: any[] = [];
     sensors: any[] = [];
+    sites: Site[];
     user_type: number;
 
     constructor(
@@ -50,6 +52,15 @@ export class AppDashboardComponent {
                     data = JSON.parse(data._body);
                     data = data.data[0];
                     this.selectedFarm = data;
+
+                    this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            this.sites = data.data;
+                        }
+                    );
 
                     this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
                     .subscribe(
@@ -97,6 +108,15 @@ export class AppDashboardComponent {
                     if(this.farms.length > 0){
                         this.selectedFarm = this.farms[0];
                         this.sessionService.saveData('farm_id', this.selectedFarm.farm_id.toString());
+
+                        this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                        .subscribe(
+                            response => {
+                                data = response;
+                                data = JSON.parse(data._body);
+                                this.sites = data.data;
+                            }
+                        );
 
                         this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                         .subscribe(

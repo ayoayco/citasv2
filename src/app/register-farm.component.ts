@@ -3,8 +3,6 @@ import { AppSessionService } from './app.session.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
-import { Farm } from './models/farm';
-import { User } from './models/user';
 
 @Component({
     selector: 'register-farm',

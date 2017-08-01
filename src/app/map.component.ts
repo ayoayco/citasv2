@@ -1,21 +1,18 @@
 import { Component, NgZone, Input, Output, OnChanges, AfterViewInit, EventEmitter, SimpleChanges } from '@angular/core';
 import { Farm } from './models/farm';
-import { AppSessionService } from './app.session.service';
-import { CitasApiService } from './citas.api.service';
+import { Sensor } from './models/sensor';
+import { Site } from './models/site';
+import { Plant } from './models/plant';
 
 @Component({
     selector: 'map',
     templateUrl: './map.component.html',
-    styleUrls: ['./map.component.css'],
-    providers: [
-        CitasApiService,
-        AppSessionService
-    ]
+    styleUrls: ['./map.component.css']
 })
 
 export class MapComponent implements OnChanges {
 
-    @Input() drawControl: boolean;
+    @Input() drawable: boolean;
     @Input() zoomTo: number[];
 
     @Input() clearOverlay: boolean;
@@ -32,9 +29,10 @@ export class MapComponent implements OnChanges {
     @Input() height: number;
     @Input() disableInteraction: boolean;
 
-    @Input() selectedFarm: Farm;
+    @Input() selectedFarm: Farm = undefined;
     @Input() sensors: any[];
     @Input() plants: any[];
+    @Input() sites: Site[];
 
     @Input() zoomControl: boolean = true;
     @Input() touchZoom: boolean = true;
@@ -67,8 +65,6 @@ export class MapComponent implements OnChanges {
 
 
     constructor(
-        private apiService: CitasApiService,
-        private sessionService: AppSessionService,
         private ngZone: NgZone
     ) {
         $("body").addClass("loading");
@@ -150,7 +146,7 @@ export class MapComponent implements OnChanges {
             scrollWheelZoom: scrollWheelZoom
         });
 
-        if(this.drawControl){
+        if(this.drawable){
             // FeatureGroup is to store editable layers
             var drawnItems = new L.FeatureGroup([]);
             this.mymap.addLayer(drawnItems);
@@ -195,7 +191,7 @@ export class MapComponent implements OnChanges {
     }
 
     private plotFarm() {
-        //console.log("Map Farm: " + this.selectedFarm.farm_name);
+        console.log('plot farm');
         let data: Farm = this.selectedFarm;
 
         //get farm details
@@ -228,94 +224,86 @@ export class MapComponent implements OnChanges {
     }
 
     private plotSites() { // get sites in farm
-        let data: any;
-        this.apiService.getSites(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
-        .subscribe(
-            response => {
-                data = response;
-                data = JSON.parse(data._body);
-                data = data.data;
-                    if (data) {
-                        // to do: clear previous layer
-                        this.sitesLayer.clearLayers();
-                        for (let i = 0; i < data.length; i++) {
-                            let color = 'white';
-                            switch (data[i].status) {
-                                case "infected":
-                                    color = 'red';
-                                    break;
-                                case "not_infected":
-                                    color = 'green';
-                                    break;
-                                case "unknown":
-                                    color = 'white';
-                                    break;
-                                default:
-                                    color = 'white';
-                            }
-                            let polygon = L.polygon(data[i].geometry, { color: color }).bindPopup(
-                                layer => {
-                                    return data[i].sampling_site_name;
-                                }
-                            );
-                            this.sitesLayer.addLayer(polygon);
-                            this.sitesLayer.addTo(this.mymap);
-                            this.resetView();
-                        }
-                    }
+        console.log('plot sites');
+
+        this.sitesLayer.clearLayers();
+
+        for (let i = 0; i < this.sites.length; i++) {
+            let color = 'white';
+            switch (this.sites[i].status) {
+                case "infected":
+                    color = 'red';
+                    break;
+                case "not_infected":
+                    color = 'green';
+                    break;
+                case "unknown":
+                    color = 'white';
+                    break;
+                default:
+                    color = 'white';
+            }
+            let polygon = L.polygon(this.sites[i].geometry, { color: color }).bindPopup(
+                layer => {
+                    return this.sites[i].sampling_site_name;
                 }
             );
+            this.sitesLayer.addLayer(polygon);
+            this.sitesLayer.addTo(this.mymap);
+            this.resetView();
+        }
     }
 
     private plotPlants() {
-        {
-            //console.log("Map Plants: " + this.plants.length);
+        console.log('plot plants');
+        //console.log("Map Plants: " + this.plants.length);
 
-            //to do: clear layers
-            this.plantsLayer.clearLayers();
+        //to do: clear layers
+        this.plantsLayer.clearLayers();
 
-            //console.log(this.plants);
+        //console.log(this.plants);
 
-            for (var i = 0; i < this.plants.length; i++) {
-                let arg = this.plants[i];
-                let latlng = new L.LatLng(arg.lat, arg.lng);
-                let marker = L.marker(latlng, { icon: this.plantIcon });
+        for (var i = 0; i < this.plants.length; i++) {
+            let arg = this.plants[i];
+            let latlng = new L.LatLng(arg.lat, arg.lng);
+            let marker = L.marker(latlng, { icon: this.plantIcon });
 
-                if (!this.disableInteraction) {
-                    marker.on('click', (e) => {
-                        this.onSelect('plant', arg);
+            if (!this.disableInteraction) {
+                marker.on('click', (e) => {
+                    this.onSelect('plant', arg);
 
-                        var layer: any;
+                    var layer: any;
 
-                        for (layer in this.sensorsLayer["_layers"]) {
-                            var obj = this.sensorsLayer["_layers"][layer];
-                            obj.setIcon(this.sensorIcon);
-                            obj.setZIndexOffset(-1000);
-                        }
+                    for (layer in this.sensorsLayer["_layers"]) {
+                        var obj = this.sensorsLayer["_layers"][layer];
+                        obj.setIcon(this.sensorIcon);
+                        obj.setZIndexOffset(-1000);
+                    }
 
-                        for (layer in this.plantsLayer["_layers"]) {
-                            var obj = this.plantsLayer["_layers"][layer];
-                            obj.setIcon(this.plantIcon);
-                            obj.setZIndexOffset(-1000);
-                        }
+                    for (layer in this.plantsLayer["_layers"]) {
+                        var obj = this.plantsLayer["_layers"][layer];
+                        obj.setIcon(this.plantIcon);
+                        obj.setZIndexOffset(-1000);
+                    }
 
-                        e.target.setIcon(L.icon({
-                            iconUrl: './assets/images/plant.healthy.png',
-                            iconSize: [35, 35]
-                        }));
+                    e.target.setIcon(L.icon({
+                        iconUrl: './assets/images/plant.healthy.png',
+                        iconSize: [35, 35]
+                    }));
 
-                        e.target.setZIndexOffset(1000);
-                    })
-                }
-
-                this.plantsLayer.addLayer(marker);
-                this.plantsLayer.addTo(this.mymap);
+                    e.target.setZIndexOffset(1000);
+                })
             }
+
+            this.plantsLayer.addLayer(marker);
+            this.plantsLayer.addTo(this.mymap);
         }
     }
 
     private plotSamplings() {
-        if(this.selectedFarm.farm_id == 4){this.samplingsLayer.clearLayers();
+        console.log('plot samplings');
+        if(this.selectedFarm.farm_id == 4){
+            this.samplingsLayer.clearLayers();
             
             var g = {
                 "type": "FeatureCollection",
@@ -397,7 +385,7 @@ export class MapComponent implements OnChanges {
     }
 
     private plotSensors() {
-        //console.log("Map Sensors: " + this.sensors.length);
+        console.log('plot sensors');
 
         //to do: clear layers
         this.sensorsLayer.clearLayers();
@@ -561,8 +549,11 @@ export class MapComponent implements OnChanges {
 
         // selectedFarm changed
         if (changes.selectedFarm && changes.selectedFarm.firstChange == false) {
+            this.samplingsLayer.clearLayers();
+            this.setSoilChar.emit(undefined);
+            this.showSites = true;
+            this.showSamplings = false;
             this.plotFarm();
-            this.plotSites();
         }
 
         // plants changed
@@ -573,6 +564,11 @@ export class MapComponent implements OnChanges {
         // sensors changed
         if (changes.sensors && changes.sensors.firstChange == false) {
             this.plotSensors();
+        }
+
+        // sites changed
+        if (changes.sites && changes.sites.firstChange == false) {
+            this.plotSites();
         }
     }
 
