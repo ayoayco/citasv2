@@ -379,7 +379,6 @@ export class AppTotalAnalysisComponent {
 
     public setSoilChar(s){
         this.soilChar = s;
-        console.log(this.soilChar);
     }
 
 }
