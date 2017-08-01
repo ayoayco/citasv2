@@ -43,9 +43,6 @@ export class AppRegistrationComponent implements OnInit {
     }
 
     public addUser(): void{
-
-        console.dir(this.user);
-
         this.msg = "<strong>Registration Failed!</strong> Please correct the following error(s):<br /><ol>";
         this.err = false;
         let data: any;
@@ -125,7 +122,6 @@ export class AppRegistrationComponent implements OnInit {
                         this.err = true;
                         this.msg = data.err+". Please contact the addministrator.";
                     }
-                    console.log(data);
                 }else{
                     
                 }
