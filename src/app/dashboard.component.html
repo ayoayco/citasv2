@@ -9,7 +9,7 @@
                     <plants-info [selectedFarm]="selectedFarm"></plants-info>
                     <sensors-info [sensors]="sensors"></sensors-info>
                 </div>
-                <farm-info class="col col-md-5 col-sm-12" [plants]="plants" [sensors]="sensors" [selectedFarm]="selectedFarm"></farm-info>
+                <farm-info class="col col-md-5 col-sm-12" [plants]="plants" [sensors]="sensors" [sites]="sites" [selectedFarm]="selectedFarm"></farm-info>
                 <farms-list class="col col-md-3 col-sm-12" *ngIf="user_type == 5" [farms]="farms" (selectFarm)="selectFarm($event)"></farms-list>
             </div>
             <div class="row">

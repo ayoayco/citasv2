@@ -14,7 +14,7 @@
                 <a (click)="onSelectSensor(sensor.sensor_name)">{{sensor.sensor_name}}</a>
             </li>
         </ul>
-        <map [zoomTo]="zoomTo" [zoomControl]="true" [selectedFarm]="selectedFarm" [sensors]="sensors" (selectSensor)="onSelectSensor($event)"></map>
+        <map [zoomTo]="zoomTo" [zoomControl]="true" [selectedFarm]="selectedFarm" [sensors]="sensors" [sites]="sites" (selectSensor)="onSelectSensor($event)"></map>
     </div>
     <button (click)="downloadSensor()" *ngIf="selectedSensorName" class="btn btn-primary btn-block">Download Sensor Data</button>
 </div>

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { AppSessionService } from './app.session.service';
+import { Site } from './models/site';
 
 import { Farm } from './models/farm';
 
@@ -19,6 +20,7 @@ export class DashboardFarmInfoComponent{
     @Input() selectedFarm: Farm;
     @Input() sensors: any[];
     @Input() plants: any[];
+    @Input() sites: Site[];
     constructor(){
     }
 }
