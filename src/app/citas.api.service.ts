@@ -24,9 +24,18 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
-    public getSamplingsGeoJSON(): Observable <{}>{
+    public getSamplingsGeoJSON(farm_id: number): Observable <{}>{
         $("body").addClass("loading");
-        let url = "http://d3rjwxvgw19cvv.cloudfront.net/sanjose_soilchar.geojson";
+
+        let url = "";
+        switch(farm_id){
+            case 4: url='sanjose'; break;
+            case 5: url='admu'; break;
+            case 6: url='liliw'; break;
+            case 7: url='leyte'; break;
+        }
+
+        url = "http://d3rjwxvgw19cvv.cloudfront.net/"+url+"_soilchar.geojson";
 
         ////console.log(url);
         return this.http.get(url)
