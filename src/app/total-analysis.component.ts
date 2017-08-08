@@ -34,6 +34,7 @@ export class AppTotalAnalysisComponent {
     sites: Site[];
     resize: number;
     plantAnalysis: PlantAnalysis;
+    samplings: any;
 
     soilChar: any[];
 
@@ -67,6 +68,8 @@ export class AppTotalAnalysisComponent {
         this.showHumid = false;
         this.clearOverlay = true;
 
+        this.soilChar = undefined;
+
         this.resize = 0;
 
         let loggedIn: boolean = this.sessionService.isLoggedIn();
@@ -92,6 +95,19 @@ export class AppTotalAnalysisComponent {
                     data = JSON.parse(data._body);
                     data = data.data[0];
                     this.selectedFarm = data;
+
+                    this.apiService.getSamplingsGeoJSON(this.selectedFarm.farm_id)
+                    .subscribe(
+                        res => {
+                            data = res;
+                            data = JSON.parse(data._body);
+                            this.samplings = data;
+                            this.soilChar = [];
+                            for(var i=0; i<this.samplings.features.length; i++){
+                                this.soilChar.push(this.samplings.features[i].properties);
+                            }
+                        }
+                    );
 
                     this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
                     .subscribe(
@@ -154,6 +170,19 @@ export class AppTotalAnalysisComponent {
                         }
                     );
 
+                    this.apiService.getSamplingsGeoJSON(this.selectedFarm.farm_id)
+                    .subscribe(
+                        res => {
+                            data = res;
+                            data = JSON.parse(data._body);
+                            this.samplings = data;
+                            this.soilChar = [];
+                            for(var i=0; i<this.samplings.features.length; i++){
+                                this.soilChar.push(this.samplings.features[i].properties);
+                            }
+                        }
+                    );
+
                     this.apiService.getSensorList(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
                     .subscribe(
                         res => {
@@ -178,7 +207,19 @@ export class AppTotalAnalysisComponent {
     }
 
     public selectFarm(id: number){
-        
+       
+        this.soilChar = undefined;
+
+        this.showPlants = true;
+        this.showSamplings = false;
+        this.showSensors = true;
+        this.showSites = true;
+
+        this.showTemp = false;
+        this.showPress = false;
+        this.showHumid = false;
+        this.clearOverlay = true;
+
         let data: any;
         this.sensors = [];
         this.selectedSensorReadings = undefined;
@@ -191,6 +232,19 @@ export class AppTotalAnalysisComponent {
                 data = JSON.parse(data._body);
                 data = data.data[0];
                 this.selectedFarm = data;
+
+                this.apiService.getSamplingsGeoJSON(this.selectedFarm.farm_id)
+                .subscribe(
+                    res => {
+                        data = res;
+                        data = JSON.parse(data._body);
+                        this.samplings = data;
+                        this.soilChar = [];
+                        for(var i=0; i<this.samplings.features.length; i++){
+                            this.soilChar.push(this.samplings.features[i].properties);
+                        }
+                    }
+                );
 
                 this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
                 .subscribe(
@@ -375,10 +429,6 @@ export class AppTotalAnalysisComponent {
         //console.log(selected[0]);
         $('#searchPlant').val(selected[0].plant_name);
         this.zoomTo = [selected[0].lat, selected[0].lng];
-    }
-
-    public setSoilChar(s){
-        this.soilChar = s;
     }
 
 }
