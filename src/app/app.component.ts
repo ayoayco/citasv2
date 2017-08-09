@@ -26,7 +26,8 @@ export class AppComponent implements OnInit {
         private location: Location
     ) {
     }
-
+    
+    // execute after component is initialized:
     ngOnInit() {
         this.isLoggedIn = this.sessionService.isLoggedIn();
         //console.log("isLoggedIn: " + this.isLoggedIn);
