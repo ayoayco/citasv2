@@ -118,6 +118,7 @@ export class AppRegistrationComponent implements OnInit {
                 if(data){
                     if(data.Success){
                         this.success = true;
+                        console.log(data);
                     }else{
                         this.err = true;
                         this.msg = data.err+". Please contact the addministrator.";
