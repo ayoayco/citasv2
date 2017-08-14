@@ -97,6 +97,10 @@ export class AppSensorAnalysisComponent {
                     data = res;
                     data = JSON.parse(data._body);
                     this.farms = data.data;
+                    if(this.farms.length == 0){
+                        // no farms yet, navigate to add new farm
+                        this.router.navigate(['/register-farm']);
+                    }
 
                     this.selectedFarm = this.farms[0];
                     this.sessionService.saveData('farm_id', this.selectedFarm.farm_id.toString());

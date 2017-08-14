@@ -67,9 +67,11 @@ export class AppLoginComponent {
                         // //console.log("Failed to authenticate.");
                         this.err = "Something went wrong. Please try again.";
                     }
+                },
+                err => {
+                    console.log(err);
+                    this.err = "Something went wrong in authenticating. Please contact the administrator";
                 }
-                // set user.username and user.key
-
             );
 
     }

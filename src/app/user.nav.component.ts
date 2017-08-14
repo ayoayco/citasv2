@@ -21,8 +21,8 @@ export class UserNavComponent {
     isLoggedIn: boolean;
     username: string;
 
-    constructor(
-        private sessionService: AppSessionService
+    constructor (
+        private sessionService: AppSessionService,
     ){
         this.isLoggedIn = this.sessionService.isLoggedIn();
         this.username = this.sessionService.getLoggedInUserFullname();
