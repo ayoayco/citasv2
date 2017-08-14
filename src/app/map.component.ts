@@ -33,6 +33,7 @@ export class MapComponent implements OnChanges {
     @Input() sensors: any[];
     @Input() plants: any[];
     @Input() sites: Site[];
+    @Input() samplings: any;
 
     @Input() zoomControl: boolean = true;
     @Input() touchZoom: boolean = true;
@@ -301,82 +302,29 @@ export class MapComponent implements OnChanges {
 
     private plotSamplings() {
         // console.log('plot samplings');
-        if(this.selectedFarm.farm_id == 4){
-            this.samplingsLayer.clearLayers();
-            
-            var g = {
-                "type": "FeatureCollection",
-                "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+        this.samplingsLayer.clearLayers();
+        
+        var g = this.samplings;
 
-                "features": [
-                    { "type": "Feature", "properties": { "id": 1, "foc": "clean", "ph_1": 6.700000, "ca_1": 5.410000, "mg_1": 1.070000, "na_1": 0.580000, "k_1": 0.750000, "class_1": "sandy loam", "ph_2": 6.200000, "ca_2": 4.740000, "mg_2": 1.310000, "na_2": 0.760000, "k_2": 0.450000, "class_2": "sandy loam", "ph_3": 6.200000, "ca_3": 4.480000, "mg_3": 1.320000, "na_3": 0.940000, "k_3": 0.290000, "class_3": "sandy loam" }, "geometry": { "type": "Polygon", "coordinates": [
-                                [
-                                    [125.087381, 6.066746],
-                                    [125.091692, 6.067301],
-                                    [125.091841, 6.066102],
-                                    [125.091445, 6.066124],
-                                    [125.091054, 6.066146],
-                                    [125.090722, 6.06619],
-                                    [125.090348, 6.066265],
-                                    [125.089999, 6.066099],
-                                    [125.089672, 6.066093],
-                                    [125.089424, 6.065959],
-                                    [125.089318, 6.065574],
-                                    [125.089328, 6.065177],
-                                    [125.089167, 6.064924],
-                                    [125.088866, 6.064725],
-                                    [125.087653, 6.064569],
-                                    [125.087381, 6.066746]
-                                ]
-                            ] } },
-                    { "type": "Feature", "properties": { "id": 2, "foc": "infected", "ph_1": 6.300000, "ca_1": 7.260000, "mg_1": 2.770000, "na_1": 0.400000, "k_1": 0.880000, "class_1": "sandy loam", "ph_2": 6.100000, "ca_2": 5.410000, "mg_2": 1.500000, "na_2": 0.460000, "k_2": 0.650000, "class_2": "sandy loam", "ph_3": 6.000000, "ca_3": 4.600000, "mg_3": 1.370000, "na_3": 0.870000, "k_3": 0.540000, "class_3": "sandy loam" }, "geometry": { "type": "Polygon", "coordinates": [
-                                [
-                                    [125.083579, 6.048164],
-                                    [125.086508, 6.048557],
-                                    [125.086878, 6.047942],
-                                    [125.087598, 6.047412],
-                                    [125.088523, 6.047245],
-                                    [125.089278, 6.047194],
-                                    [125.090334, 6.047115],
-                                    [125.091438, 6.046953],
-                                    [125.092157, 6.046593],
-                                    [125.092606, 6.045956],
-                                    [125.092878, 6.045371],
-                                    [125.092973, 6.044827],
-                                    [125.084118, 6.043699],
-                                    [125.083579, 6.048164]
-                                ]
-                            ] } }
-                ]
-            };
+        console.log(g);
+        var geoJSON: L.GeoJSON = L.geoJSON(g,{
+            style: function(feature){
+                var color = "green";
 
-            var soilChar: any[] = [];
+                if(feature.properties["foc"] == "infected"){
+                    color = "red";
+                }
 
-            for(var i=0; i<g.features.length; i++){
-                soilChar.push(g.features[i].properties);
-            }
-
-            this.setSoilChar.emit(soilChar);
-
-            var geoJSON: L.GeoJSON = L.geoJSON(g,{
-                style: function(feature){
-                    var color = "green";
-
-                    if(feature.properties["foc"] == "infected"){
-                        color = "red";
-                    }
-
-                    return {
-                        color: color
-                    }
+                return {
+                    color: color
                 }
             }
-            );
-
-            this.samplingsLayer.addLayer(geoJSON);
-            this.samplingsLayer.addTo(this.mymap);
-            this.resetView();
         }
+        );
+
+        this.samplingsLayer.addLayer(geoJSON);
+        this.samplingsLayer.addTo(this.mymap);
+        this.resetView();
     }
 
     private resetView(){
@@ -508,12 +456,8 @@ export class MapComponent implements OnChanges {
         }
 
         if (changes.showSamplings && changes.showSamplings.firstChange == false) {
-            if (this.showSamplings) {
-                this.plotSamplings();
-            }else{
-                this.samplingsLayer.clearLayers();
-                this.setSoilChar.emit(undefined);
-            }
+            if(this.showSamplings) this.plotSamplings();
+            else this.samplingsLayer.clearLayers();
         }
 
         if (changes.showSensors && changes.showSensors.firstChange == false) {
@@ -524,6 +468,10 @@ export class MapComponent implements OnChanges {
             }
         }
 
+        if(changes.selectedFarm && changes.selectedFarm.firstChange == false){
+           this.plotFarm(); 
+        }
+        
         if (changes.showPlants && changes.showPlants.firstChange == false) {
             if (this.showPlants) {
                 this.plotPlants();
@@ -544,15 +492,6 @@ export class MapComponent implements OnChanges {
             //console.log('map resized for '+this.resize+' time(s)!' );
             document.getElementById('map-div').style.display = 'block';
             this.mymap.invalidateSize();
-        }
-
-        // selectedFarm changed
-        if (changes.selectedFarm && changes.selectedFarm.firstChange == false) {
-            this.samplingsLayer.clearLayers();
-            this.setSoilChar.emit(undefined);
-            this.showSites = true;
-            this.showSamplings = false;
-            this.plotFarm();
         }
 
         // plants changed

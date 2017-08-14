@@ -3,7 +3,7 @@
     <div id="page-content-wrapper">
         <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
         <map [zoomTo]="zoomTo" [clearOverlay]="clearOverlay" [showHumid]="showHumid" [showPress]="showPress" [showTemp]="showTemp" (selectPlant)="selectPlant($event)" [showPlants]="showPlants" [showSamplings]="showSamplings" [showSensors]="showSensors" [showSites]="showSites"
-            [fullMap]="true" [resize]="resize" [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" [sensors]="sensors" [sites]="sites" (selectSensor)="selectSensor($event)" (setSoilChar)="setSoilChar($event)">
+            [fullMap]="true" [resize]="resize" [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" [sensors]="sensors" [sites]="sites" (selectSensor)="selectSensor($event)" [samplings]="samplings">
         </map>
         <div id="draggableMenu" class="ui-widget-content">
             <h4 class="clickable" onclick="$('#hidable').toggleClass('hideMe')">Map Options <span _ngcontent-c3="" class="caret"></span></h4>
@@ -26,8 +26,10 @@
                 </form>
             </div>
         </div>
-
-        <div id="soilChar-div" *ngIf="soilChar">
+        <div id="soilChar-div" *ngIf="showSamplings && soilChar == undefined">
+            <p>No soil characteristics data for {{selectedFarm.farm_name}}.</p>
+        </div>
+        <div id="soilChar-div" *ngIf="showSamplings && soilChar != undefined">
             <table id="soilChar-table">
                 <tr>
                     <th>Depth</th>
