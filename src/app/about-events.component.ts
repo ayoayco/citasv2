@@ -24,6 +24,9 @@ export class AppAboutEventsComponent {
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
                 })
                 console.log(this.events);
+            },
+            err => {
+                console.log(err);
             }
         );
     }
