@@ -10,7 +10,7 @@ import { Plant } from './models/plant';
     styleUrls: ['./map.component.css']
 })
 
-export class MapComponent implements OnChanges {
+export class MapComponent implements AfterViewInit, OnChanges {
 
     @Input() drawable: boolean;
     @Input() zoomTo: number[];
@@ -35,8 +35,8 @@ export class MapComponent implements OnChanges {
     @Input() sites: Site[];
     @Input() samplings: any;
 
-    @Input() zoomControl: boolean = true;
-    @Input() touchZoom: boolean = true;
+    @Input() zoomControl = true;
+    @Input() touchZoom = true;
 
     @Input() resize: number;
 
@@ -68,7 +68,7 @@ export class MapComponent implements OnChanges {
     constructor(
         private ngZone: NgZone
     ) {
-        $("body").addClass("loading");
+        $('body').addClass('loading');
         this.farmLayer = L.layerGroup([]);
         this.sitesLayer = L.layerGroup([]);
         this.plantsLayer = L.layerGroup([]);
@@ -95,10 +95,10 @@ export class MapComponent implements OnChanges {
 
         window.onresize = (e) => {
             if (this.fullMap) {
-                //ngZone.run will help to run change detection
+                // ngZone.run will help to run change detection
                 this.ngZone.run(() => {
-                    var ht = $('map').parent().height();
-                    //console.log('Full Map! Height of map should be: '+ht);
+                    const ht = $('map').parent().height();
+                    // console.log('Full Map! Height of map should be: '+ht);
                     $('div#map-div').css('height', ht + 'px');
                     this.mymap.invalidateSize();
                 });
@@ -109,33 +109,33 @@ export class MapComponent implements OnChanges {
 
     ngAfterViewInit() {
 
-        var dragging = true;
-        var doubleClickZoom = true;
-        var boxZoom = true;
-        var trackResize = true;
-        var scrollWheelZoom = true;
+        let dragging = true;
+        let doubleClickZoom = true;
+        let boxZoom = true;
+        let trackResize = true;
+        let scrollWheelZoom = true;
 
         if (!this.fullMap) {
             $('div#map-div').css('height', this.height + 'px');
-            //console.log('Not full! Height of map should be: '+this.height);
+            // console.log('Not full! Height of map should be: '+this.height);
         } else {
-            var ht = $('map').parent().height();
-            //console.log('Full Map! Height of map should be: '+ht);
+            const ht = $('map').parent().height();
+            // console.log('Full Map! Height of map should be: '+ht);
             $('div#map-div').css('height', ht + 'px');
         }
 
         if (this.disableInteraction) {
-            var dragging = false;
-            var doubleClickZoom = false;
-            var boxZoom = false;
-            var trackResize = false;
-            var scrollWheelZoom = false;
+            dragging = false;
+            doubleClickZoom = false;
+            boxZoom = false;
+            trackResize = false;
+            scrollWheelZoom = false;
         }
 
-        let center = new L.LatLng(12.4, 122.4);
+        const center = new L.LatLng(12.4, 122.4);
 
         // initialize map
-        this.mymap = new L.Map("map-div", {
+        this.mymap = new L.Map('map-div', {
             zoomControl: this.zoomControl,
             touchZoom: this.touchZoom,
             center: center,
@@ -147,11 +147,11 @@ export class MapComponent implements OnChanges {
             scrollWheelZoom: scrollWheelZoom
         });
 
-        if(this.drawable){
+        if (this.drawable) {
             // FeatureGroup is to store editable layers
-            var drawnItems = new L.FeatureGroup([]);
+            const drawnItems = new L.FeatureGroup([]);
             this.mymap.addLayer(drawnItems);
-            var drawControl = new L.Control.Draw({
+            const drawControl = new L.Control.Draw({
                 edit: {
                     featureGroup: drawnItems
                 },
@@ -166,25 +166,24 @@ export class MapComponent implements OnChanges {
 
             let data: any;
 
-            this.mymap.on(L.Draw.Event.CREATED, 
+            this.mymap.on(L.Draw.Event.CREATED,
                 res => {
                     data = res;
-                    let layer = data.layer;
-                    if(layer._latlngs){
+                    const layer = data.layer;
+                    if (layer._latlngs) {
                         console.log(layer._latlngs);
-                    }else if(layer){
+                    }else if (layer) {
                         console.log(layer);
                     }
                     drawnItems.addLayer(layer);
                 }
             );
         }
-        
 
         L.control.scale().addTo(this.mymap);
 
         // base map
-        let googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        const googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
             maxZoom: 20,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         }).addTo(this.mymap);
@@ -193,20 +192,20 @@ export class MapComponent implements OnChanges {
 
     private plotFarm() {
         // console.log('plot farm');
-        let data: Farm = this.selectedFarm;
+        const data: Farm = this.selectedFarm;
 
-        //get farm details
+        // get farm details
         if (data.center) {
             // to do: clear previous layer
             this.farmLayer.clearLayers();
-            let center = new L.LatLng(data.center[0], data.center[1]);
+            const center = new L.LatLng(data.center[0], data.center[1]);
             this.center = center;
             let zoom = 0;
             switch (data.farm_size) {
-                case "large":
+                case 'large':
                     zoom = 14;
                     break;
-                case "small":
+                case 'small':
                     zoom = 16;
                     break;
                 default:
@@ -218,7 +217,7 @@ export class MapComponent implements OnChanges {
             }
             this.zoom = zoom;
             this.mymap.setView(center, zoom);
-            let polygon = L.polygon(data.geometry, { color: 'black', fillOpacity: 0 });
+            const polygon = L.polygon(data.geometry, { color: 'black', fillOpacity: 0 });
             this.farmLayer.addLayer(polygon);
             this.farmLayer.addTo(this.mymap);
         }
@@ -232,19 +231,19 @@ export class MapComponent implements OnChanges {
         for (let i = 0; i < this.sites.length; i++) {
             let color = 'white';
             switch (this.sites[i].status) {
-                case "infected":
+                case 'infected':
                     color = 'red';
                     break;
-                case "not_infected":
+                case 'not_infected':
                     color = 'green';
                     break;
-                case "unknown":
+                case 'unknown':
                     color = 'white';
                     break;
                 default:
                     color = 'white';
             }
-            let polygon = L.polygon(this.sites[i].geometry, { color: color }).bindPopup(
+            const polygon = L.polygon(this.sites[i].geometry, { color: color }).bindPopup(
                 layer => {
                     return this.sites[i].sampling_site_name;
                 }
@@ -258,32 +257,34 @@ export class MapComponent implements OnChanges {
     private plotPlants() {
         // console.log('plot plants');
 
-        //to do: clear layers
+        // to do: clear layers
         this.plantsLayer.clearLayers();
 
-        //console.log(this.plants);
+        // console.log(this.plants);
 
-        for (var i = 0; i < this.plants.length; i++) {
-            let arg = this.plants[i];
-            let latlng = new L.LatLng(arg.lat, arg.lng);
-            let marker = L.marker(latlng, { icon: this.plantIcon });
+        for (let i = 0; i < this.plants.length; i++) {
+            const arg = this.plants[i];
+            const latlng = new L.LatLng(arg.lat, arg.lng);
+            const marker = L.marker(latlng, { icon: this.plantIcon });
 
             if (!this.disableInteraction) {
                 marker.on('click', (e) => {
                     this.onSelect('plant', arg);
 
-                    var layer: any;
-
-                    for (layer in this.sensorsLayer["_layers"]) {
-                        var obj = this.sensorsLayer["_layers"][layer];
-                        obj.setIcon(this.sensorIcon);
-                        obj.setZIndexOffset(-1000);
+                    for (const layer in this.sensorsLayer['_layers']) {
+                        if (layer) {
+                            const obj = this.sensorsLayer['_layers'][layer];
+                            obj.setIcon(this.sensorIcon);
+                            obj.setZIndexOffset(-1000);
+                        }
                     }
 
-                    for (layer in this.plantsLayer["_layers"]) {
-                        var obj = this.plantsLayer["_layers"][layer];
-                        obj.setIcon(this.plantIcon);
-                        obj.setZIndexOffset(-1000);
+                    for (const layer in this.plantsLayer['_layers']) {
+                        if (layer) {
+                            const obj = this.plantsLayer['_layers'][layer];
+                            obj.setIcon(this.plantIcon);
+                            obj.setZIndexOffset(-1000);
+                        }
                     }
 
                     e.target.setIcon(L.icon({
@@ -303,21 +304,20 @@ export class MapComponent implements OnChanges {
     private plotSamplings() {
         // console.log('plot samplings');
         this.samplingsLayer.clearLayers();
-        
-        var g = this.samplings;
+        let g = this.samplings;
 
         console.log(g);
-        var geoJSON: L.GeoJSON = L.geoJSON(g,{
+        const geoJSON: L.GeoJSON = L.geoJSON(g,{
             style: function(feature){
-                var color = "green";
+                let color = 'green';
 
-                if(feature.properties["foc"] == "infected"){
-                    color = "red";
+                if (feature.properties['foc'] === 'infected'){
+                    color = 'red';
                 }
 
                 return {
                     color: color
-                }
+                };
             }
         }
         );
@@ -334,28 +334,31 @@ export class MapComponent implements OnChanges {
     private plotSensors() {
         // console.log('plot sensors');
 
-        //to do: clear layers
+        // to do: clear layers
         this.sensorsLayer.clearLayers();
 
-        for (var i = 0; i < this.sensors.length; i++) {
-            let arg = this.sensors[i];
-            let latlng = new L.LatLng(arg.lat, arg.lng);
-            let marker = L.marker(latlng, { icon: this.sensorIcon });
+        for (let i = 0; i < this.sensors.length; i++) {
+            const arg = this.sensors[i];
+            const latlng = new L.LatLng(arg.lat, arg.lng);
+            const marker = L.marker(latlng, { icon: this.sensorIcon });
             if (!this.disableInteraction) {
                 marker.on('click', (e) => {
                     this.onSelect('sensor', arg);
 
-                    var layer: any;
-                    for (layer in this.sensorsLayer["_layers"]) {
-                        var obj = this.sensorsLayer["_layers"][layer];
-                        obj.setIcon(this.sensorIcon);
-                        obj.setZIndexOffset(-1000);
+                    for (const layer in this.sensorsLayer['_layers']) {
+                        if (layer) {
+                            const obj = this.sensorsLayer['_layers'][layer];
+                            obj.setIcon(this.sensorIcon);
+                            obj.setZIndexOffset(-1000);
+                        }
                     }
 
-                    for (layer in this.plantsLayer["_layers"]) {
-                        var obj = this.plantsLayer["_layers"][layer];
-                        obj.setIcon(this.plantIcon);
-                        obj.setZIndexOffset(-1000);
+                    for (const layer in this.plantsLayer['_layers']) {
+                        if (layer) {
+                            const obj = this.plantsLayer['_layers'][layer];
+                            obj.setIcon(this.plantIcon);
+                            obj.setZIndexOffset(-1000);
+                        }
                     }
 
                     e.target.setIcon(L.icon({
@@ -372,11 +375,11 @@ export class MapComponent implements OnChanges {
 
     private plotPress() {
         this.weatherLayer.clearLayers();
-        var southWest = L.latLng(this.overlayBounds.south, this.overlayBounds.west),
+        const southWest = L.latLng(this.overlayBounds.south, this.overlayBounds.west),
             northEast = L.latLng(this.overlayBounds.north, this.overlayBounds.east),
             bounds = new L.LatLngBounds(southWest, northEast);
 
-        var overlay = new L.ImageOverlay("http://noah.dost.gov.ph/static/img/latest_contours/air_pressure_contour.png", bounds, {
+        const overlay = new L.ImageOverlay('http://noah.dost.gov.ph/static/img/latest_contours/air_pressure_contour.png', bounds, {
             opacity: 0.4,
             interactive: true,
             attribution: 'Air Pressure Contour &copy; UP-NOAH'
@@ -388,11 +391,11 @@ export class MapComponent implements OnChanges {
 
     private plotTemp() {
         this.weatherLayer.clearLayers();
-        var southWest = L.latLng(this.overlayBounds.south, this.overlayBounds.west),
+        const southWest = L.latLng(this.overlayBounds.south, this.overlayBounds.west),
             northEast = L.latLng(this.overlayBounds.north, this.overlayBounds.east),
             bounds = new L.LatLngBounds(southWest, northEast);
 
-        var overlay = new L.ImageOverlay("http://noah.dost.gov.ph/static/img/latest_contours/air_temperature_contour.png", bounds, {
+        const overlay = new L.ImageOverlay('http://noah.dost.gov.ph/static/img/latest_contours/air_temperature_contour.png', bounds, {
             opacity: 0.4,
             interactive: true,
             attribution: 'Air Temparature Contour &copy; UP-NOAH'
@@ -404,11 +407,11 @@ export class MapComponent implements OnChanges {
 
     private plotHumid() {
         this.weatherLayer.clearLayers();
-        var southWest = L.latLng(this.overlayBounds.south, this.overlayBounds.west),
+        const southWest = L.latLng(this.overlayBounds.south, this.overlayBounds.west),
             northEast = L.latLng(this.overlayBounds.north, this.overlayBounds.east),
             bounds = new L.LatLngBounds(southWest, northEast);
 
-        var overlay = new L.ImageOverlay("http://noah.dost.gov.ph/static/img/latest_contours/air_humidity_contour.png", bounds, {
+        const overlay = new L.ImageOverlay('http://noah.dost.gov.ph/static/img/latest_contours/air_humidity_contour.png', bounds, {
             opacity: 0.4,
             interactive: true,
             attribution: 'Air Humidity Contour &copy; UP-NOAH'
@@ -420,9 +423,9 @@ export class MapComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
 
-        if (changes.zoomTo && changes.zoomTo.firstChange == false) {
-            if (this.zoomTo != undefined) {
-                let center = new L.LatLng(this.zoomTo[0], this.zoomTo[1]);
+        if (changes.zoomTo && changes.zoomTo.firstChange === false) {
+            if (this.zoomTo !== undefined) {
+                const center = new L.LatLng(this.zoomTo[0], this.zoomTo[1]);
                 let zoom = 18;
                 if (this.fullMap) {
                     zoom++;
@@ -431,36 +434,39 @@ export class MapComponent implements OnChanges {
             }
         }
 
-        if (changes.clearOverlay && changes.clearOverlay.firstChange == false) {
+        if (changes.clearOverlay && changes.clearOverlay.firstChange === false) {
             if (this.clearOverlay) {
                 this.weatherLayer.clearLayers();
             }
         }
 
-        if (changes.showHumid && changes.showHumid.firstChange == false) {
+        if (changes.showHumid && changes.showHumid.firstChange === false) {
             if (this.showHumid) {
                 this.plotHumid();
             }
         }
 
-        if (changes.showPress && changes.showPress.firstChange == false) {
+        if (changes.showPress && changes.showPress.firstChange === false) {
             if (this.showPress) {
                 this.plotPress();
             }
         }
 
-        if (changes.showTemp && changes.showTemp.firstChange == false) {
+        if (changes.showTemp && changes.showTemp.firstChange === false) {
             if (this.showTemp) {
                 this.plotTemp();
             }
         }
 
-        if (changes.showSamplings && changes.showSamplings.firstChange == false) {
-            if(this.showSamplings) this.plotSamplings();
-            else this.samplingsLayer.clearLayers();
+        if (changes.showSamplings && changes.showSamplings.firstChange === false) {
+            if (this.showSamplings) {
+                this.plotSamplings();
+            } else {
+                this.samplingsLayer.clearLayers();
+            }
         }
 
-        if (changes.showSensors && changes.showSensors.firstChange == false) {
+        if (changes.showSensors && changes.showSensors.firstChange === false) {
             if (this.showSensors) {
                 this.plotSensors();
             } else {
@@ -468,11 +474,11 @@ export class MapComponent implements OnChanges {
             }
         }
 
-        if(changes.selectedFarm && changes.selectedFarm.firstChange == false){
-           this.plotFarm(); 
+        if (changes.selectedFarm && changes.selectedFarm.firstChange === false) {
+           this.plotFarm();
         }
-        
-        if (changes.showPlants && changes.showPlants.firstChange == false) {
+
+        if (changes.showPlants && changes.showPlants.firstChange === false) {
             if (this.showPlants) {
                 this.plotPlants();
             } else {
@@ -480,7 +486,7 @@ export class MapComponent implements OnChanges {
             }
         }
 
-        if (changes.showSites && changes.showSites.firstChange == false) {
+        if (changes.showSites && changes.showSites.firstChange === false) {
             if (this.showSites) {
                 this.plotSites();
             } else {
@@ -488,30 +494,34 @@ export class MapComponent implements OnChanges {
             }
         }
 
-        if (changes.resize && changes.resize.firstChange == false) {
-            //console.log('map resized for '+this.resize+' time(s)!' );
+        if (changes.resize && changes.resize.firstChange === false) {
+            // console.log('map resized for '+this.resize+' time(s)!' );
             document.getElementById('map-div').style.display = 'block';
             this.mymap.invalidateSize();
         }
 
         // plants changed
-        if (changes.plants && changes.plants.firstChange == false) {
+        if (changes.plants && changes.plants.firstChange === false) {
             this.plotPlants();
         }
 
         // sensors changed
-        if (changes.sensors && changes.sensors.firstChange == false) {
+        if (changes.sensors && changes.sensors.firstChange === false) {
             this.plotSensors();
         }
 
         // sites changed
-        if (changes.sites && changes.sites.firstChange == false) {
+        if (changes.sites && changes.sites.firstChange === false) {
             this.plotSites();
         }
     }
 
     private onSelect(type: string, arg) {
-        if (type == "plant") this.selectPlant.emit(arg.plant_id);
-        if (type == "sensor") this.selectSensor.emit(arg.sensor_name);
+        if (type === 'plant') {
+            this.selectPlant.emit(arg.plant_id);
+        }
+        if (type === 'sensor') {
+            this.selectSensor.emit(arg.sensor_name);
+        }
     }
 }
