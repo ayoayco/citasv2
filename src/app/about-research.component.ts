@@ -24,6 +24,9 @@ export class AppAboutResearchComponent{
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
                 })
                 console.log(this.research);
+            },
+            err => {
+                console.log(err);
             }
         );
     }

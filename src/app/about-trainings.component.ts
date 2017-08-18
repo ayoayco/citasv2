@@ -23,7 +23,9 @@ export class AppAboutTrainingsComponent {
                 this.trainings.sort(function(a,b){
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
                 })
-                console.log(this.trainings);
+            },
+            err => {
+                console.log(err);
             }
         );
     }
