@@ -16,7 +16,9 @@ import { CitasApiService } from './citas.api.service';
 
 export class RegisterFarmComponent implements AfterViewInit {
     farm_name = '';
-    farm_size = '';
+    farm_size = 'small';
+    latlngs = [];
+    area = 0;
     accept = false;
     err = false;
     msg = '';
@@ -58,5 +60,28 @@ export class RegisterFarmComponent implements AfterViewInit {
             $('map').show();
             $('#m').show();
         }
+    }
+    public hideMap() {
+        $('map').hide();
+        $('#m').hide();
+        $('#content-1').show();
+    }
+    public submitFarmInfo() {
+        console.log('submit farm info.');
+        console.log(this.farm_name);
+        console.log(this.latlngs);
+        let data: any;
+        this.apiService.addFarm(this.sessionService.getLoggedInKey(), this.farm_name, 'large', this.latlngs)
+        .subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                console.log(data);
+            }
+        )
+    }
+    public setFarmInfo(obj: any) {
+        this.latlngs = obj.latlngs;
+        this.area = obj.area;
     }
 }

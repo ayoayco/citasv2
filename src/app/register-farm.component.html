@@ -2,11 +2,15 @@
     <sidebar></sidebar>
     <div id="page-content-wrapper">
         <user-nav></user-nav>
-        <map [fullMap]="true" [drawable]="true">
+        <map [fullMap]="true" [drawable]="true" (setFarmInfo)="setFarmInfo($event)">
         </map>
         <div id="m" class="ui-widget-content">
             <h3>New Farm Site</h3>
-            <h4>{{farm_name}}</h4> 
+            <p>
+                Farm Name: <strong>{{farm_name}}</strong><br />
+            </p>
+            <p>Please draw the boundaries of your farm size on the map using the tools on the top right side of the window.</p>
+            <a class="clickable" (click)="hideMap()">< Back</a> | <a class="clickable" (click)="submitFarmInfo()">Next ></a>
         </div>
        <div class="container">
             <div id='content-1' class="row">
@@ -17,8 +21,11 @@
                         <div>
                             <label for="farm_name" id="farm_name-lbl">Farm Site Name:</label>
                             <input type="text" id="farm_name-fld" class="form-control" [(ngModel)]="farm_name" name="farm_name" placeholder="Farm Name" />
-                            <label for="farm_size" id="farm_size-lbl">Farm Size</label>
-                            <input id="farm_size-fld" class="form-control" [(ngModel)]="farm_size" name="farm_size" placeholder="Farm Size" />
+                            <!--label for="farm_size" id="farm_size-lbl">Farm Size</label>
+                            <select name="farm_size" id="farm_size" [(ngModel)]="farm_size">
+                                <option value="small">Small</option>
+                                <option value="large">Large</option>
+                            </select-->
                         </div>
                         <div class="checkbox">
                             <label>
