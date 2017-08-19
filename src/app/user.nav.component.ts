@@ -20,13 +20,14 @@ export class UserNavComponent {
 
     isLoggedIn: boolean;
     username: string;
+    role: number;
 
     constructor (
         private sessionService: AppSessionService,
     ){
         this.isLoggedIn = this.sessionService.isLoggedIn();
         this.username = this.sessionService.getLoggedInUserFullname();
-        let data: any;
+        this.role = this.sessionService.getLoggedInUserType();
     }
 
     public logout(){
@@ -38,7 +39,7 @@ export class UserNavComponent {
     }
 
     public toggleSidebar(){
-            $("#wrapper").toggleClass("toggled");
+            $('#wrapper').toggleClass('toggled');
             this.mapResize.emit();
     }
 }
