@@ -24,6 +24,37 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public addFarm(key: string, farm_name: string, farm_size: string, farm_site_coordinates: number[]){
+        $('body').addClass('loading');
+
+        const url = this.APIURL + '/add_farm?key=' + key;
+
+        const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        const options = new RequestOptions({ headers: headers });
+
+        const body = '&farm_name=' + farm_name +
+            '&farm_size=' + farm_size +
+            '&farm_site_coordinates=' + farm_site_coordinates;
+
+        // console.log(body);
+
+        return this.http.post(url, body, options)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+    }
+
     public getSamplingsGeoJSON(farm_id: number): Observable <{}>{
         $('body').addClass('loading');
 

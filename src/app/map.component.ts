@@ -43,6 +43,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     @Output() selectPlant = new EventEmitter < {} > ();
     @Output() selectSensor = new EventEmitter < {} > ();
     @Output() setSoilChar = new EventEmitter < {} > ();
+    @Output() setFarmInfo = new EventEmitter < {} > ();
 
     mymap: L.Map;
     farmLayer: L.LayerGroup;
@@ -150,6 +151,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
             const drawnItems = new L.FeatureGroup([]);
             this.mymap.addLayer(drawnItems);
             const drawControl = new L.Control.Draw({
+                position: 'topright',
                 edit: {
                     featureGroup: drawnItems
                 },
@@ -157,8 +159,12 @@ export class MapComponent implements AfterViewInit, OnChanges {
                     polygon: {
                         allowIntersection: false,
                         showArea: true
-                    }
-                }
+                    },
+                    polyline : false,
+                    rectangle : false,
+                    circle : false,
+                    marker: false
+               }
             });
             this.mymap.addControl(drawControl);
 
@@ -167,12 +173,22 @@ export class MapComponent implements AfterViewInit, OnChanges {
             this.mymap.on(L.Draw.Event.CREATED,
                 res => {
                     data = res;
+                    console.log(data);
+                    const arr = [];
                     const layer = data.layer;
+
                     if (layer._latlngs) {
-                        console.log(layer._latlngs);
+                        const latlngs = layer._latlngs[0];
+                        for (let i = 0; i < latlngs.length; i++) {
+                            arr.push([latlngs[i].lat, latlngs[i].lng]);
+                        }
                     }else if (layer) {
                         console.log(layer);
                     }
+                    const area = L.GeometryUtil.geodesicArea(layer._latlngs[0]);
+                    console.log(area);
+                    console.log(arr);
+                    this.setFarmInfo.emit({'latlngs': arr, 'area': area});
                     drawnItems.addLayer(layer);
                 }
             );
@@ -473,6 +489,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
         }
 
         if (changes.selectedFarm && changes.selectedFarm.firstChange === false) {
+            console.log(this.selectedFarm);
            this.plotFarm();
         }
 
