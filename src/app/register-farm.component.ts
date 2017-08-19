@@ -28,7 +28,6 @@ export class RegisterFarmComponent implements AfterViewInit {
         private titleService: Title,
         private apiService: CitasApiService
     ) {
-        $('map').hide();
         const loggedIn: boolean = this.sessionService.isLoggedIn();
         if (!loggedIn) {
             this.router.navigate(['/']);
@@ -39,9 +38,10 @@ export class RegisterFarmComponent implements AfterViewInit {
 
     ngAfterViewInit(){
         $('map').hide();
+        $('#m').hide();
     }
 
-    public hide(str: string) {
+    public hideForm() {
         this.msg = '<strong>Registration Failed!</strong> Please correct the following error(s):<br /><ol>';
         this.err = false;
         if (this.farm_name === '') {
@@ -54,7 +54,9 @@ export class RegisterFarmComponent implements AfterViewInit {
         }
         this.msg += '</ol>';
         if (!this.err) {
-            $('#' + str).hide();
+            $('#content-1').hide();
+            $('map').show();
+            $('#m').show();
         }
     }
 }

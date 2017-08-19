@@ -68,7 +68,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
     constructor(
         private ngZone: NgZone
     ) {
-        $('body').addClass('loading');
         this.farmLayer = L.layerGroup([]);
         this.sitesLayer = L.layerGroup([]);
         this.plantsLayer = L.layerGroup([]);
