@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { AppSessionService } from './app.session.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -14,7 +14,7 @@ import { CitasApiService } from './citas.api.service';
     ]
 })
 
-export class RegisterFarmComponent{
+export class RegisterFarmComponent implements AfterViewInit {
     farm_name = '';
     farm_size = '';
     accept = false;
@@ -28,12 +28,17 @@ export class RegisterFarmComponent{
         private titleService: Title,
         private apiService: CitasApiService
     ) {
+        $('map').hide();
         const loggedIn: boolean = this.sessionService.isLoggedIn();
         if (!loggedIn) {
             this.router.navigate(['/']);
         } else {
             this.titleService.setTitle('Register New Farm');
         }
+    }
+
+    ngAfterViewInit(){
+        $('map').hide();
     }
 
     public hide(str: string) {
