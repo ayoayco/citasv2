@@ -2,8 +2,13 @@
     <sidebar></sidebar>
     <div id="page-content-wrapper">
         <user-nav></user-nav>
-        <map [fullMap]="true" [drawable]="true"></map>
-        <div class="container">
+        <map [fullMap]="true" [drawable]="true">
+        </map>
+        <div id="m" class="ui-widget-content">
+            <h3>New Farm Site</h3>
+            <h4>{{farm_name}}</h4> 
+        </div>
+       <div class="container">
             <div id='content-1' class="row">
                 <h1>New Farm Site</h1>
                 <p>Register your farm site under CITAS to use the system.</p>
@@ -23,7 +28,7 @@
 
                         <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
 
-                        <button (click)="hide('content-1')" class="btn btn-primary btn-block">Proceed</button>
+                        <button (click)="hideForm()" class="btn btn-primary btn-block">Proceed</button>
                     </div>
                 </form>
             </div>
