@@ -15,6 +15,11 @@ import { CitasApiService } from './citas.api.service';
 })
 
 export class RegisterFarmComponent{
+    farm_name = '';
+    farm_size = '';
+    accept = false;
+    err = false;
+    msg = '';
 
     constructor(
         private activeRoute: ActivatedRoute,
@@ -22,14 +27,29 @@ export class RegisterFarmComponent{
         private router: Router,
         private titleService: Title,
         private apiService: CitasApiService
-    ){
-        let loggedIn: boolean = this.sessionService.isLoggedIn();
-        if(!loggedIn){
+    ) {
+        const loggedIn: boolean = this.sessionService.isLoggedIn();
+        if (!loggedIn) {
             this.router.navigate(['/']);
-        }else{
+        } else {
             this.titleService.setTitle('Register New Farm');
         }
-
     }
 
+    public hide(str: string) {
+        this.msg = '<strong>Registration Failed!</strong> Please correct the following error(s):<br /><ol>';
+        this.err = false;
+        if (this.farm_name === '') {
+           this.err = true;
+           this.msg += '<li> Farm Site Name is empty.</li>';
+        }
+        if (!this.accept) {
+            this.err = true;
+            this.msg += '<li> Terms not accepted.</li>';
+        }
+        this.msg += '</ol>';
+        if (!this.err) {
+            $('#' + str).hide();
+        }
+    }
 }
