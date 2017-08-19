@@ -24,6 +24,28 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public getTeamList(): Observable <{}>{
+        $('body').addClass('loading');
+        const url = this.APIURL + '/teamlist';
+
+        // console.log(url);
+        return this.http.get(url)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+    }
+
     public addFarm(key: string, farm_name: string, farm_size: string, farm_site_coordinates: number[]){
         $('body').addClass('loading');
 
