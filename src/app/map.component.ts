@@ -108,7 +108,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
     }
 
     ngAfterViewInit() {
-
         let dragging = true;
         let doubleClickZoom = true;
         let boxZoom = true;
