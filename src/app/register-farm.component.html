@@ -10,7 +10,8 @@
                 Farm Name: <strong>{{farm_name}}</strong><br />
             </p>
             <p>Please draw the boundaries of your farm size on the map using the tools on the top right side of the window.</p>
-            <a class="clickable" (click)="hideMap()">< Back</a> | <a class="clickable" (click)="submitFarmInfo()">Next ></a>
+            <button class="btn btn-primary clickable" (click)="submitFarmInfo()">Add Farm</button>
+            <a class="btn btn-default clickable" (click)="hideMap()">Cancel</a>
         </div>
        <div class="container">
             <div id='content-1' class="row">
