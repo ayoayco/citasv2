@@ -24,7 +24,7 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
-    public getTeamList(): Observable <{}>{
+    public getTeamList(): Observable <{}> {
         $('body').addClass('loading');
         const url = this.APIURL + '/teamlist';
 
@@ -36,7 +36,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -46,17 +46,17 @@ export class CitasApiService {
             );
     }
 
-    public addFarm(key: string, farm_name: string, farm_size: string, farm_site_coordinates: number[]){
+    public addFarm(key: string, farm_name: string, farm_size: string, farm_site_coordinates: number[]) {
         $('body').addClass('loading');
 
         const url = this.APIURL + '/add_farm?key=' + key;
-
+        const coords = JSON.stringify(farm_site_coordinates);
         const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         const options = new RequestOptions({ headers: headers });
 
         const body = '&farm_name=' + farm_name +
             '&farm_size=' + farm_size +
-            '&farm_site_coordinates=' + farm_site_coordinates;
+            '&farm_site_coordinates=' + coords;
 
         // console.log(body);
 
@@ -67,7 +67,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -98,7 +98,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error)
+                    this.onError(this, error)
                 }
             )
             .finally(
@@ -120,7 +120,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -142,7 +142,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -164,7 +164,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -191,7 +191,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -221,7 +221,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -250,7 +250,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -278,7 +278,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -300,7 +300,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error)
+                    this.onError(this, error)
                 }
             )
             .finally(
@@ -322,7 +322,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -344,7 +344,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error)
+                    this.onError(this, error)
                 }
             )
             .finally(
@@ -366,7 +366,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error)
+                    this.onError(this, error)
                 }
             )
             .finally(
@@ -395,7 +395,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -417,7 +417,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -439,7 +439,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -468,7 +468,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -497,7 +497,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error)
+                    this.onError(this, error)
                 }
             )
             .finally(
@@ -519,7 +519,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error)
+                    this.onError(this, error)
                 }
             )
             .finally(
@@ -540,7 +540,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -571,7 +571,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -602,7 +602,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -624,7 +624,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -662,7 +662,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -689,7 +689,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(error);
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -707,8 +707,9 @@ export class CitasApiService {
         // console.log('Request successful');
     }
 
-    private onError(res: Response): void {
+    private onError(e, res: Response): void {
         console.error('Error, status code: ' + res.status);
+        console.log(e);
     }
 
     private onEnd(): void {

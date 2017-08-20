@@ -235,6 +235,14 @@ export class MapComponent implements AfterViewInit, OnChanges {
             const polygon = L.polygon(data.geometry, { color: 'black', fillOpacity: 0 });
             this.farmLayer.addLayer(polygon);
             this.farmLayer.addTo(this.mymap);
+
+            const arr = [];
+            let latlngs: any = polygon.getLatLngs();
+            latlngs = latlngs[0];
+            for (let i = 0; i < latlngs.length; i++) {
+                arr.push([latlngs[i].lat, latlngs[i].lng]);
+            }
+            this.mymap.fitBounds(arr);
         }
     }
 
@@ -494,8 +502,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
             const latlngs = layer.getLatLngs();
             const l: any = latlngs[0];
             const area = L.GeometryUtil.geodesicArea(l);
-            console.log(area);
-            console.log(l);
             this.plotFarm();
         }
 
