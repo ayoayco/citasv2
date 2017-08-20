@@ -2,7 +2,12 @@
     <tr>
         <th>Other Farms</th>
     </tr>
-    <tr *ngFor="let farm of farms">
-        <td class="text"><a (click)="OnSelectFarm(farm.farm_id)">{{farm.farm_name}}</a></td>
+    <tr *ngFor="let farm of farms; let i=index">
+        <td class="text" *ngIf="i<3"><a (click)="OnSelectFarm(farm.farm_id)">{{farm.farm_name}}</a></td>
+    </tr>
+    <tr *ngIf="farms">
+        <td class="text">
+            <a router-link="">View all farms</a>
+        </td>
     </tr>
 </table>
