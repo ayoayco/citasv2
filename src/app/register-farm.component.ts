@@ -78,6 +78,7 @@ export class RegisterFarmComponent implements AfterViewInit {
                 data = JSON.parse(data._body);
                 console.log(data);
                 if (data.Success) {
+                    this.sessionService.saveData('farm_id', data.farm_id);
                     this.router.navigate(['/']);
                 } else {
                     alert('The API reported an error: ' + data.error_message);
