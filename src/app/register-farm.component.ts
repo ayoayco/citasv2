@@ -77,11 +77,25 @@ export class RegisterFarmComponent implements AfterViewInit {
                 data = res;
                 data = JSON.parse(data._body);
                 console.log(data);
+                if (data.Success) {
+                    this.router.navigate(['/']);
+                } else {
+                    alert('The API reported an error: ' + data.error_message);
+                }
+            },
+            err => {
+                console.log(err);
+                alert('There was an error in communicating with the backend API.');
             }
-        )
+        );
     }
     public setFarmInfo(obj: any) {
         this.latlngs = obj.latlngs;
         this.area = obj.area;
+        if (obj.area > 209116.15589355442) {
+            this.farm_size = 'large';
+        } else {
+            this.farm_size = 'small';
+        }
     }
 }

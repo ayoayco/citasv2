@@ -27,6 +27,7 @@ export class AppAboutEventsComponent {
             },
             err => {
                 console.log(err);
+                alert('There was an error in communicating with the backend API.');
             }
         );
     }

@@ -511,7 +511,7 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/farm/' + farmID + '?key=' + key;
 
-        // console.log(url);
+        console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(

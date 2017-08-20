@@ -24,21 +24,21 @@ export class UserNavComponent {
 
     constructor (
         private sessionService: AppSessionService,
-    ){
+    ) {
         this.isLoggedIn = this.sessionService.isLoggedIn();
         this.username = this.sessionService.getLoggedInUserFullname();
         this.role = this.sessionService.getLoggedInUserType();
     }
 
-    public logout(){
+    public logout() {
         this.sessionService.endSession();
     }
 
-    public OnSelectFarm(name: string){
+    public OnSelectFarm(name: string) {
         this.selectFarm.emit(name);
     }
 
-    public toggleSidebar(){
+    public toggleSidebar() {
             $('#wrapper').toggleClass('toggled');
             this.mapResize.emit();
     }

@@ -3,8 +3,8 @@ import { CitasApiService } from './citas.api.service';
 import { AppSessionService } from './app.session.service';
 import { Response } from '@angular/http';
 
-import { Router } from '@angular/router'
-declare let sha256: any;
+import { Router } from '@angular/router';
+declare const sha256: any;
 
 @Component({
     selector: 'app-login',
@@ -18,13 +18,13 @@ declare let sha256: any;
 
 export class AppLoginComponent {
 
-    username: string = "";
-    password: string = "";
+    username = '';
+    password = '';
     user = {
-        username: "",
-        key: ""
+        username: '',
+        key: ''
     };
-    err: string = "";
+    err = '';
 
     constructor(
         private apiService: CitasApiService,
@@ -38,9 +38,9 @@ export class AppLoginComponent {
             return;
         }
 
-        //authenticate user
-        let hash = sha256(this.password);
-        let strkey = "";
+        // authenticate user
+        const hash = sha256(this.password);
+        const strkey = '';
         this.apiService.authenticateUser(this.username, hash)
             .subscribe(
                 res => {
@@ -48,29 +48,29 @@ export class AppLoginComponent {
                     data = JSON.parse(data._body)
                     // console.log(data);
                     if (data) {
-                        // login success, start session 
+                        // login success, start session
                         // //console.log(data);
-                        if (data.Success == true) {
+                        if (data.Success === true) {
                             $('#loginModal').modal('hide');
                             if (this.sessionService.startSession(data.user, data.key, data.fullname, data.user_type)) {
                                 location.reload();
                             }
-                        } else if (data.err == "Wrong username/password") {
-                            this.err = "Wrong username or password.";
+                        } else if (data.err === 'Wrong username/password') {
+                            this.err = 'Wrong username or password.';
                             // //console.log(this.err);
                         } else {
-                            this.err = "Something went wrong. Please try again.";
+                            this.err = 'Something went wrong. Please try again.';
                             // //console.log(this.err);
                         }
                     } else {
                         // login fail
                         // //console.log("Failed to authenticate.");
-                        this.err = "Something went wrong. Please try again.";
+                        this.err = 'Something went wrong. Please try again.';
                     }
                 },
                 err => {
                     console.log(err);
-                    this.err = "Something went wrong in authenticating. Please contact the administrator";
+                    this.err = 'Something went wrong in authenticating. Please contact the administrator';
                 }
             );
 
