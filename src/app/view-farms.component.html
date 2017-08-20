@@ -1,0 +1,15 @@
+<div id="wrapper" class="toggled">
+    <sidebar></sidebar>
+    <div id="page-content-wrapper">
+        <user-nav></user-nav>
+        <div class="container">
+            <h1>View All Farms</h1>
+            <p>Select farm to view details in Dashboard</p>
+            <div class="row">
+                <div class="clickable col-md-4 farm-div" (click)="display(farm.farm_id)" *ngFor="let farm of farms">
+                    <h3>{{farm.farm_name}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

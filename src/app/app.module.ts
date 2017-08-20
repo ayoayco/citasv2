@@ -59,11 +59,13 @@ import { SensorListComponent } from './sensor-list.component';
 
 import { RegisterFarmComponent } from './register-farm.component';
 import { BlankComponent } from './blank.component';
+import { ViewFarmsComponent } from './view-farms.component';
 
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'blank', component: BlankComponent },
   { path: 'view-profile', component: ViewProfileComponent },
+  { path: 'view-farms', component: ViewFarmsComponent },
   { path: 'dashboard', component: AppDashboardComponent },
   { path: 'plant-analysis', component: AppPlantAnalysisComponent },
   { path: 'sensor-analysis', component: AppSensorAnalysisComponent },
@@ -120,6 +122,7 @@ const appRoutes: Routes = [
     DownloadSensorDataComponent,
     DownloadPlantDataComponent,
     ViewProfileComponent,
+    ViewFarmsComponent,
     AppLoginForgotPasswordComponent,
     AppResetPasswordComponent,
     PlantListComponent,
