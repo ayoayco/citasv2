@@ -49,7 +49,6 @@ export class AppDashboardComponent {
                 res => {
                     data = res;
                     data = JSON.parse(data._body);
-                    console.log(data);
                     data = data.data[0];
                     this.selectedFarm = data;
 
