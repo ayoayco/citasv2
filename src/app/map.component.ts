@@ -186,6 +186,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
                         console.log(layer);
                     }
                     const area = L.GeometryUtil.geodesicArea(layer._latlngs[0]);
+                    console.log(layer._latlngs[0]);
                     console.log(area);
                     console.log(arr);
                     this.setFarmInfo.emit({'latlngs': arr, 'area': area});
@@ -489,8 +490,13 @@ export class MapComponent implements AfterViewInit, OnChanges {
         }
 
         if (changes.selectedFarm && changes.selectedFarm.firstChange === false) {
-            console.log(this.selectedFarm);
-           this.plotFarm();
+            const layer = L.polygon(this.selectedFarm.geometry);
+            const latlngs = layer.getLatLngs();
+            const l: any = latlngs[0];
+            const area = L.GeometryUtil.geodesicArea(l);
+            console.log(area);
+            console.log(l);
+            this.plotFarm();
         }
 
         if (changes.showPlants && changes.showPlants.firstChange === false) {

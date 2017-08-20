@@ -49,6 +49,7 @@ export class AppDashboardComponent {
                 res => {
                     data = res;
                     data = JSON.parse(data._body);
+                    console.log(data);
                     data = data.data[0];
                     this.selectedFarm = data;
 
@@ -110,6 +111,7 @@ export class AppDashboardComponent {
 
                     if (this.farms.length > 0) {
                         this.selectedFarm = this.farms[0];
+                        console.log(this.farms);
                         this.sessionService.saveData('farm_id', this.selectedFarm.farm_id.toString());
 
                         this.apiService.getSites(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
@@ -126,6 +128,7 @@ export class AppDashboardComponent {
                             response => {
                                 data = response;
                                 data = JSON.parse(data._body);
+                                console.log(data);
                                 data = data.data[0];
                                 this.selectedFarm = data;
                             }
@@ -166,6 +169,7 @@ export class AppDashboardComponent {
             res => {
                 data = res;
                 data = JSON.parse(data._body);
+                console.log(data);
                 data = data.data[0];
                 this.selectedFarm = data;
 
@@ -175,6 +179,10 @@ export class AppDashboardComponent {
                         data = response;
                         data = JSON.parse(data._body);
                         this.sensors = data.data;
+                    },
+                    err => {
+                        console.log(err);
+                        alert('There was an error in communicating with the backend API.');
                     }
                 );
 
@@ -184,6 +192,10 @@ export class AppDashboardComponent {
                         data = response;
                         data = JSON.parse(data._body);
                         this.plants = data.data;
+                    },
+                    err => {
+                        console.log(err);
+                        alert('There was an error in communicating with the backend API.');
                     }
                 );
             }

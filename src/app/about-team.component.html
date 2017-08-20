@@ -5,12 +5,10 @@
         <li class="active">Meet the Team</li>
     </ol>
     <div class="row">
-        <div *ngFor="let team of teams">
+        <div *ngFor="let team of teams" class="team-div row">
             <h1>{{team.title}}</h1>
-            <div class="member-div" *ngFor="let member of team.members">
-                <div>
-                    <img src="http://{{member.image}}" alt="{{member.name}} pic" /><br />
-                </div>
+            <div class="member-div col-md-3" *ngFor="let member of team.members">
+                <img src="http://{{member.image}}" alt="{{member.name}} pic" /><br />
                 <strong>{{member.name}}</strong><br />
                 {{member.job_position}}<br />
                 {{member.add_text}}<br />
