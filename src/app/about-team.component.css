@@ -2,7 +2,7 @@ div.container {
     padding: 90px 0 30px;
 }
 
-.teambox .rndimg {
+.member-div img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -15,8 +15,7 @@ div.container {
     margin: auto;
 }
 
-.teambox {
-    display: block;
+.member-div {
     min-height: 250px;
     padding: 9px;
     text-align: center;
