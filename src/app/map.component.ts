@@ -53,6 +53,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     weatherLayer: L.LayerGroup;
     samplingsLayer: L.LayerGroup;
     center: L.LatLng;
+    bounds: any[];
     zoom: number;
 
     plantIcon: any;
@@ -69,6 +70,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     constructor(
         private ngZone: NgZone
     ) {
+        this.bounds = [];
         this.farmLayer = L.layerGroup([]);
         this.sitesLayer = L.layerGroup([]);
         this.plantsLayer = L.layerGroup([]);
@@ -213,36 +215,11 @@ export class MapComponent implements AfterViewInit, OnChanges {
         if (data.center) {
             // to do: clear previous layer
             this.farmLayer.clearLayers();
-            const center = new L.LatLng(data.center[0], data.center[1]);
-            this.center = center;
-            let zoom = 0;
-            switch (data.farm_size) {
-                case 'large':
-                    zoom = 14;
-                    break;
-                case 'small':
-                    zoom = 16;
-                    break;
-                default:
-                    zoom = 14;
-                    break;
-            }
-            if (this.fullMap) {
-                zoom += 1;
-            }
-            this.zoom = zoom;
-            this.mymap.setView(center, zoom);
+            this.center = new L.LatLng(data.center[0], data.center[1]);
             const polygon = L.polygon(data.geometry, { color: 'black', fillOpacity: 0 });
             this.farmLayer.addLayer(polygon);
             this.farmLayer.addTo(this.mymap);
-
-            const arr = [];
-            let latlngs: any = polygon.getLatLngs();
-            latlngs = latlngs[0];
-            for (let i = 0; i < latlngs.length; i++) {
-                arr.push([latlngs[i].lat, latlngs[i].lng]);
-            }
-            this.mymap.fitBounds(arr);
+            this.mymap.fitBounds(this.bounds);
         }
     }
 
@@ -329,7 +306,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
         this.samplingsLayer.clearLayers();
         let g = this.samplings;
 
-        console.log(g);
         const geoJSON: L.GeoJSON = L.geoJSON(g,{
             style: function(feature){
                 let color = 'green';
@@ -351,7 +327,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     }
 
     private resetView(){
-        this.mymap.setView(this.center, this.zoom);
+        this.mymap.fitBounds(this.bounds);
     }
 
     private plotSensors() {
@@ -502,6 +478,11 @@ export class MapComponent implements AfterViewInit, OnChanges {
             const latlngs = layer.getLatLngs();
             const l: any = latlngs[0];
             const area = L.GeometryUtil.geodesicArea(l);
+            const arr = [];
+            for (let i = 0; i < l.length; i++) {
+                arr.push([l[i].lat, l[i].lng]);
+            }
+            this.bounds = arr;
             this.plotFarm();
         }
 
