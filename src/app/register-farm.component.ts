@@ -67,13 +67,16 @@ export class RegisterFarmComponent implements AfterViewInit {
         $('#content-1').show();
     }
     public submitFarmInfo() {
+        this.err = false;
+        this.msg = "";
         console.log('submit farm info.');
         console.log(this.farm_name);
         console.log(this.latlngs);
         let data: any;
         // incomplete data, prompt fail
         if (this.latlngs.length === 0) {
-            alert('Please draw the farm boundary.');
+            this.err = true;
+            this.msg = '<strong>Error: </strong>Please draw farm boundaries.';
         } else {
             this.apiService.addFarm(this.sessionService.getLoggedInKey(), this.farm_name, this.farm_size, this.latlngs)
             .subscribe(
