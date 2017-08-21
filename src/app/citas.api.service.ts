@@ -511,7 +511,6 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/farm/' + farmID + '?key=' + key;
 
-        console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -709,7 +708,6 @@ export class CitasApiService {
 
     private onError(e, res: Response): void {
         console.error('Error, status code: ' + res.status);
-        console.log(e);
     }
 
     private onEnd(): void {
