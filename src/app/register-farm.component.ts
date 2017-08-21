@@ -71,24 +71,29 @@ export class RegisterFarmComponent implements AfterViewInit {
         console.log(this.farm_name);
         console.log(this.latlngs);
         let data: any;
-        this.apiService.addFarm(this.sessionService.getLoggedInKey(), this.farm_name, 'large', this.latlngs)
-        .subscribe(
-            res => {
-                data = res;
-                data = JSON.parse(data._body);
-                console.log(data);
-                if (data.Success) {
-                    this.sessionService.saveData('farm_id', data.farm_id);
-                    this.router.navigate(['/']);
-                } else {
-                    alert('The API reported an error: ' + data.error_message);
+        // incomplete data, prompt fail
+        if (this.latlngs.length === 0) {
+            alert('Please draw the farm boundary.');
+        } else {
+            this.apiService.addFarm(this.sessionService.getLoggedInKey(), this.farm_name, this.farm_size, this.latlngs)
+            .subscribe(
+                res => {
+                    data = res;
+                    data = JSON.parse(data._body);
+                    console.log(data);
+                    if (data.Success) {
+                        this.sessionService.saveData('farm_id', data.farm_id);
+                        this.router.navigate(['/']);
+                    } else {
+                        alert('The API reported an error: ' + data.error_message);
+                    }
+                },
+                err => {
+                    console.error(err);
+                    alert('There was an error in communicating with the backend API.');
                 }
-            },
-            err => {
-                console.error(err);
-                alert('There was an error in communicating with the backend API.');
-            }
-        );
+            );
+        }
     }
     public setFarmInfo(obj: any) {
         this.latlngs = obj.latlngs;
