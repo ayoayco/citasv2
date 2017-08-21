@@ -22,7 +22,7 @@ export class AppAboutEventsComponent {
                 this.events = data.data;
                 this.events.sort(function(a,b){
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
-                })
+                });
                 console.log(this.events);
             },
             err => {
