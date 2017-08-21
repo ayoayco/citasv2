@@ -65,7 +65,7 @@ router.get('/pages/delete/:id', sessionCheck, function(request, response) {
     Page.remove({
         _id: id
     }, function(err) {
-        return console.log(err);
+        return console.error(err);
     });
     return response.send('Page id- ' + id + ' has been deleted');
 });
@@ -77,7 +77,7 @@ router.get('/pages/:id', function(request, response) {
         _id: id
     }, function(err, page) {
         if (err)
-            return console.log(err);
+            return console.error(err);
         return response.send(page);
     });
 });
@@ -88,7 +88,7 @@ router.get('/pages/:url', function(request, response) {
         url: url
     }, function(err, page) {
         if (err)
-            return console.log(err);
+            return console.error(err);
         return response.send(page);
     });
 });
