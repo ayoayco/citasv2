@@ -69,7 +69,7 @@ export class AppLoginComponent {
                     }
                 },
                 err => {
-                    console.log(err);
+                    console.error(err);
                     this.err = 'Something went wrong in authenticating. Please contact the administrator';
                 }
             );

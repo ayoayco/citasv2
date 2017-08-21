@@ -180,7 +180,7 @@ export class AppDashboardComponent {
                         this.sensors = data.data;
                     },
                     err => {
-                        console.log(err);
+                        console.error(err);
                         alert('There was an error in communicating with the backend API.');
                     }
                 );
@@ -193,7 +193,7 @@ export class AppDashboardComponent {
                         this.plants = data.data;
                     },
                     err => {
-                        console.log(err);
+                        console.error(err);
                         alert('There was an error in communicating with the backend API.');
                     }
                 );

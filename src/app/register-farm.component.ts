@@ -85,7 +85,7 @@ export class RegisterFarmComponent implements AfterViewInit {
                 }
             },
             err => {
-                console.log(err);
+                console.error(err);
                 alert('There was an error in communicating with the backend API.');
             }
         );
