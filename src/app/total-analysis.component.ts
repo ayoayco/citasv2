@@ -104,6 +104,9 @@ export class AppTotalAnalysisComponent {
                             for (let i = 0; i < this.samplings.features.length; i++) {
                                 this.soilChar.push(this.samplings.features[i].properties);
                             }
+                        },
+                        err => {
+                            console.error(err);
                         }
                     );
 

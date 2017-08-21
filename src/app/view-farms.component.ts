@@ -21,7 +21,6 @@ export class ViewFarmsComponent {
         private sessionService: AppSessionService,
         private router: Router
     ) {
-        console.log('view farms');
         let data: any;
         this.apiService.getFarmList(this.sessionService.getLoggedInKey())
         .subscribe(
@@ -29,7 +28,6 @@ export class ViewFarmsComponent {
                 data = res;
                 data = JSON.parse(data._body);
                 this.farms = data.data;
-                console.log(this.farms);
             }
         )
     }
