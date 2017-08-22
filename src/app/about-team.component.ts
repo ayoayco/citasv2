@@ -24,6 +24,10 @@ export class AppAboutTeamComponent {
                 this.teams = data.data;
                 console.log(this.teams);
             }
-        )
+        );
+    }
+
+    public setImage() {
+        console.log('hey');
     }
 }
