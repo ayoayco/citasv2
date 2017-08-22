@@ -19,6 +19,7 @@ div.container {
     height: 200px;
     overflow: hidden;
     margin: 10px;
+    margin-left: 30px;
     position: relative;
     border-radius: 50%;
 }
