@@ -19,7 +19,7 @@ import 'rxjs/add/operator/toPromise';
 
 export class CitasApiService {
 
-    private APIURL = 'http://apiv2.citas.ph'; // 'http://54.179.145.154'; // 'http://45.55.235.245'; //
+    private APIURL = 'http://apiv2.citas.ph'; 
 
     data: any;
     constructor(private http: Http) {}
@@ -46,12 +46,19 @@ export class CitasApiService {
             );
     }
 
-    public addFarm(key: string, farm_name: string, farm_size: string, farm_site_coordinates: number[]) {
+    public addFarm(
+        key: string, 
+        farm_name: string, 
+        farm_size: string, 
+        farm_site_coordinates: number[]
+    ) {
         $('body').addClass('loading');
 
         const url = this.APIURL + '/add_farm?key=' + key;
         const coords = JSON.stringify(farm_site_coordinates);
-        const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        const headers = new Headers({ 
+            'Content-Type': 'application/x-www-form-urlencoded' 
+        });
         const options = new RequestOptions({ headers: headers });
 
         const body = '&farm_name=' + farm_name +
@@ -179,7 +186,9 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/reset_password?key=' + key;
 
-        const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        const headers = new Headers({ 
+            'Content-Type': 'application/x-www-form-urlencoded' 
+        });
         const options = new RequestOptions({ headers: headers });
 
         const body = 'new_password=' + password;
@@ -207,7 +216,9 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/forgot_password';
 
-        const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        const headers = new Headers({ 
+            'Content-Type': 'application/x-www-form-urlencoded' 
+        });
         const options = new RequestOptions({ headers: headers });
 
         const body = 'username=' + username;
@@ -231,16 +242,22 @@ export class CitasApiService {
             );
     }
 
-    public getPlantsFilterDownloadLink(key: string, farmID: string, siteID: string, health: string, from: Date, to: Date): Observable <{}> {
+    public getPlantsFilterDownloadLink(
+        key: string, 
+        farmID: string, 
+        siteID: string, 
+        health: string, 
+        fromDate: Date, 
+        toDate: Date
+    ): Observable <{}> {
         $('body').addClass('loading');
 
-        // console.log(from);
-
-        // let fromDate = from.getFullYear()+'-'+('0' + from.getMonth()).slice(-2)+'-'+('0' + from.getDate()).slice(-2);
-        // let toDate = to.getFullYear()+'-'+('0' + to.getMonth()).slice(-2)+'-'+('0' + to.getDate()).slice(-2);
-
-        let url = this.APIURL + '/download/image/filter?key=' + key;
-        url += '&f=' + farmID + '&s=' + siteID + '&h=' + health + '&d1=' + from + '&d2=' + to;
+        let url = this.APIURL + '/download/image/filter?key=' + key
+        + '&f=' + farmID
+        + '&s=' + siteID
+        + '&h=' + health
+        + '&d1=' + fromDate
+        + '&d2=' + toDate;
 
         // console.log(url);
         return this.http.get(url)
@@ -260,17 +277,21 @@ export class CitasApiService {
             );
     }
 
-    public getSensorsFilterDownloadLink(key: string, farmID: string, siteID: string, from: Date, to: Date): Observable <{}> {
+    public getSensorsFilterDownloadLink(
+        key: string, 
+        farmID: string, 
+        siteID: string, 
+        fromDate: Date, 
+        toDate: Date
+    ): Observable <{}> {
         $('body').addClass('loading');
 
-        // console.log(from);
+        const url = this.APIURL + '/download/sensor/filter?key=' + key 
+        + '&f=' + farmID 
+        + '&s=' + siteID 
+        + '&d1=' + fromDate
+        + '&d2=' + toDate;
 
-        // let fromDate = from.getFullYear()+'-'+('0' + from.getMonth()).slice(-2)+'-'+('0' + from.getDate()).slice(-2);
-        // let toDate = to.getFullYear()+'-'+('0' + to.getMonth()).slice(-2)+'-'+('0' + to.getDate()).slice(-2);
-
-        const url = this.APIURL + '/download/sensor/filter?key=' + key + '&f=' + farmID + '&s=' + siteID + '&d1=' + from + '&d2=' + to;
-
-        // console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -288,7 +309,10 @@ export class CitasApiService {
             );
     }
 
-    public getSensorCSVDownloadLink(key: string, sensorName: string): Observable <{}> {
+    public getSensorCSVDownloadLink(
+        key: string, 
+        sensorName: string
+    ): Observable <{}> {
         $('body').addClass('loading');
         const url = this.APIURL + '/download/sensor/' + sensorName + '?key=' + key;
 
@@ -310,7 +334,10 @@ export class CitasApiService {
             );
     }
 
-    public getPlantImagesDownloadLink(key: string, plantID: string): Observable <{}> {
+    public getPlantImagesDownloadLink(
+        key: string, 
+        plantID: string
+    ): Observable <{}> {
         $('body').addClass('loading');
         const url = this.APIURL + '/download/image/' + plantID + '?key=' + key;
 
@@ -332,7 +359,9 @@ export class CitasApiService {
             );
     }
 
-    public getPlantImages(key: string, plantID: string): Observable <{}> {
+    public getPlantImages(
+        key: string, 
+        plantID: string): Observable <{}> {
         $('body').addClass('loading');
         const url = this.APIURL + '/plantimages/' + plantID + '?key=' + key;
 
@@ -354,7 +383,10 @@ export class CitasApiService {
             )
     }
 
-    public getPlantAnalysis(key: string, plantID: string): Observable <{}>  {
+    public getPlantAnalysis(
+        key: string,
+        plantID: string
+    ): Observable <{}>  {
         $('body').addClass('loading');
         const url = this.APIURL + '/plantanalysis/' + plantID + '?key=' + key;
 
@@ -376,7 +408,9 @@ export class CitasApiService {
             );
     }
 
-    public getSites(key: string, farmID ? : string, siteID ? : string): Observable <{}>  {
+    public getSites(
+        key: string, 
+        farmID ? : string, siteID ? : string): Observable <{}>  {
         $('body').addClass('loading');
         let url = this.APIURL + '/sites';
         if (farmID) {
@@ -449,7 +483,11 @@ export class CitasApiService {
             );
     }
 
-    public getSensorList(key: string, farmID ?: string, siteID ?: string): Observable <{}> {
+    public getSensorList(
+        key: string, 
+        farmID ?: string, 
+        siteID ?: string
+    ): Observable <{}> {
         $('body').addClass('loading');
         let url = this.APIURL + '/sensorlist';
         if (farmID) {
@@ -478,7 +516,11 @@ export class CitasApiService {
             );
     }
 
-    public getPlantList(key: string, farmID ? : string, siteID ? : string): Observable <{}> {
+    public getPlantList(
+        key: string, 
+        farmID ? : string, 
+        siteID ? : string
+    ): Observable <{}> {
         $('body').addClass('loading');
         let url = this.APIURL + '/plantlist';
         if (farmID) {
@@ -507,7 +549,10 @@ export class CitasApiService {
             );
     }
 
-    public getFarm(key: string, farmID: string): Observable <{}>  {
+    public getFarm(
+        key: string, 
+        farmID: string
+    ): Observable <{}>  {
         $('body').addClass('loading');
         const url = this.APIURL + '/farm/' + farmID + '?key=' + key;
 
@@ -549,12 +594,18 @@ export class CitasApiService {
             );
     }
 
-    public contactUs(email: string, name: string, message: string): Observable <{}>  {
+    public contactUs(
+        email: string,
+        name: string,
+        message: string
+    ): Observable <{}>  {
 
         $('body').addClass('loading');
         const url = this.APIURL + '/contactus';
 
-        const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        const headers = new Headers({ 
+            'Content-Type': 'application/x-www-form-urlencoded' 
+        });
         const options = new RequestOptions({ headers: headers });
 
         const body = 'email=' + email +
@@ -585,7 +636,9 @@ export class CitasApiService {
 
         const url = this.APIURL + '/profile?key=' + key;
 
-        const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        const headers = new Headers({ 
+            'Content-Type': 'application/x-www-form-urlencoded' 
+        });
         const options = new RequestOptions({ headers: headers });
 
         const body = '&fullname=' + user.fullname +
@@ -637,7 +690,9 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/registerv2';
 
-        const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        const headers = new Headers({ 
+            'Content-Type': 'application/x-www-form-urlencoded' 
+        });
         const options = new RequestOptions({ headers: headers });
 
         const body = 'username=' + user.username +
@@ -676,7 +731,9 @@ export class CitasApiService {
 
         const url = this.APIURL + '/login';
 
-        const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        const headers = new Headers({ 
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
         const options = new RequestOptions({ headers: headers });
 
         const body = 'username=' + username + '&password=' + password;

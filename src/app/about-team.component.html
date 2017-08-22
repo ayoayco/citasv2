@@ -8,7 +8,13 @@
         <div *ngFor="let team of teams" class="team-div row">
             <h1>{{team.title}}</h1>
             <div class="member-div col-md-3" *ngFor="let member of team.members">
-                <img src="http://{{member.image}}" alt="{{member.name}} pic" /><br />
+                <div class="round-img">
+                    <img 
+                    width="150px" 
+                    src="http://{{member.image}}" 
+                    alt="{{member.name}} pic" />
+                </div>
+                <div (style)="setImage()"></div>
                 <strong>{{member.name}}</strong><br />
                 {{member.job_position}}<br />
                 {{member.add_text}}<br />

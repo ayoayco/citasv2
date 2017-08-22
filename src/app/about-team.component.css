@@ -2,17 +2,25 @@ div.container {
     padding: 90px 0 30px;
 }
 
-.member-div img {
-    width: 150px;
-    height: 150px;
+.member-div .round-img img {
+    position: absolute;
+    margin: auto; 
+    min-height: 100%;
+    min-width: 100%;
     border-radius: 50%;
+
+    left: -100%;
+    right: -100%;
+    top: -100%;
+    bottom: -100%;
+}
+.member-div .round-img {
+    width: 200px;
+    height: 200px;
     overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border: none;
-    display: block;
-    margin: auto;
+    margin: 10px;
+    position: relative;
+    border-radius: 50%;
 }
 
 .member-div {
