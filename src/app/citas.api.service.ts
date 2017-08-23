@@ -636,7 +636,7 @@ export class CitasApiService {
 
         const url = this.APIURL + '/profile?key=' + key;
 
-        const headers = new Headers({ 
+        const headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded' 
         });
         const options = new RequestOptions({ headers: headers });
