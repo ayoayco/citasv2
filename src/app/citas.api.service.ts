@@ -19,7 +19,7 @@ import 'rxjs/add/operator/toPromise';
 
 export class CitasApiService {
 
-    private APIURL = 'http://apiv2.citas.ph'; 
+    private APIURL = 'http://apiv2.citas.ph';
 
     data: any;
     constructor(private http: Http) {}
@@ -550,7 +550,7 @@ export class CitasApiService {
     }
 
     public getFarm(
-        key: string, 
+        key: string,
         farmID: string
     ): Observable <{}>  {
         $('body').addClass('loading');
