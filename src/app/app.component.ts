@@ -1,4 +1,4 @@
-import {HashLocationStrategy, Location, LocationStrategy} from '@angular/common';
+import { HashLocationStrategy, Location, LocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -31,14 +31,14 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.isLoggedIn = this.sessionService.isLoggedIn();
         // console.log("isLoggedIn: " + this.isLoggedIn);
-        var params = [];
-        var path = this.location.path();
+        let params = [];
+        const path = this.location.path();
 
         params = path.split('/');
         /*for(var i=0; i<params.length; i++){
             //console.log(i+" : "+params[i]);
         }*/
-        switch(params[1]){
+        switch (params[1]) {
             case 'reset-password':
             // console.log('reset password!!!!');
             this.router.navigate(['/reset-password', params[2]]);break;
