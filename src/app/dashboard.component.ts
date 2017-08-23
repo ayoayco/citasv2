@@ -52,7 +52,10 @@ export class AppDashboardComponent {
                     data = data.data[0];
                     this.selectedFarm = data;
 
-                    this.apiService.getSites(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                    this.apiService.getSites(
+                        this.sessionService.getLoggedInKey(),
+                        this.selectedFarm.farm_id.toString()
+                    )
                     .subscribe(
                         response => {
                             data = response;
@@ -61,7 +64,10 @@ export class AppDashboardComponent {
                         }
                     );
 
-                    this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                    this.apiService.getSensorList(
+                        this.sessionService.getLoggedInKey(), 
+                        this.selectedFarm.farm_id.toString()
+                    )
                     .subscribe(
                         response => {
                             data = response;
@@ -70,7 +76,10 @@ export class AppDashboardComponent {
                         }
                     );
 
-                    this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                    this.apiService.getPlantList(
+                        this.sessionService.getLoggedInKey(), 
+                        this.selectedFarm.farm_id.toString()
+                    )
                     .subscribe(
                         response => {
                             data = response;
@@ -111,9 +120,14 @@ export class AppDashboardComponent {
                     if (this.farms.length > 0) {
                         this.selectedFarm = this.farms[0];
                         console.log(this.farms);
-                        this.sessionService.saveData('farm_id', this.selectedFarm.farm_id.toString());
+                        this.sessionService.saveData(
+                            'farm_id', 
+                            this.selectedFarm.farm_id.toString());
 
-                        this.apiService.getSites(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                        this.apiService.getSites(
+                            this.sessionService.getLoggedInKey(), 
+                            this.selectedFarm.farm_id.toString()
+                        )
                         .subscribe(
                             response => {
                                 data = response;
@@ -122,7 +136,10 @@ export class AppDashboardComponent {
                             }
                         );
 
-                        this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                        this.apiService.getFarm(
+                            this.sessionService.getLoggedInKey(), 
+                            this.selectedFarm.farm_id.toString()
+                        )
                         .subscribe(
                             response => {
                                 data = response;
@@ -133,7 +150,10 @@ export class AppDashboardComponent {
                             }
                         );
 
-                        this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                        this.apiService.getSensorList(
+                            this.sessionService.getLoggedInKey(), 
+                            this.selectedFarm.farm_id.toString()
+                        )
                         .subscribe(
                             response => {
                                 data = res;
@@ -142,7 +162,10 @@ export class AppDashboardComponent {
                             }
                         );
 
-                        this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                        this.apiService.getPlantList(
+                            this.sessionService.getLoggedInKey(),
+                            this.selectedFarm.farm_id.toString()
+                        )
                         .subscribe(
                             response => {
                                 data = response;
@@ -172,7 +195,10 @@ export class AppDashboardComponent {
                 data = data.data[0];
                 this.selectedFarm = data;
 
-                this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                this.apiService.getSensorList(
+                    this.sessionService.getLoggedInKey(), 
+                    this.selectedFarm.farm_id.toString()
+                )
                 .subscribe(
                     response => {
                         data = response;
@@ -185,7 +211,12 @@ export class AppDashboardComponent {
                     }
                 );
 
-                this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                flaskdfjasl;
+
+                this.apiService.getPlantList(
+                    this.sessionService.getLoggedInKey(), 
+                    this.selectedFarm.farm_id.toString()
+                )
                 .subscribe(
                     response => {
                         data = response;
