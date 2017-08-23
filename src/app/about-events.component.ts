@@ -12,7 +12,7 @@ import { CitasApiService } from './citas.api.service';
 
 export class AppAboutEventsComponent {
     events: any[];
-    constructor(private apiService: CitasApiService){
+    constructor(private apiService: CitasApiService) {
         let data: any;
         this.apiService.getEvents()
         .subscribe(
@@ -20,7 +20,7 @@ export class AppAboutEventsComponent {
                 data = res;
                 data = JSON.parse(data._body);
                 this.events = data.data;
-                this.events.sort(function(a,b){
+                this.events.sort(function(a, b){
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
                 });
                 console.log(this.events);
@@ -32,11 +32,10 @@ export class AppAboutEventsComponent {
         );
     }
 
-    public isOneDay(event){
-        if(event.date_from == event.date_to){
+    public isOneDay(event) {
+        if (event.date_from === event.date_to) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }

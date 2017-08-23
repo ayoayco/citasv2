@@ -17,29 +17,29 @@ import { CitasApiService } from './citas.api.service';
 )
 
 export class AppEditProfileComponent {
-    
-    success: boolean = false;
-    err: boolean = false;
+    success = false;
+    err = false;
     msg: string;
-    user : User = new User();
+    user: User = new User();
 
     constructor(
         private sessionService: AppSessionService,
         private apiService: CitasApiService,
         private router: Router,
-    ){
-        if(!this.sessionService.isLoggedIn()){
+    ) {
+        if (!this.sessionService.isLoggedIn()) {
             this.router.navigate(['/']);
         }else{
-            let username = this.sessionService.getLoggedInUser();
+            const username = this.sessionService.getLoggedInUser();
             this.user.username = username;
             let data: any;
+
             // get user infor from API
             this.apiService.getUser(this.sessionService.getLoggedInKey())
             .subscribe(res => {
                 data = res;
                 data = JSON.parse(data._body);
-                //console.log(data);
+                // console.log(data);
                 if(data){
                     this.user = data;
                     this.user.user_type = data.role;
@@ -51,47 +51,49 @@ export class AppEditProfileComponent {
     editUser(){
         let data: any;
 
-        this.msg = "<strong>Update Failed!</strong> Please correct the following error(s):<br /><ol>";
+        this.msg = '<strong>Update Failed!</strong> Please correct the following error(s):<br /><ol>';
         this.err = false;
 
-        if(this.user.fullname == ""){
-            this.msg += "<li> Fullname Empty</li>";
+        if (this.user.fullname === '') {
+            this.msg += '<li> Fullname Empty</li>';
             this.err = true;
         }
-        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if(this.user.user_type == 5){
-            if(this.user.email == ""){
-                this.msg += "<li> Email empty</li>";
+        let re = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (this.user.user_type === 5) {
+            if (this.user.email === '') {
+                this.msg += '<li> Email empty</li>';
                 this.err = true;
-            }else if(!re.test(this.user.email)){
-                this.msg += "<li> Email not valid</li>";
-                this.err = true;
-            }
-        }
-        if(this.user.user_type == 4){
-            if(this.user.mobile_number == ""){
-                this.msg += "<li> Mobile Number empty</li>";
-                this.err = true;
-            }
-            if(this.user.mobile_number.substring(0,3) != "639"){
-                this.msg += "<li> Mobile Number should start with '639'</li>";
-                this.err = true;
-            }
-            if(this.user.mobile_number.length < 12){
-                this.msg += "<li> Mobile Number should have 12 digits</li>";
+            } else if (!re.test(this.user.email)) {
+                this.msg += '<li> Email not valid</li>';
                 this.err = true;
             }
         }
 
-        this.msg += "</ol>"
+        if (this.user.user_type === 4) {
+            if (this.user.mobile_number === '') {
+                this.msg += '<li> Mobile Number empty</li>';
+                this.err = true;
+            }
+            if (this.user.mobile_number.substring(0,3) !== '639') {
+                this.msg += '<li> Mobile Number should start with "639"</li>';
+                this.err = true;
+            }
+            if (this.user.mobile_number.length < 12) {
+                this.msg += '<li> Mobile Number should have 12 digits</li>';
+                this.err = true;
+            }
+        }
 
-        if(!this.err){
+        this.msg += '</ol>';
+
+        if (!this.err) {
             this.apiService.editUser(this.user, this.sessionService.getLoggedInKey())
             .subscribe(
                 res => {
                     data = res;
                     data = JSON.parse(data._body)
-                    if(data){
+                    if (data) {
                         this.user.fullname = data.fullname;
                         this.user.mobile_number = data.mobile_number;
                         this.user.email = data.email;

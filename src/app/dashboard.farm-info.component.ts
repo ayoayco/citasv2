@@ -16,7 +16,7 @@ import { Farm } from './models/farm';
 }
 )
 
-export class DashboardFarmInfoComponent{
+export class DashboardFarmInfoComponent {
     @Input() selectedFarm: Farm;
     @Input() sensors: any[];
     @Input() plants: any[];

@@ -12,8 +12,8 @@ import { CitasApiService } from './citas.api.service';
 
 export class AppLoginForgotPasswordComponent {
 
-    username: string = "";
-    success: string="";
+    username = '';
+    success = '';
     data: any;
     constructor(
         private apiService: CitasApiService,
@@ -25,8 +25,8 @@ export class AppLoginForgotPasswordComponent {
             res => {
                 this.data = res;
                 this.data = JSON.parse(this.data._body);
-                //console.log(this.data);
+                // console.log(this.data);
             }
-        )
+        );
     }
 }

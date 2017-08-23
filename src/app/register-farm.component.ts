@@ -61,14 +61,16 @@ export class RegisterFarmComponent implements AfterViewInit {
             $('#m').show();
         }
     }
+
     public hideMap() {
         $('map').hide();
         $('#m').hide();
         $('#content-1').show();
     }
+
     public submitFarmInfo() {
         this.err = false;
-        this.msg = "";
+        this.msg = '';
         console.log('submit farm info.');
         console.log(this.farm_name);
         console.log(this.latlngs);
@@ -98,6 +100,7 @@ export class RegisterFarmComponent implements AfterViewInit {
             );
         }
     }
+
     public setFarmInfo(obj: any) {
         this.latlngs = obj.latlngs;
         this.area = obj.area;

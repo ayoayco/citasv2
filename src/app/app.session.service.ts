@@ -9,8 +9,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 
-export class AppSessionService{
-
+export class AppSessionService {
     data: any;
     constructor(
         private cookieService: CookieService,
@@ -87,6 +86,4 @@ export class AppSessionService{
     public isLoggedIn(): boolean {
         return this.cookieService.get('username') ? true : false;
     }
-
-
 }

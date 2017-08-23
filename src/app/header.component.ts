@@ -13,8 +13,8 @@ import { AppSessionService } from './app.session.service';
 export class AppHeaderComponent {
     @Input() title: string;
     @Input() description: string;
+    loggedInUser = this.sessionService.getLoggedInUser();
+    isLoggedIn = this.sessionService.isLoggedIn();
     constructor(private sessionService: AppSessionService){
     }
-    loggedInUser: string = this.sessionService.getLoggedInUser();
-    isLoggedIn: boolean = this.sessionService.isLoggedIn();
 }

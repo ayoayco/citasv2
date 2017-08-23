@@ -15,24 +15,24 @@ import { Site } from './models/site';
     ]
 })
 
-export class DownloadPlantDataComponent{
+export class DownloadPlantDataComponent {
     from: Date;
     to: Date;
-    health: string = 'all';
-    error: string = "";
+    health = 'all';
+    error = '';
 
     @Input() selectedFarm: Farm;
     @Input() sites: Site[];
 
-    selectedSiteID: string = 'all';
-    
+    selectedSiteID = 'all';
+
     constructor(
         private sessionService: AppSessionService,
         private apiService: CitasApiService
-    ){
+    ) {
     }
 
-    public downloadPlantData(){
+    public downloadPlantData() {
         let data: any;
         this.apiService.getPlantsFilterDownloadLink(
             this.sessionService.getLoggedInKey(),
@@ -46,11 +46,11 @@ export class DownloadPlantDataComponent{
                 data = res;
                 data = JSON.parse(data._body);
                 // console.log(data);
-                if(data.Success){
+                if (data.Success) {
                     window.open(data.dl_link, '_blank');
-                }else{
+                } else {
                     this.error = data.err;
-                    //console.log(this.error);
+                    // console.log(this.error);
                 }
             }
         );

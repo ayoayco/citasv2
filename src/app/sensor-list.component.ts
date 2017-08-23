@@ -13,37 +13,34 @@ import { SensorReading } from './models/sensor-reading';
     styleUrls: ['./sensor-list.component.css']
 })
 
-export class SensorListComponent implements AfterViewInit{
-    
+export class SensorListComponent implements AfterViewInit {
     @Input() farms: Farm[] = [];
     @Input() selectedFarm: Farm = new Farm();
     @Input() sensors: Sensor[] = [];
-    @Input() selectedSensorName: string = "";
+    @Input() selectedSensorName = '';
     @Input() sites: Site[];
     selectedSensorReadings: SensorReading[] = [];
-    
     zoomTo: number[] = undefined;
-    
     @Output() selectSensor = new EventEmitter<{}>();
 
     constructor(
         private sessionService: AppSessionService,
         private apiService: CitasApiService
-        ){
+        ) {
     }
 
-    ngAfterViewInit(){
-        var hideList = ($('#searchSensor').val() == "" || $('#searchSensor').val() == undefined);
-        if(hideList){
+    ngAfterViewInit() {
+        const hideList = ($('#searchSensor').val() === '' || $('#searchSensor').val() === undefined);
+        if (hideList) {
             $('#searchList').hide();
             $('#xButton').hide();
         }
     }
 
     public onSelectSensor(id: string){
-        console.log("Select sensor: " + id);
+        console.log('Select sensor: ' + id);
         this.selectSensor.emit(id);
-        let selected: any = $.grep(this.sensors, function(e){ return e.sensor_name == id });
+        const selected: any = $.grep(this.sensors, function(e){ return e.sensor_name === id; });
         console.log(selected[0]);
         $('#searchSensor').val(selected[0].sensor_name);
         this.zoomTo = [selected[0].lat, selected[0].lng];
@@ -51,11 +48,11 @@ export class SensorListComponent implements AfterViewInit{
         this.hideListNow();
     }
 
-    public onSelectSite(val){
+    public onSelectSite(val) {
         this.sensors = [];
         this.selectedSensorName = undefined;
         let data: any;
-        //console.log('selected site: ' + siteID)
+        // console.log('selected site: ' + siteID)
         this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), val.toString())
         .subscribe(
             res => {
@@ -67,7 +64,7 @@ export class SensorListComponent implements AfterViewInit{
     }
 
     public downloadSensor(){
-        if(this.selectedSensorName != ""){
+        if (this.selectedSensorName !== '') {
             let data: any;
             this.apiService.getSensorCSVDownloadLink(this.sessionService.getLoggedInKey(), this.selectedSensorName)
             .subscribe(
@@ -76,7 +73,7 @@ export class SensorListComponent implements AfterViewInit{
                     data = JSON.parse(data._body);
                     window.open(data.dl_link, '_blank');
                 }
-            )
+            );
         }
     }
 
@@ -84,20 +81,19 @@ export class SensorListComponent implements AfterViewInit{
         $('#searchList').hide();
     }
 
-    public searchSensors(str: string){
-        
-        var hideList = ($('#searchSensor').val() == "" || $('#searchSensor').val() == undefined);
-        if(hideList){
+    public searchSensors(str: string) {
+        const hideList = ($('#searchSensor').val() === '' || $('#searchSensor').val() === undefined);
+        if (hideList) {
             $('#searchList').hide();
             $('#xButton').hide();
-        }else{
+        } else {
             $('#searchList').show();
             $('#xButton').show();
         }
 
 
         // Declare variables
-        var input, filter, ul, li, a, i;
+        let input, filter, ul, li, a, i;
         input = $('#searchSensor');
         filter = input.val().toUpperCase();
         ul = $('#searchList');
@@ -105,18 +101,18 @@ export class SensorListComponent implements AfterViewInit{
 
         // Loop through all list items, and hide those who don't match the search query
         for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName("a")[0];
+            a = li[i].getElementsByTagName('a')[0];
             if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
+                li[i].style.display = '';
             } else {
-                li[i].style.display = "none";
+                li[i].style.display = 'none';
             }
         }
 
     }
 
-    public clearSearchSensor(){
-        $('#searchSensor').val("");
+    public clearSearchSensor() {
+        $('#searchSensor').val('');
         $('#xButton').hide();
         $('#searchList').hide();
     }
@@ -126,21 +122,21 @@ export class SensorListComponent implements AfterViewInit{
     public onselect(val){
         this.sensors = [];
         this.selectedSensorReadings = undefined;
-        this.selectedSensorName = "";
+        this.selectedSensorName = '';
         this.selectSite(val);
     }
 
     public selectSite(siteID: number){
         let data: any;
-        //console.log('selected site: ' + siteID)
+        // console.log('selected site: ' + siteID)
         this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), siteID.toString())
         .subscribe(
             res => {
                 data = res;
                 data = JSON.parse(data._body);
                 this.sensors = data.data;
-                //console.log("sensor count: "+this.sensors.length);
-                //console.log(this.sensors);
+                // console.log('sensor count: '+this.sensors.length);
+                // console.log(this.sensors);
             }
         );
     }

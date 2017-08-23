@@ -22,12 +22,12 @@ export class AboutComponent {
         private router: Router,
         private titleService: Title,
         private apiService: CitasApiService
-    ){
+    ) {
 
-        let loggedIn: boolean = this.sessionService.isLoggedIn();
-        if(!loggedIn){
+        const loggedIn: boolean = this.sessionService.isLoggedIn();
+        if (!loggedIn) {
             this.router.navigate(['/']);
-        }else{
+        } else {
             this.titleService.setTitle('About PCARI-CITAS');
         }
     }
