@@ -275,7 +275,7 @@ export class AppTotalAnalysisComponent {
         );
     }
 
-    public selectSensor(sensorID: string){
+    public selectSensor(sensorID: string) {
         // console.log('sensor '+ sensorID + ' selected!');
         let data: any;
         this.apiService.getSensor(this.sessionService.getLoggedInKey(), sensorID)
@@ -295,14 +295,14 @@ export class AppTotalAnalysisComponent {
         this.zoomTo = [selected[0].lat, selected[0].lng];
     }
 
-    public onselect(val){
+    public onselect(val) {
         this.sensors = [];
         this.selectedSensorReadings = undefined;
         this.selectedSensorName = '';
         this.selectSite(val);
     }
 
-    public selectSite(siteID: number){
+    public selectSite(siteID: number) {
         let data: any;
         // console.log('selected site: ' + siteID)
         this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), siteID.toString())
@@ -317,12 +317,12 @@ export class AppTotalAnalysisComponent {
         );
     }
 
-    public onMapResize(){
+    public onMapResize() {
         this.resize++;
         // console.log('map resize');
     }
 
-    public toggleOverlay(type: string){
+    public toggleOverlay(type: string) {
         switch (type) {
             case 'none':
                 this.showTemp = false;
@@ -350,10 +350,6 @@ export class AppTotalAnalysisComponent {
                 $('.legend').hide();
                 $('#humidLegend').show(); break;
         }
-
-        // console.log("show temp: "+this.showTemp);
-        // console.log("show press: "+this.showPress);
-        // console.log("show humid: "+this.showHumid);
     }
 
     public toggleSites() {
@@ -427,17 +423,3 @@ export class AppTotalAnalysisComponent {
     }
 
 }
-
-/*
-
-NOAH URLs
-
-temperature: http://noah.dost.gov.ph/static/img/latest_contours/air_temperature_contour.png
-
-pressure: http://noah.dost.gov.ph/static/img/latest_contours/air_pressure_contour.png
-
-humidity: http://noah.dost.gov.ph/static/img/latest_contours/air_humidity_contour.png
-
-weather station icon: http://citas.ph/citas/public/img/weather-station-v3_32x32.png
-
-*/

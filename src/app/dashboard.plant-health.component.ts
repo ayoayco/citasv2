@@ -20,9 +20,9 @@ export class DashboardPlantHealthComponent {
     options: Object;
     constructor(){
 
-        var categories = ['Jan', 'Feb', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-        var series1 = [5, 3, 4, 7, 2, 3, 4, 7, 2, 9, 2];
-        var series2 = [2, 2, 3, 2, 1, 5, 3, 4, 7, 2, 5];
+        let categories = ['Jan', 'Feb', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+        const series1 = [5, 3, 4, 7, 2, 3, 4, 7, 2, 9, 2];
+        const series2 = [2, 2, 3, 2, 1, 5, 3, 4, 7, 2, 5];
 
         this.options = {
             chart: {
@@ -71,10 +71,3 @@ export class DashboardPlantHealthComponent {
         }
     }
 }
-
-/*
-
-Highcharts.chart('container', );
-
-
-*/

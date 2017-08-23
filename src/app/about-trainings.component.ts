@@ -22,7 +22,7 @@ export class AppAboutTrainingsComponent {
                 this.trainings = data.data;
                 this.trainings.sort(function(a,b){
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
-                })
+                });
             },
             err => {
                 console.error(err);
@@ -32,29 +32,27 @@ export class AppAboutTrainingsComponent {
     }
 
     public isOneDay(event){
-        if(event.date_from == event.date_to){
+        if (event.date_from === event.date_to) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
-    
 
-    public clearSearchResearch(){
-        $('#searchResearch').val("");
+    public clearSearchResearch() {
+        $('#searchResearch').val('');
     }
 
-    public search(str: string){
-
-        var hideList = ($('#searchResearch').val() == "" || $('#searchResearch').val() == undefined);
-        if(hideList){
+    public search(str: string) {
+        const hideList = ($('#searchResearch').val() === '' || $('#searchResearch').val() === undefined);
+        if (hideList) {
             $('#xButton').hide();
-        }else{
+        } else {
             $('#xButton').show();
         }
+
         // Declare variables
-        var input, filter, ul, li, a, i;
+        let input, filter, ul, li, a, i;
         input = $('#searchResearch');
         filter = input.val().toUpperCase();
         ul = $('#searchList');
@@ -62,11 +60,11 @@ export class AppAboutTrainingsComponent {
 
         // Loop through all list items, and hide those who don't match the search query
         for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName("h4")[0];
+            a = li[i].getElementsByTagName('h4')[0];
             if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
+                li[i].style.display = '';
             } else {
-                li[i].style.display = "none";
+                li[i].style.display = 'none';
             }
         }
 

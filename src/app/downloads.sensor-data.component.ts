@@ -22,15 +22,15 @@ export class DownloadSensorDataComponent{
     @Input() selectedFarm: Farm;
     @Input() sites: Site[];
 
-    selectedSiteID: string= 'all';
-    
+    selectedSiteID = 'all';
+
     constructor(
         private sessionService: AppSessionService,
         private apiService: CitasApiService
-    ){
+    ) {
     }
 
-    public downloadSensorData(){
+    public downloadSensorData() {
         let data: any;
         // console.log(this.from);
         // console.log(this.to);
@@ -45,7 +45,7 @@ export class DownloadSensorDataComponent{
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                //console.log(data);
+                // console.log(data);
                 window.open(data.dl_link, '_blank');
             }
         );

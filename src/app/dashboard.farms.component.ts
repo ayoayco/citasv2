@@ -11,7 +11,6 @@ import { Farm } from './models/farm';
 export class DashboardFarmsComponent {
     @Input() farms: Farm[];
     @Output() selectFarm = new EventEmitter<{}>();
-    
     public OnSelectFarm(name: string){
         this.selectFarm.emit(name);
     }

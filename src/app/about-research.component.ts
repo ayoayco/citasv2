@@ -10,9 +10,9 @@ import { CitasApiService } from './citas.api.service';
     ]
 })
 
-export class AppAboutResearchComponent{
+export class AppAboutResearchComponent {
     research: any[];
-    constructor(private apiService: CitasApiService){
+    constructor(private apiService: CitasApiService) {
         let data: any;
         this.apiService.getResearch()
         .subscribe(
@@ -22,8 +22,7 @@ export class AppAboutResearchComponent{
                 this.research = data.data;
                 this.research.sort(function(a,b){
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
-                })
-                console.log(this.research);
+                });
             },
             err => {
                 console.error(err);
@@ -31,26 +30,26 @@ export class AppAboutResearchComponent{
             }
         );
     }
-    
-    public isOneDay(event){
-        if(event.date_from == event.date_to){
+
+    public isOneDay(event) {
+        if (event.date_from === event.date_to) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    public search(str: string){
+    public search(str: string) {
 
-        var hideList = ($('#searchResearch').val() == "" || $('#searchResearch').val() == undefined);
-        if(hideList){
+        const hideList = ($('#searchResearch').val() === '' || $('#searchResearch').val() === undefined);
+        if (hideList) {
             $('#xButton').hide();
-        }else{
+        } else {
             $('#xButton').show();
         }
+
         // Declare variables
-        var input, filter, ul, li, a, i;
+        let input, filter, ul, li, a, i;
         input = $('#searchResearch');
         filter = input.val().toUpperCase();
         ul = $('#searchList');
@@ -58,13 +57,12 @@ export class AppAboutResearchComponent{
 
         // Loop through all list items, and hide those who don't match the search query
         for (i = 0; i < li.length; i++) {
-            a = li[i].getElementsByTagName("h4")[0];
+            a = li[i].getElementsByTagName('h4')[0];
             if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
+                li[i].style.display = '';
             } else {
-                li[i].style.display = "none";
+                li[i].style.display = 'none';
             }
         }
-
     }
 }

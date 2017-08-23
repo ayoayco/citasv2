@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-home',
-    templateUrl:'./home.component.html',
+    templateUrl: './home.component.html',
     styleUrls: ['./home.component.css'],
     providers: [
       AppSessionService
@@ -18,9 +18,9 @@ export class AppHomeComponent {
   constructor(
     private sessionService: AppSessionService,
     private router: Router
-  ){
-    if(this.sessionService.isLoggedIn()){
-      this.router.navigate(['/dashboard'])
+  ) {
+    if (this.sessionService.isLoggedIn()) {
+      this.router.navigate(['/dashboard']);
     }
   }
 }

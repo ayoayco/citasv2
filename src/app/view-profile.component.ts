@@ -16,7 +16,7 @@ import { User } from './models/user';
     ]
 })
 
-export class ViewProfileComponent{
+export class ViewProfileComponent {
     user: User = new User();
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
@@ -27,59 +27,59 @@ export class ViewProfileComponent{
         private router: Router,
         private titleService: Title,
         private apiService: CitasApiService
-    ){
-        this.imgFile = "";
-        let loggedIn: boolean = this.sessionService.isLoggedIn();
-        if(!loggedIn){
+    ) {
+        this.imgFile = '';
+        const  loggedIn: boolean = this.sessionService.isLoggedIn();
+        if (!loggedIn) {
             this.router.navigate(['/']);
-        }else{
+        } else {
             this.titleService.setTitle('View Profile');
         }
 
-        let data : any;
+        let data: any;
 
         let farm_id = undefined;
         this.activeRoute.params.forEach(
             (params : Params) => {
-                farm_id = params["id"];
+                farm_id = params['id'];
             }
         );
 
-        if(farm_id == "undefined" || farm_id == undefined){
+        if (farm_id === 'undefined' || farm_id === undefined) {
             this.apiService.getFarmList(this.sessionService.getLoggedInKey())
             .subscribe(
                 res => {
                     data = res;
                     data = JSON.parse(data._body);
-                    if(data){
+                    if (data) {
                         this.farms = data.data;
                     }
 
                     this.apiService.getUser(this.sessionService.getLoggedInKey())
                     .subscribe(
-                        res => {
-                            data = res;
+                        response => {
+                            data = response;
                             data = JSON.parse(data._body);
                             this.user = data;
                             console.log(this.user);
                             this.user = data;
                             switch(this.user.user_type){
                                 case 4:
-                                    this.imgFile = "avatar-farmer-min.png";
+                                    this.imgFile = 'avatar-farmer-min.png';
                                     break;
                                 case 5:
-                                    this.imgFile = "avatar-researcher-min.png";
+                                    this.imgFile = 'avatar-researcher-min.png';
                                     break;
                             }
                         }
                     )
 
-                    if(this.farms != undefined && this.farms.length>0){
+                    if (this.farms !== undefined && this.farms.length > 0) {
                         this.selectedFarm = this.farms[0];
                         this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                         .subscribe(
-                            res => {
-                                data = res;
+                            response => {
+                                data = response;
                                 data = JSON.parse(data._body);
                                 data = data.data[0];
                                 this.selectedFarm = data;
@@ -88,8 +88,7 @@ export class ViewProfileComponent{
                     }
                 }
             );
-            
-        }else{
+        } else {
             this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id.toString())
             .subscribe(
                 res => {
@@ -100,30 +99,29 @@ export class ViewProfileComponent{
 
                     this.apiService.getUser(this.sessionService.getLoggedInKey())
                     .subscribe(
-                        res => {
-                            data = res;
+                        response => {
+                            data = response;
                             data = JSON.parse(data._body);
                             this.user = data;
                             console.log(this.user);
                             switch(this.user.user_type){
                                 case 4:
-                                    this.imgFile = "avatar-farmer-min.png";
+                                    this.imgFile = 'avatar-farmer-min.png';
                                     break;
                                 case 5:
-                                    this.imgFile = "avatar-researcher-min.png";
+                                    this.imgFile = 'avatar-researcher-min.png';
                                     break;
                             }
-                            //console.log(this.user);
+                            // console.log(this.user);
                         }
                     );
 
                     this.apiService.getFarmList(this.sessionService.getLoggedInKey())
                     .subscribe(
-                        res => {
-                            data = res;
+                        response => {
+                            data = response;
                             data = JSON.parse(data._body);
-                            
-                            if(data.data){
+                            if (data.data) {
                                 this.farms = data.data;
                             }
                         }
@@ -132,12 +130,12 @@ export class ViewProfileComponent{
             );
         }
 
-
-        if(this.user.details.department || this.user.details.department !="") console.log("department+ "+this.user.details.department);
+        if (this.user.details.department || this.user.details.department !== '') {
+            console.log('department+ ' + this.user.details.department);
+        }
     }
 
-    updateUser(){
-        
+    updateUser() {
         let data: any;
 
         this.apiService.getUser(this.sessionService.getLoggedInKey())
@@ -149,13 +147,13 @@ export class ViewProfileComponent{
                 console.log(this.user);
                 switch(this.user.user_type){
                     case 4:
-                        this.imgFile = "avatar-farmer-min.png";
+                        this.imgFile = 'avatar-farmer-min.png';
                         break;
                     case 5:
-                        this.imgFile = "avatar-researcher-min.png";
+                        this.imgFile = 'avatar-researcher-min.png';
                         break;
                 }
-                //console.log(this.user);
+                // console.log(this.user);
             }
         );
     }

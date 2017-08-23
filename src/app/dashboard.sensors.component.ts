@@ -12,10 +12,10 @@ import { Sensor } from './models/sensor';
 export class DashboardSensorsComponent {
     @Input() sensors: Sensor[];
 
-    constructor(private router: Router){
+    constructor(private router: Router) {
     }
 
-    public goToSensorAnalysis(){
+    public goToSensorAnalysis() {
         this.router.navigate(['/sensor-analysis']);
     }
 }

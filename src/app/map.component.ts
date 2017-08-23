@@ -66,7 +66,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
         west: 115.35
     };
 
-
     constructor(
         private ngZone: NgZone
     ) {
@@ -304,13 +303,13 @@ export class MapComponent implements AfterViewInit, OnChanges {
     private plotSamplings() {
         // console.log('plot samplings');
         this.samplingsLayer.clearLayers();
-        let g = this.samplings;
+        const g = this.samplings;
 
         const geoJSON: L.GeoJSON = L.geoJSON(g,{
             style: function(feature){
                 let color = 'green';
 
-                if (feature.properties['foc'] === 'infected'){
+                if (feature.properties['foc'] === 'infected') {
                     color = 'red';
                 }
 
@@ -326,7 +325,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
         this.resetView();
     }
 
-    private resetView(){
+    private resetView() {
         this.mymap.fitBounds(this.bounds);
     }
 

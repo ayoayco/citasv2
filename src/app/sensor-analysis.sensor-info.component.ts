@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 
-declare var require: any;
+declare const require: any;
 export function highchartsFactory() {
     return require('highcharts');
 }
@@ -18,7 +18,7 @@ export function highchartsFactory() {
 
 export class SensorAnalysisSensorInfoComponent implements OnChanges {
     @Input() readings: any = undefined;
-    @Input() selectedSensorName: string = "";
+    @Input() selectedSensorName = '';
     @Input() type: string;
 
     selectedTab = '';
@@ -29,26 +29,26 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
     }
 
     updateChart(tab) {
-        var chartTitle = '';
-        var yAxisLabel = '';
-        var values = [];
-        var labels = [];
-        var high = [];
-        var low = [];
-        var up = undefined;
-        var down = undefined;
+        let chartTitle = '';
+        let yAxisLabel = '';
+        const values = [];
+        const labels = [];
+        const high = [];
+        const low = [];
+        let up = undefined;
+        let down = undefined;
         this.selectedTab = tab;
-        var series = [];
+        const series = [];
 
-        var links = $('ul#tablist li a.selectedTab');
-        
-        for(var i=0; i<links.length; i++){
+        const links = $('ul#tablist li a.selectedTab');
+
+        for (let i = 0; i < links.length; i++) {
             $(links[i]).removeClass('selectedTab');
         }
 
-        $('#'+this.selectedTab).addClass('selectedTab');
+        $('#' + this.selectedTab).addClass('selectedTab');
 
-        switch(this.selectedTab){
+        switch (this.selectedTab) {
             case 'soil_temp': chartTitle = 'Soil Temperature';
                 yAxisLabel = 'Temperature (°C)';
                 up = 35;
@@ -72,12 +72,12 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
 
         if (this.readings) {
 
-            for (var i = 0; i < this.readings.length; i++) {
+            for (let i = 0; i < this.readings.length; i++) {
                 values.push(this.readings[i][this.selectedTab]);
-                if(up){
+                if (up) {
                     high.push(up);
                 }
-                if(down){
+                if (down) {
                     low.push(down);
                 }
                 labels.push(this.readings[i].timestamp);
@@ -87,10 +87,10 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
         series.push({
                 name: this.selectedSensorName+' Readings',
                 data: values,
-                color: "#19BD6C"
+                color: '#19BD6C'
         });
 
-        if(high.length > 0){
+        if (high.length > 0) {
             series.push({
                 type: 'line',
                 name: 'Critical High',
@@ -106,7 +106,7 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
             });
         }
 
-        if(low.length > 0){
+        if (low.length > 0) {
             series.push({
                 type: 'line',
                 name: 'Critical Low',
@@ -132,8 +132,8 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
                 categories: labels,
                 lineWidth: 2,
                 lineColor: '#ccc',
-                gridLineColor: "#e6e6e6",
-                gridLineDashStyle: "Solid",
+                gridLineColor: '#e6e6e6',
+                gridLineDashStyle: 'Solid',
                 gridLineWidth: 1,
             },
             yAxis: {
@@ -148,9 +148,9 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-        //Add 'implements OnChanges' to the class.
-        if (changes.readings && changes.readings.firstChange == false) {
+        // Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+        // Add 'implements OnChanges' to the class.
+        if (changes.readings && changes.readings.firstChange === false) {
             this.updateChart(this.selectedTab);
         }
     }
