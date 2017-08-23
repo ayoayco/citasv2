@@ -47,9 +47,9 @@ export class CitasApiService {
     }
 
     public addFarm(
-        key: string, 
-        farm_name: string, 
-        farm_size: string, 
+        key: string,
+        farm_name: string,
+        farm_size: string,
         farm_site_coordinates: number[]
     ) {
         $('body').addClass('loading');
@@ -84,7 +84,7 @@ export class CitasApiService {
             );
     }
 
-    public getSamplingsGeoJSON(farm_id: number): Observable <{}>{
+    public getSamplingsGeoJSON(farm_id: number): Observable <{}> {
         $('body').addClass('loading');
 
         let url = '';
@@ -115,7 +115,7 @@ export class CitasApiService {
             );
     }
 
-    public getTrainings(): Observable <{}>{
+    public getTrainings(): Observable <{}> {
         $('body').addClass('loading');
         const url = this.APIURL + '/trainings';
 
@@ -137,7 +137,7 @@ export class CitasApiService {
             );
     }
 
-    public getResearch(): Observable <{}>{
+    public getResearch(): Observable <{}> {
         $('body').addClass('loading');
         const url = this.APIURL + '/research';
 
@@ -159,7 +159,7 @@ export class CitasApiService {
             );
     }
 
-    public getEvents(): Observable <{}>{
+    public getEvents(): Observable <{}> {
         $('body').addClass('loading');
         const url = this.APIURL + '/events';
 
@@ -187,7 +187,7 @@ export class CitasApiService {
         const url = this.APIURL + '/reset_password?key=' + key;
 
         const headers = new Headers({ 
-            'Content-Type': 'application/x-www-form-urlencoded' 
+            'Content-Type': 'application/x-www-form-urlencoded'
         });
         const options = new RequestOptions({ headers: headers });
 
@@ -217,7 +217,7 @@ export class CitasApiService {
         const url = this.APIURL + '/forgot_password';
 
         const headers = new Headers({ 
-            'Content-Type': 'application/x-www-form-urlencoded' 
+            'Content-Type': 'application/x-www-form-urlencoded'
         });
         const options = new RequestOptions({ headers: headers });
 
@@ -243,16 +243,16 @@ export class CitasApiService {
     }
 
     public getPlantsFilterDownloadLink(
-        key: string, 
-        farmID: string, 
-        siteID: string, 
-        health: string, 
-        fromDate: Date, 
+        key: string,
+        farmID: string,
+        siteID: string,
+        health: string,
+        fromDate: Date,
         toDate: Date
     ): Observable <{}> {
         $('body').addClass('loading');
 
-        let url = this.APIURL + '/download/image/filter?key=' + key
+        const url = this.APIURL + '/download/image/filter?key=' + key
         + '&f=' + farmID
         + '&s=' + siteID
         + '&h=' + health
@@ -409,8 +409,8 @@ export class CitasApiService {
     }
 
     public getSites(
-        key: string, 
-        farmID ? : string, siteID ? : string): Observable <{}>  {
+        key: string,
+        farmID ?: string, siteID ?: string): Observable <{}>  {
         $('body').addClass('loading');
         let url = this.APIURL + '/sites';
         if (farmID) {
@@ -484,8 +484,8 @@ export class CitasApiService {
     }
 
     public getSensorList(
-        key: string, 
-        farmID ?: string, 
+        key: string,
+        farmID ?: string,
         siteID ?: string
     ): Observable <{}> {
         $('body').addClass('loading');
@@ -500,26 +500,26 @@ export class CitasApiService {
 
         // console.log(url);
         return this.http.get(url)
-            .catch(this.onCatch)
-            .do(
-                res => {
-                    this.onSuccess(res);
-                },
-                error => {
-                    this.onError(this, error);
-                }
-            )
-            .finally(
-                () => {
-                    this.onEnd();
-                }
-            );
+        .catch(this.onCatch)
+        .do(
+            res => {
+                this.onSuccess(res);
+            },
+            error => {
+                this.onError(this, error);
+            }
+        )
+        .finally(
+            () => {
+                this.onEnd();
+            }
+        );
     }
 
     public getPlantList(
-        key: string, 
-        farmID ? : string, 
-        siteID ? : string
+        key: string,
+        farmID ?: string,
+        siteID ?: string
     ): Observable <{}> {
         $('body').addClass('loading');
         let url = this.APIURL + '/plantlist';
@@ -563,7 +563,7 @@ export class CitasApiService {
                     this.onSuccess(res);
                 },
                 error => {
-                    this.onError(this, error)
+                    this.onError(this, error);
                 }
             )
             .finally(
@@ -603,8 +603,8 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/contactus';
 
-        const headers = new Headers({ 
-            'Content-Type': 'application/x-www-form-urlencoded' 
+        const headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
         });
         const options = new RequestOptions({ headers: headers });
 
@@ -637,7 +637,7 @@ export class CitasApiService {
         const url = this.APIURL + '/profile?key=' + key;
 
         const headers = new Headers({
-            'Content-Type': 'application/x-www-form-urlencoded' 
+            'Content-Type': 'application/x-www-form-urlencoded'
         });
         const options = new RequestOptions({ headers: headers });
 
@@ -690,8 +690,8 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/registerv2';
 
-        const headers = new Headers({ 
-            'Content-Type': 'application/x-www-form-urlencoded' 
+        const headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
         });
         const options = new RequestOptions({ headers: headers });
 
@@ -731,7 +731,7 @@ export class CitasApiService {
 
         const url = this.APIURL + '/login';
 
-        const headers = new Headers({ 
+        const headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
         const options = new RequestOptions({ headers: headers });
