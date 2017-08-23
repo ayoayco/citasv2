@@ -211,8 +211,6 @@ export class AppDashboardComponent {
                     }
                 );
 
-                flaskdfjasl;
-
                 this.apiService.getPlantList(
                     this.sessionService.getLoggedInKey(), 
                     this.selectedFarm.farm_id.toString()
