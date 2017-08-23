@@ -20,13 +20,13 @@ import { AppRegistrationComponent } from './registration.component';
 import { AppAboutCitasComponent } from './about-citas.component';
 import { AppAboutTeamComponent } from './about-team.component';
 import { AppAboutEventsComponent } from './about-events.component';
-import { AppAboutResearchComponent}  from './about-research.component';
+import { AppAboutResearchComponent} from './about-research.component';
 import { AppAboutTrainingsComponent } from './about-trainings.component';
 import { AppContactUsComponent } from './contact-us.component';
 import { AppEditProfileComponent } from './edit-profile.component';
 import { ViewProfileComponent } from './view-profile.component';
 import { MapComponent } from './map.component';
-import { AboutComponent } from './about.component'
+import { AboutComponent } from './about.component';
 import { AppResetPasswordComponent } from './reset-password.component';
 
 import { UserNavComponent} from './user.nav.component';
