@@ -62,6 +62,7 @@ import { BlankComponent } from './blank.component';
 import { ViewFarmsComponent } from './view-farms.component';
 
 import { AppTermsComponent } from './terms.component';
+import { AppWhyComponent } from './why.component';
 
 const appRoutes: Routes = [
   { path: '', component: AppHomeComponent },
@@ -135,7 +136,8 @@ const appRoutes: Routes = [
     AnalysisPipe,
     RegisterFarmComponent,
     BlankComponent,
-    AppTermsComponent
+    AppTermsComponent,
+    AppWhyComponent
   ],
   imports: [
     BrowserModule,
