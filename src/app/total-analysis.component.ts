@@ -411,7 +411,7 @@ export class AppTotalAnalysisComponent {
                 data = res;
                 data = JSON.parse(data._body);
                 // console.log(data.data);
-                this.selectedPlant = data.data;
+                this.selectedPlant = data.data.plant;
                 this.togglePlantAnalysis();
                 // console.log(this.selectedPlant);
             }
