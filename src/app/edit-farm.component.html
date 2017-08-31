@@ -6,7 +6,7 @@
         </map>
         <div id="m" class="ui-widget-content">
             <h3>Edit Farm</h3>
-            <p>Please edit the boundaries of your farm on the map using the edit tools on the top right side of the window.</p>
+            <p>Please edit the boundaries of your farm on the map using the <strong>edit tool</strong> on the top right side of the window. Remember to <strong>Save</strong> your work.</p>
             <form>
                 <div class="form-group">
                     <div>
@@ -17,7 +17,7 @@
                 </div>
             </form>
             <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
-            <button class="btn btn-primary clickable" (click)="submitFarmInfo()">Edit Farm</button>
+            <button class="btn btn-primary clickable" (click)="submitFarmInfo()">Update Farm</button>
             <a class="btn btn-default clickable" (click)="hideMap()">Cancel</a>
         </div>
         <div class="container">
