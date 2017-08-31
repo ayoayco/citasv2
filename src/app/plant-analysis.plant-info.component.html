@@ -3,6 +3,12 @@
         <h3>Selected Plant: <em>None Selected</em></h3>
         <p>Select a plant marker to the right to view its details and the results of the analysis.</p>
     </div>
+    <ul *ngIf="selectedPlant != undefined" id="tablist">
+        <li><a class="selectedTab">Overview</a></li>
+        <li><a>Leaf</a></li>
+        <li><a>Plantscope</a></li>
+        <li><a>Lampassay</a></li>
+    </ul>
     <div *ngIf="selectedPlant != undefined">
         <h3>Selected Plant: <strong>{{selectedPlant.plant_name}}</strong></h3>
         <p>Select a plant marker to the right to view its details and the results of the analysis.</p>

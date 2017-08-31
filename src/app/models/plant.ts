@@ -21,6 +21,9 @@ export class Plant {
     sampling_site_id: number;
     stem_infected: boolean;
     analysis_result: any;
+    leaf_analysis: any[];
+    plantscope_analysis: any[];
+    lampassay_analysis: any[];
 
     constructor(){
         this.growth_stage = "";
