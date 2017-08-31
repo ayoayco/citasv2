@@ -2,19 +2,25 @@
     <sidebar></sidebar>
     <div id="page-content-wrapper">
         <user-nav></user-nav>
-        <map [fullMap]="true" [drawable]="true" (setFarmInfo)="setFarmInfo($event)">
+        <map [fullMap]="true" [editable]="true" (setFarmInfo)="setFarmInfo($event)" [selectedFarm]="selectedFarm">
         </map>
         <div id="m" class="ui-widget-content">
-            <h3>New Farm Site</h3>
-            <p>
-                Farm Name: <strong>{{farm_name}}</strong><br />
-            </p>
-            <p>Please draw the boundaries of your farm site on the map using the tools on the top right side of the window.</p>
+            <h3>Edit Farm</h3>
+            <p>Please edit the boundaries of your farm on the map using the edit tools on the top right side of the window.</p>
+            <form>
+                <div class="form-group">
+                    <div>
+                        <label for="farm_name" id="farm_name-lbl">Farm Name:</label>
+                        <input type="text" id="farm_name-fld" class="form-control" [(ngModel)]="farm_name" name="farm_name" placeholder="Farm Name" />
+                    </div>
+                    <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
+                </div>
+            </form>
             <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
-            <button class="btn btn-primary clickable" (click)="submitFarmInfo()">Add Farm</button>
+            <button class="btn btn-primary clickable" (click)="submitFarmInfo()">Edit Farm</button>
             <a class="btn btn-default clickable" (click)="hideMap()">Cancel</a>
         </div>
-       <div class="container">
+        <div class="container">
             <div id='content-1' class="row">
                 <h1>Edit Farm</h1>
                 <p>Choose which farm you want to edit.</p>
@@ -34,11 +40,10 @@
 
                         <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
 
-                        <button (click)="hideForm()" class="btn btn-primary btn-block">Proceed</button>
+                        <button (click)="selectFarm(farm_id)" class="btn btn-primary btn-block">Proceed</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-

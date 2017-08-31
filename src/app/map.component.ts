@@ -12,6 +12,7 @@ import { Plant } from './models/plant';
 
 export class MapComponent implements AfterViewInit, OnChanges {
 
+    @Input() editable: boolean;
     @Input() drawable: boolean;
     @Input() zoomTo: number[];
 
@@ -101,7 +102,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
                     const ht = $('map').parent().height();
                     // console.log('Full Map! Height of map should be: '+ht);
                     $('div#map-div').css('height', ht + 'px');
-                    this.mymap.invalidateSize();
+                    this.mymap.invalidateSize(true);
                 });
             }
         };
@@ -208,14 +209,72 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
     private plotFarm() {
         // console.log('plot farm');
-        const data: Farm = this.selectedFarm;
+        if(this.editable) {
+            // FeatureGroup is to store editable layers
+            const drawnItems = new L.FeatureGroup([]);
+            this.mymap.addLayer(drawnItems);
+            const drawControl = new L.Control.Draw({
+                position: 'topright',
+                edit: {
+                    featureGroup: drawnItems,
+                    remove: false
+                },
+                draw: {
+                    polygon: false,
+                    polyline : false,
+                    rectangle : false,
+                    circle : false,
+                    marker: false
+               }
+            });
+            
+            this.mymap.addControl(drawControl);
+
+            let data: any;
+
+            this.mymap.on(L.Draw.Event.EDITED,
+                res => {
+                    drawnItems.eachLayer(layer=>{
+                        data = layer;
+                        console.log(data._latlngs);
+                    });
+                    const arr = [];
+                    const layer = data;
+
+                    if (layer._latlngs) {
+                        const latlngs = layer._latlngs[0];
+                        for (let i = 0; i < latlngs.length; i++) {
+                            arr.push([latlngs[i].lat, latlngs[i].lng]);
+                        }
+                    }else if (layer) {
+                        console.error('ERROR: something went wrong.');
+                        console.log(layer);
+                    }
+                    const area = L.GeometryUtil.geodesicArea(layer._latlngs[0]);
+                    this.setFarmInfo.emit({'latlngs': arr, 'area': area});
+                    drawnItems.addLayer(layer);
+                }
+            );
+            if (this.selectedFarm.center) {
+                // to do: clear previous layer
+                drawnItems.clearLayers();
+                this.farmLayer.clearLayers();
+                this.center = new L.LatLng(this.selectedFarm.center[0], this.selectedFarm.center[1]);
+                const polygon = L.polygon(this.selectedFarm.geometry);
+                drawnItems.addLayer(polygon);
+                drawnItems.addTo(this.mymap);
+                this.mymap.fitBounds(this.bounds);
+                $('a.leaflet-draw-edit-edit').click();
+            }
+
+        }
 
         // get farm details
-        if (data.center) {
+        else if (this.selectedFarm.center) {
             // to do: clear previous layer
             this.farmLayer.clearLayers();
-            this.center = new L.LatLng(data.center[0], data.center[1]);
-            const polygon = L.polygon(data.geometry, { color: 'black', fillOpacity: 0 });
+            this.center = new L.LatLng(this.selectedFarm.center[0], this.selectedFarm.center[1]);
+            const polygon = L.polygon(this.selectedFarm.geometry, { color: 'black', fillOpacity: 0 });
             this.farmLayer.addLayer(polygon);
             this.farmLayer.addTo(this.mymap);
             this.mymap.fitBounds(this.bounds);

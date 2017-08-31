@@ -24,6 +24,45 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public editFarm(
+        key: string,
+        farm_id: number,
+        farm_name: string,
+        farm_size: string,
+        farm_site_coordinates: number[]
+    ) {
+        $('body').addClass('loading');
+
+        const url = this.APIURL + '/farm/'+farm_id+'?key=' + key;
+        const coords = JSON.stringify(farm_site_coordinates);
+        const headers = new Headers({ 
+            'Content-Type': 'application/x-www-form-urlencoded' 
+        });
+        const options = new RequestOptions({ headers: headers });
+
+        const body = '&farm_name=' + farm_name +
+            '&farm_size=' + farm_size +
+            '&farm_site_coordinates=' + coords;
+
+        // console.log(body);
+
+        return this.http.post(url, body, options)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+    }
+
     public getTeamList(): Observable <{}> {
         $('body').addClass('loading');
         const url = this.APIURL + '/teamlist';
