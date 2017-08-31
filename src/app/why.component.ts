@@ -8,6 +8,5 @@ import { Component } from '@angular/core';
 
 export class AppWhyComponent {
     constructor() {
-        console.log('why page');
     }
 }
