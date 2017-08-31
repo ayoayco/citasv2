@@ -57,6 +57,7 @@ import { DownloadPlantDataComponent } from './downloads.plant-data.component';
 import { PlantListComponent } from './plant-list.component';
 import { SensorListComponent } from './sensor-list.component';
 
+import { EditFarmComponent } from './edit-farm.component';
 import { RegisterFarmComponent } from './register-farm.component';
 import { BlankComponent } from './blank.component';
 import { ViewFarmsComponent } from './view-farms.component';
@@ -137,7 +138,8 @@ const appRoutes: Routes = [
     RegisterFarmComponent,
     BlankComponent,
     AppTermsComponent,
-    AppWhyComponent
+    AppWhyComponent,
+    EditFarmComponent
   ],
   imports: [
     BrowserModule,
