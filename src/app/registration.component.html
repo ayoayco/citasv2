@@ -61,15 +61,15 @@
 
                     <div class="checkbox">
                         <label>
-                            <input [(ngModel)]="accept" name="accept" type="checkbox" /> I accept <a data-toggle="modal" data-target="#termsModal">terms</a>
+                            <input [(ngModel)]="accept" name="accept" type="checkbox" /> I accept the <a data-toggle="modal" data-target="#termsModal">terms</a>
                         </label>
                     </div>
 
                     <br />
 
                     <div *ngIf="success" class="alert alert-success">
-                        <strong>You have successfully registered</strong>
-                        Please check the <span *ngIf="user.user_type == 5">email sent to the email address</span> <span *ngIf="user.user_type == 4">SMS sent to the mobile number</span> you provided for your username!.
+                        <strong>You have successfully registered</strong> Please check the <span *ngIf="user.user_type == 5">email sent to the email address</span> <span *ngIf="user.user_type == 4">SMS sent to the mobile number</span> you provided for
+                        your username!.
                     </div>
 
                     <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
