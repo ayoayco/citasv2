@@ -236,7 +236,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
                 res => {
                     drawnItems.eachLayer(layer=>{
                         data = layer;
-                        console.log(data._latlngs);
                     });
                     const arr = [];
                     const layer = data;
