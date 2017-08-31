@@ -6,6 +6,7 @@ export class User {
   password: string;
   hashedpw: string;
   user_type: number;
+  user_type_verbose: string;
   fullname: string;
   email: string;
   mobile_number: string;
@@ -22,6 +23,7 @@ export class User {
     this.password = "";
     this.hashedpw = "";
     this.user_type = 0;
+    this.user_type_verbose = '';
     this.fullname = "";
     this.email = "";
     this.mobile_number = "";

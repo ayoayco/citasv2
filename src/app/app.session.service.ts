@@ -44,6 +44,16 @@ export class AppSessionService {
         }
     }
 
+    public getLoggedInUserTypeText(): string {
+        let user: string;
+
+        if (this.isLoggedIn()) {
+            return user = this.cookieService.get('user_type_verbose');
+        } else {
+            return;
+        }
+    }
+
     public getLoggedInUserType(): number {
         let user: number;
 
@@ -70,7 +80,7 @@ export class AppSessionService {
         location.assign('/');
     }
 
-    public startSession(username: string, key: string, fullname: string, user_type: number): void {
+    public startSession(username: string, key: string, fullname: string, user_type: number, user_type_verbose: string): void {
         // console.log('started session for user: '+ username);
         // console.log('key: '+ key);
 
@@ -79,6 +89,7 @@ export class AppSessionService {
         this.cookieService.put('username', username);
         this.cookieService.put('user_type', user_type.toString());
         this.cookieService.put('fullname', fullname);
+        this.cookieService.put('user_type_verbose', user_type_verbose);
 
         this.router.navigate(['/dashboard']);
     }
