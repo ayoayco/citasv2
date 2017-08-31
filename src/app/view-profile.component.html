@@ -11,6 +11,7 @@
                     </div>
                     <div class="col-md-4">
                         <strong>{{user.fullname}}</strong><br />
+                        <span *ngIf="user.user_type_verbose">{{user.user_type_verbose}}</span>
                         <span *ngIf="user.details.designation">{{user.details.designation}}</span>
                         <span *ngIf="user.details.department">, {{user.details.department}}</span>
                         <span *ngIf="user.details.organization">, {{user.details.organization}}</span>

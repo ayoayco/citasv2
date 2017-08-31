@@ -21,6 +21,7 @@ export class UserNavComponent {
     isLoggedIn: boolean;
     username: string;
     role: number;
+    role_text: string;
 
     constructor (
         private sessionService: AppSessionService,
@@ -28,6 +29,7 @@ export class UserNavComponent {
         this.isLoggedIn = this.sessionService.isLoggedIn();
         this.username = this.sessionService.getLoggedInUserFullname();
         this.role = this.sessionService.getLoggedInUserType();
+        this.role_text = this.sessionService.getLoggedInUserTypeText();
     }
 
     public logout() {
