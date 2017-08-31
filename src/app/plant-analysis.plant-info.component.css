@@ -83,3 +83,26 @@ div.analysis-label {
 h3 {
     margin-top: 0;
 }
+
+ul#tablist li a.selectedTab {
+    background: #19BD6C;
+}
+
+ul#tablist li a {
+    padding: 5px;
+    margin: 10px 10px 10px 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    font-size: x-small;
+}
+
+ul#tablist li {
+    display: inline;
+}
+
+ul#tablist {
+    list-style: none;
+    padding: 3px;
+    border-bottom: 1px solid #19BD6C;
+}

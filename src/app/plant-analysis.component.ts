@@ -173,6 +173,10 @@ export class AppPlantAnalysisComponent {
                 data = res;
                 data = JSON.parse(data._body);
                 this.selectedPlant = data.data.plant;
+                this.selectedPlant.leaf_analysis = data.data.leaf;
+                this.selectedPlant.lampassay_analysis = data.data.lampassay;
+                this.selectedPlant.plantscope_analysis = data.data.plantscope;
+                console.log(this.selectedPlant);
             }
         );
     }
