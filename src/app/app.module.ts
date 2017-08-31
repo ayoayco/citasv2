@@ -85,6 +85,7 @@ const appRoutes: Routes = [
   { path: 'about-trainings', component: AppAboutTrainingsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'register-farm', component: RegisterFarmComponent },
+  { path: 'edit-farm', component: EditFarmComponent },
   { path: 'contact-us', component: AppContactUsComponent },
   { path: 'downloads', component: DownloadsComponent },
   { path: '**', component: AppPageNotFoundComponent }

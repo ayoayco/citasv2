@@ -5,23 +5,23 @@
         <map [fullMap]="true" [drawable]="true" (setFarmInfo)="setFarmInfo($event)">
         </map>
         <div id="m" class="ui-widget-content">
-            <h3>New Farm Site</h3>
+            <h3>New Farm</h3>
             <p>
                 Farm Name: <strong>{{farm_name}}</strong><br />
             </p>
-            <p>Please draw the boundaries of your farm site on the map using the tools on the top right side of the window.</p>
+            <p>Please draw the boundaries of your farm on the map using the tools on the top right side of the window.</p>
             <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
             <button class="btn btn-primary clickable" (click)="submitFarmInfo()">Add Farm</button>
             <a class="btn btn-default clickable" (click)="hideMap()">Cancel</a>
         </div>
        <div class="container">
             <div id='content-1' class="row">
-                <h1>New Farm Site</h1>
-                <p>Register your farm site under CITAS to use the system.</p>
+                <h1>Register New Farm</h1>
+                <p>Register your farm under CITAS to use the system.</p>
                 <form>
                     <div class="form-group">
                         <div>
-                            <label for="farm_name" id="farm_name-lbl">Farm Site Name:</label>
+                            <label for="farm_name" id="farm_name-lbl">Farm Name:</label>
                             <input type="text" id="farm_name-fld" class="form-control" [(ngModel)]="farm_name" name="farm_name" placeholder="Farm Name" />
                             <!--label for="farm_size" id="farm_size-lbl">Farm Size</label>
                             <select name="farm_size" id="farm_size" [(ngModel)]="farm_size">

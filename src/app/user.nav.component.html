@@ -23,6 +23,7 @@
                         <!--<li><a onclick="$('#editUserModal').modal('toggle')">Edit User Profile</a></li>-->
                         <li><a routerLink="/view-profile" routerLinkActive="active">View User Profile</a></li>
                         <li *ngIf="role == 4"><a routerLink="/register-farm" routerLinkActive="active">Register New Farm</a></li>
+                        <li *ngIf="role == 4 && farms != undefined && farms.length > 0"><a routerLink="/edit-farm" routerLinkActive="active">Edit Farm</a></li>
                         <!--<li role="separator" class="divider"></li>-->
                         <li><a href="#" (click)="logout()">Logout</a></li>
                     </ul>
