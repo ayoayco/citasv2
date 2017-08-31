@@ -17,10 +17,11 @@ import { Farm } from './models/farm';
 
 export class EditFarmComponent implements AfterViewInit {
     farms: Farm[];
+    selectedFarm: Farm;
     farm_id: number;
-    farm_name = '';
-    farm_size = 'small';
-    latlngs = [];
+    farm_name: string;
+    farm_size: string;
+    latlngs;
     area = 0;
     accept = false;
     err = false;
@@ -39,6 +40,7 @@ export class EditFarmComponent implements AfterViewInit {
             this.titleService.setTitle('Edit Farm');
         }
 
+        this.selectedFarm = new Farm();
         let data: any;
         this.apiService.getFarmList(this.sessionService.getLoggedInKey())
         .subscribe(
@@ -50,6 +52,9 @@ export class EditFarmComponent implements AfterViewInit {
                     this.router.navigate(['/']);
                 }
                 console.log(this.farms);
+            },
+            err => {
+                this.router.navigate(['/']);
             }
         );
     }
@@ -59,15 +64,31 @@ export class EditFarmComponent implements AfterViewInit {
         $('#m').hide();
     }
 
-    public hideForm() {
+    public selectFarm() {
         this.msg = '<strong>Registration Failed!</strong> Please correct the following error(s):<br /><ol>';
         this.err = false;
+        if(!this.farm_id) {
+            this.err = true;
+            this.msg += '<li> No selected farm.</li>';
+        }
         if (!this.accept) {
             this.err = true;
             this.msg += '<li> Terms not accepted.</li>';
         }
         this.msg += '</ol>';
+        let data: any;
         if (!this.err) {
+            this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.farm_id.toString())
+            .subscribe(
+                res => {
+                    data = res;
+                    data = JSON.parse(data._body);
+                    this.selectedFarm = data.data[0];
+                    console.log(this.selectedFarm);
+                    this.farm_name = this.selectedFarm.farm_name;
+                    this.farm_size = this.selectedFarm.farm_size;
+                }
+            )
             $('#content-1').hide();
             $('map').show();
             $('#m').show();
@@ -83,34 +104,26 @@ export class EditFarmComponent implements AfterViewInit {
     public submitFarmInfo() {
         this.err = false;
         this.msg = '';
-        console.log('submit farm info.');
-        console.log(this.farm_name);
-        console.log(this.latlngs);
         let data: any;
-        // incomplete data, prompt fail
-        if (this.latlngs.length === 0) {
-            this.err = true;
-            this.msg = '<strong>Error: </strong>Please draw farm boundaries.';
-        } else {
-            this.apiService.addFarm(this.sessionService.getLoggedInKey(), this.farm_name, this.farm_size, this.latlngs)
-            .subscribe(
-                res => {
-                    data = res;
-                    data = JSON.parse(data._body);
-                    console.log(data);
-                    if (data.Success) {
-                        this.sessionService.saveData('farm_id', data.farm_id);
-                        this.router.navigate(['/']);
-                    } else {
-                        alert('The API reported an error: ' + data.error_message);
-                    }
-                },
-                err => {
-                    console.error(err);
-                    alert('There was an error in communicating with the backend API.');
-                }
-            );
+        
+        if(this.latlngs == undefined) {
+            // farm bounds not edited
+            this.latlngs = this.selectedFarm.geometry;
         }
+        console.log("farm name: " + this.farm_name);
+        console.log("farm size: " + this.farm_size);
+        console.log("farm id: " + this.farm_id);
+        console.log(this.latlngs);
+        this.apiService.editFarm(this.sessionService.getLoggedInKey(), this.farm_id, this.farm_name, this.farm_size, this.latlngs)
+        .subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                if(data.Success){
+                    this.router.navigate(['/']);
+                }
+            }
+        )
     }
 
     public setFarmInfo(obj: any) {
@@ -121,6 +134,7 @@ export class EditFarmComponent implements AfterViewInit {
         } else {
             this.farm_size = 'small';
         }
+        console.log(obj);
     }
 
 
