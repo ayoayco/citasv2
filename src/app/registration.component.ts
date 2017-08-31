@@ -116,7 +116,6 @@ export class AppRegistrationComponent implements OnInit {
             .subscribe(res => {
                 data = res;
                 data = JSON.parse(data._body);
-                console.log(data);
                 if (data) {
                     if (data.Success) {
                         this.success = true;
