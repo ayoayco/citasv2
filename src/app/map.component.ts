@@ -232,7 +232,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
             let data: any;
 
-            this.mymap.on(L.Draw.Event.EDITED,
+            this.mymap.on(L.Draw.Event.EDITVERTEX,
                 res => {
                     drawnItems.eachLayer(layer=>{
                         data = layer;
