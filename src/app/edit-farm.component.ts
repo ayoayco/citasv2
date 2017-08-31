@@ -51,7 +51,6 @@ export class EditFarmComponent implements AfterViewInit {
                 if (this.farms.length === 0) {
                     this.router.navigate(['/']);
                 }
-                console.log(this.farms);
             },
             err => {
                 this.router.navigate(['/']);
@@ -84,7 +83,6 @@ export class EditFarmComponent implements AfterViewInit {
                     data = res;
                     data = JSON.parse(data._body);
                     this.selectedFarm = data.data[0];
-                    console.log(this.selectedFarm);
                     this.farm_name = this.selectedFarm.farm_name;
                     this.farm_size = this.selectedFarm.farm_size;
                 }
@@ -110,10 +108,6 @@ export class EditFarmComponent implements AfterViewInit {
             // farm bounds not edited
             this.latlngs = this.selectedFarm.geometry;
         }
-        console.log("farm name: " + this.farm_name);
-        console.log("farm size: " + this.farm_size);
-        console.log("farm id: " + this.farm_id);
-        console.log(this.latlngs);
         this.apiService.editFarm(this.sessionService.getLoggedInKey(), this.farm_id, this.farm_name, this.farm_size, this.latlngs)
         .subscribe(
             res => {
@@ -134,7 +128,6 @@ export class EditFarmComponent implements AfterViewInit {
         } else {
             this.farm_size = 'small';
         }
-        console.log(obj);
     }
 
 

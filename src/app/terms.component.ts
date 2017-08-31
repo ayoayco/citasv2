@@ -8,6 +8,5 @@ import { Component } from '@angular/core';
 
 export class AppTermsComponent {
     constructor() {
-        console.log('terms page');
     }
 }
