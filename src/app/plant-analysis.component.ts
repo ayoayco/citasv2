@@ -172,9 +172,8 @@ export class AppPlantAnalysisComponent {
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                // console.log(data);
-                this.selectedPlant = data.data;
-                // console.log(this.selectedPlant);
+                this.selectedPlant = data.data.plant;
+                console.log(this.selectedPlant);
             }
         );
     }
