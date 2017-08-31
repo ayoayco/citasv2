@@ -1,0 +1,77 @@
+#page-content-wrapper,
+#wrapper {
+    height: 100%;
+}
+
+#page-content-wrapper {
+    padding: 0;
+    padding-top: 50px;
+}
+
+h1 {
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+div#content-1 {
+    max-width: 600px;
+    padding: 30px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 0.3em;
+    min-height: 450px;
+    margin-top: 30px;
+    text-align: left;
+}
+
+input.form-control, select {
+    margin-top: 15px;
+    height: 53px;
+    border: 1px solid #E4E4E4;
+    border-radius: 2px;
+    margin-bottom: 27px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #57675F;
+    width: 100%;
+    padding: 15px;
+}
+
+label {
+    height: 1.8%;
+    width: 100%;
+    color: #57675F;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: left;
+}
+
+button.btn-primary {
+    width: 65%;
+    margin: 20px auto;
+}
+
+form {
+    margin:30px;
+}
+
+#m {
+    position: absolute;
+    top: 62px;
+    left: 60px;
+    width: 350px;
+    font-size: 16px;
+    padding: 10px;
+    z-index: 8;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    background-clip: padding-box;
+    border-radius: 5px;
+    background: white;
+}
+.leaflet-draw-draw-polyline,
+.leaflet-draw-draw-rectangle,
+.leaflet-draw-draw-circle,
+.leaflet-draw-draw-marker {
+    display: none;
+}
