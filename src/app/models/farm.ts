@@ -5,6 +5,7 @@ export class Farm {
     center: number[];
     farm_id: number;
     farm_name: string;
+    farm_owner: string;
     farm_size: string;
     foc_present: boolean;
     foc_prevention: boolean;
@@ -17,6 +18,7 @@ export class Farm {
         this.center = [];
         this.farm_id = undefined;
         this.farm_name = "Loading...";
+        this.farm_owner = "";
         this.farm_size = "";
         this.foc_present = false;
         this.foc_prevention = false;
