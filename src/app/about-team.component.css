@@ -2,24 +2,28 @@ div.container {
     padding: 90px 0 30px;
 }
 
+h1 {
+    text-align: center;
+    margin: 20px 0;
+}
+
 .member-div .round-img img {
     position: absolute;
-    margin: auto; 
+    margin: auto;
     min-height: 100%;
     min-width: 100%;
     border-radius: 50%;
-
     left: -100%;
     right: -100%;
     top: -100%;
     bottom: -100%;
 }
+
 .member-div .round-img {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     overflow: hidden;
-    margin: 10px;
-    margin-left: 30px;
+    margin: 10px auto;
     position: relative;
     border-radius: 50%;
 }
