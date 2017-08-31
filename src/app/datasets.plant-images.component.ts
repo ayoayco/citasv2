@@ -170,8 +170,7 @@ export class DatasetsPlantImagesComponent {
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                // console.log(data);
-                this.selectedPlant = data.data;
+                this.selectedPlant = data.data.plant;
                 // console.log(this.selectedPlant);
             }
         )
