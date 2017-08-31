@@ -61,7 +61,6 @@ export class ViewProfileComponent {
                             data = response;
                             data = JSON.parse(data._body);
                             this.user = data;
-                            console.log(this.user);
                             switch(this.user.user_type){
                                 case 4:
                                     this.imgFile = 'avatar-farmer-min.png';
