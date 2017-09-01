@@ -78,6 +78,7 @@ const appRoutes: Routes = [
   { path: 'sensor-data', component: DatasetsSensorDataComponent },
   { path: 'registration', component: AppRegistrationComponent },
   { path: 'reset-password', component: AppResetPasswordComponent },
+  { path: 'reset-password/:id', component: AppResetPasswordComponent },
   { path: 'about-citas', component: AppAboutCitasComponent },
   { path: 'about-team', component: AppAboutTeamComponent },
   { path: 'about-events', component: AppAboutEventsComponent },
