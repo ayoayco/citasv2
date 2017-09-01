@@ -14,7 +14,7 @@
             <button class="btn btn-primary clickable" (click)="submitFarmInfo()">Add Farm</button>
             <a class="btn btn-default clickable" (click)="hideMap()">Cancel</a>
         </div>
-       <div class="container">
+        <div class="container">
             <div id='content-1' class="row">
                 <h1>Register New Farm</h1>
                 <p>Register your farm under CITAS to use the system.</p>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input [(ngModel)]="accept" name="accept" type="checkbox" /> I accept <a routerLink="/blank" routerLinkActive="active">terms</a>
+                                <input [(ngModel)]="accept" name="accept" type="checkbox" /> I accept <a data-toggle="modal" data-target="#termsModal">terms</a>
                             </label>
                         </div>
 
@@ -44,4 +44,3 @@
         </div>
     </div>
 </div>
-
