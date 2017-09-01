@@ -3,82 +3,221 @@
         <h3>Selected Plant: <em>None Selected</em></h3>
         <p>Select a plant marker to the right to view its details and the results of the analysis.</p>
     </div>
-    <ul *ngIf="selectedPlant != undefined" id="tablist">
-        <li><a class="selectedTab">Overview</a></li>
-        <li><a>Leaf</a></li>
-        <li><a>Plantscope</a></li>
-        <li><a>Lampassay</a></li>
-    </ul>
     <div *ngIf="selectedPlant != undefined">
         <h3>Selected Plant: <strong>{{selectedPlant.plant_name}}</strong></h3>
         <p>Select a plant marker to the right to view its details and the results of the analysis.</p>
-        <div id="details-div" class="row">
-            <div class="col col-md-6">
-                <div class="row">
-                    <div class="detail-item col col-md-6">
-                        <label>Variety</label><br />
-                        <span class="value">{{selectedPlant.plant_variety}}</span>
+        <ul *ngIf="selectedPlant != undefined" id="tablist">
+            <li><a id="overview" (click)="updatePlantInfo('overview')" class="selectedTab">Overview</a></li>
+            <li><a id="leaf" (click)="updatePlantInfo('leaf')">Leaf</a></li>
+            <li><a id="plantscope" (click)="updatePlantInfo('plantscope')">Plantscope</a></li>
+            <li><a id="lampassay" (click)="updatePlantInfo('lampassay')">Lampassay</a></li>
+        </ul>
+        <div *ngIf="selected == 'leaf'" id="leaf-div" class="detail-div">
+            <div class="row selectRow">
+                <label class="selectLabel col-md-4 text-right" for="selectedItem">Select Leaf Data: </label>
+                <select class="selectItem col-md-4" name="selectedItem" [(ngModel)]="selectedItem">
+                    <option *ngFor="let leaf of selectedPlant.leaf_analysis" [ngValue]="leaf">
+                        {{leaf.leaf_temp_name}}
+                    </option>
+                </select>
+            </div>
+            <div class="row" *ngIf="selectedItem != undefined">
+                <div class="col col-md-6">
+                    <div class="row">
+                        <div class="detail-item col col-md-6">
+                            <label>Attachment</label><br />
+                            <span class="value">{{selectedItem.attachment}}</span>
+                        </div>
+                        <div class="detail-item col col-md-6">
+                            <label>Background</label><br />
+                            <span class="value">{{selectedItem.background}}</span>
+                        </div>
                     </div>
-                    <div class="detail-item col col-md-6">
-                        <label>Pseudostem Diameter</label><br />
-                        <span class="value">{{selectedPlant.pseudostem_diameter}}</span>
+                    <div class="row">
+                        <div class="detail-item col col-md-6">
+                            <label>Condition</label><br />
+                            <span class="value">{{selectedItem.leaf_condition}}</span>
+                        </div>
+                        <div class="detail-item col col-md-6">
+                            <label>Side</label><br />
+                            <span class="value">{{selectedItem.leaf_side}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="detail-item col col-md-6">
+                            <label>Status</label><br />
+                            <span class="value">{{selectedItem.leaf_status}}</span>
+                        </div>
+                        <div class="detail-item col col-md-6">
+                            <label>Top View</label><br />
+                            <span class="value">{{selectedItem.top_view}}</span>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="detail-item col col-md-6">
-                        <label>Growth Stage</label><br />
-                        <span class="value">{{selectedPlant.growth_stage}}</span>
-                    </div>
-                    <div class="detail-item col col-md-6">
-                        <label>Leaf Count</label><br />
-                        <span class="value">{{selectedPlant.leaf_count}}</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="detail-item col col-md-6">
-                        <label>Height</label><br />
-                        <span class="value">{{selectedPlant.plant_height}} cm</span>
-                    </div>
-                    <div class="detail-item col col-md-6">
-                        <label>Leaf Area</label><br />
-                        <span class="value">{{selectedPlant.leaf_area}}</span>
+                <div class="col col-md-6">
+                    <div class="row">
+                        <h4>Analysis Results</h4>
+                        <div class="col col-md-6 result-div">
+                            <span [style.color]="getBgColor(selectedItem.analysis_result.actual)" id="image" class="result-span">{{selectedItem.analysis_result.actual | analysis}}</span>
+                            <p class="result-desc">Actual</p>
+                        </div>
+                        <div class="col col-md-6 result-div">
+                            <span [style.color]="getBgColor(selectedItem.analysis_result.predicted)" id="sensor" class="result-span">{{selectedItem.analysis_result.predicted | analysis}}</span>
+                            <p class="result-desc">Predicted</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col col-md-6">
-                <div class="row">
-                    <h4>Analysis Results</h4>
-                    <div class="col col-md-6 result-div">
-                        <span [style.color]="getBgColor(selectedPlant.analysis_result.image)" id="image" class="result-span">{{selectedPlant.analysis_result.image | analysis}}</span>
-                        <p class="result-desc">Image</p>
-                    </div>
-                    <div class="col col-md-6 result-div">
-                        <span [style.color]="getBgColor(selectedPlant.analysis_result.sensor)" id="sensor" class="result-span">{{selectedPlant.analysis_result.sensor | analysis}}</span>
-                        <p class="result-desc">Soil Sensors</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <h4>Infected Parts</h4>
-                    <ul id="infectedList">
-                        <li *ngIf="no_infected"><i class="fa fa-check"></i> No infected parts.</li>
-                        <li *ngIf="selectedPlant.leaves_infected"><i class="fa fa-check"></i> Leaves</li>
-                        <li *ngIf="selectedPlant.roots_infected"><i class="fa fa-check"></i> Roots</li>
-                        <li *ngIf="selectedPlant.stem_infected"><i class="fa fa-check"></i> Stem</li>
-                        <li *ngIf="selectedPlant.rhizome_infected"><i class="fa fa-check"></i> Rhizome</li>
-                        <li *ngIf="selectedPlant.rhizosphere_infected"><i class="fa fa-check"></i> Rhizosphere</li>
+            <div *ngIf="selectedItem != undefined">
+                <h3>Images</h3>
+                <div id="images-div">
+                    <ul>
+                        <li *ngFor="let image of selectedItem.images">
+                            <img src="http://{{image.image_thumbnail_url}}" />
+                            <!--<img src="./assets/old-bg_header-min.jpg" />-->
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
+        <div *ngIf="selected == 'plantscope'" id="plantscope-div" class="detail-div">
+            <div class="selectRow row">
+                <label class="selectLabel col-md-4 text-right" for="selectedItem">Select Plantscope Data: </label>
+                <select class="selectItem col-md-4" name="selectedItem" [(ngModel)]="selectedItem">
+                    <option *ngFor="let plantscope of selectedPlant.plantscope_analysis" [ngValue]="plantscope">
+                        {{plantscope.plantscope_temp_name}}
+                    </option>
+                </select>
+            </div>
+            <div class="row" *ngIf="selectedItem != undefined">
+                <div class="col col-md-12">
+                    <div class="row">
+                        <h4 (click)="con.log(selectedItem)">Analysis Results</h4>
+                        <div class="col col-md-6 result-div">
+                            <span [style.color]="getBgColor(selectedItem.analysis_result.FOC)" id="image" class="result-span">{{selectedItem.analysis_result.FOC | analysis}}</span>
+                            <p class="result-desc">FOC</p>
+                        </div>
+                        <div class="col col-md-6 result-div">
+                            <span [style.color]="getBgColor(selectedItem.analysis_result.FOCTR4)" id="sensor" class="result-span">{{selectedItem.analysis_result.FOCTR4 | analysis}}</span>
+                            <p class="result-desc">FOC-TR4</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="selectedItem != undefined">
+                <h3>Images</h3>
+                <div id="images-div">
+                    <ul>
+                        <li *ngFor="let image of selectedItem.images">
+                            <img src="http://{{image.image_thumbnail_url}}" />
+                            <!--<img src="./assets/old-bg_header-min.jpg" />-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="selected == 'lampassay'" id="lampassay-div" class="detail-div">
+            <div class="selectRow row">
+                <label class="selectLabel col-md-4 text-right" for="selectedItem">Select Lampassay Data: </label>
+                <select class="selectItem col-md-4" name="selectedItem" [(ngModel)]="selectedItem">
+                    <option *ngFor="let lampassay of selectedPlant.lampassay_analysis" [ngValue]="lampassay">
+                        {{lampassay.lampassay_temp_name}}
+                    </option>
+                </select>
+            </div>
+            <div class="row" *ngIf="selectedItem != undefined">
+                <div class="col col-md-12">
+                    <div class="row">
+                        <h4 (click)="con.log(selectedItem)">Analysis Results</h4>
+                        <div class="col col-md-12 result-div">
+                            <span [style.color]="getBgColor(selectedItem.analysis_result.diagnosis)" id="image" class="result-span">{{selectedItem.analysis_result.diagnosis | analysis}}</span>
+                            <p class="result-desc">Diagnosis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="selectedItem != undefined">
+                <h3>Images</h3>
+                <div id="images-div">
+                    <ul>
+                        <li *ngFor="let image of selectedItem.images">
+                            <img src="http://{{image.image_thumbnail_url}}" />
+                            <!--<img src="./assets/old-bg_header-min.jpg" />-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-        <h3>Images</h3>
-        <div id="images-div">
-            <ul>
-                <li *ngFor="let image of selectedPlant.images">
-                    <img src="http://{{image.image_thumbnail_url}}" />
-                    <!--<img src="./assets/old-bg_header-min.jpg" />-->
-                </li>
-            </ul>
+        </div>
+        <div *ngIf="selected == 'overview'" id="overview-div" class="detail-div">
+            <div class="row">
+                <div class="col col-md-6">
+                    <div class="row">
+                        <div class="detail-item col col-md-6">
+                            <label>Variety</label><br />
+                            <span class="value">{{selectedPlant.plant_variety}}</span>
+                        </div>
+                        <div class="detail-item col col-md-6">
+                            <label>Pseudostem Diameter</label><br />
+                            <span class="value">{{selectedPlant.pseudostem_diameter}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="detail-item col col-md-6">
+                            <label>Growth Stage</label><br />
+                            <span class="value">{{selectedPlant.growth_stage}}</span>
+                        </div>
+                        <div class="detail-item col col-md-6">
+                            <label>Leaf Count</label><br />
+                            <span class="value">{{selectedPlant.leaf_count}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="detail-item col col-md-6">
+                            <label>Height</label><br />
+                            <span class="value">{{selectedPlant.plant_height}} cm</span>
+                        </div>
+                        <div class="detail-item col col-md-6">
+                            <label>Leaf Area</label><br />
+                            <span class="value">{{selectedPlant.leaf_area}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="row">
+                        <h4>Analysis Results</h4>
+                        <div class="col col-md-6 result-div">
+                            <span [style.color]="getBgColor(selectedPlant.analysis_result.image)" id="image" class="result-span">{{selectedPlant.analysis_result.image | analysis}}</span>
+                            <p class="result-desc">Image</p>
+                        </div>
+                        <div class="col col-md-6 result-div">
+                            <span [style.color]="getBgColor(selectedPlant.analysis_result.sensor)" id="sensor" class="result-span">{{selectedPlant.analysis_result.sensor | analysis}}</span>
+                            <p class="result-desc">Soil Sensors</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h4>Infected Parts</h4>
+                        <ul id="infectedList">
+                            <li *ngIf="no_infected"><i class="fa fa-check"></i> No infected parts.</li>
+                            <li *ngIf="selectedPlant.leaves_infected"><i class="fa fa-check"></i> Leaves</li>
+                            <li *ngIf="selectedPlant.roots_infected"><i class="fa fa-check"></i> Roots</li>
+                            <li *ngIf="selectedPlant.stem_infected"><i class="fa fa-check"></i> Stem</li>
+                            <li *ngIf="selectedPlant.rhizome_infected"><i class="fa fa-check"></i> Rhizome</li>
+                            <li *ngIf="selectedPlant.rhizosphere_infected"><i class="fa fa-check"></i> Rhizosphere</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <h3>Images</h3>
+            <div id="images-div">
+                <ul>
+                    <li *ngFor="let image of selectedPlant.images">
+                        <img src="http://{{image.image_thumbnail_url}}" />
+                        <!--<img src="./assets/old-bg_header-min.jpg" />-->
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </div>
 </div>
