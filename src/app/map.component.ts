@@ -4,6 +4,8 @@ import { Sensor } from './models/sensor';
 import { Site } from './models/site';
 import { Plant } from './models/plant';
 
+declare const L: any;
+
 @Component({
     selector: 'map',
     templateUrl: './map.component.html',
