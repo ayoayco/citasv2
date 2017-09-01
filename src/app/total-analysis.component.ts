@@ -331,6 +331,7 @@ export class AppTotalAnalysisComponent {
                 this.clearOverlay = true;
                 $('.legend').hide(); break;
             case 'temp':
+                this.showSamplings = false;
                 this.showTemp = true;
                 this.showPress = false;
                 this.showHumid = false;
@@ -338,15 +339,19 @@ export class AppTotalAnalysisComponent {
                 $('.legend').hide();
                 $('#tempLegend').show(); break;
             case 'press':
+                this.showSamplings = false;
                 this.showPress = true;
                 this.showTemp = false;
-                this.showTemp = false;
+                this.showHumid = false;
+                this.clearOverlay = false;
                 $('.legend').hide();
                 $('#pressLegend').show(); break;
             case 'humid':
+                this.showSamplings = false;
                 this.showHumid = true;
                 this.showTemp = false;
                 this.showPress = false;
+                this.clearOverlay = false;
                 $('.legend').hide();
                 $('#humidLegend').show(); break;
         }
@@ -369,6 +374,9 @@ export class AppTotalAnalysisComponent {
 
     public toggleSamplings() {
         this.showSamplings = !this.showSamplings;
+        this.toggleOverlay('none');
+        let arr:any = $('#toggleNone');
+        arr[0].checked = true;
         if (this.showSamplings && this.showSites) {
             this.showSites = !this.showSites;
         }
