@@ -40,7 +40,7 @@ export class PlantAnalysisPlantInfoComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes.selectedPlant && changes.selectedPlant.firstChange === false) {
-            console.log(this.selectedPlant);
+            this.selectedItem = undefined;
             this.no_infected = false;
             if ( this.selectedPlant !== undefined &&
                 !this.selectedPlant.leaves_infected &&
@@ -51,9 +51,6 @@ export class PlantAnalysisPlantInfoComponent implements OnChanges {
                 this.no_infected = true;
             }
             // console.log('plant changed!');
-        }
-        if (changes.selectedItem && changes.selectedItem.firstChange === false) {
-            console.log(this.selectedItem);
         }
     }
 }
