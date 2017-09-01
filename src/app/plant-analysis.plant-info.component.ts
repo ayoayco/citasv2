@@ -13,8 +13,12 @@ export class PlantAnalysisPlantInfoComponent implements OnChanges {
     @Input() selectedPlant: Plant = new Plant();
 
     no_infected = false;
+    selected = 'overview';
+    selectedItem: any;
+    con = console;
 
     constructor() {
+        this.selectedItem = undefined;
     }
 
     public getBgColor(result: string){
@@ -27,8 +31,16 @@ export class PlantAnalysisPlantInfoComponent implements OnChanges {
         }
     }
 
+    public updatePlantInfo(str: string) {
+        this.selectedItem = undefined;
+        this.selected = str;
+        $('li a.selectedTab').removeClass('selectedTab');
+        $('li a#' + str).addClass('selectedTab');
+    }
+
     ngOnChanges(changes: SimpleChanges) {
         if (changes.selectedPlant && changes.selectedPlant.firstChange === false) {
+            console.log(this.selectedPlant);
             this.no_infected = false;
             if ( this.selectedPlant !== undefined &&
                 !this.selectedPlant.leaves_infected &&
@@ -39,6 +51,9 @@ export class PlantAnalysisPlantInfoComponent implements OnChanges {
                 this.no_infected = true;
             }
             // console.log('plant changed!');
+        }
+        if (changes.selectedItem && changes.selectedItem.firstChange === false) {
+            console.log(this.selectedItem);
         }
     }
 }
