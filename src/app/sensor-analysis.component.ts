@@ -71,9 +71,10 @@ export class AppSensorAnalysisComponent {
                         this.selectedFarm.farm_id.toString())
                     .subscribe(
                         response => {
-                            data = res;
+                            data = response;
                             data = JSON.parse(data._body);
                             this.sensors = data.data;
+                            console.log(this.sensors);
                         }
                     );
 
@@ -121,6 +122,7 @@ export class AppSensorAnalysisComponent {
                             data = response;
                             data = JSON.parse(data._body);
                             this.sensors = data.data;
+                            console.log(this.sensors);
                         }
                     );
                 }
@@ -166,6 +168,7 @@ export class AppSensorAnalysisComponent {
                         data = response;
                         data = JSON.parse(data._body);
                         this.sensors = data.data;
+                        console.log(this.sensors);
                         // console.log('sensor count: '+this.sensors.length);
                         // console.log(this.sensors);
                     }
