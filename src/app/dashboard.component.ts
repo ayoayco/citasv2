@@ -154,7 +154,7 @@ export class AppDashboardComponent {
                         )
                         .subscribe(
                             response => {
-                                data = res;
+                                data = response;
                                 data = JSON.parse(data._body);
                                 this.sensors = data.data;
                             }
