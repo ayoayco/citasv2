@@ -223,6 +223,19 @@ export class AppDashboardComponent {
                         alert('There was an error in communicating with the backend API.');
                     }
                 );
+
+                this.apiService.getSites(
+                    this.sessionService.getLoggedInKey(), 
+                    this.selectedFarm.farm_id.toString()
+                )
+                .subscribe(
+                    response => {
+                        data = response;
+                        data = JSON.parse(data._body);
+                        this.sites = data.data;
+                    }
+                );
+
             }
         );
     }
