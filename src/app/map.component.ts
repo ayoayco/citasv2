@@ -320,40 +320,40 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
         for (let i = 0; i < this.plants.length; i++) {
             const arg = this.plants[i];
-            const latlng = new L.LatLng(arg.lat, arg.lng);
-            const marker = L.marker(latlng, { icon: this.plantIcon });
+            if (arg != undefined) {
+                const latlng = new L.LatLng(arg.lat, arg.lng);
+                const marker = L.marker(latlng, { icon: this.plantIcon });
+                if (!this.disableInteraction) {
+                    marker.on('click', (e) => {
+                        this.onSelect('plant', arg);
 
-            if (!this.disableInteraction) {
-                marker.on('click', (e) => {
-                    this.onSelect('plant', arg);
-
-                    for (const layer in this.sensorsLayer['_layers']) {
-                        if (layer) {
-                            const obj = this.sensorsLayer['_layers'][layer];
-                            obj.setIcon(this.sensorIcon);
-                            obj.setZIndexOffset(-1000);
+                        for (const layer in this.sensorsLayer['_layers']) {
+                            if (layer) {
+                                const obj = this.sensorsLayer['_layers'][layer];
+                                obj.setIcon(this.sensorIcon);
+                                obj.setZIndexOffset(-1000);
+                            }
                         }
-                    }
 
-                    for (const layer in this.plantsLayer['_layers']) {
-                        if (layer) {
-                            const obj = this.plantsLayer['_layers'][layer];
-                            obj.setIcon(this.plantIcon);
-                            obj.setZIndexOffset(-1000);
+                        for (const layer in this.plantsLayer['_layers']) {
+                            if (layer) {
+                                const obj = this.plantsLayer['_layers'][layer];
+                                obj.setIcon(this.plantIcon);
+                                obj.setZIndexOffset(-1000);
+                            }
                         }
-                    }
 
-                    e.target.setIcon(L.icon({
-                        iconUrl: './assets/images/plant.healthy.png',
-                        iconSize: [35, 35]
-                    }));
+                        e.target.setIcon(L.icon({
+                            iconUrl: './assets/images/plant.healthy.png',
+                            iconSize: [35, 35]
+                        }));
 
-                    e.target.setZIndexOffset(1000);
-                })
+                        e.target.setZIndexOffset(1000);
+                    })
+                }
+                this.plantsLayer.addLayer(marker);
+                this.plantsLayer.addTo(this.mymap);
             }
-
-            this.plantsLayer.addLayer(marker);
-            this.plantsLayer.addTo(this.mymap);
         }
     }
 
@@ -394,37 +394,39 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
         for (let i = 0; i < this.sensors.length; i++) {
             const arg = this.sensors[i];
-            const latlng = new L.LatLng(arg.lat, arg.lng);
-            const marker = L.marker(latlng, { icon: this.sensorIcon });
-            if (!this.disableInteraction) {
-                marker.on('click', (e) => {
-                    this.onSelect('sensor', arg);
+            if(arg != undefined) {
+                const latlng = new L.LatLng(arg.lat, arg.lng);
+                const marker = L.marker(latlng, { icon: this.sensorIcon });
+                if (!this.disableInteraction) {
+                    marker.on('click', (e) => {
+                        this.onSelect('sensor', arg);
 
-                    for (const layer in this.sensorsLayer['_layers']) {
-                        if (layer) {
-                            const obj = this.sensorsLayer['_layers'][layer];
-                            obj.setIcon(this.sensorIcon);
-                            obj.setZIndexOffset(-1000);
+                        for (const layer in this.sensorsLayer['_layers']) {
+                            if (layer) {
+                                const obj = this.sensorsLayer['_layers'][layer];
+                                obj.setIcon(this.sensorIcon);
+                                obj.setZIndexOffset(-1000);
+                            }
                         }
-                    }
 
-                    for (const layer in this.plantsLayer['_layers']) {
-                        if (layer) {
-                            const obj = this.plantsLayer['_layers'][layer];
-                            obj.setIcon(this.plantIcon);
-                            obj.setZIndexOffset(-1000);
+                        for (const layer in this.plantsLayer['_layers']) {
+                            if (layer) {
+                                const obj = this.plantsLayer['_layers'][layer];
+                                obj.setIcon(this.plantIcon);
+                                obj.setZIndexOffset(-1000);
+                            }
                         }
-                    }
 
-                    e.target.setIcon(L.icon({
-                        iconUrl: './assets/images/sensor.png',
-                        iconSize: [35, 35]
-                    }));
-                    e.target.setZIndexOffset(1000);
-                });
+                        e.target.setIcon(L.icon({
+                            iconUrl: './assets/images/sensor.png',
+                            iconSize: [35, 35]
+                        }));
+                        e.target.setZIndexOffset(1000);
+                    });
+                }
+                this.sensorsLayer.addLayer(marker);
+                this.sensorsLayer.addTo(this.mymap);
             }
-            this.sensorsLayer.addLayer(marker);
-            this.sensorsLayer.addTo(this.mymap);
         }
     }
 
@@ -479,7 +481,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
 
         if (changes.zoomTo && changes.zoomTo.firstChange === false) {
-            if (this.zoomTo !== undefined && this.zoomTo.length > 0) {
+            if (this.zoomTo != undefined && this.zoomTo.length > 0) {
                 const center = new L.LatLng(this.zoomTo[0], this.zoomTo[1]);
                 let zoom = 18;
                 if (this.fullMap) {
@@ -530,18 +532,20 @@ export class MapComponent implements AfterViewInit, OnChanges {
         }
 
         if (changes.selectedFarm && changes.selectedFarm.firstChange === false) {
-            const layer = L.polygon(this.selectedFarm.geometry);
-            const latlngs = layer.getLatLngs();
-            if(latlngs.length > 0) {
-                const l: any = latlngs[0];
-                const area = L.GeometryUtil.geodesicArea(l);
-                const arr = [];
-                for (let i = 0; i < l.length; i++) {
-                    arr.push([l[i].lat, l[i].lng]);
+            if(this.selectedFarm.geometry != undefined){
+                const layer = L.polygon(this.selectedFarm.geometry);
+                const latlngs = layer.getLatLngs();
+                if(latlngs.length > 0) {
+                    const l: any = latlngs[0];
+                    const area = L.GeometryUtil.geodesicArea(l);
+                    const arr = [];
+                    for (let i = 0; i < l.length; i++) {
+                        arr.push([l[i].lat, l[i].lng]);
+                    }
+                    this.bounds = arr;
                 }
-                this.bounds = arr;
+                this.plotFarm();
             }
-            this.plotFarm();
         }
 
         if (changes.showPlants && changes.showPlants.firstChange === false) {
