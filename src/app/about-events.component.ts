@@ -23,7 +23,6 @@ export class AppAboutEventsComponent {
                 this.events.sort(function(a, b){
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
                 });
-                console.log(this.events);
             },
             err => {
                 console.error(err);
