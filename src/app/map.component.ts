@@ -181,19 +181,16 @@ export class MapComponent implements AfterViewInit, OnChanges {
                     const arr = [];
                     const layer = data.layer;
 
-                    if (layer._latlngs) {
+                    if (layer._latlngs.length > 0) {
                         const latlngs = layer._latlngs[0];
                         for (let i = 0; i < latlngs.length; i++) {
                             arr.push([latlngs[i].lat, latlngs[i].lng]);
                         }
+                        const area = L.GeometryUtil.geodesicArea(layer._latlngs[0]);
+                        this.setFarmInfo.emit({'latlngs': arr, 'area': area});
                     }else if (layer) {
                         console.log(layer);
                     }
-                    const area = L.GeometryUtil.geodesicArea(layer._latlngs[0]);
-                    console.log(layer._latlngs[0]);
-                    console.log(area);
-                    console.log(arr);
-                    this.setFarmInfo.emit({'latlngs': arr, 'area': area});
                     drawnItems.addLayer(layer);
                 }
             );
@@ -242,21 +239,21 @@ export class MapComponent implements AfterViewInit, OnChanges {
                     const arr = [];
                     const layer = data;
 
-                    if (layer._latlngs) {
+                    if (layer._latlngs.length > 0) {
                         const latlngs = layer._latlngs[0];
                         for (let i = 0; i < latlngs.length; i++) {
                             arr.push([latlngs[i].lat, latlngs[i].lng]);
                         }
+                        const area = L.GeometryUtil.geodesicArea(layer._latlngs[0]);
+                        this.setFarmInfo.emit({'latlngs': arr, 'area': area});
                     }else if (layer) {
                         console.error('ERROR: something went wrong.');
                         console.log(layer);
                     }
-                    const area = L.GeometryUtil.geodesicArea(layer._latlngs[0]);
-                    this.setFarmInfo.emit({'latlngs': arr, 'area': area});
                     drawnItems.addLayer(layer);
                 }
             );
-            if (this.selectedFarm.center) {
+            if (this.selectedFarm.center.length > 0) {
                 // to do: clear previous layer
                 drawnItems.clearLayers();
                 this.farmLayer.clearLayers();
@@ -264,21 +261,21 @@ export class MapComponent implements AfterViewInit, OnChanges {
                 const polygon = L.polygon(this.selectedFarm.geometry);
                 drawnItems.addLayer(polygon);
                 drawnItems.addTo(this.mymap);
-                this.mymap.fitBounds(this.bounds);
+                if(this.bounds.length > 0) this.mymap.fitBounds(this.bounds);
                 $('a.leaflet-draw-edit-edit').click();
             }
 
         }
 
         // get farm details
-        else if (this.selectedFarm.center) {
+        else if (this.selectedFarm.center.length > 0) {
             // to do: clear previous layer
             this.farmLayer.clearLayers();
             this.center = new L.LatLng(this.selectedFarm.center[0], this.selectedFarm.center[1]);
             const polygon = L.polygon(this.selectedFarm.geometry, { color: 'black', fillOpacity: 0 });
             this.farmLayer.addLayer(polygon);
             this.farmLayer.addTo(this.mymap);
-            this.mymap.fitBounds(this.bounds);
+            if(this.bounds.length > 0) this.mymap.fitBounds(this.bounds);
         }
     }
 
@@ -386,7 +383,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     }
 
     private resetView() {
-        this.mymap.fitBounds(this.bounds);
+        if(this.bounds.length >0) this.mymap.fitBounds(this.bounds);
     }
 
     private plotSensors() {
@@ -482,7 +479,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
 
         if (changes.zoomTo && changes.zoomTo.firstChange === false) {
-            if (this.zoomTo !== undefined) {
+            if (this.zoomTo !== undefined && this.zoomTo.length > 0) {
                 const center = new L.LatLng(this.zoomTo[0], this.zoomTo[1]);
                 let zoom = 18;
                 if (this.fullMap) {
@@ -535,13 +532,15 @@ export class MapComponent implements AfterViewInit, OnChanges {
         if (changes.selectedFarm && changes.selectedFarm.firstChange === false) {
             const layer = L.polygon(this.selectedFarm.geometry);
             const latlngs = layer.getLatLngs();
-            const l: any = latlngs[0];
-            const area = L.GeometryUtil.geodesicArea(l);
-            const arr = [];
-            for (let i = 0; i < l.length; i++) {
-                arr.push([l[i].lat, l[i].lng]);
+            if(latlngs.length > 0) {
+                const l: any = latlngs[0];
+                const area = L.GeometryUtil.geodesicArea(l);
+                const arr = [];
+                for (let i = 0; i < l.length; i++) {
+                    arr.push([l[i].lat, l[i].lng]);
+                }
+                this.bounds = arr;
             }
-            this.bounds = arr;
             this.plotFarm();
         }
 
