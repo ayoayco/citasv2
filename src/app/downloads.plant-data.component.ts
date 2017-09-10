@@ -36,12 +36,14 @@ export class DownloadPlantDataComponent implements AfterViewInit {
         $('#plantFromDate').datepicker({
             onSelect: (data, inst) => {
                 this.from = data;
-            }
+            },
+            dateFormat : "yy-mm-dd"
         });
         $('#plantToDate').datepicker({
             onSelect: (data, inst) => {
                 this.to = data;
-            }
+            },
+            dateFormat: "yy-mm-dd"
         });
     }
 

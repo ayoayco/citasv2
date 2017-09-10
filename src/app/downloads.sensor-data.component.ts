@@ -34,12 +34,14 @@ export class DownloadSensorDataComponent implements AfterViewInit{
         $('#sensorFromDate').datepicker({
             onSelect: (data, inst) => {
                 this.from = data;
-            }
+            },
+            dateFormat: "yy-mm-dd"
         });
         $('#sensorToDate').datepicker({
             onSelect: (data, inst) => {
                 this.to = data;
-            }
+            },
+            dateFormat: "yy-mm-dd"
         });
     }
 
