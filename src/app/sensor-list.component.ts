@@ -38,13 +38,10 @@ export class SensorListComponent implements AfterViewInit {
     }
 
     public onSelectSensor(id: string){
-        console.log('Select sensor: ' + id);
         this.selectSensor.emit(id);
         const selected: any = $.grep(this.sensors, function(e){ return e.sensor_name === id; });
-        console.log(selected[0]);
         $('#searchSensor').val(selected[0].sensor_name);
         this.zoomTo = [selected[0].lat, selected[0].lng];
-        console.log(this.zoomTo);
         this.hideListNow();
     }
 

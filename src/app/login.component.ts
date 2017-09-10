@@ -52,7 +52,6 @@ export class AppLoginComponent {
                         // //console.log(data);
                         if (data.Success === true) {
                             $('#loginModal').modal('hide');
-                            console.log(data);
                             if (this.sessionService.startSession(data.user, data.key, data.fullname, data.user_type, data.user_type_verbose)) {
                                 location.reload();
                             }

@@ -22,12 +22,11 @@ export class AppAboutTeamComponent {
                 data = res;
                 data = JSON.parse(data._body);
                 this.teams = data.data;
-                console.log(this.teams);
             }
         );
     }
 
     public setImage() {
-        console.log('hey');
+        // XXX to do
     }
 }
