@@ -58,6 +58,8 @@ export class DownloadPlantDataComponent implements AfterViewInit, OnChanges{
                 $('#plantFromDate').prop('disabled', true);
                 $('#plantToDate').prop('disabled', true);
             } else {
+                $('#plantFromDate').prop('disabled', false);
+                $('#plantToDate').prop('disabled', false);
                 $('#plantFromDate').datepicker("option", "maxDate", new Date(this.availableDates.maxDate.toString()));
                 $('#plantFromDate').datepicker("option", "minDate", new Date(this.availableDates.minDate.toString()));
                 $('#plantToDate').datepicker("option", "maxDate", new Date(this.availableDates.maxDate.toString()));
