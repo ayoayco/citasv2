@@ -21,6 +21,7 @@ export class DownloadSensorDataComponent implements AfterViewInit{
 
     @Input() selectedFarm: Farm;
     @Input() sites: Site[];
+    @Input() availableDates: any;
 
     selectedSiteID = 'all';
 
@@ -31,18 +32,27 @@ export class DownloadSensorDataComponent implements AfterViewInit{
     }
 
     ngAfterViewInit() {
+        const noData = !(this.availableDates.minData && this.availableDates.maxData);
         $('#sensorFromDate').datepicker({
             onSelect: (data, inst) => {
                 this.from = data;
             },
-            dateFormat: "yy-mm-dd"
+            dateFormat: "yy-mm-dd",
+            minData: new Date(this.availableDates.minData),
+            maxData: new Date(this.availableDates.maxData)
         });
         $('#sensorToDate').datepicker({
             onSelect: (data, inst) => {
                 this.to = data;
             },
-            dateFormat: "yy-mm-dd"
+            dateFormat: "yy-mm-dd",
+            minData: new Date(this.availableDates.minData),
+            maxData: new Date(this.availableDates.maxData)
         });
+        if(noData) {
+            $('#sensorFromDate').prop('disabled', true);
+            $('#sensorToDate').prop('disabled', true);
+        }
     }
 
     public downloadSensorData() {

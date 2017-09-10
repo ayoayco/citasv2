@@ -20,6 +20,14 @@ export class DownloadsComponent {
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
     sites: Site[];
+    plantDates: any = {
+        minDate: '',
+        maxDate: ''
+    };
+    sensorDates: any = {
+        minDate: '',
+        maxDate: ''
+    }
 
     constructor(
         private activeRoute: ActivatedRoute,
@@ -54,7 +62,10 @@ export class DownloadsComponent {
                         response => {
                             data = response;
                             data = JSON.parse(data._body);
-                            console.log(JSON.stringify(data));
+                            this.plantDates.minDate = data.date_range_image.date_from;
+                            this.plantDates.maxDate = data.date_range_image.date_to;
+                            this.sensorDates.minDate = data.date_range_sensor.date_from;
+                            this.sensorDates.maxDate = data.date_range_sensor.date_to;
                         }
                     )
 
