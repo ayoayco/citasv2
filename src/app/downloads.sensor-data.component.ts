@@ -37,12 +37,14 @@ export class DownloadSensorDataComponent implements AfterViewInit, OnChanges{
         $('#sensorFromDate').datepicker({
             onSelect: (data, inst) => {
                 this.from = data;
+                $('#sensorToDate').datepicker('option', 'minDate', new Date(this.from));
             },
             dateFormat : "yy-mm-dd"
         });
         $('#sensorToDate').datepicker({
             onSelect: (data, inst) => {
                 this.to = data;
+                $('#sensorFromDate').datepicker('option', 'maxDate', new Date(this.to));
             },
             dateFormat: "yy-mm-dd"
         });
