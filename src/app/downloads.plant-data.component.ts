@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { AppSessionService } from './app.session.service';
 
@@ -15,7 +15,7 @@ import { Site } from './models/site';
     ]
 })
 
-export class DownloadPlantDataComponent {
+export class DownloadPlantDataComponent implements AfterViewInit {
     from: Date;
     to: Date;
     health = 'all';
@@ -30,6 +30,19 @@ export class DownloadPlantDataComponent {
         private sessionService: AppSessionService,
         private apiService: CitasApiService
     ) {
+    }
+
+    ngAfterViewInit() {
+        $('#plantFromDate').datepicker({
+            onSelect: (data, inst) => {
+                this.from = data;
+            }
+        });
+        $('#plantToDate').datepicker({
+            onSelect: (data, inst) => {
+                this.to = data;
+            }
+        });
     }
 
     public downloadPlantData() {
