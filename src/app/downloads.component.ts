@@ -49,6 +49,15 @@ export class DownloadsComponent {
                     data = data.data[0];
                     this.selectedFarm = data;
 
+                    this.apiService.getAvailableDates(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            console.log(JSON.stringify(data));
+                        }
+                    )
+
                     this.apiService.getSites(
                         this.sessionService.getLoggedInKey(),
                         this.selectedFarm.farm_id.toString())
