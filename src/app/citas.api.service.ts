@@ -24,6 +24,27 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public getAvailableDates(key: string, farm_id: string) {
+        $('body').addClass('loading');
+        const url = this.APIURL + '/download_data/' + farm_id + '?key=' + key;
+
+        return this.http.get(url)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+    }
+
     public editFarm(
         key: string,
         farm_id: number,
