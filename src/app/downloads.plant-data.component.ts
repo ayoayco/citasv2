@@ -16,8 +16,8 @@ import { Site } from './models/site';
 })
 
 export class DownloadPlantDataComponent implements AfterViewInit, OnChanges{
-    from: Date;
-    to: Date;
+    from: Date = undefined;
+    to: Date = undefined;
     health = 'all';
     error = '';
 
@@ -65,6 +65,14 @@ export class DownloadPlantDataComponent implements AfterViewInit, OnChanges{
                 $('#plantToDate').datepicker("option", "maxDate", new Date(this.availableDates.maxDate.toString()));
                 $('#plantToDate').datepicker("option", "minDate", new Date(this.availableDates.minDate.toString()));
             }
+        }
+        if(changes.selectedFarm && changes.selectedFarm.firstChange === false) {
+            this.from = undefined;
+            this.to = undefined;
+            this.health = 'all'
+            this.selectedSiteID = 'all';
+            $('#plantFromDate').val('');
+            $('#plantToDate').val('');
         }
     }
 

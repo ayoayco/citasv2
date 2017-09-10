@@ -17,8 +17,8 @@ import { Site } from './models/site';
 })
 
 export class DownloadSensorDataComponent implements AfterViewInit, OnChanges{
-    from: Date;
-    to: Date;
+    from: Date = undefined;
+    to: Date = undefined;
 
     @Input() selectedFarm: Farm;
     @Input() sites: Site[];
@@ -64,6 +64,13 @@ export class DownloadSensorDataComponent implements AfterViewInit, OnChanges{
                 $('#sensorToDate').datepicker("option", "maxDate", new Date(this.availableDates.maxDate.toString()));
                 $('#sensorToDate').datepicker("option", "minDate", new Date(this.availableDates.minDate.toString()));
             }
+        }
+        if(changes.selectedFarm && changes.selectedFarm.firstChange === false) {
+            this.from = undefined;
+            this.to = undefined;
+            this.selectedSiteID = 'all';
+            $('#sensorFromDate').val('');
+            $('#sensorToDate').val('');
         }
     }
 
