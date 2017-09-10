@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, Input, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { AppSessionService } from './app.session.service';
 
@@ -15,7 +15,7 @@ import { Site } from './models/site';
     ]
 })
 
-export class DownloadPlantDataComponent implements AfterViewInit {
+export class DownloadPlantDataComponent implements AfterViewInit, OnChanges{
     from: Date;
     to: Date;
     health = 'all';
@@ -34,26 +34,35 @@ export class DownloadPlantDataComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        const noData = !(this.availableDates.minDate && this.availableDates.maxDate);
         $('#plantFromDate').datepicker({
             onSelect: (data, inst) => {
                 this.from = data;
             },
             dateFormat : "yy-mm-dd",
-            minDate: new Date(this.availableDates.minDate),
-            maxDate: new Date(this.availableDates.maxDate)
         });
         $('#plantToDate').datepicker({
             onSelect: (data, inst) => {
                 this.to = data;
             },
             dateFormat: "yy-mm-dd",
-            minDate: new Date(this.availableDates.minDate),
-            maxDate: new Date(this.availableDates.maxDate)
         });
-        if(noData) {
-            $('#plantFromDate').prop('disabled', true);
-            $('#plantToDate').prop('disabled', true);
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+        //Add '${implements OnChanges}' to the class.
+        if(changes.availableDates && this.availableDates != undefined && changes.availableDates.firstChange === false) {
+            console.log(this.availableDates);
+
+            if(this.availableDates.minDate == null){ 
+                $('#plantFromDate').prop('disabled', true);
+                $('#plantToDate').prop('disabled', true);
+            } else {
+                $('#plantFromDate').datepicker("option", "maxDate", new Date(this.availableDates.maxDate.toString()));
+                $('#plantFromDate').datepicker("option", "minDate", new Date(this.availableDates.minDate.toString()));
+                $('#plantToDate').datepicker("option", "maxDate", new Date(this.availableDates.maxDate.toString()));
+                $('#plantToDate').datepicker("option", "minDate", new Date(this.availableDates.minDate.toString()));
+            }
         }
     }
 

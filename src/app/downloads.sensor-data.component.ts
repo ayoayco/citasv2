@@ -1,4 +1,5 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { OnChange } from 'ngx-bootstrap/ng2-bootstrap';
+import { Component, Input, AfterViewInit, OnChanges, SimpleChanges} from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { AppSessionService } from './app.session.service';
 
@@ -15,7 +16,7 @@ import { Site } from './models/site';
     ]
 })
 
-export class DownloadSensorDataComponent implements AfterViewInit{
+export class DownloadSensorDataComponent implements AfterViewInit, OnChanges{
     from: Date;
     to: Date;
 
@@ -32,26 +33,35 @@ export class DownloadSensorDataComponent implements AfterViewInit{
     }
 
     ngAfterViewInit() {
-        const noData = !(this.availableDates.minData && this.availableDates.maxData);
+        console.log(this.availableDates);
         $('#sensorFromDate').datepicker({
             onSelect: (data, inst) => {
                 this.from = data;
             },
-            dateFormat: "yy-mm-dd",
-            minData: new Date(this.availableDates.minData),
-            maxData: new Date(this.availableDates.maxData)
+            dateFormat : "yy-mm-dd"
         });
         $('#sensorToDate').datepicker({
             onSelect: (data, inst) => {
                 this.to = data;
             },
-            dateFormat: "yy-mm-dd",
-            minData: new Date(this.availableDates.minData),
-            maxData: new Date(this.availableDates.maxData)
+            dateFormat: "yy-mm-dd"
         });
-        if(noData) {
-            $('#sensorFromDate').prop('disabled', true);
-            $('#sensorToDate').prop('disabled', true);
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+        //Add '${implements OnChanges}' to the class.
+        if(changes.availableDates && this.availableDates != undefined && changes.availableDates.firstChange === false) {
+            console.log(this.availableDates);
+            if(this.availableDates.minDate == null){
+                $('#sensorFromDate').prop('disabled', true);
+                $('#sensorToDate').prop('disabled', true);
+            } else if(this.availableDates != undefined) {
+                $('#sensorFromDate').datepicker("option", "maxDate", new Date(this.availableDates.maxDate.toString()));
+                $('#sensorFromDate').datepicker("option", "minDate", new Date(this.availableDates.minDate.toString()));
+                $('#sensorToDate').datepicker("option", "maxDate", new Date(this.availableDates.maxDate.toString()));
+                $('#sensorToDate').datepicker("option", "minDate", new Date(this.availableDates.minDate.toString()));
+            }
         }
     }
 

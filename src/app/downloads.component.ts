@@ -20,14 +20,8 @@ export class DownloadsComponent {
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
     sites: Site[];
-    plantDates: any = {
-        minDate: '',
-        maxDate: ''
-    };
-    sensorDates: any = {
-        minDate: '',
-        maxDate: ''
-    }
+    plantDates: any;
+    sensorDates: any;
 
     constructor(
         private activeRoute: ActivatedRoute,
@@ -62,10 +56,14 @@ export class DownloadsComponent {
                         response => {
                             data = response;
                             data = JSON.parse(data._body);
-                            this.plantDates.minDate = data.date_range_image.date_from;
-                            this.plantDates.maxDate = data.date_range_image.date_to;
-                            this.sensorDates.minDate = data.date_range_sensor.date_from;
-                            this.sensorDates.maxDate = data.date_range_sensor.date_to;
+                            this.plantDates = {
+                                minDate : data.date_range_image.date_from,
+                                maxDate : data.date_range_image.date_to
+                            }
+                            this.sensorDates = {
+                                minDate : data.date_range_sensor.date_from,
+                                maxDate : data.date_range_sensor.date_to
+                            }
                         }
                     )
 
@@ -115,6 +113,35 @@ export class DownloadsComponent {
                             this.selectedFarm = data;
                         }
                     );
+
+                    this.apiService.getAvailableDates(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            this.plantDates = {
+                                minDate : data.date_range_image.date_from,
+                                maxDate : data.date_range_image.date_to
+                            }
+                            this.sensorDates = {
+                                minDate : data.date_range_sensor.date_from,
+                                maxDate : data.date_range_sensor.date_to
+                            }
+                        }
+                    )
+
+                    this.apiService.getSites(
+                        this.sessionService.getLoggedInKey(),
+                        this.selectedFarm.farm_id.toString())
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            this.sites = data.data;
+                        }
+                    );
+
+
                 }
             );
         }
@@ -133,18 +160,32 @@ export class DownloadsComponent {
 
                 // console.log('selected farm: ' + this.selectedFarm.farm_name);
 
-                this.apiService.getSites(
-                    this.sessionService.getLoggedInKey(),
-                    this.selectedFarm.farm_id.toString())
-                .subscribe(
-                    response => {
-                        data = response;
-                        data = JSON.parse(data._body);
-                        this.sites = data.data;
-                        // console.log('sites!');
-                        // console.log(this.sites);
-                    }
-                );
+                    this.apiService.getAvailableDates(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            this.plantDates = {
+                                minDate : data.date_range_image.date_from,
+                                maxDate : data.date_range_image.date_to
+                            }
+                            this.sensorDates = {
+                                minDate : data.date_range_sensor.date_from,
+                                maxDate : data.date_range_sensor.date_to
+                            }
+                        }
+                    )
+
+                    this.apiService.getSites(
+                        this.sessionService.getLoggedInKey(),
+                        this.selectedFarm.farm_id.toString())
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            this.sites = data.data;
+                        }
+                    );
             }
         );
     }
