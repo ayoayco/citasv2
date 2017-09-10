@@ -44,7 +44,6 @@ export class CitasApiService {
             '&farm_size=' + farm_size +
             '&farm_site_coordinates=' + coords;
 
-        // console.log(body);
 
         return this.http.post(url, body, options)
             .catch(this.onCatch)
@@ -67,7 +66,6 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/teamlist';
 
-        // console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -104,7 +102,6 @@ export class CitasApiService {
             '&farm_size=' + farm_size +
             '&farm_site_coordinates=' + coords;
 
-        // console.log(body);
 
         return this.http.post(url, body, options)
             .catch(this.onCatch)
@@ -136,7 +133,6 @@ export class CitasApiService {
 
         url = 'http://d3rjwxvgw19cvv.cloudfront.net/' + url + '_soilchar.geojson';
 
-        ////console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -158,7 +154,6 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/trainings';
 
-        // console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -180,7 +175,6 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/research';
 
-        ////console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -202,7 +196,6 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/events';
 
-        ////console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -262,7 +255,6 @@ export class CitasApiService {
 
         const body = 'username=' + username;
 
-        ////console.log(body);
 
         return this.http.post(url, body, options)
             .catch(this.onCatch)
@@ -298,7 +290,6 @@ export class CitasApiService {
         + '&d1=' + fromDate
         + '&d2=' + toDate;
 
-        // console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -355,7 +346,6 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/download/sensor/' + sensorName + '?key=' + key;
 
-        ////console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -380,7 +370,6 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/download/image/' + plantID + '?key=' + key;
 
-        // console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -404,7 +393,6 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/plantimages/' + plantID + '?key=' + key;
 
-        // console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -429,7 +417,6 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/plantanalysis/' + plantID + '?key=' + key;
 
-        ////console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -460,7 +447,6 @@ export class CitasApiService {
         }
         url += '?key=' + key;
 
-        // console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -482,7 +468,6 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/sensor/' + sensorName + '?key=' + key;
 
-        // console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -504,7 +489,6 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/plant/' + plantID + '?key=' + key;
 
-        // console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -537,7 +521,6 @@ export class CitasApiService {
         }
         url += '?key=' + key;
 
-        // console.log(url);
         return this.http.get(url)
         .catch(this.onCatch)
         .do(
@@ -570,7 +553,6 @@ export class CitasApiService {
         }
         url += '?key=' + key;
 
-        // console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -615,7 +597,6 @@ export class CitasApiService {
     public getFarmList(key: string): Observable <{}>  {
         $('body').addClass('loading');
         const url = this.APIURL + '/userfarms?key=' + key;
-        // console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -651,7 +632,6 @@ export class CitasApiService {
             '&name=' + name +
             '&message=' + message;
 
-        // console.log(body);
 
         return this.http.post(url, body, options)
             .catch(this.onCatch)
@@ -684,7 +664,6 @@ export class CitasApiService {
             '&mobile_number=' + user.mobile_number +
             '&email=' + user.email;
 
-        // console.log(body);
 
         return this.http.post(url, body, options)
             .catch(this.onCatch)
@@ -707,7 +686,6 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/profile?key=' + key;
 
-        // console.log(url);
         return this.http.get(url)
             .catch(this.onCatch)
             .do(
@@ -746,7 +724,6 @@ export class CitasApiService {
             '&research_text=' + user.details.details_text +
             '&email_subscription=' + user.details.email_subscription;
 
-        // console.log(body);
 
         return this.http.post(url, body, options)
             .catch(this.onCatch)
@@ -799,7 +776,6 @@ export class CitasApiService {
     }
 
     private onSuccess(res: Response): void {
-        // console.log('Request successful');
     }
 
     private onError(e, res: Response): void {

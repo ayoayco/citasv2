@@ -4,15 +4,15 @@
     <p>Choose start date and end date for the plant images you want to download. File wil be in a .zip format.</p>
     <div class="row">
         <div class="col-md-6">
-            <label for="from">Start Date</label>
-            <input type="date" name="from" id="from" [(ngModel)]="from" />
+            <label for="plantFromDate">Start Date</label>
+            <input id="plantFromDate" />
         </div>
-        <div *ngIf="from" class="col-md-6">
-            <label for="to">End Date</label>
-            <input type="date" name="to" id="to" [(ngModel)]="to" min="{{from | date:'y-MM-dd'}}" />
+        <div class="col-md-6">
+            <label for="plantToDate">End Date</label>
+            <input id="plantToDate" />
         </div>
     </div>
-    <div *ngIf="to" class="row">
+    <div *ngIf="to && from" class="row">
         <div class="col-md-6">
             <label>Site</label>
             <select [(ngModel)]="selectedSiteID">
@@ -30,7 +30,7 @@
             </select>
         </div>
     </div>
-    <p *ngIf="to" class="text-success text-center">Download images of Plants with <strong>{{health | analysis}}</strong> health status from <strong>{{from | date:'longDate'}}</strong> to <strong>{{to | date:'longDate'}}</strong>?</p>
+    <p *ngIf="to && from" class="text-success text-center">Download images of Plants with <strong>{{health | analysis}}</strong> health status from <strong>{{from | date:'longDate'}}</strong> to <strong>{{to | date:'longDate'}}</strong>?</p>
     <p *ngIf="error!=''" class="text-danger text-center">{{this.error}}</p>
-    <button *ngIf="to" (click)="downloadPlantData()" class="btn btn-primary btn-block">Download Plant Images</button>
+    <button *ngIf="to && from" (click)="downloadPlantData()" class="btn btn-primary btn-block">Download Plant Images</button>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { AppSessionService } from './app.session.service';
 
@@ -15,7 +15,7 @@ import { Site } from './models/site';
     ]
 })
 
-export class DownloadSensorDataComponent{
+export class DownloadSensorDataComponent implements AfterViewInit{
     from: Date;
     to: Date;
 
@@ -30,11 +30,21 @@ export class DownloadSensorDataComponent{
     ) {
     }
 
+    ngAfterViewInit() {
+        $('#sensorFromDate').datepicker({
+            onSelect: (data, inst) => {
+                this.from = data;
+            }
+        });
+        $('#sensorToDate').datepicker({
+            onSelect: (data, inst) => {
+                this.to = data;
+            }
+        });
+    }
+
     public downloadSensorData() {
         let data: any;
-        // console.log(this.from);
-        // console.log(this.to);
-        // console.log(this.selectedSiteID);
         this.apiService.getSensorsFilterDownloadLink(
             this.sessionService.getLoggedInKey(),
             this.selectedFarm.farm_id.toString(),
@@ -45,7 +55,7 @@ export class DownloadSensorDataComponent{
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                // console.log(data);
+                console.log(data);
                 window.open(data.dl_link, '_blank');
             }
         );
