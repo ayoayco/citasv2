@@ -37,12 +37,14 @@ export class DownloadPlantDataComponent implements AfterViewInit, OnChanges{
         $('#plantFromDate').datepicker({
             onSelect: (data, inst) => {
                 this.from = data;
+                $('#plantToDate').datepicker('option', 'minDate', new Date(this.from));
             },
             dateFormat : "yy-mm-dd",
         });
         $('#plantToDate').datepicker({
             onSelect: (data, inst) => {
                 this.to = data;
+                $('#plantFromDate').datepicker('option', 'maxDate', new Date(this.to));
             },
             dateFormat: "yy-mm-dd",
         });
