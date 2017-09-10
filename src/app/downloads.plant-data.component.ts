@@ -23,6 +23,7 @@ export class DownloadPlantDataComponent implements AfterViewInit {
 
     @Input() selectedFarm: Farm;
     @Input() sites: Site[];
+    @Input() availableDates: any;
 
     selectedSiteID = 'all';
 
@@ -33,18 +34,27 @@ export class DownloadPlantDataComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
+        const noData = !(this.availableDates.minDate && this.availableDates.maxDate);
         $('#plantFromDate').datepicker({
             onSelect: (data, inst) => {
                 this.from = data;
             },
-            dateFormat : "yy-mm-dd"
+            dateFormat : "yy-mm-dd",
+            minDate: new Date(this.availableDates.minDate),
+            maxDate: new Date(this.availableDates.maxDate)
         });
         $('#plantToDate').datepicker({
             onSelect: (data, inst) => {
                 this.to = data;
             },
-            dateFormat: "yy-mm-dd"
+            dateFormat: "yy-mm-dd",
+            minDate: new Date(this.availableDates.minDate),
+            maxDate: new Date(this.availableDates.maxDate)
         });
+        if(noData) {
+            $('#plantFromDate').prop('disabled', true);
+            $('#plantToDate').prop('disabled', true);
+        }
     }
 
     public downloadPlantData() {
