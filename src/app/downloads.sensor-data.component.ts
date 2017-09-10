@@ -57,6 +57,8 @@ export class DownloadSensorDataComponent implements AfterViewInit, OnChanges{
                 $('#sensorFromDate').prop('disabled', true);
                 $('#sensorToDate').prop('disabled', true);
             } else if(this.availableDates != undefined) {
+                $('#sensorFromDate').prop('disabled', false);
+                $('#sensorToDate').prop('disabled', false);
                 $('#sensorFromDate').datepicker("option", "maxDate", new Date(this.availableDates.maxDate.toString()));
                 $('#sensorFromDate').datepicker("option", "minDate", new Date(this.availableDates.minDate.toString()));
                 $('#sensorToDate').datepicker("option", "maxDate", new Date(this.availableDates.maxDate.toString()));
