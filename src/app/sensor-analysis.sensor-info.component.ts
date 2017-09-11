@@ -125,7 +125,8 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
         this.options = {
             title: { text: chartTitle },
             chart: {
-                type: 'line'
+                type: 'line',
+                height: '500px'
             },
             series: series,
             xAxis: {

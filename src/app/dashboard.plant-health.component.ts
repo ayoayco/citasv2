@@ -26,7 +26,8 @@ export class DashboardPlantHealthComponent {
 
         this.options = {
             chart: {
-                type: 'column'
+                type: 'column',
+                height: '500px'
             },
             title: {
                 text: ''
