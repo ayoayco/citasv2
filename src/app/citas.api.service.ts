@@ -24,6 +24,27 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public getWeatherStations(key: string, farm_id: string ) {
+        $('body').addClass('loading');
+        const url = this.APIURL + '/weather_station/' + farm_id + '?key=' + key;
+
+        return this.http.get(url)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+    }
+
     public getAvailableDates(key: string, farm_id: string) {
         $('body').addClass('loading');
         const url = this.APIURL + '/download_data/' + farm_id + '?key=' + key;
@@ -683,8 +704,12 @@ export class CitasApiService {
 
         const body = '&fullname=' + user.fullname +
             '&mobile_number=' + user.mobile_number +
-            '&email=' + user.email;
-
+            '&email=' + user.email +
+            '&organization=' + user.details.organization +
+            '&department=' + user.details.department +
+            '&designation=' + user.details.designation +
+            '&email_subscription=' + user.details.email_subscription +
+            '&farm_id=' + user.farm_id;
 
         return this.http.post(url, body, options)
             .catch(this.onCatch)

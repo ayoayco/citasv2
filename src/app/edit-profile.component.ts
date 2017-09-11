@@ -33,24 +33,26 @@ export class AppEditProfileComponent {
             const username = this.sessionService.getLoggedInUser();
             this.user.username = username;
             let data: any;
-
             // get user infor from API
             this.apiService.getUser(this.sessionService.getLoggedInKey())
             .subscribe(res => {
                 data = res;
                 data = JSON.parse(data._body);
-                // console.log(data);
+                console.log(data);
                 if(data){
                     this.user = data;
-                    this.user.user_type = data.role;
                 }
             });
         }
     }
 
-    editUser(){
-        let data: any;
+    public toggleSubscription(){
+        console.log('toggle subscription: ' + !this.user.details.email_subscription)
+        this.user.details.email_subscription = !this.user.details.email_subscription;
+    }
 
+    public editUser(){
+        let data: any;
         this.msg = '<strong>Update Failed!</strong> Please correct the following error(s):<br /><ol>';
         this.err = false;
 
@@ -84,19 +86,16 @@ export class AppEditProfileComponent {
                 this.err = true;
             }
         }
-
         this.msg += '</ol>';
-
         if (!this.err) {
             this.apiService.editUser(this.user, this.sessionService.getLoggedInKey())
             .subscribe(
                 res => {
                     data = res;
                     data = JSON.parse(data._body)
+                    console.log(data);
                     if (data) {
-                        this.user.fullname = data.fullname;
-                        this.user.mobile_number = data.mobile_number;
-                        this.user.email = data.email;
+                        this.user = data;
                         window.location.reload();
                     }
                 });
