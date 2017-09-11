@@ -94,6 +94,15 @@ export class AppTotalAnalysisComponent {
                     data = data.data[0];
                     this.selectedFarm = data;
 
+                    this.apiService.getWeatherStations(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            console.log(data);
+                        }
+                    )
+
                     this.apiService.getSamplingsGeoJSON(this.selectedFarm.farm_id)
                     .subscribe(
                         response => {

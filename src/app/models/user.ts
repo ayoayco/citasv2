@@ -10,6 +10,7 @@ export class User {
   fullname: string;
   email: string;
   mobile_number: string;
+  farm_id: number;
   details: {
     designation: string,
     organization: string,
@@ -23,6 +24,7 @@ export class User {
     this.password = "";
     this.hashedpw = "";
     this.user_type = 0;
+    this.farm_id = null;
     this.user_type_verbose = '';
     this.fullname = "";
     this.email = "";

@@ -41,6 +41,10 @@ export class AppRegistrationComponent implements OnInit {
         $('.step-1').show();
     }
 
+    public toggleSubscription() {
+        this.user.details.email_subscription = !this.user.details.email_subscription;
+    }
+
     public addUser(): void{
         this.msg = '<strong>Registration Failed!</strong> Please correct the following error(s):<br /><ol>';
         this.err = false;

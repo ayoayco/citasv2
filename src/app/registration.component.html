@@ -58,7 +58,11 @@
 
                     <label for="password2" class="control-label">Confirm Password</label>
                     <input [(ngModel)]="password2" name="password2" type="password" id="password2" placeholder="Confirm Password" class="form-control">
-
+                    <div class="checkbox">
+                        <label>
+                            <input [checked]="user.details.email_subscription" (change)="toggleSubscription()" name="email_subscription" type="checkbox" /> Subscribe to Emails
+                        </label>
+                    </div>
                     <div class="checkbox">
                         <label>
                             <input [(ngModel)]="accept" name="accept" type="checkbox" /> I accept the <a data-toggle="modal" data-target="#termsModal">terms</a>

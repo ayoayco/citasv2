@@ -18,8 +18,19 @@
                             <input [(ngModel)]="user.fullname" name="fullname" type="text" id="fullname" placeholder="Full Name" class="form-control" autofocus>
                             <label for="mobileNumber" class="control-label">Mobile Number</label>
                             <input [(ngModel)]="user.mobile_number" name="mobile_number" type="text" id="mobileNumber" placeholder="639*********" class="form-control" maxlength="12">
-                            <label for="email" class="control-label">Email</label>
-                            <input [(ngModel)]="user.email" name="email" type="email" id="email" placeholder="Email" class="form-control">
+                            <label *ngIf="user.user_type !== 3" for="email" class="control-label">Email</label>
+                            <input *ngIf="user.user_type !== 3" [(ngModel)]="user.email" name="email" type="email" id="email" placeholder="Email" class="form-control">
+                            <label *ngIf="user.user_type !== 3" for="organization" class="control-label">Organization</label>
+                            <input *ngIf="user.user_type !== 3" [(ngModel)]="user.details.organization" name="organization" id="organization" placeholder="Organization" class="form-control">
+                            <label *ngIf="user.user_type === 5" for="department" class="control-label">Department</label>
+                            <input *ngIf="user.user_type === 5" [(ngModel)]="user.details.department" name="department" id="department" placeholder="Department" class="form-control">
+                            <label *ngIf="user.user_type !== 3" for="designation" class="control-label">Designation</label>
+                            <input *ngIf="user.user_type !== 3" [(ngModel)]="user.details.designation" name="designation" id="designation" placeholder="Designation" class="form-control">
+                            <div *ngIf="user.user_type !== 3" class="checkbox">
+                                <label>
+                                    <input [checked]="user.details.email_subscription" (change)="toggleSubscription()" name="accept" type="checkbox" /> Subscribe to Emails
+                                </label>
+                            </div>
                             <br />
                             <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
                             <button (click)="editUser()" class="btn btn-primary btn-block">Update User Info</button>
