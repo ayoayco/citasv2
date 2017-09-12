@@ -826,6 +826,7 @@ export class CitasApiService {
 
     private onError(e, res: Response): void {
         console.error('Error, status code: ' + res.status);
+        console.log(e);
     }
 
     private onEnd(): void {
