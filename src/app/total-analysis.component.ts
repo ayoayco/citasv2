@@ -99,7 +99,7 @@ export class AppTotalAnalysisComponent {
                         response => {
                             data = response;
                             data = JSON.parse(data._body);
-                            console.log(data);
+                            // console.log(data);
                         }
                     )
 
