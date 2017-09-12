@@ -38,7 +38,6 @@ export class AppEditProfileComponent {
             .subscribe(res => {
                 data = res;
                 data = JSON.parse(data._body);
-                console.log(data);
                 if(data){
                     this.user = data;
                 }
@@ -47,7 +46,6 @@ export class AppEditProfileComponent {
     }
 
     public toggleSubscription(){
-        console.log('toggle subscription: ' + !this.user.details.email_subscription)
         this.user.details.email_subscription = !this.user.details.email_subscription;
     }
 
@@ -93,7 +91,6 @@ export class AppEditProfileComponent {
                 res => {
                     data = res;
                     data = JSON.parse(data._body)
-                    console.log(data);
                     if (data) {
                         this.user = data;
                         window.location.reload();
