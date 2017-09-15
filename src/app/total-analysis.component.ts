@@ -112,7 +112,6 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                             data = response;
                             data = JSON.parse(data._body);
                             this.weatherStation = data;
-                            console.log(this.weatherStation);
                             if (!this.weatherStation.Success) {
                                 $('#toggleStations').prop('disabled', true);
                             } else {
@@ -214,8 +213,7 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                             } else {
                                 $('#toggleStations').prop('disabled', false);
                             }
-
-
+                            this.updateChart('rain_value');
                         }
                     )
 
@@ -267,47 +265,48 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
 
         $('#' + str).addClass('selectedTab');
 
-
-        for (let i = 0; i < this.weatherStation.data.weather_data.length; i++) {
-            values.push(this.weatherStation.data.weather_data[i][str]);
-            labels.push(this.weatherStation.data.weather_data[i].timestamp);
-        }
-        series.push({
-                data: values,
-                color: '#19BD6C'
-        });
-        let title = '';
-        switch(str) {
-            case 'rain_value':
-                title = 'Rain Value'; break;
-            case 'air_temp':
-                title = 'Air Temperature'; break;
-            case 'air_pressure':
-                title = 'Air Pressure'; break;
-            case 'air_humidity':
-                title = 'Air Humidity'; break;
-
-        }
-        this.options = {
-            title: { text: title },
-            chart: {
-                type: 'line',
-                height: '450'
-            },
-            series: series,
-            xAxis: {
-                categories: labels,
-                lineWidth: 2,
-                lineColor: '#ccc',
-                gridLineColor: '#e6e6e6',
-                gridLineDashStyle: 'Solid',
-                gridLineWidth: 1,
-            },
-            yAxis: {
-                lineWidth: 2,
-                lineColor: '#ccc'
+        if(this.weatherStation.data){
+            for (let i = 0; i < this.weatherStation.data.weather_data.length; i++) {
+                values.push(this.weatherStation.data.weather_data[i][str]);
+                labels.push(this.weatherStation.data.weather_data[i].timestamp);
             }
-        };
+            series.push({
+                    data: values,
+                    color: '#19BD6C'
+            });
+            let title = '';
+            switch(str) {
+                case 'rain_value':
+                    title = 'Rain Value'; break;
+                case 'air_temp':
+                    title = 'Air Temperature'; break;
+                case 'air_pressure':
+                    title = 'Air Pressure'; break;
+                case 'air_humidity':
+                    title = 'Air Humidity'; break;
+
+            }
+            this.options = {
+                title: { text: title },
+                chart: {
+                    type: 'line',
+                    height: '450'
+                },
+                series: series,
+                xAxis: {
+                    categories: labels,
+                    lineWidth: 2,
+                    lineColor: '#ccc',
+                    gridLineColor: '#e6e6e6',
+                    gridLineDashStyle: 'Solid',
+                    gridLineWidth: 1,
+                },
+                yAxis: {
+                    lineWidth: 2,
+                    lineColor: '#ccc'
+                }
+            };
+        }
     }
 
     public selectFarm(id: number) {
@@ -339,14 +338,12 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                         data = response;
                         data = JSON.parse(data._body);
                         this.weatherStation = data;
-                        console.log(this.weatherStation);
                         if(!this.weatherStation.Success) {
                             $('#toggleStations').prop('disabled', true);
                         } else {
-                                $('#toggleStations').prop('disabled', false);
-                            }
-
-
+                            $('#toggleStations').prop('disabled', false);
+                        }
+                        this.updateChart('rain_value');
                     }
                 )
 
