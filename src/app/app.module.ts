@@ -49,6 +49,9 @@ import { AppTotalAnalysisComponent } from './total-analysis.component';
 import { DatasetsPlantImagesComponent } from './datasets.plant-images.component';
 import { DatasetsPlantImagesGalleryComponent } from './datasets.plant-images.gallery.component';
 import { DatasetsSensorDataComponent } from './datasets.sensor-data.component';
+import { DatasetsSoilDataComponent } from './datasets.soil-data.component';
+
+import { SoilInfoComponent } from './soil-info.component';
 
 import { DownloadsComponent } from './downloads.component';
 import { DownloadSensorDataComponent } from './downloads.sensor-data.component';
@@ -76,6 +79,7 @@ const appRoutes: Routes = [
   { path: 'total-analysis', component: AppTotalAnalysisComponent },
   { path: 'plant-images', component: DatasetsPlantImagesComponent },
   { path: 'sensor-data', component: DatasetsSensorDataComponent },
+  { path: 'soil-data', component: DatasetsSoilDataComponent },
   { path: 'registration', component: AppRegistrationComponent },
   { path: 'reset-password', component: AppResetPasswordComponent },
   { path: 'reset-password/:id', component: AppResetPasswordComponent },
@@ -123,6 +127,8 @@ const appRoutes: Routes = [
     DatasetsPlantImagesComponent,
     DatasetsPlantImagesGalleryComponent,
     DatasetsSensorDataComponent,
+    DatasetsSoilDataComponent,
+    SoilInfoComponent,
     AboutComponent,
     DownloadsComponent,
     DownloadSensorDataComponent,

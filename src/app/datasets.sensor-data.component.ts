@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AppSessionService } from './app.session.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, Params } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
 import { Farm } from './models/farm';
@@ -28,7 +28,6 @@ export class DatasetsSensorDataComponent {
     sites: Site[];
 
     constructor(
-        private activeRoute: ActivatedRoute,
         private sessionService: AppSessionService,
         private router: Router,
         private titleService: Title,

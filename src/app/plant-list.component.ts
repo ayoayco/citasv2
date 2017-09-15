@@ -36,13 +36,10 @@ export class PlantListComponent implements AfterViewInit {
     }
 
     public onSelectPlant(id: string) {
-        // console.log('Select plant: ' + id);
         this.selectPlant.emit(id);
         const selected: any = $.grep(this.plants, function(e){ return e.plant_id === id; });
-        // console.log(selected[0]);
         $('#searchPlant').val(selected[0].plant_name);
         this.zoomTo = [selected[0].lat, selected[0].lng];
-        // console.log(this.zoomTo);
         this.hideListNow();
     }
 
@@ -50,7 +47,6 @@ export class PlantListComponent implements AfterViewInit {
         this.plants = [];
         this.selectedPlant = undefined;
         let data: any;
-        // console.log('selected site: ' + siteID)
         this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), val.toString())
             .subscribe(
                 res => {
@@ -70,7 +66,6 @@ export class PlantListComponent implements AfterViewInit {
                     data = res;
                     data = JSON.parse(data._body);
                     window.open(data.dl_link, '_blank');
-                    // console.log(data);
                 }
             );
         }

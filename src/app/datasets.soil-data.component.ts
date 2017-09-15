@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AppSessionService } from './app.session.service';
-import { Router } from '@angular/router';
+import { Router, Params } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
 import { Farm } from './models/farm';
@@ -10,22 +10,20 @@ import { Sensor } from './models/sensor';
 import { Site } from './models/site';
 
 @Component({
-    selector: 'app-sensor-analysis',
-    templateUrl: './sensor-analysis.component.html',
-    styleUrls: ['./sensor-analysis.component.css'],
+    selector: 'soil-data',
+    templateUrl: './datasets.soil-data.component.html',
+    styleUrls: ['./datasets.soil-data.component.css'],
     providers: [
         AppSessionService,
         CitasApiService
     ]
 })
 
-export class AppSensorAnalysisComponent {
+export class DatasetsSoilDataComponent {
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
-    sensors: Sensor[] = [];
-    selectedSensorReadings: SensorReading[] = [];
-    selectedSensorName= '';
-    sites: Site[];
+    soilChar: any;
+    samplings: any;
 
     constructor(
         private sessionService: AppSessionService,
@@ -37,18 +35,17 @@ export class AppSensorAnalysisComponent {
         if (!loggedIn) {
             this.router.navigate(['/']);
         } else {
-            this.titleService.setTitle('Soil Parameter Trends');
+            this.titleService.setTitle('Collected Sensor Data');
         }
 
+        this.soilChar = undefined;
+
         let data: any;
-        this.sensors = [];
-        this.selectedSensorReadings = undefined;
-        this.selectedSensorName = '';
 
         const farm_id = this.sessionService.retriveData('farm_id');
 
         if (farm_id != null) {
-            this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id.toString())
+            this.apiService.getFarm(this.sessionService.getLoggedInKey(), farm_id)
             .subscribe(
                 res => {
                     data = res;
@@ -56,23 +53,20 @@ export class AppSensorAnalysisComponent {
                     data = data.data[0];
                     this.selectedFarm = data;
 
-                    this.apiService.getSites(this.sessionService.getLoggedInKey(),this.selectedFarm.farm_id.toString())
+                    this.apiService.getSamplingsGeoJSON(this.selectedFarm.farm_id)
                     .subscribe(
                         response => {
                             data = response;
                             data = JSON.parse(data._body);
-                            this.sites = data.data;
-                        }
-                    );
-
-                    this.apiService.getSensorList(
-                        this.sessionService.getLoggedInKey(),
-                        this.selectedFarm.farm_id.toString())
-                    .subscribe(
-                        response => {
-                            data = response;
-                            data = JSON.parse(data._body);
-                            this.sensors = data.data;
+                            this.samplings = data;
+                            this.soilChar = [];
+                            for (let i = 0; i < this.samplings.features.length; i++) {
+                                this.soilChar.push(this.samplings.features[i].properties);
+                            }
+                            console.log(this.soilChar);
+                        },
+                        err => {
+                            console.error(err);
                         }
                     );
 
@@ -86,6 +80,7 @@ export class AppSensorAnalysisComponent {
                             }
                         }
                     );
+
                 }
             );
         } else {
@@ -105,22 +100,27 @@ export class AppSensorAnalysisComponent {
                     this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                     .subscribe(
                         response => {
-                            data = response;
+                            data = res;
                             data = JSON.parse(data._body);
                             data = data.data[0];
                             this.selectedFarm = data;
-                        }
-                    );
+                            this.apiService.getSamplingsGeoJSON(this.selectedFarm.farm_id)
+                            .subscribe(
+                                r => {
+                                    data = r;
+                                    data = JSON.parse(data._body);
+                                    this.samplings = data;
+                                    this.soilChar = [];
+                                    for (let i = 0; i < this.samplings.features.length; i++) {
+                                        this.soilChar.push(this.samplings.features[i].properties);
+                                    }
+                                    console.log(this.soilChar);
+                                },
+                                err => {
+                                    console.error(err);
+                                }
+                            );
 
-                    this.apiService.getSensorList(
-                        this.sessionService.getLoggedInKey(),
-                        this.selectedFarm.farm_id.toString())
-                    .subscribe(
-                        response => {
-                            data = response;
-                            data = JSON.parse(data._body);
-                            this.sensors = data.data;
-                            console.log(this.sensors);
                         }
                     );
                 }
@@ -130,10 +130,7 @@ export class AppSensorAnalysisComponent {
 
     public selectFarm(id: number) {
         let data: any;
-        this.sensors = [];
-        this.selectedSensorReadings = undefined;
-        this.selectedSensorName = '';
-
+        this.soilChar = undefined;
         this.sessionService.saveData('farm_id', id.toString());
         this.apiService.getFarm(this.sessionService.getLoggedInKey(), id.toString())
         .subscribe(
@@ -143,50 +140,25 @@ export class AppSensorAnalysisComponent {
                 data = data.data[0];
                 this.selectedFarm = data;
 
-                // console.log('selected farm: ' + this.selectedFarm.farm_name);
-
-                this.apiService.getSites(
-                    this.sessionService.getLoggedInKey(),
-                    this.selectedFarm.farm_id.toString())
+                this.apiService.getSamplingsGeoJSON(this.selectedFarm.farm_id)
                 .subscribe(
                     response => {
                         data = response;
                         data = JSON.parse(data._body);
-                        this.sites = data.data;
-                        // console.log('sites!');
-                        // console.log(this.sites);
+                        this.samplings = data;
+                        this.soilChar = [];
+                        for (let i = 0; i < this.samplings.features.length; i++) {
+                            this.soilChar.push(this.samplings.features[i].properties);
+                        }
+                        console.log(this.soilChar);
+                    },
+                    err => {
+                        console.error(err);
                     }
                 );
 
-                this.apiService.getSensorList(
-                    this.sessionService.getLoggedInKey(),
-                    this.selectedFarm.farm_id.toString())
-                .subscribe(
-                    response => {
-                        data = response;
-                        data = JSON.parse(data._body);
-                        this.sensors = data.data;
-                        console.log(this.sensors);
-                        // console.log('sensor count: '+this.sensors.length);
-                        // console.log(this.sensors);
-                    }
-                );
             }
         );
-    }
 
-    public selectSensor(sensorID: string){
-        // console.log('sensor '+ sensorID + ' selected!');
-        let data: any;
-        this.apiService.getSensor(this.sessionService.getLoggedInKey(), sensorID)
-        .subscribe(
-            res => {
-                data = res;
-                data = JSON.parse(data._body);
-                this.selectedSensorReadings = data.data;
-                this.selectedSensorName = sensorID;
-                // console.log(this.selectedSensorReadings);
-            }
-        );
     }
 }
