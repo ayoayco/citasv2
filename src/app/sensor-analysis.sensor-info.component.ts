@@ -85,7 +85,7 @@ export class SensorAnalysisSensorInfoComponent implements OnChanges {
         }
 
         series.push({
-                name: this.selectedSensorName+' Readings',
+                name: this.selectedSensorName + ' Readings',
                 data: values,
                 color: '#19BD6C'
         });

@@ -110,3 +110,38 @@ tr td tbody {
 tr td tr {
     border: 1px solid #ddd;
 }
+
+#weather-station-div .modal-dialog {
+    width: 650px;
+}
+
+#weather-station-modal-body {
+    height: 510px;
+}
+
+a {
+    cursor: pointer;
+}
+
+ul#tablist li a.selectedTab {
+    background: #19BD6C;
+}
+
+ul#tablist li a {
+    padding: 5px;
+    margin: 10px 10px 10px 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    font-size: x-small;
+}
+
+ul#tablist li {
+    display: inline;
+}
+
+ul#tablist {
+    list-style: none;
+    padding: 2px;
+    border-bottom: 1px solid #19BD6C;
+}
