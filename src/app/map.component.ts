@@ -14,6 +14,7 @@ declare const L: any;
 
 export class MapComponent implements AfterViewInit, OnChanges {
 
+    @Input() weatherStation: any;
     @Input() editable: boolean;
     @Input() drawable: boolean;
     @Input() zoomTo: number[];
@@ -27,6 +28,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     @Input() showSensors: boolean;
     @Input() showPlants: boolean;
     @Input() showSamplings: boolean;
+    @Input() showStation: boolean;
 
     @Input() fullMap: boolean;
     @Input() height: number;
@@ -61,6 +63,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
     plantIcon: any;
     sensorIcon: any;
+    stationIcon: any;
 
     overlayBounds = {
         north: 21.628,
@@ -80,6 +83,13 @@ export class MapComponent implements AfterViewInit, OnChanges {
         this.weatherLayer = L.layerGroup([]);
         this.samplingsLayer = L.layerGroup([]);
 
+        this.stationIcon = L.icon({
+            iconUrl: './assets/images/weather-station.png',
+
+            iconSize: [25, 25] // size of the icon
+                // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        });
 
         this.plantIcon = L.icon({
             iconUrl: './assets/images/plant.healthy.png',
@@ -265,17 +275,16 @@ export class MapComponent implements AfterViewInit, OnChanges {
                 $('a.leaflet-draw-edit-edit').click();
             }
 
-        }
-
-        // get farm details
-        else if (this.selectedFarm.center.length > 0) {
+        } else if (this.selectedFarm.center.length > 0) {
             // to do: clear previous layer
             this.farmLayer.clearLayers();
             this.center = new L.LatLng(this.selectedFarm.center[0], this.selectedFarm.center[1]);
             const polygon = L.polygon(this.selectedFarm.geometry, { color: 'black', fillOpacity: 0 });
             this.farmLayer.addLayer(polygon);
             this.farmLayer.addTo(this.mymap);
-            if(this.bounds.length > 0) this.mymap.fitBounds(this.bounds);
+            if (this.bounds.length > 0) {
+                this.mymap.fitBounds(this.bounds);
+            }
         }
     }
 
@@ -462,6 +471,20 @@ export class MapComponent implements AfterViewInit, OnChanges {
         this.weatherLayer.addTo(this.mymap);
     }
 
+    public plotWeatherStation() {
+        this.weatherLayer.clearLayers();
+        console.log(this.weatherStation.data);
+        const center = new L.LatLng(this.weatherStation.data.lat, this.weatherStation.data.lng);
+        const marker = L.marker(center, { icon: this.stationIcon });
+        marker.on('click', (e) => {
+            $('#weather-station-div').modal('show');
+        })
+        this.weatherLayer.addLayer(marker);
+        this.weatherLayer.addTo(this.mymap);
+
+        this.mymap.setView(center, 20);
+    }
+
     private plotHumid() {
         this.weatherLayer.clearLayers();
         const southWest = L.latLng(this.overlayBounds.south, this.overlayBounds.west),
@@ -494,6 +517,12 @@ export class MapComponent implements AfterViewInit, OnChanges {
         if (changes.clearOverlay && changes.clearOverlay.firstChange === false) {
             if (this.clearOverlay) {
                 this.weatherLayer.clearLayers();
+            }
+        }
+
+        if (changes.showStation && changes.showStation.firstChange === false) {
+            if (this.showStation) {
+                this.plotWeatherStation();
             }
         }
 

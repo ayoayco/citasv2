@@ -1,15 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { AppSessionService } from './app.session.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
 import { Farm } from './models/farm';
 
+import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import { SensorReading } from './models/sensor-reading';
 import { Sensor } from './models/sensor';
 import { Site } from './models/site';
 import { Plant } from './models/plant';
 import { PlantAnalysis } from './models/plant-analysis';
+
+declare const require: any;
+export function highchartsFactory() {
+    return require('highcharts');
+}
 
 @Component({
     selector: 'app-total-analysis',
@@ -17,11 +23,14 @@ import { PlantAnalysis } from './models/plant-analysis';
     styleUrls: ['./total-analysis.component.css'],
     providers: [
         AppSessionService,
-        CitasApiService
-    ]
+        CitasApiService,
+        {
+        provide: HighchartsStatic,
+        useFactory: highchartsFactory
+    }, ],
 })
 
-export class AppTotalAnalysisComponent {
+export class AppTotalAnalysisComponent implements AfterViewInit {
     zoomTo: number[] = undefined;
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
@@ -34,6 +43,7 @@ export class AppTotalAnalysisComponent {
     resize: number;
     plantAnalysis: PlantAnalysis;
     samplings: any;
+    options: any;
 
     soilChar: any[];
 
@@ -41,11 +51,13 @@ export class AppTotalAnalysisComponent {
     showSensors: boolean;
     showPlants: boolean;
     showSamplings: boolean;
+    showStation: boolean;
 
     showTemp: boolean;
     showPress: boolean;
     showHumid: boolean;
     clearOverlay: boolean;
+    weatherStation: any;
 
     constructor(
         private sessionService: AppSessionService,
@@ -69,6 +81,7 @@ export class AppTotalAnalysisComponent {
         this.soilChar = undefined;
 
         this.resize = 0;
+
 
         const loggedIn: boolean = this.sessionService.isLoggedIn();
         if (!loggedIn) {
@@ -98,7 +111,14 @@ export class AppTotalAnalysisComponent {
                         response => {
                             data = response;
                             data = JSON.parse(data._body);
-                            // console.log(data);
+                            this.weatherStation = data;
+                            console.log(this.weatherStation);
+                            if (!this.weatherStation.Success) {
+                                $('#toggleStations').prop('disabled', true);
+                            } else {
+                                $('#toggleStations').prop('disabled', false);
+                            }
+                            this.updateChart('rain_value');
                         }
                     )
 
@@ -182,6 +202,23 @@ export class AppTotalAnalysisComponent {
                         }
                     );
 
+                    this.apiService.getWeatherStations(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            this.weatherStation = data;
+                            console.log(this.weatherStation);
+                            if(!this.weatherStation.Success) {
+                                $('#toggleStations').prop('disabled', true);
+                            } else {
+                                $('#toggleStations').prop('disabled', false);
+                            }
+
+
+                        }
+                    )
+
                     this.apiService.getSamplingsGeoJSON(this.selectedFarm.farm_id)
                     .subscribe(
                         response => {
@@ -217,6 +254,62 @@ export class AppTotalAnalysisComponent {
         }
     }
 
+    public updateChart(str: string) {
+        const series: any[] = [];
+        const values: number[] = [];
+        const labels: any[] = [];
+
+        const links = $('ul#tablist li a.selectedTab');
+
+        for (let i = 0; i < links.length; i++) {
+            $(links[i]).removeClass('selectedTab');
+        }
+
+        $('#' + str).addClass('selectedTab');
+
+
+        for (let i = 0; i < this.weatherStation.data.weather_data.length; i++) {
+            values.push(this.weatherStation.data.weather_data[i][str]);
+            labels.push(this.weatherStation.data.weather_data[i].timestamp);
+        }
+        series.push({
+                data: values,
+                color: '#19BD6C'
+        });
+        let title = '';
+        switch(str) {
+            case 'rain_value':
+                title = 'Rain Value'; break;
+            case 'air_temp':
+                title = 'Air Temperature'; break;
+            case 'air_pressure':
+                title = 'Air Pressure'; break;
+            case 'air_humidity':
+                title = 'Air Humidity'; break;
+
+        }
+        this.options = {
+            title: { text: title },
+            chart: {
+                type: 'line',
+                height: '450'
+            },
+            series: series,
+            xAxis: {
+                categories: labels,
+                lineWidth: 2,
+                lineColor: '#ccc',
+                gridLineColor: '#e6e6e6',
+                gridLineDashStyle: 'Solid',
+                gridLineWidth: 1,
+            },
+            yAxis: {
+                lineWidth: 2,
+                lineColor: '#ccc'
+            }
+        };
+    }
+
     public selectFarm(id: number) {
         this.soilChar = undefined;
         this.showPlants = true;
@@ -239,6 +332,23 @@ export class AppTotalAnalysisComponent {
                 data = JSON.parse(data._body);
                 data = data.data[0];
                 this.selectedFarm = data;
+
+                this.apiService.getWeatherStations(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+                .subscribe(
+                    response => {
+                        data = response;
+                        data = JSON.parse(data._body);
+                        this.weatherStation = data;
+                        console.log(this.weatherStation);
+                        if(!this.weatherStation.Success) {
+                            $('#toggleStations').prop('disabled', true);
+                        } else {
+                                $('#toggleStations').prop('disabled', false);
+                            }
+
+
+                    }
+                )
 
                 this.apiService.getSamplingsGeoJSON(this.selectedFarm.farm_id)
                 .subscribe(
@@ -281,6 +391,14 @@ export class AppTotalAnalysisComponent {
                 );
             }
         );
+    }
+
+    ngAfterViewInit() {
+        // if(!this.weatherStation.Success) {
+        //     $('#toggleStations').prop('disabled', true);
+        // } else {
+        //     $('#toggleStations').prop('disabled', false);
+        // }
     }
 
     public selectSensor(sensorID: string) {
@@ -336,6 +454,7 @@ export class AppTotalAnalysisComponent {
                 this.showTemp = false;
                 this.showPress = false;
                 this.showHumid = false;
+                this.showStation = false;
                 this.clearOverlay = true;
                 $('.legend').hide(); break;
             case 'temp':
@@ -343,6 +462,7 @@ export class AppTotalAnalysisComponent {
                 this.showTemp = true;
                 this.showPress = false;
                 this.showHumid = false;
+                this.showStation = false;
                 this.clearOverlay = false;
                 $('.legend').hide();
                 $('#tempLegend').show(); break;
@@ -351,6 +471,7 @@ export class AppTotalAnalysisComponent {
                 this.showPress = true;
                 this.showTemp = false;
                 this.showHumid = false;
+                this.showStation = false;
                 this.clearOverlay = false;
                 $('.legend').hide();
                 $('#pressLegend').show(); break;
@@ -359,9 +480,18 @@ export class AppTotalAnalysisComponent {
                 this.showHumid = true;
                 this.showTemp = false;
                 this.showPress = false;
+                this.showStation = false;
                 this.clearOverlay = false;
                 $('.legend').hide();
                 $('#humidLegend').show(); break;
+            case 'station':
+                this.showSamplings = false;
+                this.showHumid = false;
+                this.showTemp = false;
+                this.showPress = false;
+                this.showStation = true;
+                this.clearOverlay = false;
+                $('.legend').hide();
         }
     }
 
