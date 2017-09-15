@@ -473,7 +473,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
     public plotWeatherStation() {
         this.weatherLayer.clearLayers();
-        console.log(this.weatherStation.data);
         const center = new L.LatLng(this.weatherStation.data.lat, this.weatherStation.data.lng);
         const marker = L.marker(center, { icon: this.stationIcon });
         marker.on('click', (e) => {
