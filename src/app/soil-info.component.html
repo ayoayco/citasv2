@@ -1,0 +1,87 @@
+<div id="soilChar-div" *ngIf="soilChar == undefined">
+    <p>No soil characteristics data for {{selectedFarm.farm_name}}.</p>
+</div>
+<div id="soilChar-div" *ngIf="soilChar != undefined">
+            <table id="soilChar-table">
+                <tr>
+                    <th>Depth</th>
+                    <th>Soil Char.</th>
+                    <th *ngFor="let sampling of soilChar" [style.background]="getBgColor(sampling.foc)">{{sampling.foc}}</th>
+                </tr>
+                <tr>
+                    <td rowspan="6">0 - 10 cm.</td>
+                    <td>Class</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.class_1}}</td>
+                </tr>
+                <tr>
+                    <td>Ph</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.ph_1}}</td>
+                </tr>
+                <tr>
+                    <td>Ca</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.ca_1}}</td>
+                </tr>
+                <tr>
+                    <td>Mg</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.mg_1}}</td>
+                </tr>
+                <tr>
+                    <td>Na</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.na_1}}</td>
+                </tr>
+                <tr>
+                    <td>K</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.k_1}}</td>
+                </tr>
+                <tr>
+                    <td rowspan="6">10 - 30 cm.</td>
+                    <td>Class</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.class_2}}</td>
+                </tr>
+                <tr>
+                    <td>Ph</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.ph_2}}</td>
+                </tr>
+                <tr>
+                    <td>Ca</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.ca_2}}</td>
+                </tr>
+                <tr>
+                    <td>Mg</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.mg_2}}</td>
+                </tr>
+                <tr>
+                    <td>Na</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.na_2}}</td>
+                </tr>
+                <tr>
+                    <td>K</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.k_2}}</td>
+                </tr>
+                <tr>
+                    <td rowspan="6">30 - 50 cm.</td>
+                    <td>Class</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.class_3}}</td>
+                </tr>
+                <tr>
+                    <td>Ph</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.ph_3}}</td>
+                </tr>
+                <tr>
+                    <td>Ca</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.ca_3}}</td>
+                </tr>
+                <tr>
+                    <td>Mg</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.mg_3}}</td>
+                </tr>
+                <tr>
+                    <td>Na</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.na_3}}</td>
+                </tr>
+                <tr>
+                    <td>K</td>
+                    <td *ngFor="let sampling of soilChar">{{sampling.k_3}}</td>
+                </tr>
+            </table>
+        </div>

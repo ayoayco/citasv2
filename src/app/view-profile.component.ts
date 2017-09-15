@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AppSessionService } from './app.session.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
 import { Farm } from './models/farm';
@@ -22,7 +22,6 @@ export class ViewProfileComponent {
     selectedFarm: Farm = new Farm();
     imgFile: string;
     constructor(
-        private activeRoute: ActivatedRoute,
         private sessionService: AppSessionService,
         private router: Router,
         private titleService: Title,
@@ -39,11 +38,6 @@ export class ViewProfileComponent {
         let data: any;
 
         let farm_id = undefined;
-        this.activeRoute.params.forEach(
-            (params : Params) => {
-                farm_id = params['id'];
-            }
-        );
 
         if (farm_id === 'undefined' || farm_id === undefined) {
             this.apiService.getFarmList(this.sessionService.getLoggedInKey())

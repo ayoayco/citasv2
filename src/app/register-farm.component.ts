@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { AppSessionService } from './app.session.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { CitasApiService } from './citas.api.service';
 
@@ -24,7 +24,6 @@ export class RegisterFarmComponent implements AfterViewInit {
     msg = '';
 
     constructor(
-        private activeRoute: ActivatedRoute,
         private sessionService: AppSessionService,
         private router: Router,
         private titleService: Title,

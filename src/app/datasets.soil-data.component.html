@@ -1,0 +1,12 @@
+<div id="wrapper" class="toggled">
+    <sidebar></sidebar>
+    <div id="page-content-wrapper">
+        <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
+        <div class="container">
+            <h1>Collected Soil Characteristics</h1>
+            <div class="row">
+                <soil-info [soilChar]="soilChar" [selectedFarm]="selectedFarm"></soil-info>
+            </div>
+        </div>
+    </div>
+</div>
