@@ -24,7 +24,6 @@ export class AppAboutTrainingsComponent {
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
                 });
                 for (let i = 0; i < this.trainings.length; i++) {
-                    // this.trainings[i].date_from = new Date(this.events[i].date_from.replace(/-/g, "/")); 
                     let datestr = this.trainings[i].date_from;
                     datestr = datestr.replace(/-/g, '/');
                     this.trainings[i].date_from = new Date(datestr);
