@@ -24,7 +24,6 @@ export class AppAboutResearchComponent {
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
                 });
                 for (let i = 0; i < this.research.length; i++) {
-                    // this.research[i].date_from = new Date(this.events[i].date_from.replace(/-/g, "/")); 
                     let datestr = this.research[i].date_from;
                     datestr = datestr.replace(/-/g, '/');
                     this.research[i].date_from = new Date(datestr);
