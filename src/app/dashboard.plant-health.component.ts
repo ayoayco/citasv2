@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { AppSessionService } from './app.session.service';
+import { CitasApiService } from './citas.api.service';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
+import { Farm } from './models/farm'
 
 declare var require: any;
 export function highchartsFactory() {
@@ -10,65 +13,100 @@ export function highchartsFactory() {
     selector: 'plant-health',
     templateUrl: './dashboard.plant-health.component.html',
     styleUrls: ['./dashboard.plant-health.component.css'],
-    providers: [{
-        provide: HighchartsStatic,
-        useFactory: highchartsFactory
-    }, ],
+    providers: [
+        CitasApiService,
+        AppSessionService,
+        {
+            provide: HighchartsStatic,
+            useFactory: highchartsFactory
+        }, ],
 })
 
-export class DashboardPlantHealthComponent {
+export class DashboardPlantHealthComponent implements OnChanges {
+    @Input() selectedFarm: Farm = new Farm();
     options: Object;
-    constructor(){
+    graphData: any[] = undefined;
+    constructor(
+        private apiService: CitasApiService,
+        private sessionService: AppSessionService
+    ){
+   }
 
-        let categories = ['Jan', 'Feb', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-        const series1 = [5, 3, 4, 7, 2, 3, 4, 7, 2, 9, 2];
-        const series2 = [2, 2, 3, 2, 1, 5, 3, 4, 7, 2, 5];
+    public updateGraph(){
+        if(this.graphData){
+            const categories = [];
+            const healthy = [];
+            const infected = [];
 
-        this.options = {
-            chart: {
-                type: 'column',
-                height: '500px'
-            },
-            title: {
-                text: ''
-            },
-            xAxis: {
-                categories: categories
-            },
-            yAxis: {
-                min: 0,
-            },
-            legend: {
-                align: 'right',
-                x: -30,
-                verticalAlign: 'top',
-                y: -15,
-                floating: true,
-                backgroundColor: 'white',
-                borderColor: '#CCC',
-                borderWidth: 0,
-                shadow: false
-            },
-            tooltip: {
-                headerFormat: '<b>{point.x}</b><br/>',
-                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-            },
-            plotOptions: {
-                column: {
-                    stacking: 'normal',
-                    dataLabels: {
-                        enabled: false,
-                        color: 'white'
+            for (let i = 0; i < this.graphData.length; i++) {
+                categories.push(this.graphData[i].timestamp);
+                healthy.push(this.graphData[i].healthy);
+                infected.push(this.graphData[i].infected);
+            }
+
+            this.options = {
+                chart: {
+                    type: 'column',
+                    height: '500px'
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: categories
+                },
+                yAxis: {
+                    min: 0,
+                },
+                legend: {
+                    align: 'right',
+                    x: -30,
+                    verticalAlign: 'top',
+                    y: -15,
+                    floating: true,
+                    backgroundColor: 'white',
+                    borderColor: '#CCC',
+                    borderWidth: 0,
+                    shadow: false
+                },
+                tooltip: {
+                    headerFormat: '<b>{point.x}</b><br/>',
+                    pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: false,
+                            color: 'white'
+                        }
                     }
+                },
+                series: [{
+                    name: 'Healthy',
+                    data: healthy
+                }, {
+                    name: 'Infected',
+                    data: infected
+                }]
+            }
+        }
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes.selectedFarm && changes.selectedFarm.firstChange === false) {
+            this.graphData = undefined;
+            let data: any;
+            this.apiService.getPlantGraph(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
+            .subscribe(
+                res => {
+                    data = res;
+                    data = JSON.parse(data._body);
+                    this.graphData = data.data;
+                    console.log(this.graphData);
+                    this.updateGraph();
                 }
-            },
-            series: [{
-                name: 'Healthy',
-                data: series1
-            }, {
-                name: 'Infected',
-                data: series2
-            }]
+            );
         }
     }
 }
