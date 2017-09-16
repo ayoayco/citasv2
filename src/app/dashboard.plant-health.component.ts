@@ -112,7 +112,6 @@ export class DashboardPlantHealthComponent implements OnChanges {
                     data = res;
                     data = JSON.parse(data._body);
                     this.graphData = data.data;
-                    console.log(this.graphData);
                     this.updateGraph();
                 }
             );
