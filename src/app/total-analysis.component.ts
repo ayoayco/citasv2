@@ -510,7 +510,7 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
     public toggleSamplings() {
         this.showSamplings = !this.showSamplings;
         this.toggleOverlay('none');
-        let arr:any = $('#toggleNone');
+        const arr: any = $('#toggleNone');
         arr[0].checked = true;
         if (this.showSamplings && this.showSites) {
             this.showSites = !this.showSites;

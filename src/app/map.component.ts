@@ -503,7 +503,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
 
         if (changes.zoomTo && changes.zoomTo.firstChange === false) {
-            if (this.zoomTo != undefined && this.zoomTo.length > 0) {
+            if (this.zoomTo !== undefined && this.zoomTo.length > 0) {
                 const center = new L.LatLng(this.zoomTo[0], this.zoomTo[1]);
                 let zoom = 18;
                 if (this.fullMap) {
@@ -516,6 +516,11 @@ export class MapComponent implements AfterViewInit, OnChanges {
         if (changes.clearOverlay && changes.clearOverlay.firstChange === false) {
             if (this.clearOverlay) {
                 this.weatherLayer.clearLayers();
+                // hide legend
+                $('.legend').hide();
+                // select none
+                const arr: any = $('#toggleNone');
+                arr[0].checked = true;
             }
         }
 
