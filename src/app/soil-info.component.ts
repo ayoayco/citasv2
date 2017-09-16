@@ -17,7 +17,7 @@ export class SoilInfoComponent {
 
     public getBgColor(result: string){
         if (result === 'clean'){
-            return '#33c57d';
+            return '#33C57D';
         } else if (result === 'infected') {
             return '#FF8657';
         } else {

@@ -37,11 +37,13 @@ export class DashboardPlantHealthComponent implements OnChanges {
             const categories = [];
             const healthy = [];
             const infected = [];
+            const unknown = [];
 
             for (let i = 0; i < this.graphData.length; i++) {
                 categories.push(this.graphData[i].timestamp);
                 healthy.push(this.graphData[i].healthy);
                 infected.push(this.graphData[i].infected);
+                unknown.push(this.graphData[i].unknown);
             }
 
             this.options = {
@@ -84,10 +86,16 @@ export class DashboardPlantHealthComponent implements OnChanges {
                 },
                 series: [{
                     name: 'Healthy',
-                    data: healthy
+                    data: healthy,
+                    color: '#33C57D'
                 }, {
                     name: 'Infected',
-                    data: infected
+                    data: infected,
+                    color: '#FF8657'
+                }, {
+                    name: 'Unknown',
+                    data: unknown,
+                    color: '#888888'
                 }]
             }
         }
