@@ -20,9 +20,6 @@ export class AppAboutResearchComponent {
                 data = res;
                 data = JSON.parse(data._body);
                 this.research = data.data;
-                this.research.sort(function(a,b){
-                    return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
-                });
                 for (let i = 0; i < this.research.length; i++) {
                     let datestr = this.research[i].date_from;
                     datestr = datestr.replace(/-/g, '/');
@@ -32,7 +29,10 @@ export class AppAboutResearchComponent {
                     this.research[i].date_to = new Date(datestr);
                     console.log(this.research[i]);
                 }
-            },
+                 this.research.sort(function(a,b){
+                    return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
+                });
+           },
             err => {
                 console.error(err);
                 alert('There was an error in communicating with the backend API.');

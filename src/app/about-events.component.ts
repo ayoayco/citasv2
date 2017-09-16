@@ -21,9 +21,6 @@ export class AppAboutEventsComponent {
                 data = res;
                 data = JSON.parse(data._body);
                 this.events = data.data;
-                this.events.sort(function(a, b){
-                    return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
-                });
                 for (let i = 0; i < this.events.length; i++) {
                     let datestr = this.events[i].date_from;
                     datestr = datestr.replace(/-/g, '/');
@@ -33,6 +30,9 @@ export class AppAboutEventsComponent {
                     this.events[i].date_to = new Date(datestr);
                     console.log(this.events[i]);
                 }
+                this.events.sort(function(a, b){
+                    return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
+                });
             },
             err => {
                 console.error(err);
