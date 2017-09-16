@@ -481,7 +481,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
         this.weatherLayer.addLayer(marker);
         this.weatherLayer.addTo(this.mymap);
 
-        this.mymap.setView(center, 20);
+        this.mymap.setView(center, 17);
     }
 
     private plotHumid() {
