@@ -27,6 +27,7 @@
         ],
         "scripts": [
             "../node_modules/intl/dist/Intl.js",
+            "../node_modules/intl/locale-data/jsonp/en.js",
             "../node_modules/jquery/dist/jquery.min.js",
             "../node_modules/js-sha256/build/sha256.min.js",
             "../node_modules/bootstrap/dist/js/bootstrap.min.js",

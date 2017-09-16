@@ -23,6 +23,16 @@ export class AppAboutResearchComponent {
                 this.research.sort(function(a,b){
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
                 });
+                for (let i = 0; i < this.research.length; i++) {
+                    // this.research[i].date_from = new Date(this.events[i].date_from.replace(/-/g, "/")); 
+                    let datestr = this.research[i].date_from;
+                    datestr = datestr.replace(/-/g, '/');
+                    this.research[i].date_from = new Date(datestr);
+                    datestr = this.research[i].date_to;
+                    datestr = datestr.replace(/-/g, '/');
+                    this.research[i].date_to = new Date(datestr);
+                    console.log(this.research[i]);
+                }
             },
             err => {
                 console.error(err);

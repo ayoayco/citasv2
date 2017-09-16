@@ -23,6 +23,16 @@ export class AppAboutTrainingsComponent {
                 this.trainings.sort(function(a,b){
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
                 });
+                for (let i = 0; i < this.trainings.length; i++) {
+                    // this.trainings[i].date_from = new Date(this.events[i].date_from.replace(/-/g, "/")); 
+                    let datestr = this.trainings[i].date_from;
+                    datestr = datestr.replace(/-/g, '/');
+                    this.trainings[i].date_from = new Date(datestr);
+                    datestr = this.trainings[i].date_to;
+                    datestr = datestr.replace(/-/g, '/');
+                    this.trainings[i].date_to = new Date(datestr);
+                    console.log(this.trainings[i]);
+                }
             },
             err => {
                 console.error(err);
