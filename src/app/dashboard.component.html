@@ -13,7 +13,7 @@
                 <farms-list class="col col-md-3 col-sm-12" *ngIf="user_type == 5" [farms]="farms" (selectFarm)="selectFarm($event)"></farms-list>
             </div>
             <div class="row">
-                <plant-health class=" col col-md-9 col-sm-12 "></plant-health>
+                <plant-health [selectedFarm]="selectedFarm" class=" col col-md-9 col-sm-12 "></plant-health>
             </div>
         </div>
     </div>
