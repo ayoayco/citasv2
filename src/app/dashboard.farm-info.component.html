@@ -1,8 +1,18 @@
 <div id="container">
-    <strong>Farm Info</strong>
-    <p>Owned by {{selectedFarm.farm_owner}}</p>
-    <map [height]="308" [disableInteraction]="true" [zoomControl]="false" [selectedFarm]="selectedFarm" [sensors]="sensors" [plants]="plants" [sites]="sites"></map>
-    <div>
-        <a id="view-link" class="btn btn-default" routerLink="/total-analysis" routerLinkActive="active">View Total Analysis</a>
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{{selectedFarm.farm_photo}}" alt="{{selectedFarm.farm_name}} Photo" />
+        </div>
+        <div class="col-md-9">
+            <p>
+                <strong>{{selectedFarm.farm_name}}</strong><br />
+                <strong>Owner: </strong> {{selectedFarm.farm_owner}}<br />
+                <strong>Location: </strong> {{selectedFarm.farm_location}}<br />
+                <strong>Description: </strong> {{selectedFarm.farm_description}}<br />
+            </p>
+        </div>
     </div>
+    <!-- <div>
+        <a id="view-link " class="btn btn-default " routerLink="/total-analysis " routerLinkActive="active ">View Total Analysis</a>
+    </div> -->
 </div>

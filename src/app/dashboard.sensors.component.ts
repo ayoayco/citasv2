@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Sensor } from './models/sensor';
+import { Farm } from './models/farm';
 
 @Component({
     selector: 'sensors-info',
@@ -10,7 +10,7 @@ import { Sensor } from './models/sensor';
 })
 
 export class DashboardSensorsComponent {
-    @Input() sensors: Sensor[];
+    @Input() selectedFarm: Farm;
 
     constructor(private router: Router) {
     }
