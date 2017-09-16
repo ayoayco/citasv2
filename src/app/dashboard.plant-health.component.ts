@@ -49,7 +49,8 @@ export class DashboardPlantHealthComponent implements OnChanges {
             this.options = {
                 chart: {
                     type: 'column',
-                    height: '500px'
+                    width: 305,
+                    height: 300
                 },
                 title: {
                     text: ''

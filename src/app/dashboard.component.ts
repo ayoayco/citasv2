@@ -50,6 +50,7 @@ export class AppDashboardComponent {
                     data = JSON.parse(data._body);
                     data = data.data[0];
                     this.selectedFarm = data;
+                    console.log(this.selectedFarm);
 
                     this.apiService.getSites(
                         this.sessionService.getLoggedInKey(),
@@ -118,6 +119,7 @@ export class AppDashboardComponent {
 
                     if (this.farms.length > 0) {
                         this.selectedFarm = this.farms[0];
+                        console.log(this.selectedFarm);
                         this.sessionService.saveData(
                             'farm_id', 
                             this.selectedFarm.farm_id.toString());
@@ -144,6 +146,7 @@ export class AppDashboardComponent {
                                 data = JSON.parse(data._body);
                                 data = data.data[0];
                                 this.selectedFarm = data;
+                                console.log(this.selectedFarm);
                             }
                         );
 
@@ -190,6 +193,7 @@ export class AppDashboardComponent {
                 data = JSON.parse(data._body);
                 data = data.data[0];
                 this.selectedFarm = data;
+                console.log(this.selectedFarm);
 
                 this.apiService.getSensorList(
                     this.sessionService.getLoggedInKey(), 

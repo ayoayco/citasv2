@@ -3,17 +3,25 @@
     <div id="page-content-wrapper">
         <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
         <div class="container">
-            <h1>{{selectedFarm.farm_name}} <span *ngIf="selectedFarm.farm_name != 'Loading...'">Overview</span></h1>
+            <!-- <h1>{{selectedFarm.farm_name}} <span *ngIf="selectedFarm.farm_name != 'Loading...'">Overview</span></h1> -->
             <div class="row">
-                <div id="info-div" class="col col-md-4 col-sm-12">
-                    <plants-info [selectedFarm]="selectedFarm"></plants-info>
-                    <sensors-info [sensors]="sensors"></sensors-info>
+                <div class="col col-md-8">
+                    <div class="row">
+                        <farm-info class="col col-md-12 col-sm-12" [plants]="plants" [sensors]="sensors" [sites]="sites" [selectedFarm]="selectedFarm"></farm-info>
+                    </div>
+                    <div class="row">
+                        <plants-info class="col col-md-6 col-sm-12" [selectedFarm]="selectedFarm"></plants-info>
+                        <sensors-info class="col col-md-6 col-sm-12" [selectedFarm]="selectedFarm"></sensors-info>
+                    </div>
+                    <div class="row" *ngIf="user_type == 5">
+                        <!-- <farms-list class="col col-md-6 col-sm-12" [farms]="farms" (selectFarm)="selectFarm($event)"></farms-list> -->
+                        <a class="btn btn-default btn-lg" role="button" routerLink="/view-farms" routerLinkActive="active">View All Farms</a>
+                    </div>
                 </div>
-                <farm-info class="col col-md-5 col-sm-12" [plants]="plants" [sensors]="sensors" [sites]="sites" [selectedFarm]="selectedFarm"></farm-info>
-                <farms-list class="col col-md-3 col-sm-12" *ngIf="user_type == 5" [farms]="farms" (selectFarm)="selectFarm($event)"></farms-list>
-            </div>
-            <div class="row">
-                <plant-health [selectedFarm]="selectedFarm" class=" col col-md-9 col-sm-12 "></plant-health>
+                <div class="col col-md-4" id="map-parent-div">
+                    <map [height]=" 308 " [disableInteraction]="true " [zoomControl]="false " [selectedFarm]="selectedFarm " [sensors]="sensors " [plants]="plants " [sites]="sites "></map>
+                    <plant-health [selectedFarm]="selectedFarm"></plant-health>
+                </div>
             </div>
         </div>
     </div>

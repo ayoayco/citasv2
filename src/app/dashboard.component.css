@@ -36,3 +36,8 @@ h1 {
     font-weight: bold;
     margin-bottom: 20px;
 }
+
+#map-parent-div {
+    padding: 15px;
+    margin-top: 15px;
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { AppSessionService } from './app.session.service';
 import { Farm } from './models/farm';
@@ -15,7 +15,8 @@ import { Router } from '@angular/router';
 })
 
 export class ViewFarmsComponent {
-    farms: Farm[];
+    farms: Farm[] = undefined;
+
     constructor(
         private apiService: CitasApiService,
         private sessionService: AppSessionService,
@@ -28,8 +29,18 @@ export class ViewFarmsComponent {
                 data = res;
                 data = JSON.parse(data._body);
                 this.farms = data.data;
+                for (let i = 0; i < this.farms.length; i++) {
+                    this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.farms[i].farm_id.toString())
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            this.farms[i] = data.data[0];
+                        }
+                    );
+                }
             }
-        )
+        );
     }
 
     public display(farm_id: number) {

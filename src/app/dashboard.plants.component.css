@@ -1,3 +1,17 @@
+div#container {
+    border: 1px #ccc solid;
+    margin: 15px 0 15px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    background: #ffffff;
+    padding: 20px;
+    min-height: 200px;
+}
+
+span {
+    font-weight: bold;
+}
+
 table {
     margin-bottom: 14px;
     border-top: 1px solid #ccc;
