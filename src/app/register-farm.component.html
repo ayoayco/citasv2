@@ -7,12 +7,12 @@
         <div id="m" class="ui-widget-content">
             <h3>New Farm</h3>
             <p>
-                Farm Name: <strong>{{farm_name}}</strong><br />
+                Name: <strong>{{farm_name}}</strong><br /> Description: <strong>{{farm_description}}</strong><br /> Location: <strong>{{farm_location}}</strong><br />
             </p>
             <p>Please draw the boundaries of your farm on the map using the tools on the top right side of the window.</p>
             <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
             <button class="btn btn-primary clickable" (click)="submitFarmInfo()">Add Farm</button>
-            <a class="btn btn-default clickable" (click)="hideMap()">Cancel</a>
+            <a class="btn btn-default clickable" (click)="showContent1()">Cancel</a>
         </div>
         <div class="container">
             <div id='content-1' class="row">
@@ -21,13 +21,12 @@
                 <form>
                     <div class="form-group">
                         <div>
-                            <label for="farm_name" id="farm_name-lbl">Farm Name:</label>
+                            <label for="farm_name" id="farm_name-lbl">Name:</label>
                             <input type="text" id="farm_name-fld" class="form-control" [(ngModel)]="farm_name" name="farm_name" placeholder="Farm Name" />
-                            <!--label for="farm_size" id="farm_size-lbl">Farm Size</label>
-                            <select name="farm_size" id="farm_size" [(ngModel)]="farm_size">
-                                <option value="small">Small</option>
-                                <option value="large">Large</option>
-                            </select-->
+                            <label for="farm_description" id="farm_description-lbl">Description:</label>
+                            <input type="text" id="farm_description-fld" class="form-control" [(ngModel)]="farm_description" name="farm_description" placeholder="Say something about your farm..." />
+                            <label for="farm_location" id="farm_location-lbl">Location:</label>
+                            <input type="text" id="farm_location-fld" class="form-control" [(ngModel)]="farm_location" name="farm_location" placeholder="Farm Address..." />
                         </div>
                         <div class="checkbox">
                             <label>
@@ -40,6 +39,9 @@
                         <button (click)="hideForm()" class="btn btn-primary btn-block">Proceed</button>
                     </div>
                 </form>
+            </div>
+            <div id='addSitePrompt' class="row">
+                <h1>Add site?</h1>
             </div>
         </div>
     </div>

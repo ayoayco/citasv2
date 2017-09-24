@@ -146,11 +146,52 @@ export class CitasApiService {
             );
     }
 
+    public addSite(
+        key: string,
+        farm_id: string,
+        site_name: string,
+        site_coordinates: number[],
+        infection_status: string
+    ){
+        $('body').addClass('loading');
+
+        const url = this.APIURL + '/add_site?key=' + key;
+        const coords = JSON.stringify(site_coordinates);
+        const headers = new Headers({ 
+            'Content-Type': 'application/x-www-form-urlencoded' 
+        });
+        const options = new RequestOptions({ headers: headers });
+
+        const body = '&farm_id=' + farm_id +
+            '&site_name=' + site_name +
+            '&infection_status=' + infection_status +
+            '&site_coordinates=' + coords;
+
+
+        return this.http.post(url, body, options)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );   
+    }
+
     public addFarm(
         key: string,
         farm_name: string,
         farm_size: string,
-        farm_site_coordinates: number[]
+        farm_site_coordinates: number[],
+        farm_description: string,
+        farm_location: string
     ) {
         $('body').addClass('loading');
 
@@ -163,6 +204,8 @@ export class CitasApiService {
 
         const body = '&farm_name=' + farm_name +
             '&farm_size=' + farm_size +
+            '&farm_description=' + farm_description +
+            '&farm_location=' + farm_location +
             '&farm_site_coordinates=' + coords;
 
 
