@@ -18,6 +18,9 @@ export class RegisterFarmComponent implements AfterViewInit {
     farm_name = '';
     farm_size = 'small';
     latlngs = [];
+    farm_description = '';
+    farm_location = '';
+    image_file = '';
     area = 0;
     accept = false;
     err = false;
@@ -56,12 +59,19 @@ export class RegisterFarmComponent implements AfterViewInit {
         this.msg += '</ol>';
         if (!this.err) {
             $('#content-1').hide();
+            $('#addSitePrompt').hide();
             $('map').show();
             $('#m').show();
         }
     }
 
-    public hideMap() {
+    public showAddSitePrompt(){
+        $('map').hide();
+        $('#m').hide();
+        $('#addSitePrompt').show();
+    }
+
+    public showContent1() {
         $('map').hide();
         $('#m').hide();
         $('#content-1').show();
@@ -79,7 +89,7 @@ export class RegisterFarmComponent implements AfterViewInit {
             this.err = true;
             this.msg = '<strong>Error: </strong>Please draw farm boundaries.';
         } else {
-            this.apiService.addFarm(this.sessionService.getLoggedInKey(), this.farm_name, this.farm_size, this.latlngs)
+            this.apiService.addFarm(this.sessionService.getLoggedInKey(), this.farm_name, this.farm_size, this.latlngs, this.farm_description, this.farm_location)
             .subscribe(
                 res => {
                     data = res;
@@ -87,7 +97,8 @@ export class RegisterFarmComponent implements AfterViewInit {
                     console.log(data);
                     if (data.Success) {
                         this.sessionService.saveData('farm_id', data.farm_id);
-                        this.router.navigate(['/']);
+                        // ask if user wants to add sites
+                        this.showAddSitePrompt();
                     } else {
                         alert('The API reported an error: ' + data.error_message);
                     }
