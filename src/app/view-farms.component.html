@@ -4,12 +4,27 @@
         <user-nav></user-nav>
         <div class="container">
             <h1>View All Farms</h1>
-            <p>Select farm to view details in Dashboard</p>
-            <div class="row">
+            <!--div class="row">
                 <div *ngFor="let farm of farms" class="clickable">
                     <farm-info (click)="display(farm.farm_id)" class="col col-md-12 col-sm-12" [selectedFarm]="farm"></farm-info>
                 </div>
+            </div-->
+            <div class="row farm-row" *ngFor="let selectedFarm of this.farms">
+                <div class="col col-md-8">
+                    <div class="row">
+                        <farm-info class="col col-md-12 col-sm-12" [plants]="plants[selectedFarm.farm_id]" [sensors]="sensors[selectedFarm.farm_id]" [sites]="sites[selectedFarm.farm_id]" [selectedFarm]="selectedFarm"></farm-info>
+                    </div>
+                    <div class="row" *ngIf="selectedFarm.sensor_status !== undefined">
+                        <plants-info class="col col-md-6 col-sm-12" [selectedFarm]="selectedFarm"></plants-info>
+                        <sensors-info class="col col-md-6 col-sm-12" [selectedFarm]="selectedFarm"></sensors-info>
+                    </div>
+                </div>
+                <div class="col col-md-4" id="map-parent-div">
+                    <!--map [height]=" 308 " [disableInteraction]="true " [zoomControl]="false " [selectedFarm]="selectedFarm" [sensors]="sensors[selectedFarm.farm_id]" [plants]="plants[selectedFarm.farm_id]" [sites]="sites[selectedFarm.farm_id]"></map>
+                    <plant-health [selectedFarm]="selectedFarm"></plant-health-->
+                </div>
             </div>
+
         </div>
     </div>
 </div>

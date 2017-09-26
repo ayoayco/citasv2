@@ -41,7 +41,30 @@
                 </form>
             </div>
             <div id='addSitePrompt' class="row">
-                <h1>Add site?</h1>
+                <h1>Add Sampling Site</h1>
+                <p>Register a sampling site within your farm.</p>
+                <form>
+                    <div class="form-group">
+                        <div>
+                            <label for="farm_name" id="farm_name-lbl">Name:</label>
+                            <input type="text" id="farm_name-fld" class="form-control" [(ngModel)]="farm_name" name="farm_name" placeholder="Farm Name" />
+                            <label for="farm_description" id="farm_description-lbl">Description:</label>
+                            <input type="text" id="farm_description-fld" class="form-control" [(ngModel)]="farm_description" name="farm_description" placeholder="Say something about your farm..." />
+                            <label for="farm_location" id="farm_location-lbl">Location:</label>
+                            <input type="text" id="farm_location-fld" class="form-control" [(ngModel)]="farm_location" name="farm_location" placeholder="Farm Address..." />
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input [(ngModel)]="accept" name="accept" type="checkbox" /> I accept <a data-toggle="modal" data-target="#termsModal">terms</a>
+                            </label>
+                        </div>
+
+                        <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
+
+                        <button (click)="hideForm()" class="btn btn-primary btn-block">Proceed</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>

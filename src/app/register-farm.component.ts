@@ -43,6 +43,7 @@ export class RegisterFarmComponent implements AfterViewInit {
     ngAfterViewInit(){
         $('map').hide();
         $('#m').hide();
+        $('#addSitePrompt').hide();
     }
 
     public hideForm() {
@@ -89,7 +90,13 @@ export class RegisterFarmComponent implements AfterViewInit {
             this.err = true;
             this.msg = '<strong>Error: </strong>Please draw farm boundaries.';
         } else {
-            this.apiService.addFarm(this.sessionService.getLoggedInKey(), this.farm_name, this.farm_size, this.latlngs, this.farm_description, this.farm_location)
+            this.apiService.addFarm(
+                this.sessionService.getLoggedInKey(),
+                this.farm_name,
+                this.farm_size,
+                this.latlngs,
+                this.farm_description,
+                this.farm_location)
             .subscribe(
                 res => {
                     data = res;
@@ -98,7 +105,8 @@ export class RegisterFarmComponent implements AfterViewInit {
                     if (data.Success) {
                         this.sessionService.saveData('farm_id', data.farm_id);
                         // ask if user wants to add sites
-                        this.showAddSitePrompt();
+                        // this.showAddSitePrompt();
+                        this.router.navigate(['/']);
                     } else {
                         alert('The API reported an error: ' + data.error_message);
                     }
