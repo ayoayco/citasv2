@@ -21,6 +21,9 @@ export class EditFarmComponent implements AfterViewInit {
     farm_id: number;
     farm_name: string;
     farm_size: string;
+    farm_description = '';
+    farm_location = '';
+    image_file = '';
     latlngs;
     area = 0;
     accept = false;
@@ -63,6 +66,22 @@ export class EditFarmComponent implements AfterViewInit {
         $('#m').hide();
     }
 
+    public farmChanged(){
+        let data: any;
+        this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.farm_id.toString())
+        .subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                this.selectedFarm = data.data[0];
+                this.farm_name = this.selectedFarm.farm_name;
+                this.farm_size = this.selectedFarm.farm_size;
+                this.farm_description = this.selectedFarm.farm_description;
+                this.farm_location = this.selectedFarm.farm_location;
+            }
+        )
+    }
+
     public selectFarm() {
         this.msg = '<strong>Registration Failed!</strong> Please correct the following error(s):<br /><ol>';
         this.err = false;
@@ -75,19 +94,8 @@ export class EditFarmComponent implements AfterViewInit {
             this.msg += '<li> Terms not accepted.</li>';
         }
         this.msg += '</ol>';
-        let data: any;
         if (!this.err) {
-            this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.farm_id.toString())
-            .subscribe(
-                res => {
-                    data = res;
-                    data = JSON.parse(data._body);
-                    this.selectedFarm = data.data[0];
-                    this.farm_name = this.selectedFarm.farm_name;
-                    this.farm_size = this.selectedFarm.farm_size;
-                }
-            )
-            $('#content-1').hide();
+                 $('#content-1').hide();
             $('map').show();
             $('#m').show();
         }
@@ -103,12 +111,18 @@ export class EditFarmComponent implements AfterViewInit {
         this.err = false;
         this.msg = '';
         let data: any;
-        
-        if(this.latlngs == undefined) {
+        if (this.latlngs === undefined) {
             // farm bounds not edited
             this.latlngs = this.selectedFarm.geometry;
         }
-        this.apiService.editFarm(this.sessionService.getLoggedInKey(), this.farm_id, this.farm_name, this.farm_size, this.latlngs)
+        this.apiService.editFarm(
+            this.sessionService.getLoggedInKey(),
+            this.farm_id,
+            this.farm_name,
+            this.farm_size,
+            this.latlngs,
+            this.farm_description,
+            this.farm_location)
         .subscribe(
             res => {
                 data = res;

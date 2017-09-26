@@ -27,10 +27,18 @@
                 <form>
                     <div class="form-group">
                         <div>
-                            <label for="farm_name" id="farm_name-lbl">Farm Name:</label>
-                            <select name="farm_name" [(ngModel)]="farm_id">
+                            <label for="farm_name" id="farm_name-lbl">Name:</label>
+                            <select (change)="farmChanged()" name="farm_name" [(ngModel)]="farm_id">
                                 <option [ngValue]="farm.farm_id" *ngFor="let farm of farms">{{farm.farm_name}}</option>
                             </select>
+                            <label for="farm_description" id="farm_description-lbl">Description:</label>
+                            <input type="text" id="farm_description-fld" class="form-control" [(ngModel)]="farm_description" name="farm_description" placeholder="Say something about your farm..." />
+                            <label for="farm_location" id="farm_location-lbl">Location:</label>
+                            <input type="text" id="farm_location-fld" class="form-control" [(ngModel)]="farm_location" name="farm_location" placeholder="Farm Address..." />
+                        </div>
+
+                        <div>
+                            <label for="farm_name" id="farm_name-lbl">Farm Name:</label>
                         </div>
                         <div class="checkbox">
                             <label>

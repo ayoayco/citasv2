@@ -67,7 +67,6 @@ export class ViewFarmsComponent {
                                     data = JSON.parse(data._body);
                                     const sensor = data.data;
                                     this.sensors[this.farms[i].farm_id] = sensor;
-                                    console.log(this.sensors);
                                 }
                             );
                              this.apiService.getSites(this.sessionService.getLoggedInKey(), this.farms[i].farm_id.toString())

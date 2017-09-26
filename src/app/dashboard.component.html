@@ -8,7 +8,7 @@
                     <div class="row">
                         <farm-info class="col col-md-12 col-sm-12" [plants]="plants" [sensors]="sensors" [sites]="sites" [selectedFarm]="selectedFarm"></farm-info>
                     </div>
-                    <div class="row">
+                    <div class="row" *ngIf="selectedFarm.sensor_status !== undefined">
                         <plants-info class="col col-md-6 col-sm-12" [selectedFarm]="selectedFarm"></plants-info>
                         <sensors-info class="col col-md-6 col-sm-12" [selectedFarm]="selectedFarm"></sensors-info>
                     </div>

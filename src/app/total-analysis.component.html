@@ -21,7 +21,7 @@
                     <input type="radio" id="toggleTemp" name="toggleOverlay" value="temp" (click)="toggleOverlay('temp')"> <label for="toggleTemp">Temperature</label><br />
                     <input type="radio" id="togglePress" name="toggleOverlay" value="press" (click)="toggleOverlay('press')"> <label for="togglePress">Pressure</label><br />
                     <input type="radio" id="toggleHumid" name="toggleOverlay" value="humid" (click)="toggleOverlay('humid')"> <label for="toggleHumid">Humidity</label><br />
-                    <input type="radio" id="toggleStations" name="toggleOverlay" value="station" (click)="toggleOverlay('station')"> <label for="toggleStations" id="station-label">Weather Stations</label><br />
+                    <input type="radio" id="toggleStations" name="toggleOverlay" value="station" (click)="toggleOverlay('station')"><i class="fa fa-close" data-toggle="tooltip" title="No weather stations available!"></i><label for="toggleStations" id="station-label">&nbsp;Weather Stations</label><br />
                     <input type="radio" id="toggleFore" name="toggleOverlay" disabled="disabled"> <label for="toggleFore">Weather Forecast</label><br />
                 </form>
             </div>
