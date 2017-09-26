@@ -10,7 +10,7 @@ import { Farm } from './models/farm';
 })
 
 export class DashboardSensorsComponent {
-    @Input() selectedFarm: Farm;
+    @Input() selectedFarm: Farm = undefined;
 
     constructor(private router: Router) {
     }
