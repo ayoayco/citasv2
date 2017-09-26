@@ -92,7 +92,9 @@ export class CitasApiService {
         farm_id: number,
         farm_name: string,
         farm_size: string,
-        farm_site_coordinates: number[]
+        farm_site_coordinates: number[],
+        farm_description: string,
+        farm_location: string
     ) {
         $('body').addClass('loading');
 
@@ -105,7 +107,9 @@ export class CitasApiService {
 
         const body = '&farm_name=' + farm_name +
             '&farm_size=' + farm_size +
-            '&farm_site_coordinates=' + coords;
+            '&farm_site_coordinates=' + coords +
+            '&farm_description=' + farm_description +
+            '&farm_location=' + farm_location;
 
 
         return this.http.post(url, body, options)

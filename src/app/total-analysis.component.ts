@@ -114,8 +114,12 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                             this.weatherStation = data;
                             if (!this.weatherStation.Success) {
                                 $('#toggleStations').prop('disabled', true);
+                                $('.fa-close').show();
+                                $('#toggleStations').hide();
                             } else {
                                 $('#toggleStations').prop('disabled', false);
+                                $('.fa-close').hide();
+                                $('#toggleStations').show();
                             }
                             this.updateChart('rain_value');
                         }
@@ -210,8 +214,12 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                             console.log(this.weatherStation);
                             if(!this.weatherStation.Success) {
                                 $('#toggleStations').prop('disabled', true);
+                                $('.fa-close').show();
+                                $('#toggleStations').hide();
                             } else {
                                 $('#toggleStations').prop('disabled', false);
+                                $('#toggleStations').show();
+                                $('.fa-close').hide();
                             }
                             this.updateChart('rain_value');
                         }
@@ -340,8 +348,12 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                         this.weatherStation = data;
                         if(!this.weatherStation.Success) {
                             $('#toggleStations').prop('disabled', true);
+                            $('.fa-close').show();
+                            $('#toggleStations').hide();
                         } else {
                             $('#toggleStations').prop('disabled', false);
+                            $('#toggleStations').show();
+                            $('.fa-close').hide();
                         }
                         this.updateChart('rain_value');
                     }
@@ -396,6 +408,7 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
         // } else {
         //     $('#toggleStations').prop('disabled', false);
         // }
+        $('[data-toggle="tooltip"]').tooltip(); 
     }
 
     public selectSensor(sensorID: string) {
