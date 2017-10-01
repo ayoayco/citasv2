@@ -16,7 +16,11 @@ The web platform visualizes the spread of Foc TR4 in the respective farm sites a
 
 Images loaded into the system are processed and analyzed to see if the plants are infected with Foc TR4 or not.
 
+-----------------
+
 # For Developers...
+
+After cloning the project with `git clone ...`, install dependencies with `npm install`.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.1.
 
