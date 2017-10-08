@@ -35,6 +35,7 @@
             <div class="modal-body">
                 <p>{{selectedEvent.description}}</p>
                 <p><strong>Venue:</strong> {{selectedEvent.event_venue}}</p>
+                <p><strong>Schedule:</strong> {{selectedEvent.date_from | date}}<span *ngIf="!isOneDay(selectedEvent)"> - {{selectedEvent.date_to | date}}</span></p>
                 <p *ngIf="selectedEvent.photos.length === 0">No images to show for the event.</p>
                 <div *ngIf="selectedEvent.photos.length > 0">
                     <ul class="photo-list">
