@@ -27,7 +27,6 @@ export class AppAboutResearchComponent {
                     datestr = this.research[i].date_to;
                     datestr = datestr.replace(/-/g, '/');
                     this.research[i].date_to = new Date(datestr);
-                    console.log(this.research[i]);
                 }
                  this.research.sort(function(a,b){
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());

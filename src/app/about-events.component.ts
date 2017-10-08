@@ -29,7 +29,6 @@ export class AppAboutEventsComponent {
                     datestr = this.events[i].date_to;
                     datestr = datestr.replace(/-/g, '/');
                     this.events[i].date_to = new Date(datestr);
-                    console.log(this.events[i]);
                 }
                 this.events.sort(function(a, b){
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
@@ -46,10 +45,12 @@ export class AppAboutEventsComponent {
         this.selectedEvent = event;
     }
     public isOneDay(event) {
-        if (event.date_from === event.date_to) {
+        event.date_from.setHours(0, 0, 0, 0);
+        event.date_to.setHours(0, 0, 0, 0);
+
+        if (event.date_from.valueOf() === event.date_to.valueOf()) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 }
