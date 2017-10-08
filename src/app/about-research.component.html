@@ -12,7 +12,8 @@
                     <strong>Duration: </strong>{{item.date_from | date: "MMMM"}}
                     <span *ngIf="!isOneDay(item)">{{item.date_from | date:'dd'}} - {{item.date_to | date:'dd'}},</span>
                     <span *ngIf="isOneDay(item)">{{item.date_from | date:'dd'}},</span> {{item.date_from | date:'y'}}<br />
-                    <strong>Delegates: </strong><span *ngFor="let delegate of item.delegates">{{delegate}}, </span><br />
+                    <strong>Delegates: </strong><span *ngFor="let delegate of item.delegates; let i = index">{{delegate}}<span *ngIf="i !== item.delegates.length - 1">,</span> </span><br />
+                    <strong>Authors: </strong><span *ngFor="let author of item.authors; let i = index">{{author}}<span *ngIf="i !== item.authors.length - 1">,</span> </span><br />
                 </p>
             </li>
         </ol>
