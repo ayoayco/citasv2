@@ -22,6 +22,9 @@ Images loaded into the system are processed and analyzed to see if the plants ar
 
 After cloning the project with `git clone ...`, install dependencies with `npm install`.
 
+## Which files are what
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.1.
 
 ## Development server

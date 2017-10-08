@@ -93,6 +93,7 @@ export class AppEditProfileComponent {
                     data = JSON.parse(data._body)
                     if (data) {
                         this.user = data;
+                        this.sessionService.setLoggedInUserFullname(this.user.fullname);
                         window.location.reload();
                     }
                 });

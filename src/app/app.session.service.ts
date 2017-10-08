@@ -74,6 +74,10 @@ export class AppSessionService {
         }
     }
 
+    public setLoggedInUserFullname(fullname: string){
+        this.cookieService.put('fullname', fullname);
+    }
+
     public endSession() {
         sessionStorage.clear();
         this.cookieService.removeAll();
