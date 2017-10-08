@@ -40,11 +40,13 @@ export class AppAboutResearchComponent {
     }
 
     public isOneDay(event) {
-        if (event.date_from === event.date_to) {
+        event.date_from.setHours(0, 0, 0, 0);
+        event.date_to.setHours(0, 0, 0, 0);
+
+        if (event.date_from.valueOf() === event.date_to.valueOf()) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public search(str: string) {
