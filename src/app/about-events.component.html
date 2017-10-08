@@ -3,7 +3,7 @@
     <div class="row" id="wrap">
         <h1 class="page-header text-center">Events</h1>
         <div *ngFor="let event of events " class="col col-md-4">
-            <div class="row event-div">
+            <div class="row event-div clickable" (click)="selectEvent(event)" data-toggle="modal" data-target="#eventModal">
                 <div class="col col-md-4 date-div text-center">
                     <h2>{{event.date_from | date:'MMM'}}</h2>
                     <!-- <h3 *ngIf="!isOneDay(event)">{{event.date_from | date:'dd'}} - {{event.date_to | date:'dd'}}</h3> -->
@@ -22,3 +22,28 @@
 </div>
 
 <app-footer></app-footer>
+
+<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="Terms" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" *ngIf="selectedEvent !== undefined">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <h3>{{selectedEvent.event_name}}</h3>
+            <div class="modal-body">
+                <p>{{selectedEvent.description}}</p>
+                <p><strong>Venue:</strong> {{selectedEvent.event_venue}}</p>
+                <p *ngIf="selectedEvent.photos.length === 0">No images to show for the event.</p>
+                <div *ngIf="selectedEvent.photos.length > 0">
+                    <ul class="photo-list">
+                        <li class="photo-item" *ngFor="let photo of selectedEvent.photos">
+                            <img src="{{photo}}" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

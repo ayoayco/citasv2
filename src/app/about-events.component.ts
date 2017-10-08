@@ -13,6 +13,7 @@ import { CitasApiService } from './citas.api.service';
 export class AppAboutEventsComponent {
     events: any[];
     dates: Date[];
+    selectedEvent: any;
     constructor(private apiService: CitasApiService) {
         let data: any;
         this.apiService.getEvents()
@@ -41,6 +42,9 @@ export class AppAboutEventsComponent {
         );
     }
 
+    public selectEvent(event) {
+        this.selectedEvent = event;
+    }
     public isOneDay(event) {
         if (event.date_from === event.date_to) {
             return true;
