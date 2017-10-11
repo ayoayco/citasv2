@@ -24,6 +24,27 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public getSoil3D(farm_id: string) {
+        $('body').addClass('loading');
+        const url = this.APIURL + '/soil_3D/' + farm_id;
+
+        return this.http.get(url)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+    }
+
     public getPlantGraph(key: string, farm_id: string ) {
         $('body').addClass('loading');
         const url = this.APIURL + '/plant_graph/' + farm_id + '?key=' + key;

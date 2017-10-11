@@ -145,3 +145,9 @@ ul#tablist {
     padding: 2px;
     border-bottom: 1px solid #19BD6C;
 }
+
+.btn {
+    height: 34px;
+    margin-top: 15px;
+    margin-left: 50px;
+}

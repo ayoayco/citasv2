@@ -31,6 +31,8 @@ export function highchartsFactory() {
 })
 
 export class AppTotalAnalysisComponent implements AfterViewInit {
+    vertical_profile_URL: string;
+    vertical_profile_exists: boolean = false;
     zoomTo: number[] = undefined;
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
@@ -94,6 +96,8 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
         this.sensors = [];
         this.selectedSensorReadings = undefined;
         this.selectedSensorName = '';
+        this.vertical_profile_URL = '';
+        this.vertical_profile_exists = false;
 
         const farm_id = this.sessionService.retriveData('farm_id');
 
@@ -105,6 +109,21 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                     data = JSON.parse(data._body);
                     data = data.data[0];
                     this.selectedFarm = data;
+
+                    this.apiService.getSoil3D(this.selectedFarm.farm_id.toString())
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            console.log(data.data);
+                            if(data.Success){
+                                // Show button to 3D
+                                // $('.vertical_profile_link').show();
+                                this.vertical_profile_URL = data.data.url;
+                                this.vertical_profile_exists = true;
+                            }
+                        }
+                    )
 
                     this.apiService.getWeatherStations(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                     .subscribe(
@@ -195,6 +214,22 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
 
                     this.selectedFarm = this.farms[0];
                     this.sessionService.saveData('farm_id', this.selectedFarm.farm_id.toString());
+
+                    this.apiService.getSoil3D(this.selectedFarm.farm_id.toString())
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            console.log(data.data);
+                            if(data.Success){
+                                // Show button to 3D
+                                // $('.vertical_profile_link').show();
+                                this.vertical_profile_URL = data.data.url;
+                                this.vertical_profile_exists = true;
+                            }
+                        }
+                    )
+
                     this.apiService.getFarm(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                     .subscribe(
                         response => {
@@ -332,6 +367,8 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
         this.selectedSensorReadings = undefined;
         this.selectedSensorName = '';
         this.sessionService.saveData('farm_id', id.toString());
+        this.vertical_profile_URL = '';
+        this.vertical_profile_exists = false;
         this.apiService.getFarm(this.sessionService.getLoggedInKey(), id.toString())
         .subscribe(
             res => {
@@ -339,6 +376,22 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                 data = JSON.parse(data._body);
                 data = data.data[0];
                 this.selectedFarm = data;
+
+                    this.apiService.getSoil3D(this.selectedFarm.farm_id.toString())
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            console.log(data.data);
+
+                            if(data.Success){
+                                // Show button to 3D
+                                // $('.vertical_profile_link').show();
+                                this.vertical_profile_URL = data.data.url;
+                                this.vertical_profile_exists = true;
+                            }
+                        }
+                    )
 
                 this.apiService.getWeatherStations(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                 .subscribe(
