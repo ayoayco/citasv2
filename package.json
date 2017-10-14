@@ -37,6 +37,7 @@
     "jquery-ui": "^1.12.1",
     "js-sha256": "^0.6.0",
     "leaflet": "^1.2.0",
+    "leaflet-control-geocoder": "^1.5.5",
     "leaflet-draw": "^0.4.12",
     "mdn-polyfills": "^5.1.0",
     "mongoose": "^4.12.0",

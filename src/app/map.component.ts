@@ -6,6 +6,12 @@ import { Plant } from './models/plant';
 
 declare const L: any;
 
+const noah = {
+    pressureURL : 'http://noah.dost.gov.ph/static/img/latest_contours/air_pressure_contour.png',
+    tempURL : 'http://noah.dost.gov.ph/static/img/latest_contours/air_temperature_contour.png',
+    humidURL : 'http://noah.dost.gov.ph/static/img/latest_contours/air_humidity_contour.png'
+}
+
 @Component({
     selector: 'map',
     templateUrl: './map.component.html',
@@ -13,6 +19,7 @@ declare const L: any;
 })
 
 export class MapComponent implements AfterViewInit, OnChanges {
+    @Input() searchControl = false;
 
     @Input() weatherStation: any;
     @Input() editable: boolean;
@@ -146,7 +153,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
         }
 
         const center = new L.LatLng(12.4, 122.4);
-
         // initialize map
         this.mymap = new L.Map('map-div', {
             zoomControl: this.zoomControl,
@@ -159,6 +165,26 @@ export class MapComponent implements AfterViewInit, OnChanges {
             trackResize: trackResize,
             scrollWheelZoom: scrollWheelZoom
         });
+
+        if (this.searchControl) {
+            // add search control
+            const geocoder = L.Control.geocoder({
+                placeholder: 'Search farm location...',
+                defaultMarkGeocode: false
+            })
+            .on('markgeocode', (e) => {
+                console.log(e);
+                const bbox = e.geocode.bbox;
+                const poly = L.polygon([
+                     bbox.getSouthEast(),
+                     bbox.getNorthEast(),
+                     bbox.getNorthWest(),
+                     bbox.getSouthWest()
+                ]);
+                this.mymap.fitBounds(poly.getBounds());
+            })
+            geocoder.addTo(this.mymap);
+        }
 
         if (this.drawable) {
             // FeatureGroup is to store editable layers
@@ -174,9 +200,9 @@ export class MapComponent implements AfterViewInit, OnChanges {
                         allowIntersection: false,
                         showArea: true
                     },
+                    circle: false,
                     polyline : false,
                     rectangle : false,
-                    circle : false,
                     marker: false
                }
             });
@@ -216,6 +242,22 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
     }
 
+    private formatJSON(rawjson)
+    {
+        const json = {};
+        let key, loc;
+        const disp = [];
+
+        for (let i in rawjson) {
+            if (rawjson.hasOwnProperty(i)){
+                key = rawjson[i].formatted_address;
+                loc = L.latLng( rawjson[i].geometry.location.lat(), rawjson[i].geometry.location.lng() );
+                json[ key ] = loc;
+            }
+        }
+        return json;
+    }
+
     private plotFarm() {
         // console.log('plot farm');
         if(this.editable) {
@@ -236,7 +278,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
                     marker: false
                }
             });
-            
+
             this.mymap.addControl(drawControl);
 
             let data: any;
@@ -263,6 +305,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
                     drawnItems.addLayer(layer);
                 }
             );
+
             if (this.selectedFarm.center.length > 0) {
                 // to do: clear previous layer
                 drawnItems.clearLayers();
@@ -271,7 +314,10 @@ export class MapComponent implements AfterViewInit, OnChanges {
                 const polygon = L.polygon(this.selectedFarm.geometry);
                 drawnItems.addLayer(polygon);
                 drawnItems.addTo(this.mymap);
-                if(this.bounds.length > 0) this.mymap.fitBounds(this.bounds);
+                if (this.bounds.length > 0) {
+                    this.mymap.fitBounds(this.bounds);
+                }
+
                 $('a.leaflet-draw-edit-edit').click();
             }
 
@@ -329,7 +375,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
         for (let i = 0; i < this.plants.length; i++) {
             const arg = this.plants[i];
-            if (arg != undefined) {
+            if (arg !== undefined) {
                 const latlng = new L.LatLng(arg.lat, arg.lng);
                 const marker = L.marker(latlng, { icon: this.plantIcon });
                 if (!this.disableInteraction) {
@@ -392,7 +438,9 @@ export class MapComponent implements AfterViewInit, OnChanges {
     }
 
     private resetView() {
-        if(this.bounds.length >0) this.mymap.fitBounds(this.bounds);
+        if (this.bounds.length > 0) {
+            this.mymap.fitBounds(this.bounds);
+        }
     }
 
     private plotSensors() {
@@ -445,7 +493,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
             northEast = L.latLng(this.overlayBounds.north, this.overlayBounds.east),
             bounds = new L.LatLngBounds(southWest, northEast);
 
-        const overlay = new L.ImageOverlay('http://noah.dost.gov.ph/static/img/latest_contours/air_pressure_contour.png', bounds, {
+        const overlay = new L.ImageOverlay(noah.pressureURL, bounds, {
             opacity: 0.4,
             interactive: true,
             attribution: 'Air Pressure Contour &copy; UP-NOAH'
@@ -461,7 +509,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
             northEast = L.latLng(this.overlayBounds.north, this.overlayBounds.east),
             bounds = new L.LatLngBounds(southWest, northEast);
 
-        const overlay = new L.ImageOverlay('http://noah.dost.gov.ph/static/img/latest_contours/air_temperature_contour.png', bounds, {
+        const overlay = new L.ImageOverlay(noah.tempURL, bounds, {
             opacity: 0.4,
             interactive: true,
             attribution: 'Air Temparature Contour &copy; UP-NOAH'
@@ -490,7 +538,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
             northEast = L.latLng(this.overlayBounds.north, this.overlayBounds.east),
             bounds = new L.LatLngBounds(southWest, northEast);
 
-        const overlay = new L.ImageOverlay('http://noah.dost.gov.ph/static/img/latest_contours/air_humidity_contour.png', bounds, {
+        const overlay = new L.ImageOverlay(noah.humidURL, bounds, {
             opacity: 0.4,
             interactive: true,
             attribution: 'Air Humidity Contour &copy; UP-NOAH'
