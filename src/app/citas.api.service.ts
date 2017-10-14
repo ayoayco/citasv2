@@ -251,18 +251,30 @@ export class CitasApiService {
             );
     }
 
-    public getSamplingsGeoJSON(farm_id: number): Observable <{}> {
+    public getSamplingsGeoJSONURL(farm_id: number): Observable <{}> {
+
+        const url = this.APIURL + '/soil_2D/' + farm_id;
+
+        return this.http.get(url)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error)
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+
+    }
+
+    public getSamplingsGeoJSON(url: string): Observable <{}> {
         $('body').addClass('loading');
-
-        let url = '';
-        switch (farm_id) {
-            case 4: url = 'sanjose'; break;
-            case 5: url = 'admu'; break;
-            case 6: url = 'liliw'; break;
-            case 7: url = 'leyte'; break;
-        }
-
-        url = 'http://d3rjwxvgw19cvv.cloudfront.net/' + url + '_soilchar.geojson';
 
         return this.http.get(url)
             .catch(this.onCatch)
