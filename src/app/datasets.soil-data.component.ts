@@ -52,23 +52,34 @@ export class DatasetsSoilDataComponent {
                     data = JSON.parse(data._body);
                     data = data.data[0];
                     this.selectedFarm = data;
-
-                    this.apiService.getSamplingsGeoJSON(this.selectedFarm.farm_id)
+                    let url = '';
+                    this.apiService.getSamplingsGeoJSONURL(this.selectedFarm.farm_id)
                     .subscribe(
-                        response => {
-                            data = response;
+                        result => {
+                            data = result;
                             data = JSON.parse(data._body);
-                            this.samplings = data;
-                            this.soilChar = [];
-                            for (let i = 0; i < this.samplings.features.length; i++) {
-                                this.soilChar.push(this.samplings.features[i].properties);
-                            }
-                            console.log(this.soilChar);
-                        },
-                        err => {
-                            console.error(err);
+                            data = data.data;
+                            console.log(data);
+                            url = data.url;
+
+                            this.apiService.getSamplingsGeoJSON(url)
+                            .subscribe(
+                                response => {
+                                    data = response;
+                                    data = JSON.parse(data._body);
+                                    this.samplings = data;
+                                    this.soilChar = [];
+                                    for (let i = 0; i < this.samplings.features.length; i++) {
+                                        this.soilChar.push(this.samplings.features[i].properties);
+                                    }
+                                    console.log(this.soilChar);
+                                },
+                                err => {
+                                    console.error(err);
+                                }
+                            );
                         }
-                    );
+                    )
 
                     this.apiService.getFarmList(this.sessionService.getLoggedInKey())
                     .subscribe(
@@ -104,22 +115,35 @@ export class DatasetsSoilDataComponent {
                             data = JSON.parse(data._body);
                             data = data.data[0];
                             this.selectedFarm = data;
-                            this.apiService.getSamplingsGeoJSON(this.selectedFarm.farm_id)
+
+                            let url = '';
+                            this.apiService.getSamplingsGeoJSONURL(this.selectedFarm.farm_id)
                             .subscribe(
-                                r => {
-                                    data = r;
+                                result => {
+                                    data = result;
                                     data = JSON.parse(data._body);
-                                    this.samplings = data;
-                                    this.soilChar = [];
-                                    for (let i = 0; i < this.samplings.features.length; i++) {
-                                        this.soilChar.push(this.samplings.features[i].properties);
-                                    }
-                                    console.log(this.soilChar);
-                                },
-                                err => {
-                                    console.error(err);
+                                    data = data.data;
+                                    console.log(data);
+                                    url = data.url;
+
+                                    this.apiService.getSamplingsGeoJSON(url)
+                                    .subscribe(
+                                        res2 => {
+                                            data = res2;
+                                            data = JSON.parse(data._body);
+                                            this.samplings = data;
+                                            this.soilChar = [];
+                                            for (let i = 0; i < this.samplings.features.length; i++) {
+                                                this.soilChar.push(this.samplings.features[i].properties);
+                                            }
+                                            console.log(this.soilChar);
+                                        },
+                                        err => {
+                                            console.error(err);
+                                        }
+                                    );
                                 }
-                            );
+                            )
 
                         }
                     );
@@ -140,23 +164,34 @@ export class DatasetsSoilDataComponent {
                 data = data.data[0];
                 this.selectedFarm = data;
 
-                this.apiService.getSamplingsGeoJSON(this.selectedFarm.farm_id)
+                let url = '';
+                this.apiService.getSamplingsGeoJSONURL(this.selectedFarm.farm_id)
                 .subscribe(
-                    response => {
-                        data = response;
+                    result => {
+                        data = result;
                         data = JSON.parse(data._body);
-                        this.samplings = data;
-                        this.soilChar = [];
-                        for (let i = 0; i < this.samplings.features.length; i++) {
-                            this.soilChar.push(this.samplings.features[i].properties);
-                        }
-                        console.log(this.soilChar);
-                    },
-                    err => {
-                        console.error(err);
-                    }
-                );
+                        data = data.data;
+                        console.log(data);
+                        url = data.url;
 
+                        this.apiService.getSamplingsGeoJSON(url)
+                        .subscribe(
+                            res2 => {
+                                data = res2;
+                                data = JSON.parse(data._body);
+                                this.samplings = data;
+                                this.soilChar = [];
+                                for (let i = 0; i < this.samplings.features.length; i++) {
+                                    this.soilChar.push(this.samplings.features[i].properties);
+                                }
+                                console.log(this.soilChar);
+                            },
+                            err => {
+                                console.error(err);
+                            }
+                        );
+                    }
+                )
             }
         );
 
