@@ -6,8 +6,8 @@
     </ol>
     <div class="row">
         <div *ngFor="let team of teams" class="team-div row">
-            <h1>{{team.title}}</h1>
-            <div class="member-div col-md-3" *ngFor="let member of team.members">
+            <h2 class="text-center">{{team.title}}</h2>
+            <div class="member-div col-md-4" *ngFor="let member of team.members">
                 <div class="round-img">
                     <img 
                     width="150px" 
