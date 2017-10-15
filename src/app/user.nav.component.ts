@@ -19,6 +19,7 @@ export class UserNavComponent {
     @Output() mapResize = new EventEmitter<{}>();
 
     isLoggedIn: boolean;
+    isAdmin: boolean;
     username: string;
     role: number;
     role_text: string;
@@ -26,6 +27,7 @@ export class UserNavComponent {
     constructor (
         private sessionService: AppSessionService,
     ) {
+        this.isAdmin = this.sessionService.getLoggedInIsAdmin() === 'true';
         this.isLoggedIn = this.sessionService.isLoggedIn();
         this.username = this.sessionService.getLoggedInUserFullname();
         this.role = this.sessionService.getLoggedInUserType();
