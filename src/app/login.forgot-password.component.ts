@@ -29,4 +29,7 @@ export class AppLoginForgotPasswordComponent {
             }
         );
     }
+    public hideModal(){
+        $('#forgotPasswordModal').modal('hide');
+    }
 }
