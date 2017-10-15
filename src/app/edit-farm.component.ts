@@ -95,7 +95,7 @@ export class EditFarmComponent implements AfterViewInit {
         }
         this.msg += '</ol>';
         if (!this.err) {
-                 $('#content-1').hide();
+            $('#content-1').hide();
             $('map').show();
             $('#m').show();
         }

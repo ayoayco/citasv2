@@ -1,4 +1,3 @@
-import { OnChange } from 'ngx-bootstrap/ng2-bootstrap';
 import { Component, Input, AfterViewInit, OnChanges, SimpleChanges} from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { AppSessionService } from './app.session.service';

@@ -260,10 +260,10 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
     private plotFarm() {
         // console.log('plot farm');
-        if(this.editable) {
+        if (this.editable) {
             // FeatureGroup is to store editable layers
             const drawnItems = new L.FeatureGroup([]);
-            this.mymap.addLayer(drawnItems);
+
             const drawControl = new L.Control.Draw({
                 position: 'topright',
                 edit: {
@@ -285,8 +285,8 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
             this.mymap.on(L.Draw.Event.EDITVERTEX,
                 res => {
-                    drawnItems.eachLayer(layer=>{
-                        data = layer;
+                    drawnItems.eachLayer( xxx => {
+                        data = xxx;
                     });
                     const arr = [];
                     const layer = data;
@@ -308,7 +308,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
             if (this.selectedFarm.center.length > 0) {
                 // to do: clear previous layer
-                drawnItems.clearLayers();
                 this.farmLayer.clearLayers();
                 this.center = new L.LatLng(this.selectedFarm.center[0], this.selectedFarm.center[1]);
                 const polygon = L.polygon(this.selectedFarm.geometry);
