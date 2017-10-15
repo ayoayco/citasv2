@@ -34,6 +34,13 @@ export class AppSessionService {
         }
     }
 
+    public getLoggedInIsAdmin(): string {
+        if (this.isLoggedIn()) {
+            return this.cookieService.get('isAdmin');
+        }
+        return;
+    }
+
     public getLoggedInUser(): string {
         let user: string;
 
@@ -84,12 +91,20 @@ export class AppSessionService {
         location.assign('/');
     }
 
-    public startSession(username: string, key: string, fullname: string, user_type: number, user_type_verbose: string): void {
+    public startSession(
+        isAdmin: boolean,
+        username: string,
+        key: string,
+        fullname: string,
+        user_type: number,
+        user_type_verbose: string
+    ): void {
         // console.log('started session for user: '+ username);
         // console.log('key: '+ key);
 
         // set cookies!
         this.cookieService.put('key', key);
+        this.cookieService.put('isAdmin', isAdmin.toString());
         this.cookieService.put('username', username);
         this.cookieService.put('user_type', user_type.toString());
         this.cookieService.put('fullname', fullname);

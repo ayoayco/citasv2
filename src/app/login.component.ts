@@ -49,10 +49,16 @@ export class AppLoginComponent {
                     // console.log(data);
                     if (data) {
                         // login success, start session
-                        // //console.log(data);
                         if (data.Success === true) {
                             $('#loginModal').modal('hide');
-                            if (this.sessionService.startSession(data.user, data.key, data.fullname, data.user_type, data.user_type_verbose)) {
+                            if (this.sessionService.startSession(
+                                    data.isAdmin,
+                                    data.user,
+                                    data.key,
+                                    data.fullname,
+                                    data.user_type,
+                                    data.user_type_verbose)
+                                ) {
                                 location.reload();
                             }
                         } else if (data.err === 'Wrong username/password') {
