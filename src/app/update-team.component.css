@@ -81,3 +81,7 @@ table th {
 .btn {
     font-size: small !important;
 }
+
+.group-links a {
+    color: #ccc;
+}
