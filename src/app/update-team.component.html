@@ -6,8 +6,10 @@
             <h1>Update Team Members</h1>
             <div id="content" class="row">
                 <div class="row team-row" *ngFor="let team of teams">
-                    <h3>{{team.title}}</h3>
-                    <a class="add-link btn btn-info">Add to Group</a>
+                    <div class="row">
+                        <h3 class="col-md-10">{{team.title}}</h3>
+                    </div>
+                    <a class="add-link btn btn-info">Add Member to Group</a>
                     <a class="delete-group-link btn btn-default">Delete Group</a>
                     <table>
                         <tr>
@@ -21,6 +23,9 @@
                             <td class="actions-col text-center"><a class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> | <a class="clickable delete-link" data-toggle="tooltip" title="Delete member"><i class="icon fa fa-trash"></i></a>                                | <a class="clickable view-link" data-toggle="tooltip" title="View member details"><i class="icon fa fa-eye"></i></a></td>
                         </tr>
                     </table>
+                </div>
+                <div class="row text-center">
+                    <a class="btn btn-primary">Add a New Group</a>
                 </div>
             </div>
         </div>
