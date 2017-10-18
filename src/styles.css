@@ -19,6 +19,9 @@ body {
 
 .btn-default {
     border: 1px solid #19BD6C !important;
+}
+
+.btn {
     border-radius: 4px;
     font-family: 'Montserrat', sans-serif !important;
     text-transform: uppercase !important;

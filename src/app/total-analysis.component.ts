@@ -32,7 +32,7 @@ export function highchartsFactory() {
 
 export class AppTotalAnalysisComponent implements AfterViewInit {
     vertical_profile_URL: string;
-    vertical_profile_exists: boolean = false;
+    vertical_profile_exists = false;
     zoomTo: number[] = undefined;
     farms: Farm[] = [];
     selectedFarm: Farm = new Farm();
@@ -511,7 +511,7 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
         // } else {
         //     $('#toggleStations').prop('disabled', false);
         // }
-        $('[data-toggle="tooltip"]').tooltip(); 
+        $('[data-toggle="tooltip"]').tooltip();
     }
 
     public selectSensor(sensorID: string) {
