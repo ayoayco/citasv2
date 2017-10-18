@@ -5,13 +5,23 @@
         <div class="container">
             <h1>Update Team</h1>
             <div id="content" class="row">
-                <h3>Project Details</h3>
-                <p class="about-content" style="margin: 0 20% 0 20%;">The project aims to address the problem of late detection of diseases in plants by developing an intelligent and mobile cloud-based Total Analysis System (TAS) consisting of a mobile PlantScope (mobile phone based microscope) partnered
-                    with a mobile loop-mediated isothermal amplification (LAMP) assay kit that will be directly accessible to farmers. </p>
-                <p class="about-content" style="padding-bottom: 40px; padding-top: 20px; margin: 0 20% 0 20%;">We want to provide a platform for remote data collection, data storage, and a data analysis framework that uses web, mobile, and cloud technologies in the context of detection and prediction of plant disease and its spread, respectively.The
-                    project also provides low-cost environmental monitoring of crops that uses a multi-dimensional (plant, its environment, and geospatial features) and multi-platform approach (using web, mobile, and cloud), considering micro-total analysis
-                    and a relatively low cost mobile lab.
-                </p>
+                <div class="row team-row" *ngFor="let team of teams">
+                    <h3>{{team.title}}</h3>
+                    <a class="add-link btn btn-info">Add to Group</a>
+                    <a class="delete-group-link btn btn-default">Delete Group</a>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th class="jobs-col">Position</th>
+                            <th class="actions-col text-align">Actions</th>
+                        </tr>
+                        <tr *ngFor="let member of team.members">
+                            <td>{{member.name}}</td>
+                            <td class="jobs-col">{{member.job_position}}</td>
+                            <td class="actions-col text-center"><a class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> | <a class="clickable delete-link" data-toggle="tooltip" title="Delete member"><i class="icon fa fa-trash"></i></a>                                | <a class="clickable view-link" data-toggle="tooltip" title="View member details"><i class="icon fa fa-eye"></i></a></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
