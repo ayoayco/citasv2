@@ -7,7 +7,7 @@
             <div id="content" class="row">
                 <div class="row team-row" *ngFor="let team of teams">
                     <div class="row">
-                        <h3 class="col-md-10">{{team.title}}</h3>
+                        <h3 class="col-md-10">{{team.title}} ({{team.members.length}})</h3>
                     </div>
                     <a class="add-link btn btn-info">Add Member to Group</a>
                     <a class="delete-group-link btn btn-default">Delete Group</a>
