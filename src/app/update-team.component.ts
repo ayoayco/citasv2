@@ -42,6 +42,11 @@ export class UpdateTeamComponent implements AfterViewInit{
             }
         )
    }
+
+   public deleteGroup (){
+
+   }
+
    ngAfterViewInit() {
         $('[data-toggle="tooltip"]').tooltip(); 
    }
