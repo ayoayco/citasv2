@@ -7,7 +7,9 @@ import { CookieModule } from 'ngx-cookie';
 import { ChartModule } from 'angular2-highcharts/index';
 
 import { AnalysisPipe } from './pipes/analysis.pipe';
+import { EllipsisPipe } from './pipes/ellipsis.pipe';
 import { UpdateTeamComponent } from './update-team.component';
+import { UpdateResearchComponent } from './update-research.component';
 
 import { AppComponent } from './app.component';
 import { AppNavComponent } from './nav.component';
@@ -95,6 +97,7 @@ const appRoutes: Routes = [
   { path: 'contact-us', component: AppContactUsComponent },
   { path: 'downloads', component: DownloadsComponent },
   { path: 'update-team', component: UpdateTeamComponent },
+  { path: 'update-research', component: UpdateResearchComponent },
   { path: '**', component: AppPageNotFoundComponent }
 ];
 
@@ -145,12 +148,14 @@ const appRoutes: Routes = [
     AppAboutResearchComponent,
     AppAboutTrainingsComponent,
     AnalysisPipe,
+    EllipsisPipe,
     RegisterFarmComponent,
     BlankComponent,
     AppTermsComponent,
     AppWhyComponent,
     EditFarmComponent,
-    UpdateTeamComponent
+    UpdateTeamComponent,
+    UpdateResearchComponent
   ],
   imports: [
     BrowserModule,
