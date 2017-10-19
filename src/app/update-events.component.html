@@ -11,10 +11,10 @@
                         <th class="title-col">Title</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                        <th>Actions</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                     <tr *ngFor="let event of events">
-                        <td class="title-col" title="{{event.event_name}}">{{event.event_name | ellipsis}}</td>
+                        <td class="title-col" title="{{event.event_name}}">{{event.event_name | ellipsis: 40}}</td>
                         <td>{{event.date_from | date}}</td>
                         <td>{{event.date_to | date}}</td>
                         <td class="actions-col text-center"><a class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> | <a class="clickable delete-link" data-toggle="tooltip" title="Delete member"><i class="icon fa fa-trash"></i></a>                            | <a class="clickable view-link" data-toggle="tooltip" title="View member details"><i class="icon fa fa-eye"></i></a></td>

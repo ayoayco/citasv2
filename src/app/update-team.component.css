@@ -59,7 +59,6 @@ table tr:hover {
 table th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
     background-color: #19BD6C;
     color: white;
     text-transform: uppercase;
@@ -84,4 +83,8 @@ table th {
 
 .group-links a {
     color: #ccc;
+}
+
+#add-group-row {
+    margin-bottom: 20px;
 }

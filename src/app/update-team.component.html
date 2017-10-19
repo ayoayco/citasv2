@@ -5,6 +5,9 @@
         <div class="container">
             <h1>Update Team Members</h1>
             <div id="content" class="row">
+                <div id="add-group-row" class="row text-center">
+                    <a class="btn btn-primary">Add a New Group</a>
+                </div>
                 <div class="row team-row" *ngFor="let team of teams">
                     <div class="row">
                         <h3 class="col-md-10">{{team.title}} ({{team.members.length}})</h3>
@@ -15,7 +18,7 @@
                         <tr>
                             <th>Name</th>
                             <th class="jobs-col">Position</th>
-                            <th class="actions-col text-align">Actions</th>
+                            <th class="actions-col text-center">Actions</th>
                         </tr>
                         <tr *ngFor="let member of team.members">
                             <td>{{member.name | ellipsis}}</td>
@@ -23,9 +26,6 @@
                             <td class="actions-col text-center"><a class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> | <a class="clickable delete-link" data-toggle="tooltip" title="Delete member"><i class="icon fa fa-trash"></i></a>                                | <a class="clickable view-link" data-toggle="tooltip" title="View member details"><i class="icon fa fa-eye"></i></a></td>
                         </tr>
                     </table>
-                </div>
-                <div class="row text-center">
-                    <a class="btn btn-primary">Add a New Group</a>
                 </div>
             </div>
         </div>
