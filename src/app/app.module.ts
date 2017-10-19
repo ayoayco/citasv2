@@ -10,6 +10,7 @@ import { AnalysisPipe } from './pipes/analysis.pipe';
 import { EllipsisPipe } from './pipes/ellipsis.pipe';
 import { UpdateTeamComponent } from './update-team.component';
 import { UpdateResearchComponent } from './update-research.component';
+import { UpdateTrainingComponent } from './update-training.component';
 
 import { AppComponent } from './app.component';
 import { AppNavComponent } from './nav.component';
@@ -98,6 +99,7 @@ const appRoutes: Routes = [
   { path: 'downloads', component: DownloadsComponent },
   { path: 'update-team', component: UpdateTeamComponent },
   { path: 'update-research', component: UpdateResearchComponent },
+  { path: 'update-training', component: UpdateTrainingComponent },
   { path: '**', component: AppPageNotFoundComponent }
 ];
 
@@ -155,7 +157,8 @@ const appRoutes: Routes = [
     AppWhyComponent,
     EditFarmComponent,
     UpdateTeamComponent,
-    UpdateResearchComponent
+    UpdateResearchComponent,
+    UpdateTrainingComponent
   ],
   imports: [
     BrowserModule,
