@@ -41,6 +41,7 @@ h3 {
 }
 
 .farm-row {
+    width: 650px;
     border: 2px solid #ccc;
     padding: 15px;
     margin-bottom: 25px;
