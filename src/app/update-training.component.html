@@ -1,0 +1,26 @@
+<div id="wrapper" class="toggled">
+    <sidebar></sidebar>
+    <div id="page-content-wrapper">
+        <user-nav></user-nav>
+        <div class="container">
+            <h1>Update Training List</h1>
+            <div id="content" class="row">
+                <a class="btn btn-info">Add to Training List</a>
+                <table>
+                    <tr>
+                        <th class="title-col">Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr *ngFor="let training of trainings">
+                        <td class="title-col" title="{{training.training_name}}">{{training.training_name | ellipsis}}</td>
+                        <td>{{training.date_from | date}}</td>
+                        <td>{{training.date_to | date}}</td>
+                        <td class="actions-col text-center"><a class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> | <a class="clickable delete-link" data-toggle="tooltip" title="Delete member"><i class="icon fa fa-trash"></i></a>                            | <a class="clickable view-link" data-toggle="tooltip" title="View member details"><i class="icon fa fa-eye"></i></a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
