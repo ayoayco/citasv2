@@ -27,7 +27,7 @@ export class UpdateTrainingComponent {
         if (!loggedIn) {
             this.router.navigate(['/']);
         } else {
-            this.titleService.setTitle('Update Team');
+            this.titleService.setTitle('Update Training List');
         }
 
         let data;

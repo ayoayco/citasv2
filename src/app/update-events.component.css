@@ -1,0 +1,79 @@
+div.container {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    text-align: left;
+    font-weight: 300;
+    background: #f3f3f3;
+    padding: 30px !important;
+    max-width: 1000px;
+    float: left;
+}
+
+div#content {
+    border: 1px solid #ccc;
+    text-align: left;
+    background: #ffffff;
+    padding: 30px;
+    margin-bottom: 14px;
+    width: 650px;
+}
+
+h1 {
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+p {
+    margin: 0 !important;
+    width: 500px;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+table td,
+table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-size: small;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #99e2be;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #19BD6C;
+    color: white;
+    text-transform: uppercase;
+}
+
+.title-col {
+    width: 300px;
+}
+
+.actions-col {
+    width: 100px;
+    text-align: center;
+}
+
+.btn {
+    font-size: small !important;
+}
