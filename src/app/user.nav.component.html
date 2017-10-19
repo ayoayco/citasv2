@@ -22,7 +22,7 @@
                     <ul class="dropdown-menu">
                         <li><a routerLink="/view-profile" routerLinkActive="active">View User Profile</a></li>
                         <li *ngIf="isAdmin"><a routerLink="/update-team" routerLinkActive="active">Update Team Members</a></li>
-                        <li *ngIf="isAdmin"><a routerLink="/" routerLinkActive="active">Update Research List</a></li>
+                        <li *ngIf="isAdmin"><a routerLink="/update-research" routerLinkActive="active">Update Research List</a></li>
                         <li *ngIf="isAdmin"><a routerLink="/" routerLinkActive="active">Update Trainings List</a></li>
                         <li *ngIf="isAdmin"><a routerLink="/" routerLinkActive="active">Update Events List</a></li>
                         <li *ngIf="role == 4"><a routerLink="/register-farm" routerLinkActive="active">Register New Farm</a></li>
