@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { CitasApiService } from './citas.api.service';
 import { AppSessionService } from './app.session.service';
 import { Router } from '@angular/router';
@@ -14,8 +14,11 @@ import { Title } from '@angular/platform-browser';
     ]
 })
 
-export class UpdateTrainingComponent {
+export class UpdateTrainingComponent implements AfterViewInit {
     trainings: any[];
+    new: any = {};
+    err: boolean;
+    msg: string;
 
     constructor(
         private sessionService: AppSessionService,
@@ -23,6 +26,7 @@ export class UpdateTrainingComponent {
         private router: Router,
         private titleService: Title
     ) {
+        this.err = false
         const loggedIn: boolean = this.sessionService.isLoggedIn();
         if (!loggedIn) {
             this.router.navigate(['/']);
@@ -41,6 +45,49 @@ export class UpdateTrainingComponent {
                 console.log(this.trainings);
             }
         )
+
+    }
+
+    public addTraining() {
+        this.new.participants = this.new.participants.split(',').map(function(item){return item.trim()});
+        console.log(this.new);
+        let data: any;
+        this.apiService.addTraining(
+            this.sessionService.getLoggedInKey(),
+            this.new.training_name,
+            this.new.training_venue,
+            this.new.participants,
+            this.new.date_from,
+            this.new.date_to)
+        .subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                console.log(data);
+                if (data.Success){
+                    this.router.navigate(['/update-training']);
+                } else {
+                    this.err = true;
+                    this.msg = 'Error: ' + data.error_message;
+                }
+            }
+        )
+
+    }
+
+    ngAfterViewInit() {
+        $('#date_to').datepicker({
+            onSelect: (data, inst) => {
+                this.new.date_to = data;
+            },
+            dateFormat: 'yy-mm-dd',
+        });
+        $('#date_from').datepicker({
+            onSelect: (data, inst) => {
+                this.new.date_from = data;
+            },
+            dateFormat: 'yy-mm-dd',
+        });
 
     }
 }
