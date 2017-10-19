@@ -3,9 +3,9 @@
     <div id="page-content-wrapper">
         <user-nav></user-nav>
         <div class="container">
-            <h1>Update Research List ({{researches.length}})</h1>
+            <h1 *ngIf="researches">Update Research List ({{researches.length}})</h1>
             <div id="content" class="row">
-                <a class="btn btn-info">Add to Research List</a>
+                <a class="btn btn-info" onclick="$('#addResearchModal').modal('toggle')">Add to Research List</a>
                 <table>
                     <tr>
                         <th class="title-col">Title</th>
@@ -20,6 +20,45 @@
                         <td class="actions-col text-center"><a class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> | <a class="clickable delete-link" data-toggle="tooltip" title="Delete member"><i class="icon fa fa-trash"></i></a>                            | <a class="clickable view-link" data-toggle="tooltip" title="View member details"><i class="icon fa fa-eye"></i></a></td>
                     </tr>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addResearchModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="app-logo "></i>
+            </div>
+
+            <div class="modal-body">
+                <form id="editForm" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="login-div">
+                            <label for="research_title" class="control-label">Research Title</label>
+                            <input [(ngModel)]="newResearch.research_title" name="research_title" type="text" id="research_title" placeholder="Research Title" class="form-control" autofocus>
+                            <label for="research_venue" class="control-label">Research Venue</label>
+                            <input [(ngModel)]="newResearch.research_venue" name="research_venue" type="text" id="research_venue" placeholder="Research Venue" class="form-control">
+                            <label for="research_conference" class="control-label">Research Conference</label>
+                            <input [(ngModel)]="newResearch.research_conference" name="research_conference" type="text" id="research_conference" placeholder="Research Conference" class="form-control">
+                            <label for="authors" class="control-label">Authors</label>
+                            <input [(ngModel)]="newResearch.authors" name="authors" type="authors" id="authors" placeholder="Authors, comma-separated..." class="form-control">
+                            <label for="participants" class="control-label">Participants</label>
+                            <input [(ngModel)]="newResearch.participants" name="participants" id="participants" placeholder="Participants, comma-separated..." class="form-control">
+                            <label for="date_from" class="control-label">Start Date</label>
+                            <input [(ngModel)]="newResearch.date_from" name="date_from" id="date_from" placeholder="Start Date" class="form-control">
+                            <label for="date_to" class="control-label">End Date</label>
+                            <input [(ngModel)]="newResearch.date_to" name="date_to" id="date_to" placeholder="End Date" class="form-control">
+
+                            <br />
+                            <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
+                            <button (click)="addResearch()" class="btn btn-primary btn-block">Add Research</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
