@@ -5,17 +5,17 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-    selector: 'update-research',
-    templateUrl: './update-research.component.html',
-    styleUrls: ['./update-research.component.css'],
+    selector: 'update-events',
+    templateUrl: './update-events.component.html',
+    styleUrls: ['./update-events.component.css'],
     providers: [
         CitasApiService,
         AppSessionService
     ]
 })
 
-export class UpdateResearchComponent {
-    researches: any[];
+export class UpdateEventsComponent {
+    events: any[];
 
     constructor(
         private sessionService: AppSessionService,
@@ -27,18 +27,18 @@ export class UpdateResearchComponent {
         if (!loggedIn) {
             this.router.navigate(['/']);
         } else {
-            this.titleService.setTitle('Update Research List');
+            this.titleService.setTitle('Update Event List');
         }
 
         let data;
 
-        this.apiService.getResearch()
+        this.apiService.getEvents()
         .subscribe(
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                this.researches = data.data;
-                console.log(this.researches);
+                this.events = data.data;
+                console.log(this.events);
             }
         )
 
