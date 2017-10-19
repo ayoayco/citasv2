@@ -24,6 +24,49 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public addResearch(key: string,
+        research_title: string,
+        research_venue: string,
+        research_conference: string,
+        authors: string,
+        participants: string,
+        date_from: string,
+        date_to: string
+    ) {
+        $('body').addClass('loading');
+
+        const url = this.APIURL + '/add_research?key=' + key;
+        const headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded' 
+        });
+        const options = new RequestOptions({ headers: headers });
+
+        const body = '&research_title=' + research_title +
+        '&research_venue=' + research_venue +
+        '&research_conference=' + research_conference +
+        '&authors=' + authors +
+        '&participants=' + participants +
+        '&date_from=' + date_from +
+        '&date_to=' + date_to;
+
+        return this.http.post(url, body, options)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+
+    }
+
     public getSoil3D(farm_id: string) {
         $('body').addClass('loading');
         const url = this.APIURL + '/soil_3D/' + farm_id;
