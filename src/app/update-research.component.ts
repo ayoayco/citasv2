@@ -81,13 +81,13 @@ export class UpdateResearchComponent implements AfterViewInit {
             onSelect: (data, inst) => {
                 this.newResearch.date_to = data;
             },
-            dateFormat: "yy-mm-dd",
+            dateFormat: 'yy-mm-dd',
         });
         $('#date_from').datepicker({
             onSelect: (data, inst) => {
                 this.newResearch.date_from = data;
             },
-            dateFormat: "yy-mm-dd",
+            dateFormat: 'yy-mm-dd',
         });
 
     }
