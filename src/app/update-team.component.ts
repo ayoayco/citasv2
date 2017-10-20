@@ -56,7 +56,7 @@ export class UpdateTeamComponent implements AfterViewInit{
             $('#addTeamModal').modal('toggle');
     }
 
-    public addTeamMember(dept_id: number) {
+    public addTeamMember() {
         console.log(this.new);
         let data: any;
         this.apiService.addTeamMember(
