@@ -24,6 +24,27 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public deleteEntry(key: string, entry_type: string, entry_id: number){
+        $('body').addClass('loading');
+        const url = this.APIURL + '/delete/' + entry_type + '/' + entry_id + '?key=' + key;
+
+        return this.http.get(url)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+    }
+
     public addDepartment(
         key: string,
         department_name: string

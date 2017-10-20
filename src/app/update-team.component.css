@@ -89,8 +89,9 @@ table th {
     margin-bottom: 20px;
 }
 
+#surePrompt .modal-dialog {}
+
 .modal-dialog {
-    height: 539px;
     width: 442px;
     background-color: #FFFFFF;
     box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.08);
