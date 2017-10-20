@@ -21,6 +21,7 @@ export class UpdateResearchComponent implements AfterViewInit {
     msg: string;
     deleteType: string;
     deleteEntry: number;
+    selectedResearch: any;
 
     constructor(
         private sessionService: AppSessionService,
@@ -47,6 +48,22 @@ export class UpdateResearchComponent implements AfterViewInit {
                 console.log(this.researches);
             }
         )
+    }
+
+    public isOneDay(event) {
+        event.date_from.setHours(0, 0, 0, 0);
+        event.date_to.setHours(0, 0, 0, 0);
+
+        if (event.date_from.valueOf() === event.date_to.valueOf()) {
+            return true;
+        }
+        return false;
+    }
+
+    public viewResearch(research) {
+        this.selectedResearch = research;
+        console.log(this.selectedResearch);
+        $('#viewResearchModal').modal('toggle');
     }
 
     public addResearch() {
