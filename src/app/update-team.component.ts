@@ -16,6 +16,9 @@ import { Title } from '@angular/platform-browser';
 
 export class UpdateTeamComponent implements AfterViewInit{
     teams: any[];
+    new: any = {};
+    err: boolean;
+    msg: string;
 
     constructor(
         private apiService: CitasApiService, 
@@ -23,6 +26,7 @@ export class UpdateTeamComponent implements AfterViewInit{
         private titleService: Title,
         private sessionService: AppSessionService
     ) {
+        this.err = false;
         const loggedIn: boolean = this.sessionService.isLoggedIn();
         if (!loggedIn) {
             this.router.navigate(['/']);
@@ -43,11 +47,55 @@ export class UpdateTeamComponent implements AfterViewInit{
         )
    }
 
-   public deleteGroup (){
+    public deleteGroup (){
 
+    }
+
+    public selectDept(dept_id: number){
+            this.new.dept_id = dept_id.toString();
+            $('#addTeamModal').modal('toggle');
+    }
+
+    public addTeamMember(dept_id: number) {
+        console.log(this.new);
+        let data: any;
+        this.apiService.addTeamMember(
+            this.sessionService.getLoggedInKey(),
+            this.new.fullname,
+            this.new.position,
+            this.new.add_text,
+            this.new.dept_id)
+        .subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body)
+                console.log(data);
+                if (data.Success) {
+                    window.location.reload();
+                    $('#addTeamModal').modal('hide');
+                } else {
+                    this.err = true;
+                    this.msg = 'Error: ' + data.error_message;
+                }
+            }
+        )
    }
 
-   ngAfterViewInit() {
-        $('[data-toggle="tooltip"]').tooltip(); 
-   }
+    ngAfterViewInit() {
+        $('#date_to').datepicker({
+            onSelect: (data, inst) => {
+                this.new.date_to = data;
+            },
+            dateFormat: 'yy-mm-dd',
+        });
+        $('#date_from').datepicker({
+            onSelect: (data, inst) => {
+                this.new.date_from = data;
+            },
+            dateFormat: 'yy-mm-dd',
+        });
+
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+
 }

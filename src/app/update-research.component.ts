@@ -49,7 +49,7 @@ export class UpdateResearchComponent implements AfterViewInit {
 
     public addResearch() {
         this.newResearch.authors = this.newResearch.authors.split(',').map(function(item){return item.trim()})
-        this.newResearch.participants = this.newResearch.participants.split(',').map(function(item){return item.trim()})
+        this.newResearch.delegates = this.newResearch.delegates.split(',').map(function(item){return item.trim()})
         console.log(this.newResearch);
         let data;
         this.apiService.addResearch(
@@ -58,7 +58,7 @@ export class UpdateResearchComponent implements AfterViewInit {
             this.newResearch.research_venue,
             this.newResearch.research_conference,
             this.newResearch.authors,
-            this.newResearch.participants,
+            this.newResearch.delegates,
             this.newResearch.date_from,
             this.newResearch.date_to)
         .subscribe(
@@ -67,7 +67,8 @@ export class UpdateResearchComponent implements AfterViewInit {
                 data = JSON.parse(data._body);
                 console.log(data);
                 if(data.Success) {
-                    this.router.navigate(['/update-research']);
+                    window.location.reload();
+                    $('#addResearchModal').modal('hide');
                 } else {
                     this.err = true;
                     this.msg = 'Error Message: ' + data.error_message;

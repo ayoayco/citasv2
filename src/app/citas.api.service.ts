@@ -24,6 +24,84 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public addTeamMember(
+        key: string,
+        fullname: string,
+        position: string,
+        add_text: string,
+        dept_id: string
+    ){
+        $('body').addClass('loading');
+
+        const url = this.APIURL + '/add_team?key=' + key;
+        const headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        const options = new RequestOptions({ headers: headers });
+
+        const body = '&fullname=' + fullname +
+        '&position=' + position +
+        '&add_text=' + add_text +
+        '&dept_id=' + dept_id ;
+
+        return this.http.post(url, body, options)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+ 
+    }
+
+    public addEvent(key: string,
+        event_name: string,
+        event_venue: string,
+        event_description: string,
+        date_from: string,
+        date_to: string
+    ) {
+        $('body').addClass('loading');
+
+        const url = this.APIURL + '/add_event?key=' + key;
+        const headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        const options = new RequestOptions({ headers: headers });
+
+        const body = '&event_name=' + event_name +
+        '&event_venue=' + event_venue +
+        '&event_description=' + event_description +
+        '&date_from=' + date_from +
+        '&date_to=' + date_to ;
+
+        return this.http.post(url, body, options)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+    }
+
+ 
+
     public addTraining(key: string,
         training_name: string,
         training_venue: string,
@@ -68,7 +146,7 @@ export class CitasApiService {
         research_venue: string,
         research_conference: string,
         authors: string[],
-        participants: string[],
+        delegates: string[],
         date_from: string,
         date_to: string
     ) {
@@ -84,7 +162,7 @@ export class CitasApiService {
         '&research_venue=' + research_venue +
         '&research_conference=' + research_conference +
         '&authors=' + authors +
-        '&participants=' + participants +
+        '&delegates=' + delegates +
         '&date_from=' + date_from +
         '&date_to=' + date_to;
 
