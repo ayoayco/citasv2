@@ -22,6 +22,7 @@ export class UpdateTeamComponent implements AfterViewInit{
     deleteType: string;
     err: boolean;
     msg: string;
+    selectedMember: any;
 
     constructor(
         private apiService: CitasApiService, 
@@ -48,6 +49,12 @@ export class UpdateTeamComponent implements AfterViewInit{
                 console.log(this.teams);
             }
         )
+    }
+
+    public viewMember(member: any) {
+        this.selectedMember = member;
+        console.log(this.selectedMember);
+        $('#viewMemberModal').modal('toggle');
     }
 
     public deleteEntryNow() {
