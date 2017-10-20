@@ -10,7 +10,7 @@ export class EllipsisPipe implements PipeTransform{
             limit = 32;
         }
         if (str.length > limit) {
-            return(str.substr(0, limit) + '...');
+            return(str.substr(0, limit - 1) + '...');
         }
         return str;
     }

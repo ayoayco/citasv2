@@ -22,7 +22,7 @@
                         </tr>
                         <tr *ngFor="let member of team.members">
                             <td>{{member.name | ellipsis}}</td>
-                            <td class="jobs-col">{{member.job_position | ellipsis: 27}}</td>
+                            <td class="jobs-col" title="{{member.job_position}}">{{member.job_position | ellipsis: 30}}</td>
                             <td class="actions-col text-center"><a class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> |
                                 <a class="clickable delete-link" data-toggle="tooltip" title="Delete member" (click)="selectDelMember(member.member_id)"><i class="icon fa fa-trash"></i></a> |
                                 <a class="clickable view-link" data-toggle="tooltip" title="View member details"><i class="icon fa fa-eye"></i></a>
