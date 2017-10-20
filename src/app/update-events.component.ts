@@ -58,7 +58,7 @@ export class UpdateEventsComponent implements AfterViewInit {
             this.sessionService.getLoggedInKey(),
             this.new.event_name,
             this.new.event_venue,
-            this.new.event_description,
+            this.new.description,
             this.new.date_from,
             this.new.date_to)
         .subscribe(
@@ -95,10 +95,51 @@ export class UpdateEventsComponent implements AfterViewInit {
         )
     }
 
+    public editEventNow() {
+        console.log(this.selectedEvent);
+    }
+
+    public editEvent(event) {
+        this.selectedEvent = event;
+        this.selectedEvent.date_from = this.formatDate(event.date_from);
+        this.selectedEvent.date_to = this.formatDate(event.date_to);
+        console.log('Edit: ' + this.selectedEvent);
+        $('#edit_date_to').datepicker({
+            onSelect: (data, inst) => {
+                this.selectedEvent.date_to = data;
+            },
+            dateFormat: 'yy-mm-dd',
+        });
+        $('#edit_date_from').datepicker({
+            onSelect: (data, inst) => {
+                this.selectedEvent.date_from = data;
+            },
+            dateFormat: 'yy-mm-dd',
+        });
+        $('#editEventModal').modal('toggle');
+    }
+
     public viewEvent(event) {
         this.selectedEvent = event;
         console.log(this.selectedEvent);
         $('#viewEventModal').modal('toggle');
+    }
+
+    public formatDate(date) {
+        const d = new Date(date);
+        let month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate();
+        const year = d.getFullYear();
+
+        if (month.length < 2) {
+            month = '0' + month;
+        }
+
+        if (day.length < 2) {
+            day = '0' + day;
+        }
+
+        return [year, month, day].join('-');
     }
 
     public selectDelEvent(id) {
@@ -117,6 +158,18 @@ export class UpdateEventsComponent implements AfterViewInit {
         $('#date_from').datepicker({
             onSelect: (data, inst) => {
                 this.new.date_from = data;
+            },
+            dateFormat: 'yy-mm-dd',
+        });
+        $('#edit_date_to').datepicker({
+            onSelect: (data, inst) => {
+                this.selectedEvent.date_to = data;
+            },
+            dateFormat: 'yy-mm-dd',
+        });
+        $('#edit_date_from').datepicker({
+            onSelect: (data, inst) => {
+                this.selectedEvent.date_from = data;
             },
             dateFormat: 'yy-mm-dd',
         });
