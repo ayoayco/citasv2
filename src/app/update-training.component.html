@@ -17,7 +17,7 @@
                         <td class="title-col" title="{{training.training_name}}">{{training.training_name | ellipsis: 40}}</td>
                         <td>{{training.date_from | date}}</td>
                         <td>{{training.date_to | date}}</td>
-                        <td class="actions-col text-center"><a class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> |
+                        <td class="actions-col text-center"><a (click)="editTraining(training)" class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> |
                             <a (click)="selectDelTraining(training.training_id)" class="clickable delete-link" data-toggle="tooltip" title="Delete member"><i class="icon fa fa-trash"></i></a> |
                             <a (click)="viewTraining(training)" class="clickable view-link" data-toggle="tooltip" title="View member details"><i class="icon fa fa-eye"></i></a>
                         </td>
@@ -108,6 +108,41 @@
                             </div>
                             <br />
                             <button class="btn btn-primary btn-block">Close</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editTrainingModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="app-logo "></i>
+            </div>
+
+            <div class="modal-body">
+                <form id="editForm" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div *ngIf="selectedTraining" class="login-div">
+                            <label for="training_name" class="control-label">Training Name</label>
+                            <input [(ngModel)]="selectedTraining.training_name" name="training_name" type="text" id="training_name" placeholder="Training Name" class="form-control" autofocus>
+                            <label for="training_venue" class="control-label">Training Venue</label>
+                            <input [(ngModel)]="selectedTraining.training_venue" name="training_venue" type="text" id="training_venue" placeholder="Training Venue" class="form-control">
+                            <label for="participants" class="control-label">Participants (comma-separated)</label>
+                            <input [(ngModel)]="selectedTraining.participants" name="participants" type="text" id="participant" placeholder="Participant One, Participant Two, ..." class="form-control">
+                            <label for="edit_date_from" class="control-label">Start Date</label>
+                            <input [(ngModel)]="selectedTraining.date_from" name="edit_date_from" id="edit_date_from" placeholder="Start Date" class="form-control">
+                            <label for="edit_date_to" class="control-label">End Date</label>
+                            <input [(ngModel)]="selectedTraining.date_to" name="edit_date_to" id="edit_date_to" placeholder="End Date" class="form-control">
+
+                            <br />
+                            <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
+                            <button (click)="editTrainingNow()" class="btn btn-primary btn-block">Add Training</button>
                         </div>
                     </div>
                 </form>

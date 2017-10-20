@@ -21,7 +21,7 @@ export class UpdateEventsComponent implements AfterViewInit {
     msg: string;
     deleteType: string;
     deleteEntry: number;
-    selectedEvent: any;
+    selectedEvent: any = {};
 
     constructor(
         private sessionService: AppSessionService,
@@ -104,18 +104,7 @@ export class UpdateEventsComponent implements AfterViewInit {
         this.selectedEvent.date_from = this.formatDate(event.date_from);
         this.selectedEvent.date_to = this.formatDate(event.date_to);
         console.log('Edit: ' + this.selectedEvent);
-        $('#edit_date_to').datepicker({
-            onSelect: (data, inst) => {
-                this.selectedEvent.date_to = data;
-            },
-            dateFormat: 'yy-mm-dd',
-        });
-        $('#edit_date_from').datepicker({
-            onSelect: (data, inst) => {
-                this.selectedEvent.date_from = data;
-            },
-            dateFormat: 'yy-mm-dd',
-        });
+
         $('#editEventModal').modal('toggle');
     }
 
