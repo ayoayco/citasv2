@@ -50,16 +50,6 @@ export class UpdateResearchComponent implements AfterViewInit {
         )
     }
 
-    public isOneDay(event) {
-        event.date_from.setHours(0, 0, 0, 0);
-        event.date_to.setHours(0, 0, 0, 0);
-
-        if (event.date_from.valueOf() === event.date_to.valueOf()) {
-            return true;
-        }
-        return false;
-    }
-
     public viewResearch(research) {
         this.selectedResearch = research;
         console.log(this.selectedResearch);
