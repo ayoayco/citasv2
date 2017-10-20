@@ -19,6 +19,8 @@ export class UpdateTrainingComponent implements AfterViewInit {
     new: any = {};
     err: boolean;
     msg: string;
+    deleteType: string;
+    deleteEntry: number;
 
     constructor(
         private sessionService: AppSessionService,
@@ -74,6 +76,30 @@ export class UpdateTrainingComponent implements AfterViewInit {
             }
         )
 
+    }
+
+    public deleteEntryNow() {
+        console.log('Delete: ' + this.deleteType + ' ' + this.deleteEntry);
+        let data: any;
+        this.apiService.deleteEntry(this.sessionService.getLoggedInKey(), this.deleteType, this.deleteEntry)
+        .subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                if (data.Success) {
+                    window.location.reload();
+                } else {
+                    this.err = true;
+                    this.msg = 'Error: ' + data.error_message;
+                }
+            }
+        )
+    }
+
+    public selectDelTraining(id) {
+        this.deleteEntry = id;
+        this.deleteType = 'training';
+        $('#surePrompt').modal('toggle');
     }
 
     ngAfterViewInit() {
