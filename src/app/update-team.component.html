@@ -12,7 +12,7 @@
                     <div class="row">
                         <h3 class="col-md-10">{{team.title}} ({{team.members.length}})</h3>
                     </div>
-                    <a class="add-link btn btn-info">Add Member to Group</a>
+                    <a class="add-link btn btn-info" (click)="selectDept(team.dept_id)">Add Member to Group</a>
                     <a class="delete-group-link btn btn-default">Delete Group</a>
                     <table>
                         <tr>
@@ -27,6 +27,37 @@
                         </tr>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addTeamModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="app-logo "></i>
+            </div>
+
+            <div class="modal-body">
+                <form id="editForm" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="login-div">
+                            <label for="fullname" class="control-label">Full Name</label>
+                            <input [(ngModel)]="new.fullname" name="fullname" type="text" id="fullname" placeholder="Full Name" class="form-control" autofocus>
+                            <label for="position" class="control-label">Position</label>
+                            <input [(ngModel)]="new.position" name="position" type="text" id="position" placeholder="Position" class="form-control">
+                            <label for="add_text" class="control-label">Additional Text</label>
+                            <input [(ngModel)]="new.add_text" name="add_text" type="text" id="add_text" placeholder="Additional Text" class="form-control">
+
+                            <br />
+                            <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
+                            <button (click)="addTeamMember()" class="btn btn-primary btn-block">Add Team Member</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

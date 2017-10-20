@@ -3,9 +3,9 @@
     <div id="page-content-wrapper">
         <user-nav></user-nav>
         <div class="container">
-            <h1>Update Events List ({{events.length}})</h1>
+            <h1 *ngIf="events">Update Events List ({{events.length}})</h1>
             <div id="content" class="row">
-                <a class="btn btn-info">Add to Events List</a>
+                <a class="btn btn-info" onclick="$('#addEventModal').modal('toggle')">Add to Events List</a>
                 <table>
                     <tr>
                         <th class="title-col">Title</th>
@@ -20,6 +20,40 @@
                         <td class="actions-col text-center"><a class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> | <a class="clickable delete-link" data-toggle="tooltip" title="Delete member"><i class="icon fa fa-trash"></i></a>                            | <a class="clickable view-link" data-toggle="tooltip" title="View member details"><i class="icon fa fa-eye"></i></a></td>
                     </tr>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addEventModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="app-logo "></i>
+            </div>
+
+            <div class="modal-body">
+                <form id="editForm" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="login-div">
+                            <label for="event_name" class="control-label">Event Name</label>
+                            <input [(ngModel)]="new.event_name" name="event_name" type="text" id="event_name" placeholder="Event Name" class="form-control" autofocus>
+                            <label for="event_venue" class="control-label">Event Venue</label>
+                            <input [(ngModel)]="new.event_venue" name="event_venue" type="text" id="event_venue" placeholder="Event Venue" class="form-control">
+                            <label for="event_description" class="control-label">Event Description</label>
+                            <input [(ngModel)]="new.event_description" name="description" type="text" id="description" placeholder="Description" class="form-control">
+                            <label for="date_from" class="control-label">Start Date</label>
+                            <input [(ngModel)]="new.date_from" name="date_from" id="date_from" placeholder="Start Date" class="form-control">
+                            <label for="date_to" class="control-label">End Date</label>
+                            <input [(ngModel)]="new.date_to" name="date_to" id="date_to" placeholder="End Date" class="form-control">
+                            <br />
+                            <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
+                            <button (click)="addEvent()" class="btn btn-primary btn-block">Add Event</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

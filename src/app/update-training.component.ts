@@ -64,8 +64,9 @@ export class UpdateTrainingComponent implements AfterViewInit {
                 data = res;
                 data = JSON.parse(data._body);
                 console.log(data);
-                if (data.Success){
-                    this.router.navigate(['/update-training']);
+                if (data.Success) {
+                    window.location.reload();
+                    $('#addTrainingModal').modal('hide');
                 } else {
                     this.err = true;
                     this.msg = 'Error: ' + data.error_message;
