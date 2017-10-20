@@ -17,7 +17,8 @@
                         <td class="title-col" title="{{research.research_title}}">{{research.research_title | ellipsis}}</td>
                         <td>{{research.date_from | date}}</td>
                         <td>{{research.date_to | date}}</td>
-                        <td class="actions-col text-center"><a class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> | <a class="clickable delete-link" data-toggle="tooltip" title="Delete member"><i class="icon fa fa-trash"></i></a>                            | <a class="clickable view-link" data-toggle="tooltip" title="View member details"><i class="icon fa fa-eye"></i></a></td>
+                        <td class="actions-col text-center"><a class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> |
+                            <a class="clickable delete-link" data-toggle="tooltip" title="Delete member" (click)="selectDelResearch(research.research_id)"><i class="icon fa fa-trash"></i></a> | <a class="clickable view-link" data-toggle="tooltip" title="View member details"><i class="icon fa fa-eye"></i></a></td>
                     </tr>
                 </table>
             </div>
@@ -56,6 +57,31 @@
                             <br />
                             <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
                             <button (click)="addResearch()" class="btn btn-primary btn-block">Add Research</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="surePrompt" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="app-logo "></i>
+            </div>
+
+            <div class="modal-body">
+                <form id="surePromptForm" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="login-div">
+                            <p>Are you sure?</p>
+                            <br />
+                            <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
+                            <button (click)="deleteEntryNow()" class="btn btn-primary btn-block">Yes!</button>
                         </div>
                     </div>
                 </form>
