@@ -21,7 +21,7 @@ export class UpdateTrainingComponent implements AfterViewInit {
     msg: string;
     deleteType: string;
     deleteEntry: number;
-    selectedTraining: any;
+    selectedTraining: any = {};
 
     constructor(
         private sessionService: AppSessionService,
@@ -49,6 +49,19 @@ export class UpdateTrainingComponent implements AfterViewInit {
             }
         )
 
+    }
+
+    public editTrainingNow() {
+        console.log(this.selectedTraining);
+    }
+
+    public editTraining(training) {
+        this.selectedTraining = training;
+        this.selectedTraining.date_from = this.formatDate(training.date_from);
+        this.selectedTraining.date_to = this.formatDate(training.date_to);
+        console.log(this.selectedTraining);
+
+        $('#editTrainingModal').modal('toggle');
     }
 
     public viewTraining(training) {
@@ -83,6 +96,23 @@ export class UpdateTrainingComponent implements AfterViewInit {
             }
         )
 
+    }
+
+    public formatDate(date) {
+        const d = new Date(date);
+        let month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate();
+        const year = d.getFullYear();
+
+        if (month.length < 2) {
+            month = '0' + month;
+        }
+
+        if (day.length < 2) {
+            day = '0' + day;
+        }
+
+        return [year, month, day].join('-');
     }
 
     public deleteEntryNow() {
@@ -122,6 +152,17 @@ export class UpdateTrainingComponent implements AfterViewInit {
             },
             dateFormat: 'yy-mm-dd',
         });
-
+        $('#edit_date_to').datepicker({
+            onSelect: (data, inst) => {
+                this.selectedTraining.date_to = data;
+            },
+            dateFormat: 'yy-mm-dd',
+        });
+        $('#edit_date_from').datepicker({
+            onSelect: (data, inst) => {
+                this.selectedTraining.date_from = data;
+            },
+            dateFormat: 'yy-mm-dd',
+        });
     }
 }
