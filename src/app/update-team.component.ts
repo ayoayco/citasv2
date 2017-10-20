@@ -18,6 +18,8 @@ export class UpdateTeamComponent implements AfterViewInit{
     teams: any[];
     new: any = {};
     newDept: string;
+    deleteEntry: number;
+    deleteType: string;
     err: boolean;
     msg: string;
 
@@ -46,10 +48,39 @@ export class UpdateTeamComponent implements AfterViewInit{
                 console.log(this.teams);
             }
         )
-   }
+    }
 
-    public deleteGroup (){
+    public deleteEntryNow() {
+        console.log('Delete: ' + this.deleteType + ' ' + this.deleteEntry);
+        let data: any;
+        this.apiService.deleteEntry(
+            this.sessionService.getLoggedInKey(),
+            this.deleteType, this.deleteEntry)
+            .subscribe(
+                res => {
+                    data = res;
+                    data = JSON.parse(data._body);
+                    console.log(data);
+                    if (data.Success) {
+                        window.location.reload()
+                    } else {
+                        this.err = true;
+                        this.msg = 'Error: ' + data.error_message;
+                    }
+                }
+            );
+    }
 
+    public selectDelMember(member_id: number) {
+        this.deleteEntry = member_id;
+        this.deleteType = 'team';
+        $('#surePrompt').modal('toggle');
+    }
+
+    public selectDelDept(dept_id: number) {
+        this.deleteEntry = dept_id;
+        this.deleteType = 'department';
+        $('#surePrompt').modal('toggle');
     }
 
     public selectDept(dept_id: number){
