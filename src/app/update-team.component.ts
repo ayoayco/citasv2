@@ -17,6 +17,7 @@ import { Title } from '@angular/platform-browser';
 export class UpdateTeamComponent implements AfterViewInit{
     teams: any[];
     new: any = {};
+    newDept: string;
     err: boolean;
     msg: string;
 
@@ -80,6 +81,26 @@ export class UpdateTeamComponent implements AfterViewInit{
             }
         )
    }
+
+    public addDepartment(){
+        console.log(this.newDept);
+        let data: any;
+        this.apiService.addDepartment(this.sessionService.getLoggedInKey(), this.newDept)
+        .subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                console.log(data);
+                if(data.Success){
+                    window.location.reload();
+                    $('#addDeptModal').modal('hide');
+                } else {
+                    this.err = true;
+                    this.msg = 'Error: ' + data.error_message;
+                }
+            }
+        )
+    }
 
     ngAfterViewInit() {
         $('#date_to').datepicker({

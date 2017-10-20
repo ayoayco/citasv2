@@ -24,6 +24,40 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public addDepartment(
+        key: string,
+        department_name: string
+    ){
+        $('body').addClass('loading');
+
+        const url = this.APIURL + '/add_dept?key=' + key;
+        const headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        const options = new RequestOptions({ headers: headers });
+
+        const body = '&department_name=' + department_name;
+
+        return this.http.post(url, body, options)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+ 
+    }
+
+
+
     public addTeamMember(
         key: string,
         fullname: string,
