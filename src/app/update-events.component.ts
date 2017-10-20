@@ -21,6 +21,7 @@ export class UpdateEventsComponent implements AfterViewInit {
     msg: string;
     deleteType: string;
     deleteEntry: number;
+    selectedEvent: any;
 
     constructor(
         private sessionService: AppSessionService,
@@ -92,6 +93,12 @@ export class UpdateEventsComponent implements AfterViewInit {
                 }
             }
         )
+    }
+
+    public viewEvent(event) {
+        this.selectedEvent = event;
+        console.log(this.selectedEvent);
+        $('#viewEventModal').modal('toggle');
     }
 
     public selectDelEvent(id) {
