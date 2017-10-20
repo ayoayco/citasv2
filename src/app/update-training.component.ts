@@ -21,6 +21,7 @@ export class UpdateTrainingComponent implements AfterViewInit {
     msg: string;
     deleteType: string;
     deleteEntry: number;
+    selectedTraining: any;
 
     constructor(
         private sessionService: AppSessionService,
@@ -48,6 +49,12 @@ export class UpdateTrainingComponent implements AfterViewInit {
             }
         )
 
+    }
+
+    public viewTraining(training) {
+        this.selectedTraining = training;
+        console.log(this.selectedTraining);
+        $('#viewTrainingModal').modal('toggle');
     }
 
     public addTraining() {
