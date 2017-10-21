@@ -20,12 +20,10 @@ Images loaded into the system are processed and analyzed to see if the plants ar
 
 # For Developers...
 
-After cloning the project with `git clone ...`, install dependencies with `npm install`.
+After cloning the project with `git clone ...`, install dependencies with `npm install`. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.1.
 
-## Which files are what
-
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.1.
+## Updating the API Base URL
+All the communication with the backend API are handled by the Angular Service: citas.api.service.ts. The API base URL is stored in a variable in this file.
 
 ## Development server
 
