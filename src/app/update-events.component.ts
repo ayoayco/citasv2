@@ -109,15 +109,11 @@ export class UpdateEventsComponent implements AfterViewInit {
                 data = res;
                 data = JSON.parse(data._body);
                 console.log(data);
-                if(data.Success){
-                    this.apiService.getEvents()
-                    .subscribe(
-                        result => {
-                            data = result;
-                            data = JSON.parse(data._body);
-                            $('#editEventModal').modal('hide');
-                        }
-                    )
+                if (data.Success) {
+                    window.location.reload();
+                } else {
+                    this.err = true;
+                    this.msg = 'Error: ' + data.error_message;
                 }
             }
         )

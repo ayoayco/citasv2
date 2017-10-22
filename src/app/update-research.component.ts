@@ -67,14 +67,10 @@ export class UpdateResearchComponent implements AfterViewInit {
                 data = JSON.parse(data._body);
                 console.log(data);
                 if (data.Success) {
-                    this.apiService.getResearch()
-                    .subscribe(
-                        response => {
-                            data = response;
-                            data = JSON.parse(data._body);
-                            $('#editResearchModal').modal('hide');
-                        }
-                    )
+                    window.location.reload();
+                } else {
+                    this.err = true;
+                    this.msg = 'Error: ' + data.error_message;
                 }
             }
         )
