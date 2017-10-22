@@ -24,6 +24,82 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public editEvent(key: string,
+        event_name: string,
+        event_venue: string,
+        event_description: string,
+        date_from: string,
+        date_to: string
+    ) {
+        $('body').addClass('loading');
+
+        const url = this.APIURL + '/edit_event?key=' + key;
+        const headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        const options = new RequestOptions({ headers: headers });
+
+        const body = '&event_name=' + event_name +
+        '&event_venue=' + event_venue +
+        '&event_description=' + event_description +
+        '&date_from=' + date_from +
+        '&date_to=' + date_to ;
+
+        return this.http.post(url, body, options)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+    }
+
+
+    public editTeamMember(
+        key: string,
+        fullname: string,
+        position: string,
+        add_text: string,
+    ){
+        $('body').addClass('loading');
+
+        const url = this.APIURL + '/edit_team?key=' + key;
+        const headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        const options = new RequestOptions({ headers: headers });
+
+        const body = '&fullname=' + fullname +
+        '&position=' + position +
+        '&add_text=' + add_text ;
+
+        return this.http.post(url, body, options)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+ 
+    }
+
+
     public deleteEntry(key: string, entry_type: string, entry_id: number){
         $('body').addClass('loading');
         const url = this.APIURL + '/delete/' + entry_type + '/' + entry_id + '?key=' + key;
