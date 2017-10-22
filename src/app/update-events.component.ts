@@ -96,7 +96,31 @@ export class UpdateEventsComponent implements AfterViewInit {
     }
 
     public editEventNow() {
-        console.log(this.selectedEvent);
+        let data: any;
+        this.apiService.editEvent(
+            this.sessionService.getLoggedInKey(),
+            this.selectedEvent.event_name,
+            this.selectedEvent.event_venue,
+            this.selectedEvent.event_description,
+            this.selectedEvent.date_from,
+            this.selectedEvent.date_to
+        ).subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                console.log(data);
+                if(data.Success){
+                    this.apiService.getEvents()
+                    .subscribe(
+                        result => {
+                            data = result;
+                            data = JSON.parse(data._body);
+                            $('#editEventModal').modal('hide');
+                        }
+                    )
+                }
+            }
+        )
     }
 
     public editEvent(event) {
