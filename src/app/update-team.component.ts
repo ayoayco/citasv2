@@ -92,15 +92,11 @@ export class UpdateTeamComponent implements AfterViewInit{
                 data = JSON.parse(data._body);
                 console.log(data);
                 if(data.Success){
-                    this.apiService.getTeamList()
-                    .subscribe(
-                        response => {
-                            data = response;
-                            data = JSON.parse(data._body);
-                            console.log(data);
-                            $('#editTeamModal').modal('toggle');
-                        }
-                    )
+                    window.location.reload();
+                    $('#editTeamModal').modal('hide');
+                } else {
+                    this.err = true;
+                    this.msg = 'Error: ' + data.error_message;
                 }
             }
         )
@@ -163,7 +159,7 @@ export class UpdateTeamComponent implements AfterViewInit{
                 data = res;
                 data = JSON.parse(data._body);
                 console.log(data);
-                if(data.Success){
+                if (data.Success) {
                     window.location.reload();
                     $('#addDeptModal').modal('hide');
                 } else {

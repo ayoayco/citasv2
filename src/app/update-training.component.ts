@@ -66,14 +66,7 @@ export class UpdateTrainingComponent implements AfterViewInit {
                 data = JSON.parse(data._body);
                 console.log(data);
                 if (data.Success) {
-                    this.apiService.getTrainings()
-                    .subscribe(
-                        result => {
-                            data = result;
-                            data = JSON.parse(data._body);
-                            $('#editTrainingModal').modal('hide');
-                        }
-                    )
+                    window.location.reload();
                 } else {
                     this.err = true;
                     this.msg = 'Error: ' + data.error_message;
