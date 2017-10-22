@@ -24,6 +24,50 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public editResearch(key: string,
+        research_title: string,
+        research_venue: string,
+        research_conference: string,
+        authors: string[],
+        delegates: string[],
+        date_from: string,
+        date_to: string
+    ) {
+        $('body').addClass('loading');
+
+        const url = this.APIURL + '/edit_research?key=' + key;
+        const headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded' 
+        });
+        const options = new RequestOptions({ headers: headers });
+
+        const body = '&research_title=' + research_title +
+        '&research_venue=' + research_venue +
+        '&research_conference=' + research_conference +
+        '&authors=' + authors +
+        '&delegates=' + delegates +
+        '&date_from=' + date_from +
+        '&date_to=' + date_to;
+
+        return this.http.post(url, body, options)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+
+    }
+
+
     public editTraining(key: string,
         training_name: string,
         training_venue: string,
