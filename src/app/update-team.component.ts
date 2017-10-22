@@ -22,7 +22,7 @@ export class UpdateTeamComponent implements AfterViewInit{
     deleteType: string;
     err: boolean;
     msg: string;
-    selectedMember: any;
+    selectedMember: any = {};
 
     constructor(
         private apiService: CitasApiService, 
@@ -78,6 +78,40 @@ export class UpdateTeamComponent implements AfterViewInit{
             );
     }
 
+    public editTeamMemberNow(){
+        let data: any;
+
+        this.apiService.editTeamMember(
+            this.sessionService.getLoggedInKey(),
+            this.selectedMember.name,
+            this.selectedMember.job_position,
+            this.selectedMember.add_text
+        ).subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                console.log(data);
+                if(data.Success){
+                    this.apiService.getTeamList()
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            console.log(data);
+                            $('#editTeamModal').modal('toggle');
+                        }
+                    )
+                }
+            }
+        )
+    }
+
+    public editTeamMember(member: any){
+        this.selectedMember = member;
+        console.log('Edit: ' + this.selectedMember.name);
+        $('#editTeamModal').modal('toggle');
+    }
+
     public selectDelMember(member_id: number) {
         this.deleteEntry = member_id;
         this.deleteType = 'team';
@@ -100,8 +134,8 @@ export class UpdateTeamComponent implements AfterViewInit{
         let data: any;
         this.apiService.addTeamMember(
             this.sessionService.getLoggedInKey(),
-            this.new.fullname,
-            this.new.position,
+            this.new.name,
+            this.new.job_position,
             this.new.add_text,
             this.new.dept_id)
         .subscribe(
