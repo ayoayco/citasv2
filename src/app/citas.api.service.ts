@@ -24,6 +24,45 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public editTraining(key: string,
+        training_name: string,
+        training_venue: string,
+        participants: string[],
+        date_from: string,
+        date_to: string
+    ) {
+        $('body').addClass('loading');
+
+        const url = this.APIURL + '/edit_training?key=' + key;
+        const headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        const options = new RequestOptions({ headers: headers });
+
+        const body = '&training_name=' + training_name +
+        '&training_venue=' + training_venue +
+        '&participants=' + participants +
+        '&date_from=' + date_from +
+        '&date_to=' + date_to;
+
+        return this.http.post(url, body, options)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+
+    }
+
     public editEvent(key: string,
         event_name: string,
         event_venue: string,

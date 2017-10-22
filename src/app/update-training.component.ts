@@ -52,7 +52,34 @@ export class UpdateTrainingComponent implements AfterViewInit {
     }
 
     public editTrainingNow() {
-        console.log(this.selectedTraining);
+        let data: any;
+        this.apiService.editTraining(
+            this.sessionService.getLoggedInKey(),
+            this.selectedTraining.training_name,
+            this.selectedTraining.training_venue,
+            this.selectedTraining.participants,
+            this.selectedTraining.date_from,
+            this.selectedTraining.date_to
+        ).subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                console.log(data);
+                if (data.Success) {
+                    this.apiService.getTrainings()
+                    .subscribe(
+                        result => {
+                            data = result;
+                            data = JSON.parse(data._body);
+                            $('#editTrainingModal').modal('hide');
+                        }
+                    )
+                } else {
+                    this.err = true;
+                    this.msg = 'Error: ' + data.error_message;
+                }
+            }
+        )
     }
 
     public editTraining(training) {
