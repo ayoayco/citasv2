@@ -21,7 +21,7 @@ export class UpdateResearchComponent implements AfterViewInit {
     msg: string;
     deleteType: string;
     deleteEntry: number;
-    selectedResearch: any;
+    selectedResearch: any = {};
 
     constructor(
         private sessionService: AppSessionService,
@@ -50,11 +50,67 @@ export class UpdateResearchComponent implements AfterViewInit {
         )
     }
 
+    public editResearchNow(){
+        let data: any;
+        this.apiService.editResearch(
+            this.sessionService.getLoggedInKey(),
+            this.selectedResearch.research_title,
+            this.selectedResearch.research_venue,
+            this.selectedResearch.research_conference,
+            this.selectedResearch.authors,
+            this.selectedResearch.delegates,
+            this.selectedResearch.date_from,
+            this.selectedResearch.date_to
+        ).subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                console.log(data);
+                if (data.Success) {
+                    this.apiService.getResearch()
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            $('#editResearchModal').modal('hide');
+                        }
+                    )
+                }
+            }
+        )
+
+    }
+
+    public editResearch(research: any) {
+        this.selectedResearch = research;
+        this.selectedResearch.date_from = this.formatDate(research.date_from);
+        this.selectedResearch.date_to = this.formatDate(research.date_to);
+        $('#editResearchModal').modal('toggle');
+    }
+
     public viewResearch(research) {
         this.selectedResearch = research;
         console.log(this.selectedResearch);
         $('#viewResearchModal').modal('toggle');
     }
+
+    public formatDate(date) {
+        const d = new Date(date);
+        let month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate();
+        const year = d.getFullYear();
+
+        if (month.length < 2) {
+            month = '0' + month;
+        }
+
+        if (day.length < 2) {
+            day = '0' + day;
+        }
+
+        return [year, month, day].join('-');
+    }
+
 
     public addResearch() {
         this.newResearch.authors = this.newResearch.authors.split(',').map(function(item){return item.trim()})
@@ -120,6 +176,18 @@ export class UpdateResearchComponent implements AfterViewInit {
         $('#date_from').datepicker({
             onSelect: (data, inst) => {
                 this.newResearch.date_from = data;
+            },
+            dateFormat: 'yy-mm-dd',
+        });
+        $('#edit_date_to').datepicker({
+            onSelect: (data, inst) => {
+                this.selectedResearch.date_to = data;
+            },
+            dateFormat: 'yy-mm-dd',
+        });
+        $('#edit_date_from').datepicker({
+            onSelect: (data, inst) => {
+                this.selectedResearch.date_from = data;
             },
             dateFormat: 'yy-mm-dd',
         });

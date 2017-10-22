@@ -17,7 +17,7 @@
                         <td class="title-col" title="{{research.research_title}}">{{research.research_title | ellipsis}}</td>
                         <td>{{research.date_from | date}}</td>
                         <td>{{research.date_to | date}}</td>
-                        <td class="actions-col text-center"><a class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> |
+                        <td class="actions-col text-center"><a (click)="editResearch(research)" class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> |
                             <a class="clickable delete-link" data-toggle="tooltip" title="Delete member" (click)="selectDelResearch(research.research_id)"><i class="icon fa fa-trash"></i></a> |
                             <a (click)="viewResearch(research)" class="clickable view-link" data-toggle="tooltip" title="View member details"><i class="icon fa fa-eye"></i></a>
                         </td>
@@ -114,6 +114,44 @@
                             </div>
                             <br />
                             <button class="btn btn-primary btn-block">Close</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editResearchModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="app-logo "></i>
+            </div>
+
+            <div class="modal-body">
+                <form id="editForm" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div *ngIf="selectedResearch" class="login-div">
+                            <label for="research_title" class="control-label">Research Title</label>
+                            <input [(ngModel)]="selectedResearch.research_title" name="research_title" type="text" id="research_title" placeholder="Research Title" class="form-control" autofocus>
+                            <label for="research_venue" class="control-label">Research Venue</label>
+                            <input [(ngModel)]="selectedResearch.research_venue" name="research_venue" type="text" id="research_venue" placeholder="Research Venue" class="form-control">
+                            <label for="research_conference" class="control-label">Research Conference</label>
+                            <input [(ngModel)]="selectedResearch.research_conference" name="research_conference" type="text" id="research_conference" placeholder="Research Conference" class="form-control">
+                            <label for="authors" class="control-label">Authors (comma-separated)</label>
+                            <input [(ngModel)]="selectedResearch.authors" name="authors" type="authors" id="authors" placeholder="Author One, Author Two, ..." class="form-control">
+                            <label for="delegates" class="control-label">Delegates (comma-separated)</label>
+                            <input [(ngModel)]="selectedResearch.delegates" name="delegates" id="delegates" placeholder="Delegate One, Delegate Two..." class="form-control">
+                            <label for="edit_date_from" class="control-label">Start Date</label>
+                            <input [(ngModel)]="selectedResearch.date_from" name="edit_date_from" id="edit_date_from" placeholder="Start Date" class="form-control">
+                            <label for="edit_date_to" class="control-label">End Date</label>
+                            <input [(ngModel)]="selectedResearch.date_to" name="edit_date_to" id="edit_date_to" placeholder="End Date" class="form-control">
+                            <br />
+                            <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
+                            <button (click)="editResearchNow()" class="btn btn-primary btn-block">Edit Research</button>
                         </div>
                     </div>
                 </form>
