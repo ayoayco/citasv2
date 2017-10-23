@@ -139,7 +139,7 @@
                             <br />
                             <br />
                             <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
-                            <button class="btn btn-primary btn-block">Close</button>
+                            <button onclick="$('#viewMemberModal').modal('hide')" class="btn btn-primary btn-block">Close</button>
                         </div>
                     </div>
                 </form>

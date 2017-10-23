@@ -59,7 +59,8 @@ export class UpdateTrainingComponent implements AfterViewInit {
             this.selectedTraining.training_venue,
             this.selectedTraining.participants,
             this.selectedTraining.date_from,
-            this.selectedTraining.date_to
+            this.selectedTraining.date_to,
+            this.selectedTraining.training_id
         ).subscribe(
             res => {
                 data = res;

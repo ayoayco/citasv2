@@ -60,7 +60,8 @@ export class UpdateResearchComponent implements AfterViewInit {
             this.selectedResearch.authors,
             this.selectedResearch.delegates,
             this.selectedResearch.date_from,
-            this.selectedResearch.date_to
+            this.selectedResearch.date_to,
+            this.selectedResearch.research_id
         ).subscribe(
             res => {
                 data = res;

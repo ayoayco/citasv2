@@ -24,6 +24,40 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public uploadImage(key: string,
+        entry_id: number,
+        upload_type: string,
+        image_file: any
+    ){
+        $('body').addClass('loading');
+
+        const url = this.APIURL + '/edit_research?key=' + key;
+        const headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded' 
+        });
+        const options = new RequestOptions({ headers: headers });
+
+        const body = '&entry_id=' + entry_id +
+        '&upload_type=' + upload_type +
+        '&image_file=' + image_file;
+
+        return this.http.post(url, body, options)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+    }
+
     public editResearch(key: string,
         research_title: string,
         research_venue: string,
@@ -31,11 +65,12 @@ export class CitasApiService {
         authors: string[],
         delegates: string[],
         date_from: string,
-        date_to: string
+        date_to: string,
+        entry_id: number
     ) {
         $('body').addClass('loading');
 
-        const url = this.APIURL + '/edit_research?key=' + key;
+        const url = this.APIURL + '/edit_research/' + entry_id + '?key=' + key;
         const headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded' 
         });
@@ -73,11 +108,12 @@ export class CitasApiService {
         training_venue: string,
         participants: string[],
         date_from: string,
-        date_to: string
+        date_to: string,
+        entry_id: number
     ) {
         $('body').addClass('loading');
 
-        const url = this.APIURL + '/edit_training?key=' + key;
+        const url = this.APIURL + '/edit_training/' + entry_id + '?key=' + key;
         const headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
@@ -112,11 +148,12 @@ export class CitasApiService {
         event_venue: string,
         event_description: string,
         date_from: string,
-        date_to: string
+        date_to: string,
+        entry_id: number
     ) {
         $('body').addClass('loading');
 
-        const url = this.APIURL + '/edit_event?key=' + key;
+        const url = this.APIURL + '/edit_event/' + entry_id + '?key=' + key;
         const headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
@@ -151,10 +188,11 @@ export class CitasApiService {
         fullname: string,
         position: string,
         add_text: string,
+        entry_id: number
     ){
         $('body').addClass('loading');
 
-        const url = this.APIURL + '/edit_team?key=' + key;
+        const url = this.APIURL + '/edit_team/' + entry_id + '?key=' + key;
         const headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
@@ -493,7 +531,7 @@ export class CitasApiService {
     ) {
         $('body').addClass('loading');
 
-        const url = this.APIURL + '/farm/'+farm_id+'?key=' + key;
+        const url = this.APIURL + '/farm/' + farm_id + '?key=' + key;
         const coords = JSON.stringify(farm_site_coordinates);
         const headers = new Headers({ 
             'Content-Type': 'application/x-www-form-urlencoded' 

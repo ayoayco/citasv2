@@ -3,6 +3,7 @@ import { AppSessionService } from './app.session.service';
 import { CitasApiService } from './citas.api.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { UploadService } from './app.upload.service';
 
 @Component({
     selector: 'update-team',
@@ -10,7 +11,8 @@ import { Title } from '@angular/platform-browser';
     styleUrls: ['./update-team.component.css'],
     providers: [
         CitasApiService,
-        AppSessionService
+        AppSessionService,
+        UploadService
     ]
 })
 
@@ -23,9 +25,11 @@ export class UpdateTeamComponent implements AfterViewInit{
     err: boolean;
     msg: string;
     selectedMember: any = {};
+    file: any;
 
     constructor(
-        private apiService: CitasApiService, 
+        private uploadService: UploadService,
+        private apiService: CitasApiService,
         private router: Router,
         private titleService: Title,
         private sessionService: AppSessionService
@@ -49,6 +53,20 @@ export class UpdateTeamComponent implements AfterViewInit{
                 console.log(this.teams);
             }
         )
+    }
+
+    public onChange(event) {
+        console.log('onChange');
+        const files = event.srcElement.files;
+        console.log(files);
+        this.uploadService.makeFileRequest('http://localhost:8182/upload', [], files).subscribe(() => {
+          console.log('sent');
+        });
+      }
+
+    public uploadPhoto() {
+        console.log('Upload photo for member id: ' + this.selectedMember.member_id);
+        console.log(this.file);
     }
 
     public viewMember(member: any) {
@@ -85,7 +103,8 @@ export class UpdateTeamComponent implements AfterViewInit{
             this.sessionService.getLoggedInKey(),
             this.selectedMember.name,
             this.selectedMember.job_position,
-            this.selectedMember.add_text
+            this.selectedMember.add_text,
+            this.selectedMember.member_id
         ).subscribe(
             res => {
                 data = res;

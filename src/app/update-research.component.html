@@ -113,7 +113,7 @@
                                 <strong>Authors: </strong><span *ngFor="let author of selectedResearch.authors; let i = index">{{author}}<span *ngIf="i !== selectedResearch.authors.length - 1">,</span> </span><br />
                             </div>
                             <br />
-                            <button class="btn btn-primary btn-block">Close</button>
+                            <button onclick="$('#viewResearchModal').modal('hide')" class="btn btn-primary btn-block">Close</button>
                         </div>
                     </div>
                 </form>
