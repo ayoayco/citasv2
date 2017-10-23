@@ -2,7 +2,7 @@
 <div id="main" class="container">
     <div class="row" id="wrap">
         <h1 class="page-header text-center">Research</h1>
-        <input (keyup)="search(searchResearch.value)" #searchResearch id="searchResearch" placeholder="Search research..." />
+        <input (keyup)="search(searchResearch.value)" #searchResearch id="searchResearch" placeholder="Search Research Title..." />
         <ol id="searchList">
             <li *ngFor="let item of research ">
                 <h4>{{item.research_title}}</h4>
