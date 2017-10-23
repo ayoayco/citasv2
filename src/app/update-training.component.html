@@ -107,7 +107,7 @@
                                 <strong>Delegates: </strong><span *ngFor="let delegate of selectedTraining.participants; let i = index">{{delegate}}<span *ngIf="i !== selectedTraining.participants.length - 1">, </span></span>
                             </div>
                             <br />
-                            <button class="btn btn-primary btn-block">Close</button>
+                            <button onclick="$('#viewTrainingModal').modal('hide')" class="btn btn-primary btn-block">Close</button>
                         </div>
                     </div>
                 </form>

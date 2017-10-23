@@ -103,7 +103,8 @@ export class UpdateEventsComponent implements AfterViewInit {
             this.selectedEvent.event_venue,
             this.selectedEvent.event_description,
             this.selectedEvent.date_from,
-            this.selectedEvent.date_to
+            this.selectedEvent.date_to,
+            this.selectedEvent.event_id
         ).subscribe(
             res => {
                 data = res;
