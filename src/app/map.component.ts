@@ -311,6 +311,9 @@ export class MapComponent implements AfterViewInit, OnChanges {
                 this.farmLayer.clearLayers();
                 this.center = new L.LatLng(this.selectedFarm.center[0], this.selectedFarm.center[1]);
                 const polygon = L.polygon(this.selectedFarm.geometry);
+                if (this.disableInteraction) {
+                    polygon.options.interactive = false;
+                }
                 drawnItems.addLayer(polygon);
                 drawnItems.addTo(this.mymap);
                 if (this.bounds.length > 0) {
@@ -325,6 +328,9 @@ export class MapComponent implements AfterViewInit, OnChanges {
             this.farmLayer.clearLayers();
             this.center = new L.LatLng(this.selectedFarm.center[0], this.selectedFarm.center[1]);
             const polygon = L.polygon(this.selectedFarm.geometry, { color: 'black', fillOpacity: 0 });
+            if (this.disableInteraction) {
+                polygon.options.interactive = false;
+            }
             this.farmLayer.addLayer(polygon);
             this.farmLayer.addTo(this.mymap);
             if (this.bounds.length > 0) {
@@ -358,6 +364,9 @@ export class MapComponent implements AfterViewInit, OnChanges {
                     return this.sites[i].sampling_site_name;
                 }
             );
+            if (this.disableInteraction) {
+                polygon.options.interactive = false;
+            }
             this.sitesLayer.addLayer(polygon);
             this.sitesLayer.addTo(this.mymap);
             this.resetView();
@@ -377,6 +386,9 @@ export class MapComponent implements AfterViewInit, OnChanges {
             if (arg !== undefined) {
                 const latlng = new L.LatLng(arg.lat, arg.lng);
                 const marker = L.marker(latlng, { icon: this.plantIcon });
+                if (this.disableInteraction) {
+                    marker.options.interactive = false;
+                }
                 if (!this.disableInteraction) {
                     marker.on('click', (e) => {
                         this.onSelect('plant', arg);
@@ -450,9 +462,12 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
         for (let i = 0; i < this.sensors.length; i++) {
             const arg = this.sensors[i];
-            if(arg != undefined) {
+            if(arg !== undefined) {
                 const latlng = new L.LatLng(arg.lat, arg.lng);
                 const marker = L.marker(latlng, { icon: this.sensorIcon });
+                if (this.disableInteraction) {
+                    marker.options.interactive = false;
+                }
                 if (!this.disableInteraction) {
                     marker.on('click', (e) => {
                         this.onSelect('sensor', arg);
