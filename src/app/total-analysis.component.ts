@@ -115,7 +115,6 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                         response => {
                             data = response;
                             data = JSON.parse(data._body);
-                            console.log(data.data);
                             if(data.Success){
                                 // Show button to 3D
                                 // $('.vertical_profile_link').show();
@@ -151,10 +150,8 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                             data = result;
                             data = JSON.parse(data._body);
                             data = data.data;
-                            console.log(data);
                             url = data.url;
 
-                            console.log('2d json URL:' + url);
 
                             this.apiService.getSamplingsGeoJSON(url)
                             .subscribe(
@@ -166,7 +163,6 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                                     for (let i = 0; i < this.samplings.features.length; i++) {
                                         this.soilChar.push(this.samplings.features[i].properties);
                                     }
-                                    console.log(this.soilChar);
                                 },
                                 err => {
                                     console.error(err);
@@ -235,7 +231,6 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                         response => {
                             data = response;
                             data = JSON.parse(data._body);
-                            console.log(data.data);
                             if(data.Success){
                                 // Show button to 3D
                                 // $('.vertical_profile_link').show();
@@ -261,7 +256,6 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                             data = response;
                             data = JSON.parse(data._body);
                             this.weatherStation = data;
-                            console.log(this.weatherStation);
                             if(!this.weatherStation.Success) {
                                 $('#toggleStations').prop('disabled', true);
                                 $('.fa-close').show();
@@ -282,11 +276,9 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                             data = result;
                             data = JSON.parse(data._body);
                             data = data.data;
-                            console.log(data);
                             url = data.url;
 
 
-                            console.log('2d json URL:' + url);
 
                             this.apiService.getSamplingsGeoJSON(url)
                             .subscribe(
@@ -298,7 +290,6 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                                     for (let i = 0; i < this.samplings.features.length; i++) {
                                         this.soilChar.push(this.samplings.features[i].properties);
                                     }
-                                    console.log(this.soilChar);
                                 },
                                 err => {
                                     console.error(err);
@@ -416,7 +407,6 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                         response => {
                             data = response;
                             data = JSON.parse(data._body);
-                            console.log(data.data);
 
                             if(data.Success){
                                 // Show button to 3D
@@ -453,7 +443,6 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                         data = result;
                         data = JSON.parse(data._body);
                         data = data.data;
-                        console.log(data);
                         url = data.url;
 
                         this.apiService.getSamplingsGeoJSON(url)
@@ -466,7 +455,6 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                                 for (let i = 0; i < this.samplings.features.length; i++) {
                                     this.soilChar.push(this.samplings.features[i].properties);
                                 }
-                                console.log(this.soilChar);
                             },
                             err => {
                                 console.error(err);

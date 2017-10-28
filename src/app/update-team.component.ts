@@ -51,7 +51,6 @@ export class UpdateTeamComponent implements AfterViewInit{
                 data = res;
                 data = JSON.parse(data._body);
                 this.teams = data.data;
-                console.log(this.teams);
             }
         )
     }
@@ -59,7 +58,6 @@ export class UpdateTeamComponent implements AfterViewInit{
     public uploadPhotoNow() {
         const files = $('#fileField').prop('files');
         const file = files[0];
-        console.log(file);
         /*
         let data: any;
         this.apiService.uploadImage(this.sessionService.getLoggedInKey(), this.selectedMember.member_id, 'team', file)
@@ -67,7 +65,7 @@ export class UpdateTeamComponent implements AfterViewInit{
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                console.log(data);
+                // console.log(data);
                 if(data.Success){
                     window.location.reload();
                 } else {
@@ -81,12 +79,10 @@ export class UpdateTeamComponent implements AfterViewInit{
 
     public viewMember(member: any) {
         this.selectedMember = member;
-        console.log(this.selectedMember);
         $('#viewMemberModal').modal('toggle');
     }
 
     public deleteEntryNow() {
-        console.log('Delete: ' + this.deleteType + ' ' + this.deleteEntry);
         let data: any;
         this.apiService.deleteEntry(
             this.sessionService.getLoggedInKey(),
@@ -95,7 +91,6 @@ export class UpdateTeamComponent implements AfterViewInit{
                 res => {
                     data = res;
                     data = JSON.parse(data._body);
-                    console.log(data);
                     if (data.Success) {
                         window.location.reload()
                     } else {
@@ -119,7 +114,6 @@ export class UpdateTeamComponent implements AfterViewInit{
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                console.log(data);
                 if(data.Success){
                     window.location.reload();
                     $('#editTeamModal').modal('hide');
@@ -133,13 +127,11 @@ export class UpdateTeamComponent implements AfterViewInit{
 
     public uploadPhoto(member: any) {
         this.selectedMember = member;
-        console.log('Upload photo for: ' + this.selectedMember.name);
         $('#uploadPhotoModal').modal('toggle');
     }
 
     public editTeamMember(member: any){
         this.selectedMember = member;
-        console.log('Edit: ' + this.selectedMember.name);
         $('#editTeamModal').modal('toggle');
     }
 
@@ -161,7 +153,6 @@ export class UpdateTeamComponent implements AfterViewInit{
     }
 
     public addTeamMember() {
-        console.log(this.new);
         let data: any;
         this.apiService.addTeamMember(
             this.sessionService.getLoggedInKey(),
@@ -173,7 +164,6 @@ export class UpdateTeamComponent implements AfterViewInit{
             res => {
                 data = res;
                 data = JSON.parse(data._body)
-                console.log(data);
                 if (data.Success) {
                     window.location.reload();
                     $('#addTeamModal').modal('hide');
@@ -186,14 +176,12 @@ export class UpdateTeamComponent implements AfterViewInit{
    }
 
     public addDepartment(){
-        console.log(this.newDept);
         let data: any;
         this.apiService.addDepartment(this.sessionService.getLoggedInKey(), this.newDept)
         .subscribe(
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                console.log(data);
                 if (data.Success) {
                     window.location.reload();
                     $('#addDeptModal').modal('hide');

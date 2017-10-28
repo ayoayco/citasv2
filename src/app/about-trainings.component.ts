@@ -27,7 +27,6 @@ export class AppAboutTrainingsComponent {
                     datestr = this.trainings[i].date_to;
                     datestr = datestr.replace(/-/g, '/');
                     this.trainings[i].date_to = new Date(datestr);
-                    console.log(this.trainings[i]);
                 }
                 this.trainings.sort(function(a,b){
                     return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
