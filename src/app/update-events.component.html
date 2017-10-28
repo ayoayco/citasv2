@@ -146,3 +146,30 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="uploadPhotoModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="app-logo "></i>
+            </div>
+
+            <div class="modal-body">
+                <form id="editForm" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div *ngIf="selectedEvent" class="login-div">
+                            <input id="fileField" type="file" />
+
+                            <br />
+                            <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
+                            <button (click)="uploadPhotoNow()" class="btn btn-primary btn-block">Upload Photo</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
