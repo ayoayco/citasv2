@@ -31,9 +31,9 @@ export class CitasApiService {
     ){
         $('body').addClass('loading');
 
-        const url = this.APIURL + '/edit_research?key=' + key;
+        const url = this.APIURL + '/web_image?key=' + key;
         const headers = new Headers({
-            'Content-Type': 'application/x-www-form-urlencoded' 
+            'Content-Type': 'application/x-www-form-urlencoded'
         });
         const options = new RequestOptions({ headers: headers });
 

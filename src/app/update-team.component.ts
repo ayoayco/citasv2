@@ -1,3 +1,4 @@
+import { document } from 'ngx-bootstrap/utils/facade/browser';
 import { Component, AfterViewInit } from '@angular/core';
 import { AppSessionService } from './app.session.service';
 import { CitasApiService } from './citas.api.service';
@@ -55,13 +56,25 @@ export class UpdateTeamComponent implements AfterViewInit{
         )
     }
 
-    public onChange(event) {
-        console.log('onChange');
-        const files = event.srcElement.files;
-        console.log(files);
-        this.uploadService.makeFileRequest('http://localhost:8182/upload', [], files).subscribe(() => {
-          console.log('sent');
-        });
+    public uploadPhotoNow() {
+        const el = document.getElementById('fileField');
+        const file = el.files[0]; // event.srcElement.files;
+        console.log(file);
+        let data: any;
+        this.apiService.uploadImage(this.sessionService.getLoggedInKey(), this.selectedMember.member_id, 'team', file)
+        .subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                console.log(data);
+                if(data.Success){
+                    window.location.reload();
+                } else {
+                    this.err = true;
+                    this.msg = 'Error: ' + data.error_message;
+                }
+            }
+        )
     }
 
     public viewMember(member: any) {
