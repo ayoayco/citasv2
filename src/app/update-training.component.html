@@ -17,9 +17,9 @@
                         <td class="title-col" title="{{training.training_name}}">{{training.training_name | ellipsis: 40}}</td>
                         <td>{{training.date_from | date}}</td>
                         <td>{{training.date_to | date}}</td>
-                        <td class="actions-col text-center"><a (click)="editTraining(training)" class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> |
-                            <a (click)="selectDelTraining(training.training_id)" class="clickable delete-link" data-toggle="tooltip" title="Delete member"><i class="icon fa fa-trash"></i></a> |
-                            <a (click)="viewTraining(training)" class="clickable view-link" data-toggle="tooltip" title="View member details"><i class="icon fa fa-eye"></i></a>
+                        <td class="actions-col text-center"><a (click)="editTraining(training)" class="clickable edit-link" data-toggle="tooltip" title="Edit training"><i class="icon fa fa-pencil"></i></a> |
+                            <a (click)="selectDelTraining(training.training_id)" class="clickable delete-link" data-toggle="tooltip" title="Delete training"><i class="icon fa fa-trash"></i></a> |
+                            <a (click)="viewTraining(training)" class="clickable view-link" data-toggle="tooltip" title="View training details"><i class="icon fa fa-eye"></i></a>
                         </td>
                     </tr>
                 </table>
