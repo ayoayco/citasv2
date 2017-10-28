@@ -388,8 +388,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
                 const marker = L.marker(latlng, { icon: this.plantIcon });
                 if (this.disableInteraction) {
                     marker.options.interactive = false;
-                }
-                if (!this.disableInteraction) {
+                } else {
                     marker.on('click', (e) => {
                         this.onSelect('plant', arg);
 
@@ -467,8 +466,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
                 const marker = L.marker(latlng, { icon: this.sensorIcon });
                 if (this.disableInteraction) {
                     marker.options.interactive = false;
-                }
-                if (!this.disableInteraction) {
+                } else {
                     marker.on('click', (e) => {
                         this.onSelect('sensor', arg);
 
@@ -567,7 +565,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
         if (changes.zoomTo && changes.zoomTo.firstChange === false) {
             if (this.zoomTo !== undefined && this.zoomTo.length > 0) {
                 const center = new L.LatLng(this.zoomTo[0], this.zoomTo[1]);
-                let zoom = 18;
+                let zoom = 20;
                 if (this.fullMap) {
                     zoom++;
                 }
