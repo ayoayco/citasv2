@@ -194,12 +194,13 @@
                 <form id="editForm" class="form-horizontal" role="form">
                     <div class="form-group">
                         <div *ngIf="selectedMember" class="login-div">
-                            <input type="file" />
+                            <input id="fileField" type="file" />
 
                             <br />
                             <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
-                            <button (click)="editTeamMemberNow()" class="btn btn-primary btn-block">Upload Photo</button>
+                            <button (click)="uploadPhotoNow()" class="btn btn-primary btn-block">Upload Photo</button>
                         </div>
+
                     </div>
                 </form>
             </div>
