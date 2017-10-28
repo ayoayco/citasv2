@@ -95,6 +95,10 @@ export class UpdateEventsComponent implements AfterViewInit {
         )
     }
 
+    public uploadPhoto(event: any) {
+        this.selectedEvent = event;
+    }
+
     public editEventNow() {
         let data: any;
         this.apiService.editEvent(

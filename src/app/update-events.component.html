@@ -19,7 +19,8 @@
                         <td>{{event.date_to | date}}</td>
                         <td class="actions-col text-center"><a (click)="editEvent(event)" class="clickable edit-link" data-toggle="tooltip" title="Edit event"><i class="icon fa fa-pencil"></i></a> |
                             <a (click)="selectDelEvent(event.event_id)" class="clickable delete-link" data-toggle="tooltip" title="Delete event"><i class="icon fa fa-trash"></i></a> |
-                            <a (click)="viewEvent(event)" class="clickable view-link" data-toggle="tooltip" title="View event details"><i class="icon fa fa-eye"></i></a>
+                            <a (click)="viewEvent(event)" class="clickable view-link" data-toggle="tooltip" title="View event details"><i class="icon fa fa-eye"></i></a> |
+                            <a (click)="uploadPhoto(event)" class="clickable upload-link" data-toggle="tooltip" title="Upload photo"><i class="icon fa fa-upload"></i></a>
                         </td>
                     </tr>
                 </table>
@@ -99,8 +100,8 @@
                 <p>{{selectedEvent.description}}</p>
                 <p><strong>Venue:</strong> {{selectedEvent.event_venue}}</p>
                 <p><strong>Schedule:</strong> {{selectedEvent.date_from | date}} - {{selectedEvent.date_to | date}}</p>
-                <p *ngIf="selectedEvent && selectedEvent.photos.length === 0">No images to show for the event.</p>
-                <div *ngIf="selectedEvent && selectedEvent.photos.length > 0">
+                <p *ngIf="selectedEvent.photos && selectedEvent.photos.length === 0">No images to show for the event.</p>
+                <div *ngIf="selectedEvent.photos && selectedEvent.photos.length > 0">
                     <ul class="photo-list">
                         <li class="photo-item" *ngFor="let photo of selectedEvent.photos">
                             <img src="{{photo}}" />
