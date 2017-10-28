@@ -62,11 +62,6 @@ export class UpdateTeamComponent implements AfterViewInit{
         this.uploadService.makeFileRequest('http://localhost:8182/upload', [], files).subscribe(() => {
           console.log('sent');
         });
-      }
-
-    public uploadPhoto() {
-        console.log('Upload photo for member id: ' + this.selectedMember.member_id);
-        console.log(this.file);
     }
 
     public viewMember(member: any) {
@@ -119,6 +114,12 @@ export class UpdateTeamComponent implements AfterViewInit{
                 }
             }
         )
+    }
+
+    public uploadPhoto(member: any) {
+        this.selectedMember = member;
+        console.log('Upload photo for: ' + this.selectedMember.name);
+        $('#uploadPhotoModal').modal('toggle');
     }
 
     public editTeamMember(member: any){
