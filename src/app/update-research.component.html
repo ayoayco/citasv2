@@ -17,9 +17,9 @@
                         <td class="title-col" title="{{research.research_title}}">{{research.research_title | ellipsis}}</td>
                         <td>{{research.date_from | date}}</td>
                         <td>{{research.date_to | date}}</td>
-                        <td class="actions-col text-center"><a (click)="editResearch(research)" class="clickable edit-link" data-toggle="tooltip" title="Edit member"><i class="icon fa fa-pencil"></i></a> |
-                            <a class="clickable delete-link" data-toggle="tooltip" title="Delete member" (click)="selectDelResearch(research.research_id)"><i class="icon fa fa-trash"></i></a> |
-                            <a (click)="viewResearch(research)" class="clickable view-link" data-toggle="tooltip" title="View member details"><i class="icon fa fa-eye"></i></a>
+                        <td class="actions-col text-center"><a (click)="editResearch(research)" class="clickable edit-link" data-toggle="tooltip" title="Edit research"><i class="icon fa fa-pencil"></i></a> |
+                            <a class="clickable delete-link" data-toggle="tooltip" title="Delete research" (click)="selectDelResearch(research.research_id)"><i class="icon fa fa-trash"></i></a> |
+                            <a (click)="viewResearch(research)" class="clickable view-link" data-toggle="tooltip" title="View researc details"><i class="icon fa fa-eye"></i></a>
                         </td>
                     </tr>
                 </table>
