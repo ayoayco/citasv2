@@ -24,6 +24,7 @@ export class DatasetsSoilDataComponent {
     selectedFarm: Farm = new Farm();
     soilChar: any;
     samplings: any;
+    soilcharURL: string;
 
     constructor(
         private sessionService: AppSessionService,
@@ -52,7 +53,7 @@ export class DatasetsSoilDataComponent {
                     data = JSON.parse(data._body);
                     data = data.data[0];
                     this.selectedFarm = data;
-                    let url = '';
+                    this.soilcharURL = '';
                     this.apiService.getSamplingsGeoJSONURL(this.selectedFarm.farm_id)
                     .subscribe(
                         result => {
@@ -60,9 +61,9 @@ export class DatasetsSoilDataComponent {
                             data = JSON.parse(data._body);
                             data = data.data;
                             console.log(data);
-                            url = data.url;
+                            this.soilcharURL = data.url;
 
-                            this.apiService.getSamplingsGeoJSON(url)
+                            this.apiService.getSamplingsGeoJSON(this.soilcharURL)
                             .subscribe(
                                 response => {
                                     data = response;
@@ -116,7 +117,6 @@ export class DatasetsSoilDataComponent {
                             data = data.data[0];
                             this.selectedFarm = data;
 
-                            let url = '';
                             this.apiService.getSamplingsGeoJSONURL(this.selectedFarm.farm_id)
                             .subscribe(
                                 result => {
@@ -124,9 +124,9 @@ export class DatasetsSoilDataComponent {
                                     data = JSON.parse(data._body);
                                     data = data.data;
                                     console.log(data);
-                                    url = data.url;
+                                    this.soilcharURL = data.url;
 
-                                    this.apiService.getSamplingsGeoJSON(url)
+                                    this.apiService.getSamplingsGeoJSON(this.soilcharURL)
                                     .subscribe(
                                         res2 => {
                                             data = res2;
@@ -164,7 +164,6 @@ export class DatasetsSoilDataComponent {
                 data = data.data[0];
                 this.selectedFarm = data;
 
-                let url = '';
                 this.apiService.getSamplingsGeoJSONURL(this.selectedFarm.farm_id)
                 .subscribe(
                     result => {
@@ -172,9 +171,9 @@ export class DatasetsSoilDataComponent {
                         data = JSON.parse(data._body);
                         data = data.data;
                         console.log(data);
-                        url = data.url;
+                        this.soilcharURL = data.url;
 
-                        this.apiService.getSamplingsGeoJSON(url)
+                        this.apiService.getSamplingsGeoJSON(this.soilcharURL)
                         .subscribe(
                             res2 => {
                                 data = res2;
