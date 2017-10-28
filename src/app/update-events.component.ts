@@ -45,14 +45,12 @@ export class UpdateEventsComponent implements AfterViewInit {
                 data = res;
                 data = JSON.parse(data._body);
                 this.events = data.data;
-                console.log(this.events);
             }
         )
 
     }
 
     public addEvent(){
-        console.log(this.new);
         let data: any;
         this.apiService.addEvent(
             this.sessionService.getLoggedInKey(),
@@ -65,7 +63,6 @@ export class UpdateEventsComponent implements AfterViewInit {
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                console.log(data);
                 if (data.Success) {
                     window.location.reload();
                     $('#addEventModal').modal('hide');
@@ -78,7 +75,6 @@ export class UpdateEventsComponent implements AfterViewInit {
     }
 
     public deleteEntryNow() {
-        console.log('Delete: ' + this.deleteType + ' ' + this.deleteEntry);
         let data: any;
         this.apiService.deleteEntry(this.sessionService.getLoggedInKey(), this.deleteType, this.deleteEntry)
         .subscribe(
@@ -98,7 +94,6 @@ export class UpdateEventsComponent implements AfterViewInit {
     public uploadPhotoNow() {
         const files = $('#fileField').prop('files');
         const file = files[0];
-        console.log(file);
         /*
         let data: any;
         this.apiService.uploadImage(this.sessionService.getLoggedInKey(), this.selectedEvent.event_id, 'event', file)
@@ -106,7 +101,7 @@ export class UpdateEventsComponent implements AfterViewInit {
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                console.log(data);
+                // console.log(data);
                 if(data.Success){
                     window.location.reload();
                 } else {
@@ -120,7 +115,6 @@ export class UpdateEventsComponent implements AfterViewInit {
 
     public uploadPhoto(event: any) {
         this.selectedEvent = event;
-        console.log('Upload photo for: ' + this.selectedEvent.name);
         $('#uploadPhotoModal').modal('toggle');
     }
 
@@ -138,7 +132,6 @@ export class UpdateEventsComponent implements AfterViewInit {
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                console.log(data);
                 if (data.Success) {
                     window.location.reload();
                 } else {
@@ -153,14 +146,12 @@ export class UpdateEventsComponent implements AfterViewInit {
         this.selectedEvent = event;
         this.selectedEvent.date_from = this.formatDate(event.date_from);
         this.selectedEvent.date_to = this.formatDate(event.date_to);
-        console.log('Edit: ' + this.selectedEvent);
 
         $('#editEventModal').modal('toggle');
     }
 
     public viewEvent(event) {
         this.selectedEvent = event;
-        console.log(this.selectedEvent);
         $('#viewEventModal').modal('toggle');
     }
 

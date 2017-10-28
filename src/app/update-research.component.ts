@@ -45,7 +45,6 @@ export class UpdateResearchComponent implements AfterViewInit {
                 data = res;
                 data = JSON.parse(data._body);
                 this.researches = data.data;
-                console.log(this.researches);
             }
         )
     }
@@ -66,7 +65,6 @@ export class UpdateResearchComponent implements AfterViewInit {
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                console.log(data);
                 if (data.Success) {
                     window.location.reload();
                 } else {
@@ -87,7 +85,6 @@ export class UpdateResearchComponent implements AfterViewInit {
 
     public viewResearch(research) {
         this.selectedResearch = research;
-        console.log(this.selectedResearch);
         $('#viewResearchModal').modal('toggle');
     }
 
@@ -112,7 +109,6 @@ export class UpdateResearchComponent implements AfterViewInit {
     public addResearch() {
         this.newResearch.authors = this.newResearch.authors.split(',').map(function(item){return item.trim()})
         this.newResearch.delegates = this.newResearch.delegates.split(',').map(function(item){return item.trim()})
-        console.log(this.newResearch);
         let data;
         this.apiService.addResearch(
             this.sessionService.getLoggedInKey(),
@@ -127,7 +123,6 @@ export class UpdateResearchComponent implements AfterViewInit {
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                console.log(data);
                 if(data.Success) {
                     window.location.reload();
                     $('#addResearchModal').modal('hide');
@@ -140,7 +135,6 @@ export class UpdateResearchComponent implements AfterViewInit {
     }
 
     public deleteEntryNow() {
-        console.log('Delete: ' + this.deleteType + ' ' + this.deleteEntry);
         let data: any;
         this.apiService.deleteEntry(this.sessionService.getLoggedInKey(), this.deleteType, this.deleteEntry)
         .subscribe(

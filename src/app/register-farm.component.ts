@@ -81,9 +81,6 @@ export class RegisterFarmComponent implements AfterViewInit {
     public submitFarmInfo() {
         this.err = false;
         this.msg = '';
-        console.log('submit farm info.');
-        console.log(this.farm_name);
-        console.log(this.latlngs);
         let data: any;
         // incomplete data, prompt fail
         if (this.latlngs.length === 0) {
@@ -101,7 +98,6 @@ export class RegisterFarmComponent implements AfterViewInit {
                 res => {
                     data = res;
                     data = JSON.parse(data._body);
-                    console.log(data);
                     if (data.Success) {
                         this.sessionService.saveData('farm_id', data.farm_id);
                         // ask if user wants to add sites

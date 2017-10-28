@@ -62,11 +62,9 @@ export class AppLoginComponent {
                             }
                         } else {
                             this.err = 'Error: ' + data.error_message;
-                            // //console.log(this.err);
                         }
                     } else {
                         // login fail
-                        // //console.log("Failed to authenticate.");
                         this.err = 'Something went wrong. Please try again.';
                     }
                 },

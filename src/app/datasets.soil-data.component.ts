@@ -60,7 +60,6 @@ export class DatasetsSoilDataComponent {
                             data = result;
                             data = JSON.parse(data._body);
                             data = data.data;
-                            console.log(data);
                             this.soilcharURL = data.url;
 
                             this.apiService.getSamplingsGeoJSON(this.soilcharURL)
@@ -73,7 +72,6 @@ export class DatasetsSoilDataComponent {
                                     for (let i = 0; i < this.samplings.features.length; i++) {
                                         this.soilChar.push(this.samplings.features[i].properties);
                                     }
-                                    console.log(this.soilChar);
                                 },
                                 err => {
                                     console.error(err);
@@ -123,7 +121,6 @@ export class DatasetsSoilDataComponent {
                                     data = result;
                                     data = JSON.parse(data._body);
                                     data = data.data;
-                                    console.log(data);
                                     this.soilcharURL = data.url;
 
                                     this.apiService.getSamplingsGeoJSON(this.soilcharURL)
@@ -136,7 +133,6 @@ export class DatasetsSoilDataComponent {
                                             for (let i = 0; i < this.samplings.features.length; i++) {
                                                 this.soilChar.push(this.samplings.features[i].properties);
                                             }
-                                            console.log(this.soilChar);
                                         },
                                         err => {
                                             console.error(err);
@@ -170,7 +166,6 @@ export class DatasetsSoilDataComponent {
                         data = result;
                         data = JSON.parse(data._body);
                         data = data.data;
-                        console.log(data);
                         this.soilcharURL = data.url;
 
                         this.apiService.getSamplingsGeoJSON(this.soilcharURL)
@@ -183,7 +178,6 @@ export class DatasetsSoilDataComponent {
                                 for (let i = 0; i < this.samplings.features.length; i++) {
                                     this.soilChar.push(this.samplings.features[i].properties);
                                 }
-                                console.log(this.soilChar);
                             },
                             err => {
                                 console.error(err);

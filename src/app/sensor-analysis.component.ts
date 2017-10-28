@@ -166,7 +166,6 @@ export class AppSensorAnalysisComponent {
                         data = response;
                         data = JSON.parse(data._body);
                         this.sensors = data.data;
-                        console.log(this.sensors);
                         // console.log('sensor count: '+this.sensors.length);
                         // console.log(this.sensors);
                     }

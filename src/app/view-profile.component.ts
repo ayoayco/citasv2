@@ -96,7 +96,6 @@ export class ViewProfileComponent {
                             data = response;
                             data = JSON.parse(data._body);
                             this.user = data;
-                            console.log(this.user);
                             switch(this.user.user_type){
                                 case 4:
                                     this.imgFile = 'avatar-farmer-min.png';
@@ -123,9 +122,6 @@ export class ViewProfileComponent {
             );
         }
 
-        if (this.user.details.department || this.user.details.department !== '') {
-            console.log('department+ ' + this.user.details.department);
-        }
     }
 
     updateUser() {
@@ -137,7 +133,6 @@ export class ViewProfileComponent {
                 data = res;
                 data = JSON.parse(data._body);
                 this.user = data;
-                console.log(this.user);
                 switch(this.user.user_type){
                     case 4:
                         this.imgFile = 'avatar-farmer-min.png';

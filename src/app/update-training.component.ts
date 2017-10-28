@@ -45,7 +45,6 @@ export class UpdateTrainingComponent implements AfterViewInit {
                 data = res;
                 data = JSON.parse(data._body);
                 this.trainings = data.data;
-                console.log(this.trainings);
             }
         )
 
@@ -65,7 +64,6 @@ export class UpdateTrainingComponent implements AfterViewInit {
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                console.log(data);
                 if (data.Success) {
                     window.location.reload();
                 } else {
@@ -80,20 +78,17 @@ export class UpdateTrainingComponent implements AfterViewInit {
         this.selectedTraining = training;
         this.selectedTraining.date_from = this.formatDate(training.date_from);
         this.selectedTraining.date_to = this.formatDate(training.date_to);
-        console.log(this.selectedTraining);
 
         $('#editTrainingModal').modal('toggle');
     }
 
     public viewTraining(training) {
         this.selectedTraining = training;
-        console.log(this.selectedTraining);
         $('#viewTrainingModal').modal('toggle');
     }
 
     public addTraining() {
         this.new.participants = this.new.participants.split(',').map(function(item){return item.trim()});
-        console.log(this.new);
         let data: any;
         this.apiService.addTraining(
             this.sessionService.getLoggedInKey(),
@@ -106,7 +101,6 @@ export class UpdateTrainingComponent implements AfterViewInit {
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                console.log(data);
                 if (data.Success) {
                     window.location.reload();
                     $('#addTrainingModal').modal('hide');
@@ -137,7 +131,6 @@ export class UpdateTrainingComponent implements AfterViewInit {
     }
 
     public deleteEntryNow() {
-        console.log('Delete: ' + this.deleteType + ' ' + this.deleteEntry);
         let data: any;
         this.apiService.deleteEntry(this.sessionService.getLoggedInKey(), this.deleteType, this.deleteEntry)
         .subscribe(

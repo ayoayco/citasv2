@@ -32,7 +32,6 @@ export class DownloadSensorDataComponent implements AfterViewInit, OnChanges{
     }
 
     ngAfterViewInit() {
-        console.log(this.availableDates);
         $('#sensorFromDate').datepicker({
             onSelect: (data, inst) => {
                 this.from = data;
@@ -53,7 +52,6 @@ export class DownloadSensorDataComponent implements AfterViewInit, OnChanges{
         //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
         //Add '${implements OnChanges}' to the class.
         if(changes.availableDates && this.availableDates != undefined && changes.availableDates.firstChange === false) {
-            console.log(this.availableDates);
             if(this.availableDates.minDate == null){
                 $('#sensorFromDate').prop('disabled', true);
                 $('#sensorToDate').prop('disabled', true);
@@ -87,7 +85,6 @@ export class DownloadSensorDataComponent implements AfterViewInit, OnChanges{
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                console.log(data);
                 window.open(data.dl_link, '_blank');
             }
         );
