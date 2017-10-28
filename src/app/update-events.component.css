@@ -150,3 +150,48 @@ span#forgot-span {
     text-align: right;
     padding-left: 45px;
 }
+
+h3:not(.title) {
+    margin-top: -10px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: bold;
+}
+
+.photo-list {
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+}
+
+.photo-item {
+    width: 320px;
+    margin: 0 5px 5px 0;
+    float: left;
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: 0px;
+}
+
+h3 {
+    text-align: center;
+}
+
+#viewEventModal .modal-body {
+    padding: 30px;
+}
+
+#viewEventModal .modal-dialog {
+    width: 750px;
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: 0px;
+}

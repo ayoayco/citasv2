@@ -46,7 +46,6 @@ export class AppLoginComponent {
                 res => {
                     data = res;
                     data = JSON.parse(data._body)
-                    // console.log(data);
                     if (data) {
                         // login success, start session
                         if (data.Success === true) {
@@ -61,11 +60,8 @@ export class AppLoginComponent {
                                 ) {
                                 location.reload();
                             }
-                        } else if (data.err === 'Wrong username/password') {
-                            this.err = 'Wrong username or password.';
-                            // //console.log(this.err);
                         } else {
-                            this.err = 'Something went wrong. Please try again.';
+                            this.err = 'Error: ' + data.error_message;
                             // //console.log(this.err);
                         }
                     } else {
@@ -75,7 +71,6 @@ export class AppLoginComponent {
                     }
                 },
                 err => {
-                    console.error(err);
                     this.err = 'Something went wrong in authenticating. Please contact the administrator';
                 }
             );

@@ -88,28 +88,25 @@
 </div>
 <div class="modal fade" id="viewEventModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" *ngIf="selectedEvent !== undefined">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
+            <h3>{{selectedEvent.event_name}}</h3>
             <div class="modal-body">
-                <form id="surePromptForm" class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <div *ngIf="selectedEvent" class="login-div">
-                            <h4>{{selectedEvent.event_name}}</h4>
-                            <div>
-                                <strong>Venue: </strong>{{selectedEvent.event_venue}}<br />
-                                <strong>Duration: </strong>{{selectedEvent.date_from | date}} - {{selectedEvent.date_to | date}}<br />
-                                <strong>Description: </strong>{{selectedEvent.description}}
-                            </div>
-                            <br />
-                            <button onclick="$('#viewEventModal').modal('hide')" class="btn btn-primary btn-block">Close</button>
-                        </div>
-                    </div>
-                </form>
+                <p>{{selectedEvent.description}}</p>
+                <p><strong>Venue:</strong> {{selectedEvent.event_venue}}</p>
+                <p><strong>Schedule:</strong> {{selectedEvent.date_from | date}} - {{selectedEvent.date_to | date}}</p>
+                <p *ngIf="selectedEvent.photos.length === 0">No images to show for the event.</p>
+                <div *ngIf="selectedEvent.photos.length > 0">
+                    <ul class="photo-list">
+                        <li class="photo-item" *ngFor="let photo of selectedEvent.photos">
+                            <img src="{{photo}}" />
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
