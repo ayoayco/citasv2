@@ -28,18 +28,23 @@ export class CitasApiService {
         entry_id: number,
         upload_type: string,
         image_file: any
-    ){
+    ) {
         $('body').addClass('loading');
 
         const url = this.APIURL + '/web_image?key=' + key;
         const headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
+        headers.set('Content-Type', 'application/octet-stream');
+        headers.set('Upload-Content-Type', image_file.type)
         const options = new RequestOptions({ headers: headers });
 
+        /*
         const body = '&entry_id=' + entry_id +
         '&upload_type=' + upload_type +
         '&image_file=' + image_file;
+        */
+        const body = image_file;
 
         return this.http.post(url, body, options)
             .catch(this.onCatch)
