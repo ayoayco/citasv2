@@ -57,9 +57,10 @@ export class UpdateTeamComponent implements AfterViewInit{
     }
 
     public uploadPhotoNow() {
-        const el = document.getElementById('fileField');
-        const file = el.files[0]; // event.srcElement.files;
+        const files = $('#fileField').prop('files');
+        const file = files[0];
         console.log(file);
+        /*
         let data: any;
         this.apiService.uploadImage(this.sessionService.getLoggedInKey(), this.selectedMember.member_id, 'team', file)
         .subscribe(
@@ -75,6 +76,7 @@ export class UpdateTeamComponent implements AfterViewInit{
                 }
             }
         )
+        */
     }
 
     public viewMember(member: any) {

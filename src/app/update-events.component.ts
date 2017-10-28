@@ -95,8 +95,33 @@ export class UpdateEventsComponent implements AfterViewInit {
         )
     }
 
+    public uploadPhotoNow() {
+        const files = $('#fileField').prop('files');
+        const file = files[0];
+        console.log(file);
+        /*
+        let data: any;
+        this.apiService.uploadImage(this.sessionService.getLoggedInKey(), this.selectedEvent.event_id, 'event', file)
+        .subscribe(
+            res => {
+                data = res;
+                data = JSON.parse(data._body);
+                console.log(data);
+                if(data.Success){
+                    window.location.reload();
+                } else {
+                    this.err = true;
+                    this.msg = 'Error: ' + data.error_message;
+                }
+            }
+        )
+        */
+    }
+
     public uploadPhoto(event: any) {
         this.selectedEvent = event;
+        console.log('Upload photo for: ' + this.selectedEvent.name);
+        $('#uploadPhotoModal').modal('toggle');
     }
 
     public editEventNow() {
