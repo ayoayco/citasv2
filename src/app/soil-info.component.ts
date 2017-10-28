@@ -10,9 +10,9 @@ import { Component, Input } from '@angular/core';
 export class SoilInfoComponent {
     @Input() soilChar: any = undefined;
     @Input() selectedFarm: Farm;
+    @Input() soilcharURL: string;
 
     constructor() {
-
     }
 
     public getBgColor(result: string){
