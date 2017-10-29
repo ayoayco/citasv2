@@ -124,7 +124,7 @@ export class UpdateEventsComponent implements AfterViewInit {
             this.sessionService.getLoggedInKey(),
             this.selectedEvent.event_name,
             this.selectedEvent.event_venue,
-            this.selectedEvent.event_description,
+            this.selectedEvent.description,
             this.selectedEvent.date_from,
             this.selectedEvent.date_to,
             this.selectedEvent.event_id
