@@ -10,6 +10,8 @@
                 Name: <strong>{{farm_name}}</strong><br /> Description: <strong>{{farm_description}}</strong><br /> Location: <strong>{{farm_location}}</strong><br />
             </p>
             <p>Please draw the boundaries of your farm on the map using the tools on the top right side of the window.</p>
+            <label for="farm_photo" id="farm_photo-lbl">Farm Photo:</label>
+            <input type="file" id="farm_photo-fld" name="farm_photo" placeholder="Farm Photo" />
             <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
             <button class="btn btn-primary clickable" (click)="submitFarmInfo()">Add Farm</button>
             <a class="btn btn-default clickable" (click)="showContent1()">Cancel</a>
