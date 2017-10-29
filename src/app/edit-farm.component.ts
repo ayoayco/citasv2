@@ -132,6 +132,7 @@ export class EditFarmComponent implements AfterViewInit {
                 data = res;
                 data = JSON.parse(data._body);
                 if (data.Success && files.length === 0) {
+                    this.sessionService.saveData('farm_id', this.selectedFarm.farm_id.toString());
                     this.router.navigate(['/']);
                 } else if (data.Success && files.length > 0) {
                     const file = files[0];
@@ -153,6 +154,7 @@ export class EditFarmComponent implements AfterViewInit {
                                 data = JSON.parse(data);
                                 console.log(data);
                                 if (data.Success) {
+                                    this.sessionService.saveData('farm_id', this.selectedFarm.farm_id.toString());
                                     this.router.navigate(['/']);
                                 } else {
                                     this.err = true;
