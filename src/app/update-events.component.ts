@@ -87,6 +87,7 @@ export class UpdateEventsComponent implements AfterViewInit {
                     this.err = true;
                     this.msg = 'Error: ' + data.error_message;
                 }
+
             }
         )
     }
@@ -94,23 +95,31 @@ export class UpdateEventsComponent implements AfterViewInit {
     public uploadPhotoNow() {
         const files = $('#fileField').prop('files');
         const file = files[0];
-        /*
+        console.log(file);
         let data: any;
-        this.apiService.uploadImage(this.sessionService.getLoggedInKey(), this.selectedEvent.event_id, 'event', file)
-        .subscribe(
-            res => {
-                data = res;
-                data = JSON.parse(data._body);
-                // console.log(data);
-                if(data.Success){
-                    window.location.reload();
-                } else {
-                    this.err = true;
-                    this.msg = 'Error: ' + data.error_message;
+        const ValidImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+        if ($.inArray(file.type, ValidImageTypes) < 0) {
+            this.err = true;
+            this.msg = 'Error: File is not an image';
+        } else if (file.size > 10485760) {
+            this.err = true;
+            this.msg = 'Error: File is too large';
+        } else {
+            this.apiService.uploadImage(this.sessionService.getLoggedInKey(), this.selectedEvent.event_id, 'event', file)
+            .subscribe(
+                res => {
+                    data = res;
+                    data = JSON.parse(data);
+                    console.log(data);
+                    if (data.Success) {
+                        window.location.reload();
+                    } else {
+                        this.err = true;
+                        this.msg = 'Error: ' + data.error_message;
+                    }
                 }
-            }
-        )
-        */
+            )
+        }
     }
 
     public uploadPhoto(event: any) {

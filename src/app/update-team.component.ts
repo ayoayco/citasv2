@@ -4,7 +4,6 @@ import { AppSessionService } from './app.session.service';
 import { CitasApiService } from './citas.api.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { UploadService } from './app.upload.service';
 
 @Component({
     selector: 'update-team',
@@ -12,8 +11,7 @@ import { UploadService } from './app.upload.service';
     styleUrls: ['./update-team.component.css'],
     providers: [
         CitasApiService,
-        AppSessionService,
-        UploadService
+        AppSessionService
     ]
 })
 
@@ -29,7 +27,6 @@ export class UpdateTeamComponent implements AfterViewInit{
     file: any;
 
     constructor(
-        private uploadService: UploadService,
         private apiService: CitasApiService,
         private router: Router,
         private titleService: Title,
@@ -58,23 +55,31 @@ export class UpdateTeamComponent implements AfterViewInit{
     public uploadPhotoNow() {
         const files = $('#fileField').prop('files');
         const file = files[0];
-        /*
+        console.log(file);
         let data: any;
-        this.apiService.uploadImage(this.sessionService.getLoggedInKey(), this.selectedMember.member_id, 'team', file)
-        .subscribe(
-            res => {
-                data = res;
-                data = JSON.parse(data._body);
-                // console.log(data);
-                if(data.Success){
-                    window.location.reload();
-                } else {
-                    this.err = true;
-                    this.msg = 'Error: ' + data.error_message;
+        const ValidImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+        if ($.inArray(file.type, ValidImageTypes) < 0) {
+            this.err = true;
+            this.msg = 'Error: File is not an image';
+        } else if (file.size > 10485760) {
+            this.err = true;
+            this.msg = 'Error: File is too large';
+        } else {
+            this.apiService.uploadImage(this.sessionService.getLoggedInKey(), this.selectedMember.member_id, 'team', file)
+            .subscribe(
+                res => {
+                    data = res;
+                    data = JSON.parse(data);
+                    console.log(data);
+                    if (data.Success) {
+                        window.location.reload();
+                    } else {
+                        this.err = true;
+                        this.msg = 'Error: ' + data.error_message;
+                    }
                 }
-            }
-        )
-        */
+            )
+        }
     }
 
     public viewMember(member: any) {

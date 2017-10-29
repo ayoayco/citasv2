@@ -1,3 +1,4 @@
+import { observable } from 'rxjs/symbol/observable';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
@@ -30,37 +31,43 @@ export class CitasApiService {
         image_file: any
     ) {
         $('body').addClass('loading');
-
         const url = this.APIURL + '/web_image?key=' + key;
-        const headers = new Headers({
-            'Content-Type': 'application/x-www-form-urlencoded'
-        });
-        headers.set('Content-Type', 'application/octet-stream');
-        headers.set('Upload-Content-Type', image_file.type)
-        const options = new RequestOptions({ headers: headers });
 
-        /*
-        const body = '&entry_id=' + entry_id +
-        '&upload_type=' + upload_type +
-        '&image_file=' + image_file;
-        */
-        const body = image_file;
+        return Observable.create(observer => {
+            const formData: FormData = new FormData(),
+            request: XMLHttpRequest = new XMLHttpRequest();
 
-        return this.http.post(url, body, options)
-            .catch(this.onCatch)
-            .do(
-                res => {
-                    this.onSuccess(res);
-                },
-                error => {
-                    this.onError(this, error);
+            formData.append('upload_type', upload_type);
+            formData.append('image_file', image_file);
+            formData.append('entry_id', entry_id.toString());
+
+            request.onreadystatechange = () => {
+                if (request.readyState === 4) {
+                    if (request.status === 200) {
+                        const data = JSON.parse(request.response);
+                        observer.next(request.response);
+                        observer.complete();
+                    } else {
+                        observer.error(request.response);
+                    }
                 }
-            )
-            .finally(
-                () => {
-                    this.onEnd();
-                }
-            );
+            };
+            request.open('POST', url, true);
+            request.send(formData);
+        }).catch(this.onCatch)
+        .do(
+            res => {
+                this.onSuccess(res);
+            },
+            error => {
+                this.onError(this, error);
+            }
+        )
+        .finally(
+            () => {
+                this.onEnd();
+            }
+        );
     }
 
     public editResearch(key: string,
@@ -639,8 +646,8 @@ export class CitasApiService {
 
         const url = this.APIURL + '/add_farm?key=' + key;
         const coords = JSON.stringify(farm_site_coordinates);
-        const headers = new Headers({ 
-            'Content-Type': 'application/x-www-form-urlencoded' 
+        const headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
         });
         const options = new RequestOptions({ headers: headers });
 
@@ -778,7 +785,7 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/reset_password?key=' + key;
 
-        const headers = new Headers({ 
+        const headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
         const options = new RequestOptions({ headers: headers });
@@ -808,7 +815,7 @@ export class CitasApiService {
         $('body').addClass('loading');
         const url = this.APIURL + '/forgot_password';
 
-        const headers = new Headers({ 
+        const headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
         const options = new RequestOptions({ headers: headers });
@@ -868,17 +875,17 @@ export class CitasApiService {
     }
 
     public getSensorsFilterDownloadLink(
-        key: string, 
-        farmID: string, 
-        siteID: string, 
-        fromDate: Date, 
+        key: string,
+        farmID: string,
+        siteID: string,
+        fromDate: Date,
         toDate: Date
     ): Observable <{}> {
         $('body').addClass('loading');
 
-        const url = this.APIURL + '/download/sensor/filter?key=' + key 
-        + '&f=' + farmID 
-        + '&s=' + siteID 
+        const url = this.APIURL + '/download/sensor/filter?key=' + key
+        + '&f=' + farmID
+        + '&s=' + siteID
         + '&d1=' + fromDate
         + '&d2=' + toDate;
 
@@ -900,7 +907,7 @@ export class CitasApiService {
     }
 
     public getSensorCSVDownloadLink(
-        key: string, 
+        key: string,
         sensorName: string
     ): Observable <{}> {
         $('body').addClass('loading');
@@ -924,7 +931,7 @@ export class CitasApiService {
     }
 
     public getPlantImagesDownloadLink(
-        key: string, 
+        key: string,
         plantID: string
     ): Observable <{}> {
         $('body').addClass('loading');
@@ -948,7 +955,7 @@ export class CitasApiService {
     }
 
     public getPlantImages(
-        key: string, 
+        key: string,
         plantID: string): Observable <{}> {
         $('body').addClass('loading');
         const url = this.APIURL + '/plantimages/' + plantID + '?key=' + key;
