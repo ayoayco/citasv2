@@ -151,7 +151,7 @@ export class CitasApiService {
     public editEvent(key: string,
         event_name: string,
         event_venue: string,
-        event_description: string,
+        description: string,
         date_from: string,
         date_to: string,
         entry_id: number
@@ -166,7 +166,7 @@ export class CitasApiService {
 
         const body = '&event_name=' + event_name +
         '&event_venue=' + event_venue +
-        '&event_description=' + event_description +
+        '&description=' + description +
         '&date_from=' + date_from +
         '&date_to=' + date_to ;
 
@@ -322,7 +322,7 @@ export class CitasApiService {
     public addEvent(key: string,
         event_name: string,
         event_venue: string,
-        event_description: string,
+        description: string,
         date_from: string,
         date_to: string
     ) {
@@ -336,7 +336,7 @@ export class CitasApiService {
 
         const body = '&event_name=' + event_name +
         '&event_venue=' + event_venue +
-        '&event_description=' + event_description +
+        '&description=' + description +
         '&date_from=' + date_from +
         '&date_to=' + date_to ;
 

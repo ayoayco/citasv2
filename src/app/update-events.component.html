@@ -46,7 +46,7 @@
                             <input [(ngModel)]="new.event_name" name="event_name" type="text" id="event_name" placeholder="Event Name" class="form-control" autofocus>
                             <label for="event_venue" class="control-label">Event Venue</label>
                             <input [(ngModel)]="new.event_venue" name="event_venue" type="text" id="event_venue" placeholder="Event Venue" class="form-control">
-                            <label for="event_description" class="control-label">Event Description</label>
+                            <label for="description" class="control-label">Event Description</label>
                             <input [(ngModel)]="new.description" name="description" type="text" id="description" placeholder="Description" class="form-control">
                             <label for="date_from" class="control-label">Start Date</label>
                             <input [(ngModel)]="new.date_from" name="date_from" id="date_from" placeholder="Start Date" class="form-control">
@@ -130,8 +130,8 @@
                             <input [(ngModel)]="selectedEvent.event_name" name="event_name" type="text" id="event_name" placeholder="Event Name" class="form-control" autofocus>
                             <label for="event_venue" class="control-label">Event Venue</label>
                             <input [(ngModel)]="selectedEvent.event_venue" name="event_venue" type="text" id="event_venue" placeholder="Event Venue" class="form-control">
-                            <label for="event_description" class="control-label">Event Description</label>
-                            <input [(ngModel)]="selectedEvent.event_description" name="description" type="text" id="description" placeholder="Description" class="form-control">
+                            <label for="edit_description" class="control-label">Event Description</label>
+                            <input [(ngModel)]="selectedEvent.description" name="edit_description" type="text" id="edit_description" placeholder="Description" class="form-control">
                             <label for="edit_date_from" class="control-label">Start Date</label>
                             <input [(ngModel)]="selectedEvent.date_from" name="edit_date_from" id="edit_date_from" placeholder="Start Date" class="form-control">
                             <label for="edit_date_to" class="control-label">End Date</label>
