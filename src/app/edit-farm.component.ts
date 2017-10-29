@@ -115,6 +115,10 @@ export class EditFarmComponent implements AfterViewInit {
             // farm bounds not edited
             this.latlngs = this.selectedFarm.geometry;
         }
+
+        const files = $('#farm_photo-fld').prop('files');
+        console.log(files);
+
         this.apiService.editFarm(
             this.sessionService.getLoggedInKey(),
             this.farm_id,
@@ -127,8 +131,37 @@ export class EditFarmComponent implements AfterViewInit {
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                if(data.Success){
+                if (data.Success && files.length === 0) {
                     this.router.navigate(['/']);
+                } else if (data.Success && files.length > 0) {
+                    const file = files[0];
+                    console.log(file);
+                    const ValidImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+                    if ($.inArray(file.type, ValidImageTypes) < 0) {
+                        this.err = true;
+                        this.msg = 'Error: File is not an image';
+                        console.error(this.msg);
+                    } else if (file.size > 10485760) {
+                        this.err = true;
+                        this.msg = 'Error: File is too large';
+                        console.error(this.msg);
+                    } else {
+                        this.apiService.uploadImage(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id, 'farm', file)
+                        .subscribe(
+                            response => {
+                                data = response;
+                                data = JSON.parse(data);
+                                console.log(data);
+                                if (data.Success) {
+                                    this.router.navigate(['/']);
+                                } else {
+                                    this.err = true;
+                                    this.msg = 'Error: ' + data.error_message;
+                                }
+                            }
+                        )
+                    }
+
                 }
             }
         )
