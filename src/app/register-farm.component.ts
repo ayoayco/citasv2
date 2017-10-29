@@ -87,6 +87,11 @@ export class RegisterFarmComponent implements AfterViewInit {
             this.err = true;
             this.msg = '<strong>Error: </strong>Please draw farm boundaries.';
         } else {
+
+            const files = $('#farm_photo-fld').prop('files');
+            console.log(files);
+            let _farm_id: any;
+
             this.apiService.addFarm(
                 this.sessionService.getLoggedInKey(),
                 this.farm_name,
@@ -98,13 +103,42 @@ export class RegisterFarmComponent implements AfterViewInit {
                 res => {
                     data = res;
                     data = JSON.parse(data._body);
-                    if (data.Success) {
-                        this.sessionService.saveData('farm_id', data.farm_id);
-                        // ask if user wants to add sites
-                        // this.showAddSitePrompt();
+                    _farm_id = data.farm_id;
+                    if (data.Success && files.length === 0) {
+                        this.sessionService.saveData('farm_id', _farm_id);
                         this.router.navigate(['/']);
+                    } else if (data.Success && files.length > 0) {
+                        const file = files[0];
+                        console.log(file);
+                        const ValidImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+                        if ($.inArray(file.type, ValidImageTypes) < 0) {
+                            this.err = true;
+                            this.msg = 'Error: File is not an image';
+                            console.error(this.msg);
+                        } else if (file.size > 10485760) {
+                            this.err = true;
+                            this.msg = 'Error: File is too large';
+                            console.error(this.msg);
+                        } else {
+                            this.apiService.uploadImage(this.sessionService.getLoggedInKey(), _farm_id, 'farm', file)
+                            .subscribe(
+                                response => {
+                                    data = response;
+                                    data = JSON.parse(data);
+                                    console.log(data);
+                                    if (data.Success) {
+                                        this.sessionService.saveData('farm_id', _farm_id.toString());
+                                        this.router.navigate(['/']);
+                                    } else {
+                                        this.err = true;
+                                        this.msg = 'Error: ' + data.error_message;
+                                    }
+                                }
+                            )
+                        }
                     } else {
-                        alert('The API reported an error: ' + data.error_message);
+                        this.err = true;
+                        this.msg = 'Error: ' + data.error_message;
                     }
                 },
                 err => {
