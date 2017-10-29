@@ -30,7 +30,7 @@ export class CitasApiService {
         upload_type: string,
         image_file: any
     ) {
-        $('body').addClass('loading');
+        $('body').addClass('uploading');
         const url = this.APIURL + '/web_image?key=' + key;
 
         return Observable.create(observer => {
@@ -65,7 +65,7 @@ export class CitasApiService {
         )
         .finally(
             () => {
-                this.onEnd();
+                this.onUploadEnd();
             }
         );
     }
@@ -1352,6 +1352,10 @@ export class CitasApiService {
     private onError(e, res: Response): void {
         console.error('Error, status code: ' + res.status);
         console.log(e);
+    }
+
+    private onUploadEnd(): void {
+        $('body').removeClass('uploading');
     }
 
     private onEnd(): void {

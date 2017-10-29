@@ -158,6 +158,20 @@ img {
     background: rgba( 3, 3, 3, .8) url('assets/images/ajax-loader.gif') 50% 50% no-repeat !important;
 }
 
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+
+body.uploading {
+    overflow: hidden;
+}
+
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+
+body.uploading .modal {
+    display: block;
+}
 
 /* When the body has the loading class, we turn
    the scrollbar off with overflow:hidden */

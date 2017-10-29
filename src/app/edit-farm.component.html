@@ -12,6 +12,8 @@
                     <div>
                         <label for="farm_name" id="farm_name-lbl">Farm Name:</label>
                         <input type="text" id="farm_name-fld" class="form-control" [(ngModel)]="farm_name" name="farm_name" placeholder="Farm Name" />
+                        <label for="farm_photo" id="farm_photo-lbl">Farm Photo:</label>
+                        <input type="file" id="farm_photo-fld" name="farm_photo" placeholder="Farm Photo" />
                     </div>
                     <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
                 </div>
