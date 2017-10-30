@@ -45,6 +45,18 @@ export class UpdateResearchComponent implements AfterViewInit {
                 data = res;
                 data = JSON.parse(data._body);
                 this.researches = data.data;
+                for (let i = 0; i < this.researches.length; i++) {
+                    let datestr = this.researches[i].date_from;
+                    datestr = datestr.replace(/-/g, '/');
+                    this.researches[i].date_from = new Date(datestr);
+                    datestr = this.researches[i].date_to;
+                    datestr = datestr.replace(/-/g, '/');
+                    this.researches[i].date_to = new Date(datestr);
+                }
+                 this.researches.sort(function(a,b){
+                    return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
+                });
+
             }
         )
     }

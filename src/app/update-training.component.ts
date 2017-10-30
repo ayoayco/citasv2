@@ -45,6 +45,17 @@ export class UpdateTrainingComponent implements AfterViewInit {
                 data = res;
                 data = JSON.parse(data._body);
                 this.trainings = data.data;
+                for (let i = 0; i < this.trainings.length; i++) {
+                    let datestr = this.trainings[i].date_from;
+                    datestr = datestr.replace(/-/g, '/');
+                    this.trainings[i].date_from = new Date(datestr);
+                    datestr = this.trainings[i].date_to;
+                    datestr = datestr.replace(/-/g, '/');
+                    this.trainings[i].date_to = new Date(datestr);
+                }
+                this.trainings.sort(function(a,b){
+                    return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
+                });
             }
         )
 
