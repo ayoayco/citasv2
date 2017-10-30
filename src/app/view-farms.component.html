@@ -12,7 +12,7 @@
             <div class="row farm-row" *ngFor="let selectedFarm of this.farms">
                 <div class="col col-md-12">
                     <div class="row">
-                        <farm-info class="col col-md-12 col-sm-12" [plants]="plants[selectedFarm.farm_id]" [sensors]="sensors[selectedFarm.farm_id]" [sites]="sites[selectedFarm.farm_id]" [selectedFarm]="selectedFarm"></farm-info>
+                        <farm-info class="col col-md-12 col-sm-12" [selectedFarm]="selectedFarm"></farm-info>
                     </div>
                     <div class="row" *ngIf="selectedFarm.sensor_status !== undefined">
                         <plants-info class="col col-md-6 col-sm-12" [selectedFarm]="selectedFarm"></plants-info>

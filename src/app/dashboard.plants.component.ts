@@ -27,7 +27,7 @@ export class DashboardPlantsComponent implements OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         // Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
         // Add 'implements OnChanges' to the class.
-        if (changes.selectedFarm  && changes.selectedFarm.firstChange === false ) {
+        if (changes.selectedFarm) {
             if (this.selectedFarm.health_summary) {
                 this.total = this.selectedFarm.health_summary.healthy
                     + this.selectedFarm.health_summary.infected

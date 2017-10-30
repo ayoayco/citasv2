@@ -51,34 +51,6 @@ export class ViewFarmsComponent {
                             data = response;
                             data = JSON.parse(data._body);
                             this.farms[i] = data.data[0];
-                            this.apiService.getPlantList(this.sessionService.getLoggedInKey(), this.farms[i].farm_id.toString())
-                            .subscribe(
-                                result => {
-                                    data = result;
-                                    data = JSON.parse(data._body);
-                                    const plant = data.data;
-                                    this.plants[this.farms[i].farm_id] = plant;
-                                }
-                            );
-                            this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.farms[i].farm_id.toString())
-                            .subscribe(
-                                result => {
-                                    data = result;
-                                    data = JSON.parse(data._body);
-                                    const sensor = data.data;
-                                    this.sensors[this.farms[i].farm_id] = sensor;
-                                }
-                            );
-                             this.apiService.getSites(this.sessionService.getLoggedInKey(), this.farms[i].farm_id.toString())
-                            .subscribe(
-                                result => {
-                                    data = result;
-                                    data = JSON.parse(data._body);
-                                    const site = data.data;
-                                    this.sites[this.farms[i].farm_id] = site;
-                                }
-                            );
-
                         }
                     );
                 }
