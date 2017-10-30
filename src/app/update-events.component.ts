@@ -45,9 +45,19 @@ export class UpdateEventsComponent implements AfterViewInit {
                 data = res;
                 data = JSON.parse(data._body);
                 this.events = data.data;
+                for (let i = 0; i < this.events.length; i++) {
+                 let datestr = this.events[i].date_from;
+                    datestr = datestr.replace(/-/g, '/');
+                    this.events[i].date_from = new Date(datestr);
+                    datestr = this.events[i].date_to;
+                    datestr = datestr.replace(/-/g, '/');
+                    this.events[i].date_to = new Date(datestr);
+                }
+                this.events.sort(function(a, b){
+                    return (new Date(b.date_from).getTime() - new Date(a.date_from).getTime());
+                });
             }
         )
-
     }
 
     public addEvent(){

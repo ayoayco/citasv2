@@ -52,8 +52,8 @@ export class DownloadSensorDataComponent implements AfterViewInit, OnChanges{
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-        //Add '${implements OnChanges}' to the class.
+        // Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+        // Add '${implements OnChanges}' to the class.
         if(changes.availableDates && this.availableDates != undefined && changes.availableDates.firstChange === false) {
             if(this.availableDates.minDate == null){
                 $('#sensorFromDate').prop('disabled', true);
