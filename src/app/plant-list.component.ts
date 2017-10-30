@@ -61,6 +61,7 @@ export class PlantListComponent implements AfterViewInit {
     }
 
     public downloadPlant() {
+        this.err = false;
         if (this.selectedPlant.plant_id !== '') {
             let data: any;
             this.apiService.getPlantImagesDownloadLink(this.sessionService.getLoggedInKey(), this.selectedPlant.plant_id)

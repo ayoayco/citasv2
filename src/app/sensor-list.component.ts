@@ -64,6 +64,7 @@ export class SensorListComponent implements AfterViewInit {
     }
 
     public downloadSensor(){
+        this.err = false;
         if (this.selectedSensorName !== '') {
             let data: any;
             this.apiService.getSensorCSVDownloadLink(this.sessionService.getLoggedInKey(), this.selectedSensorName)
