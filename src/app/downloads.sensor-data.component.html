@@ -22,5 +22,6 @@
         </div>
     </div>
     <p *ngIf="to && from" class="text-success text-center">Download data from <strong>{{from | date:'longDate'}}</strong> to <strong>{{to | date:'longDate'}}</strong>?</p>
+    <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
     <button *ngIf="to && from" (click)="downloadSensorData()" class="btn btn-primary btn-block">Download Sensor Data</button>
 </div>

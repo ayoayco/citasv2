@@ -210,17 +210,4 @@ export class DatasetsSensorDataComponent {
         );
     }
 
-    public downloadSensor(){
-        if (this.selectedSensorName !== '') {
-            let data: any;
-            this.apiService.getSensorCSVDownloadLink(this.sessionService.getLoggedInKey(), this.selectedSensorName)
-            .subscribe(
-                res => {
-                    data = res;
-                    data = JSON.parse(data._body);
-                    window.open(data.dl_link, '_blank');
-                }
-            )
-        }
-    }
 }

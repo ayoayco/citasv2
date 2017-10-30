@@ -22,6 +22,8 @@ export class DownloadSensorDataComponent implements AfterViewInit, OnChanges{
     @Input() selectedFarm: Farm;
     @Input() sites: Site[];
     @Input() availableDates: any;
+    err: boolean;
+    msg: string;
 
     selectedSiteID = 'all';
 
@@ -29,6 +31,7 @@ export class DownloadSensorDataComponent implements AfterViewInit, OnChanges{
         private sessionService: AppSessionService,
         private apiService: CitasApiService
     ) {
+        this.err = false;
     }
 
     ngAfterViewInit() {
@@ -85,7 +88,12 @@ export class DownloadSensorDataComponent implements AfterViewInit, OnChanges{
             res => {
                 data = res;
                 data = JSON.parse(data._body);
-                window.open(data.dl_link, '_blank');
+                if (data.Success) {
+                    window.open(data.dl_link, '_blank');
+                } else {
+                    this.err = true;
+                    this.msg = 'Error: ' + data.error_message;
+                }
             }
         );
     }

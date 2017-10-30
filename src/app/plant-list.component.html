@@ -16,5 +16,6 @@
         </ul>
         <map [zoomTo]="zoomTo" [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" (selectPlant)="onSelectPlant($event)" [sites]="sites"></map>
     </div>
+    <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
     <button (click)="downloadPlant()" *ngIf="selectedPlant" class="btn btn-primary btn-block">Download Image Data</button>
 </div>
