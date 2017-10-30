@@ -82,6 +82,7 @@ export class DownloadPlantDataComponent implements AfterViewInit, OnChanges{
 
     public downloadPlantData() {
         let data: any;
+        this.err = false;
         this.apiService.getPlantsFilterDownloadLink(
             this.sessionService.getLoggedInKey(),
             this.selectedFarm.farm_id.toString(),

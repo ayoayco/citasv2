@@ -78,6 +78,7 @@ export class DownloadSensorDataComponent implements AfterViewInit, OnChanges{
 
     public downloadSensorData() {
         let data: any;
+        this.err = false;
         this.apiService.getSensorsFilterDownloadLink(
             this.sessionService.getLoggedInKey(),
             this.selectedFarm.farm_id.toString(),
