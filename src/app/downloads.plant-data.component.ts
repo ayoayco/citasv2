@@ -19,7 +19,8 @@ export class DownloadPlantDataComponent implements AfterViewInit, OnChanges{
     from: Date = undefined;
     to: Date = undefined;
     health = 'all';
-    error = '';
+    err: boolean;
+    msg: string;
 
     @Input() selectedFarm: Farm;
     @Input() sites: Site[];
@@ -31,6 +32,7 @@ export class DownloadPlantDataComponent implements AfterViewInit, OnChanges{
         private sessionService: AppSessionService,
         private apiService: CitasApiService
     ) {
+        this.err = false;
     }
 
     ngAfterViewInit() {
@@ -95,8 +97,8 @@ export class DownloadPlantDataComponent implements AfterViewInit, OnChanges{
                 if (data.Success) {
                     window.open(data.dl_link, '_blank');
                 } else {
-                    this.error = data.err;
-                    // console.log(this.error);
+                    this.err = true;
+                    this.msg = 'Error: ' + data.error_message;
                 }
             }
         );

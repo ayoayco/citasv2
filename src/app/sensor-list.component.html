@@ -16,5 +16,6 @@
         </ul>
         <map [zoomTo]="zoomTo" [zoomControl]="true" [selectedFarm]="selectedFarm" [sensors]="sensors" [sites]="sites" (selectSensor)="onSelectSensor($event)"></map>
     </div>
+    <div *ngIf="err" [innerHTML]="msg" class="alert alert-danger"></div>
     <button (click)="downloadSensor()" *ngIf="selectedSensorName" class="btn btn-primary btn-block">Download Sensor Data</button>
 </div>

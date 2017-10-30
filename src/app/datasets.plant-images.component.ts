@@ -23,7 +23,6 @@ export class DatasetsPlantImagesComponent {
     selectedPlant: Plant = new Plant();
     sites: any;
 
-
     constructor(
         private sessionService: AppSessionService,
         private router: Router,
@@ -194,18 +193,4 @@ export class DatasetsPlantImagesComponent {
         );
     }
 
-    public downloadPlant() {
-        if (this.selectedPlant.plant_id !== '') {
-            let data: any;
-            this.apiService.getPlantImagesDownloadLink(this.sessionService.getLoggedInKey(), this.selectedPlant.plant_id)
-            .subscribe(
-                res => {
-                    data = res;
-                    data = JSON.parse(data._body);
-                    window.open(data.dl_link, '_blank');
-                    // console.log(data);
-                }
-            );
-        }
-    }
 }

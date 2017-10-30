@@ -22,11 +22,14 @@ export class SensorListComponent implements AfterViewInit {
     selectedSensorReadings: SensorReading[] = [];
     zoomTo: number[] = undefined;
     @Output() selectSensor = new EventEmitter<{}>();
+    err: boolean;
+    msg: string;
 
     constructor(
         private sessionService: AppSessionService,
         private apiService: CitasApiService
         ) {
+            this.err = false;
     }
 
     ngAfterViewInit() {
@@ -68,7 +71,12 @@ export class SensorListComponent implements AfterViewInit {
                 res => {
                     data = res;
                     data = JSON.parse(data._body);
-                    window.open(data.dl_link, '_blank');
+                    if (data.Success) {
+                        window.open(data.dl_link, '_blank');
+                    } else {
+                        this.err = true;
+                        this.msg = 'Error: ' + data.error_message;
+                    }
                 }
             );
         }
