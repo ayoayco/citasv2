@@ -1,5 +1,7 @@
 # Citas V2 Frontend
 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
+
 ## Setting Up for Development
 To setup your development environment, do the following:
 1. Install [NodeJS](https://nodejs.org/en/).
@@ -8,7 +10,6 @@ To setup your development environment, do the following:
 4. Install dependencies with: `npm install`.
 5. Angular CLI also needs to be installed globally: `npm i -g @angular/cli`
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
 **Required knowledge:** TypeScript, Angular, Angular CLI, Node, Leaflet, jQuery, HTTP, Bootstrap
 
