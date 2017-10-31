@@ -29,12 +29,12 @@ About | about.component.ts,<br /> about.component.html,<br /> about.component.cs
 Blank | blank.component.ts,<br /> blank.component.html,<br /> blank.component.css | Contains the Component that displays Lorem Ipsum 
 Contact Us | contact-us.component.ts,<br /> contact-us.component.html,<br /> contact-us.component.css | Component for the Contact Us page
 Dashboard | dashboard.component.ts,<br /> dashboard.component.html,<br /> dashboard.component.css | The parent component for the user dashboard
-Dashboard Farm Info | dashboard.farm-info.component.ts,<br /> dashboard.farm-info.component.html,<br /> dashboard.farm-info.component.css | Displays information of farm in the dashboard
-Dashboard Farms | dashboard.farms.component.ts,<br /> dashboard.farms.component.html,<br /> dashboard.farms.component.css | Lists all the first three farms and a link to view all farms
-Dashboard Plant Health | dashboard.plant-health.component.ts,<br /> dashboard.plant-health.component.html,<br /> dashboard.plant-health.component.css | Displays a historical bar chart of plant health 
-Dashboard Plants | dashboard.plants.component.ts,<br /> dashboard.plants.component.html,<br /> dashboard.plants.component.css | Display a summary of plants' health (health, infected, unknown, and total)
-Dashboard Sensors | dashboard.sensors.component.ts,<br /> dashboard.sensors.component.html,<br /> dashboard.sensors.component.css | Displays a summary of data from the sensors
-Dashboard Sidebar | dashboard.sidebar.component.ts,<br /> dashboard.sidebar.component.html,<br /> dashboard.sidebar.component.css | Handles navigation in the sidebar (when logged in)
+Dashboard <br /> Farm Info | dashboard.farm-info.component.ts,<br /> dashboard.farm-info.component.html,<br /> dashboard.farm-info.component.css | Displays information of farm in the dashboard
+Dashboard <br /> Farms | dashboard.farms.component.ts,<br /> dashboard.farms.component.html,<br /> dashboard.farms.component.css | Lists all the first three farms and a link to view all farms
+Dashboard <br /> Plant Health | dashboard.plant-health.component.ts,<br /> dashboard.plant-health.component.html,<br /> dashboard.plant-health.component.css | Displays a historical bar chart of plant health 
+Dashboard <br /> Plants | dashboard.plants.component.ts,<br /> dashboard.plants.component.html,<br /> dashboard.plants.component.css | Display a summary of plants' health (health, infected, unknown, and total)
+Dashboard <br /> Sensors | dashboard.sensors.component.ts,<br /> dashboard.sensors.component.html,<br /> dashboard.sensors.component.css | Displays a summary of data from the sensors
+Dashboard <br /> Sidebar | dashboard.sidebar.component.ts,<br /> dashboard.sidebar.component.html,<br /> dashboard.sidebar.component.css | Handles navigation in the sidebar (when logged in)
 Datasets Plant Images | datasets.plant-images.component.ts,<br /> datasets.plant-images.component.html,<br /> datasets.plant-images.component.css | Displays all available images for the plants
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
