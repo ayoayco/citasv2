@@ -34,7 +34,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Services, Models, Pipes, and Components
+## Services, Models, Custom Pipes, and Components
 
 This section lists the different parts of the app. Source files are in `src/app`
 
@@ -58,7 +58,7 @@ Sensor | models/sensor.ts | Object model describing sensor properties
 Site | models/site.ts | Object model describing site properties
 User | models/user.ts | Object model describing user properties
 
-### Pipes
+### Custom Pipes
 Pipe Name | Files | Definition
 --- | --- | ---
 Analysis Pipe | pipes/analysis.pipe.ts | Format analysis text into verbose
