@@ -17,14 +17,14 @@ To setup your development environment, do the following:
 2. [Google Chrome](https://www.google.com/chrome/browser/desktop/index.html) for checking/debugging the web app
 
 ### Required Knowledge:
-1. TypeScript
-2. Angular
-3. Angular CLI
-4. Node
-5. Leaflet
-6. jQuery
-7. HTTP
-8. Bootstrap
+1. [TypeScript](https://www.typescriptlang.org/)
+2. [Angular](https://angular.io/)
+3. [Angular CLI](https://cli.angular.io/)
+4. [Node](https://nodejs.org/en/)
+5. [Leaflet](http://leafletjs.com/)
+6. [jQuery](https://jquery.com/)
+7. [HTTP](https://angular.io/guide/http)
+8. [Bootstrap](http://getbootstrap.com/)
 
 ## Code scaffolding
 
