@@ -49,6 +49,7 @@ Citas API Service | citas.api.service.ts | Service for communication with the ba
 ### Models
 
 Model<br />Name | Files | Definition
+--- | --- | ---
 Farm | models/farm.ts | center: number[];<br />farm_description: string;<br />farm_id: number;<br />farm_location: string;<br />farm_name: string;<br />farm_owner: string;<br />farm_photo: string;<br />farm_size: string;<br />foc_present: boolean;<br />foc_prevention: boolean;<br />geocode: string;<br />geometry: any[];<br />health_summary: any;<br />sensor_status: any;<br />soil_management: boolean;<br />
 
 
