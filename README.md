@@ -88,12 +88,20 @@ Register Farm | register-farm.component.ts,<br /> register-farm.component.html,<
 Registration | registration.component.ts,<br /> registration.component.html,<br /> registration.component.css | Displays a form for user registration
 Reset Password | reset-password.component.ts,<br /> reset-password.component.html,<br /> reset-password.component.css | Displays a modal with a form for resetting user password
 Sensor Analysis | sensor-analysis.component.ts,<br /> sensor-analysis.component.html,<br /> sensor-analysis.component.css | Parent component for the Sensor Analysis page
-App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
-App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
-App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
-App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
-App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
-App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
+Sensor Analysis<br />Sensor Info | sensor-analysis.sensor-info.component.ts,<br /> sensor-analysis.sensor-info.component.html,<br /> sensor-analysis.sensor-info.component.css | Displays information on selected sensor
+Sensor List | sensor-list.component.ts,<br /> sensor-list.component.html,<br /> sensor-list.component.css | Displays controls for selecting a sensor (search, map)
+Soil Info | soil-info.component.ts,<br /> soil-info.component.html,<br /> soil-info.component.css | Displays a table of collected soil characteristics
+Terms | terms.component.ts,<br /> terms.component.html,<br /> terms.component.css | Displays a modal with the terms of using Citas V2
+Total Analysis | total-analysis.component.ts,<br /> total-analysis.component.html,<br /> total-analysis.component.css | Displays a full map with the visualizations in the Total Analysis page
+Update Events | update-events.component.ts,<br /> update-events.component.html,<br /> update-events.component.css | CMS page for updating Events List
+Update Research | update-research.component.ts,<br /> update-research.component.html,<br /> update-research.component.css | CMS page for updating Research list
+Update Team | update-team.component.ts,<br /> update-team.component.html,<br /> update-team.component.css | CMS page for updateing team members list
+Update Training | update-training.component.ts,<br /> update-training.component.html,<br /> update-training.component.css | CMS page for updating trainings list
+User<br />Nav | user.nav.component.ts,<br /> user.nav.component.html,<br /> user.nav.component.css | Displays the nav bar (when logged in)
+View Farms | view-farms.component.ts,<br /> view-farms.component.html,<br /> view-farms.component.css | Displays all farms in a scrollable page
+View Profile | view-profile.component.ts,<br /> view-profile.component.html,<br /> view-profile.component.css | Displays User info
+Why Component | why.component.ts,<br /> why.component.html,<br /> why.component.css | Displays content on registration's Why Are We Asking link
+[//]: App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 
 ## Frequently Asked Questions
 
