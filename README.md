@@ -28,11 +28,11 @@ About Trainings Component | about-trainings.component.ts<br /> about-trainings.c
 About Component | about.component.ts<br /> about.component.html<br /> about.component.css | Content for the About page (when not logged in) 
 Blank Component | blank.component.ts<br /> blank.component.html<br /> blank.component.css | Contains the Component that displays Lorem Ipsum 
 Contact Us Component | contact-us.component.ts<br /> contact-us.component.html<br /> contact-us.component.css | Component for the Contact Us page
-App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
-App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
-App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
-App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
-App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
+Dashboard Component | dashboard.component.ts<br /> dashboard.component.html<br /> dashboard.component.css | The parent component for the user dashboard
+Dashboard Farm Info Component | dashboard.farm-info.component.ts<br /> dashboard.farm-info.component.html<br /> dashboard.farm-info.component.css | Displays information of farm in the dashboard
+Dashboard Farms Component | dashboard.farms.component.ts<br /> dashboard.farms.component.html<br /> dashboard.farms.component.css | Lists all the first three farms and a link to view all farms
+Dashboard Plant Health Component | dashboard.plant-health.component.ts<br /> dashboard.plant-health.component.html<br /> dashboard.plant-health.component.css | Displays a historical bar chart of plant health 
+Dashboard Plants Component | dashboard.plants.component.ts<br /> dashboard.plants.component.html<br /> dashboard.plants.component.css | Display a summary of plants' health (health, infected, unknown, and total)
 App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
 App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
 App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
