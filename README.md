@@ -19,7 +19,7 @@ Citas API Service | Service for communication with the backend API | citas.api.s
 
 Component Name | Definition | Files
 --- | --- | ---
-App Component | The parent component of the app. | app.component.ts, app.component.html, app.component.css 
+App Component | The parent component of the app. | app.component.ts<br /> app.component.html<br /> app.component.css 
 
 
 
