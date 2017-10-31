@@ -22,7 +22,7 @@ Citas API Service | citas.api.service.ts | Service for communication with the ba
 Component<br />Name | Files | Definition
 --- | --- | ---
 App Component | app.component.ts,<br /> app.component.html,<br /> app.component.css | The parent component of the app. 
-About Citas | about.citas.component.ts,<br /> about.citas.component.html,<br /> about.citas.component.css| Displays content for the About page (when not logged in) 
+About Citas | about.citas.component.ts,<br /> about.citas.component.html,<br /> about.citas.component.css| Displays content for the About page
 About Events | about-events.component.ts,<br /> about-events.component.html,<br /> about-events.component.css | Displays content for the Events page 
 About Research | about-research.component.ts,<br /> about-research.component.html,<br /> about-research.component.css | Displays content for the Research page 
 About Team | about-team.component.ts,<br /> about-team.component.html,<br /> about-team.component.css | Displays content for the Team page 
