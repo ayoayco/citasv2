@@ -35,11 +35,11 @@ Dashboard <br /> Plant Health | dashboard.plant-health.component.ts,<br /> dashb
 Dashboard <br /> Plants | dashboard.plants.component.ts,<br /> dashboard.plants.component.html,<br /> dashboard.plants.component.css | Display a summary of plants' health (health, infected, unknown, and total)
 Dashboard <br /> Sensors | dashboard.sensors.component.ts,<br /> dashboard.sensors.component.html,<br /> dashboard.sensors.component.css | Displays a summary of data from the sensors
 Dashboard <br /> Sidebar | dashboard.sidebar.component.ts,<br /> dashboard.sidebar.component.html,<br /> dashboard.sidebar.component.css | Handles navigation in the sidebar (when logged in)
-Datasets Plant Images | datasets.plant-images.component.ts,<br /> datasets.plant-images.component.html,<br /> datasets.plant-images.component.css | Displays all available images for the plants
-App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
-App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
-App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
-App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
+Datasets<br />Plant Images | datasets.plant-images.component.ts,<br /> datasets.plant-images.component.html,<br /> datasets.plant-images.component.css | Parent component for the Collected Plant Images page
+Datasets<br />Plant Images Gallery | datasets.plant-images.gallery.component.ts,<br /> datasets.plant-images.gallery.component.html,<br /> datasets.plant-images.gallery.component.css | Displays all available images for the plants
+Datasets<br />Sensor Data | datasets.sensor-data.component.ts,<br /> datasets.sensor-data.component.html,<br /> datasets.sensor-data.component.css | Parent component for the Collected Sensor Data page
+Datasets<br />Soil Data | datasets.soil-data.component.ts,<br /> datasets.soil-data.component.html,<br /> datasets.soil-data.component.css | Displays soil characteristics for the farm
+Downloads | downloads.component.ts,<br /> downloads.component.html,<br /> downloads.component.css | Parent component for the downloads page
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
