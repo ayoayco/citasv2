@@ -34,7 +34,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Components, Services, and Other Modules
+## Services, Models, and Components
 
 This section lists the different parts of the app. Source files are in `src/app`
 
@@ -44,6 +44,14 @@ Service<br />Name| Files | Definition
 --- | --- | ---
 App Session Service | app.session.services.ts | Service for session handling and storing data
 Citas API Service | citas.api.service.ts | Service for communication with the backend API
+
+
+### Models
+
+Model<br />Name | Files | Definition
+Farm | models/farm.ts | center: number[];<br />farm_description: string;<br />farm_id: number;<br />farm_location: string;<br />farm_name: string;<br />farm_owner: string;<br />farm_photo: string;<br />farm_size: string;<br />foc_present: boolean;<br />foc_prevention: boolean;<br />geocode: string;<br />geometry: any[];<br />health_summary: any;<br />sensor_status: any;<br />soil_management: boolean;<br />
+
+
 
 ### Components
 
