@@ -40,6 +40,8 @@ This section lists the different parts of the app. Source files are in `src/app/
 
 ### Services
 
+Instead of copying and pasting the same code over and over, you'll create a single reusable data service and inject it into the components that need it. Using a separate service keeps components lean and focused on supporting the view, and makes it easy to unit-test components with a mock service.
+
 Service<br />Name| Files | Definition
 --- | --- | ---
 App Session Service | app.session.services.ts | Service for session handling and storing data
@@ -47,6 +49,8 @@ Citas API Service | citas.api.service.ts | Service for communication with the ba
 
 
 ### Models
+
+Domain models are important for defining and enforcing business logic in applications and are especially relevant as apps become larger and more people work on them.
 
 Model Name | Files | Definition
 --- | --- | ---
@@ -60,6 +64,9 @@ User | models/user.ts | Object model describing user properties
 
 
 ### Custom Pipes
+
+A pipe takes in data as input and transforms it to a desired output.
+
 Pipe Name | Files | Definition
 --- | --- | ---
 Analysis Pipe | pipes/analysis.pipe.ts | Format analysis text into verbose
@@ -67,6 +74,8 @@ Ellipsis Pipe | pipes/ellipsis.pipe.ts | Cuts a text short and inserts ellipsis 
 
 
 ### Components
+
+Components are the most basic building block of an UI in an Angular application. An Angular application is a tree of Angular components. Angular components are a subset of directives. Unlike directives, components always have a template and only one component can be instantiated per an element in a template.
 
 Component<br />Name | Files | Definition
 --- | --- | ---
