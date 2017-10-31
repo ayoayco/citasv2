@@ -8,7 +8,7 @@ To setup your development environment, do the following:
 2. From the [Official Repository](https://gitlab.discs.ateneo.edu/Ayo/citasv2), clone the project to your computer.
 3. Go to the cloned directory: `cd citasv2`
 4. Install dependencies: `npm i`
-5. Angular CLI also needs to be installed globally: `npm i -g @angular/cli`
+5. Install Angular CLI globally: `npm i -g @angular/cli`
 6. Run `ng serve` for a dev server.
 7. Open your browser to `http://localhost:4200/` -- The app will automatically reload if you change any of the source files. Chrome is recommended.
 
