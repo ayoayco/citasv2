@@ -162,11 +162,9 @@ export class DatasetsSensorDataComponent {
                 this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                 .subscribe(
                     response => {
-                        data = res;
+                        data = response;
                         data = JSON.parse(data._body);
                         this.sensors = data.data;
-                        // console.log('sensor count: '+this.sensors.length);
-                        // console.log(this.sensors);
                     }
                 );
             }
