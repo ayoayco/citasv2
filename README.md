@@ -32,7 +32,7 @@ Dashboard | dashboard.component.ts,<br /> dashboard.component.html,<br /> dashbo
 Dashboard <br /> Farm Info | dashboard.farm-info.component.ts,<br /> dashboard.farm-info.component.html,<br /> dashboard.farm-info.component.css | Displays information of farm in the dashboard
 Dashboard <br /> Farms | dashboard.farms.component.ts,<br /> dashboard.farms.component.html,<br /> dashboard.farms.component.css | Lists all the first three farms and a link to view all farms
 Dashboard <br /> Plant Health | dashboard.plant-health.component.ts,<br /> dashboard.plant-health.component.html,<br /> dashboard.plant-health.component.css | Displays a historical bar chart of plant health 
-Dashboard <br /> Plants | dashboard.plants.component.ts,<br /> dashboard.plants.component.html,<br /> dashboard.plants.component.css | Display a summary of plants' health (health, infected, unknown, and total)
+Dashboard <br /> Plants | dashboard.plants.component.ts,<br /> dashboard.plants.component.html,<br /> dashboard.plants.component.css | Display a summary of plants' health
 Dashboard <br /> Sensors | dashboard.sensors.component.ts,<br /> dashboard.sensors.component.html,<br /> dashboard.sensors.component.css | Displays a summary of data from the sensors
 Dashboard <br /> Sidebar | dashboard.sidebar.component.ts,<br /> dashboard.sidebar.component.html,<br /> dashboard.sidebar.component.css | Handles navigation in the sidebar (when logged in)
 Datasets<br />Plant Images | datasets.plant-images.component.ts,<br /> datasets.plant-images.component.html,<br /> datasets.plant-images.component.css | Parent component for the Collected Plant Images page
@@ -40,6 +40,11 @@ Datasets<br />Plant Images Gallery | datasets.plant-images.gallery.component.ts,
 Datasets<br />Sensor Data | datasets.sensor-data.component.ts,<br /> datasets.sensor-data.component.html,<br /> datasets.sensor-data.component.css | Parent component for the Collected Sensor Data page
 Datasets<br />Soil Data | datasets.soil-data.component.ts,<br /> datasets.soil-data.component.html,<br /> datasets.soil-data.component.css | Displays soil characteristics for the farm
 Downloads | downloads.component.ts,<br /> downloads.component.html,<br /> downloads.component.css | Parent component for the downloads page
+Downloads<br />Plant Data | downloads.plant-data.component.ts,<br /> downloads.plant-data.component.html,<br /> downloads.plant-data.component.css | Offers a set of filters for downloading plant images
+Downloads<br />Sensor Data | app.component.ts,<br /> app.component.html,<br /> app.component.css | Offers a set of filters for downloading sensor data CSV
+App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
+App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
+App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
