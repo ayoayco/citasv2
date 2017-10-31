@@ -86,10 +86,10 @@ App | app.component.ts,<br /> app.component.html,<br /> app.component.css |
 
 ## Frequently Asked Questions
 
-_Q:_ How do I update the API Base URL?<br />
+**_Q:_ How do I update the API Base URL?<br />**
 _A:_ All the communication with the backend API are handled by the Angular Service: citas.api.service.ts. The API base URL is stored in a variable in this file.
 
-_Q:_ What are the third-party libraries used?<br />
+**_Q:_ What are the third-party libraries used?<br />**
 _A:_ A list of third-party libraries can be found (and should be updated everytime a new library is needed) in the meta file: .angular-cli.json. This file is used to gather all scripts used when the app is built.
 
 ## Running unit tests
