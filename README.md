@@ -127,13 +127,9 @@ _A:_ A list of third-party libraries can be found (and should be updated everyti
 
 ## Running unit tests
 
-The tests in this app will fail because they are not updated and contain out-of-the-box tests from Angular CLI.
+The tests in this app and contain out-of-the-box tests from Angular CLI and needs to be updated.
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-The tests in this app will fail because they are not updated and contain out-of-the-box tests from Angular CLI.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 Before running the tests make sure you are serving the app via `ng serve`.
