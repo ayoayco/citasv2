@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Components, Services, and Other Modules
 
-This section lists the different parts of the app.
+This section lists the different parts of the app. Source files are in `src/app`
 
 ### Services
 
@@ -27,7 +27,7 @@ About Team Component | about-team.component.ts<br /> about-team.component.html<b
 About Trainings Component | about-trainings.component.ts<br /> about-trainings.component.html<br /> about-trainings.component.css | Component for the Trainings page 
 About Component | about.component.ts<br /> about.component.html<br /> about.component.css | Content for the About page (when not logged in) 
 Blank Component | blank.component.ts<br /> blank.component.html<br /> blank.component.css | Contains the Component that displays Lorem Ipsum 
-Contact Us Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
+Contact Us Component | contact-us.component.ts<br /> contact-us.component.html<br /> contact-us.component.css | Component for the Contact Us page
 App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
 App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
 App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
