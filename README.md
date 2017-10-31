@@ -4,6 +4,8 @@ Clone the project to your computer. Install dependencies with `npm install`.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
+Required knowledge: TypeScript, Angular, Angular CLI, Node, Leaflet, jQuery, HTTP, Bootstrap
+
 ## Components, Services, and Other Modules
 
 This section lists the different parts of the app. Source files are in `src/app`
@@ -20,14 +22,14 @@ Citas API Service | citas.api.service.ts | Service for communication with the ba
 Component<br />Name | Files | Definition
 --- | --- | ---
 App Component | app.component.ts,<br /> app.component.html,<br /> app.component.css | The parent component of the app. 
-About Citas | about.citas.component.ts,<br /> about.citas.component.html,<br /> about.citas.component.css| Content for the About page (when not logged in) 
-About Events | about-events.component.ts,<br /> about-events.component.html,<br /> about-events.component.css | Content for the Events page 
-About Research | about-research.component.ts,<br /> about-research.component.html,<br /> about-research.component.css | Component for the Research page 
-About Team | about-team.component.ts,<br /> about-team.component.html,<br /> about-team.component.css | Component for the Team page 
-About Trainings | about-trainings.component.ts,<br /> about-trainings.component.html,<br /> about-trainings.component.css | Component for the Trainings page 
-About | about.component.ts,<br /> about.component.html,<br /> about.component.css | Content for the About page (when not logged in) 
+About Citas | about.citas.component.ts,<br /> about.citas.component.html,<br /> about.citas.component.css| Displays content for the About page (when not logged in) 
+About Events | about-events.component.ts,<br /> about-events.component.html,<br /> about-events.component.css | Displays content for the Events page 
+About Research | about-research.component.ts,<br /> about-research.component.html,<br /> about-research.component.css | Displays content for the Research page 
+About Team | about-team.component.ts,<br /> about-team.component.html,<br /> about-team.component.css | Displays content for the Team page 
+About Trainings | about-trainings.component.ts,<br /> about-trainings.component.html,<br /> about-trainings.component.css | Displays content for the Trainings page 
+About | about.component.ts,<br /> about.component.html,<br /> about.component.css | Displays content for the About page (when not logged in) 
 Blank | blank.component.ts,<br /> blank.component.html,<br /> blank.component.css | Contains the Component that displays Lorem Ipsum 
-Contact Us | contact-us.component.ts,<br /> contact-us.component.html,<br /> contact-us.component.css | Component for the Contact Us page
+Contact Us | contact-us.component.ts,<br /> contact-us.component.html,<br /> contact-us.component.css | Displays a web form for submitting messages to the admin
 Dashboard | dashboard.component.ts,<br /> dashboard.component.html,<br /> dashboard.component.css | The parent component for the user dashboard
 Dashboard <br /> Farm Info | dashboard.farm-info.component.ts,<br /> dashboard.farm-info.component.html,<br /> dashboard.farm-info.component.css | Displays information of farm in the dashboard
 Dashboard <br /> Farms | dashboard.farms.component.ts,<br /> dashboard.farms.component.html,<br /> dashboard.farms.component.css | Lists all the first three farms and a link to view all farms
@@ -42,7 +44,13 @@ Datasets<br />Soil Data | datasets.soil-data.component.ts,<br /> datasets.soil-d
 Downloads | downloads.component.ts,<br /> downloads.component.html,<br /> downloads.component.css | Parent component for the downloads page
 Downloads<br />Plant Data | downloads.plant-data.component.ts,<br /> downloads.plant-data.component.html,<br /> downloads.plant-data.component.css | Offers a set of filters for downloading plant images
 Downloads<br />Sensor Data | app.component.ts,<br /> app.component.html,<br /> app.component.css | Offers a set of filters for downloading sensor data CSV
-App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
+Edit Farm | edit-farm.component.ts,<br /> edit-farm.component.html,<br /> edit-farm.component.css | For farm owners, handles editing farm feature
+Edit Profile | edit-farm.component.ts,<br /> edit-farm.component.html,<br /> edit-farm.component.css | For users, handles editing user information
+Footer | footer.component.ts,<br /> footer.component.html,<br /> footer.component.css | Displays info an navigation in footer (when not logged in)
+Header | header.component.ts,<br /> header.component.html,<br /> header.component.css | Displays header info in the home page (when not logged in)
+Login | login.component.ts,<br /> login.component.html,<br /> login.component.css | Displays a modal with a form for submiting username and password for authentication
+Map Component | map.component.ts,<br /> map.component.html,<br /> map.component.css | All maps in the web app are handled by this component
+ | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
