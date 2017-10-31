@@ -36,7 +36,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Services, Models, Custom Pipes, and Components
 
-This section lists the different parts of the app. Source files are in `src/app`
+This section lists the different parts of the app. Source files are in `src/app/`
 
 ### Services
 
