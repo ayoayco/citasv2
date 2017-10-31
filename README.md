@@ -27,7 +27,7 @@ About Events | about-events.component.ts,<br /> about-events.component.html,<br 
 About Research | about-research.component.ts,<br /> about-research.component.html,<br /> about-research.component.css | Displays content for the Research page 
 About Team | about-team.component.ts,<br /> about-team.component.html,<br /> about-team.component.css | Displays content for the Team page 
 About Trainings | about-trainings.component.ts,<br /> about-trainings.component.html,<br /> about-trainings.component.css | Displays content for the Trainings page 
-About | about.component.ts,<br /> about.component.html,<br /> about.component.css | Displays content for the About page (when not logged in) 
+About | about.component.ts,<br /> about.component.html,<br /> about.component.css | Displays content for the About CITAS page (when logged in)
 Blank | blank.component.ts,<br /> blank.component.html,<br /> blank.component.css | Contains the Component that displays Lorem Ipsum 
 Contact Us | contact-us.component.ts,<br /> contact-us.component.html,<br /> contact-us.component.css | Displays a web form for submitting messages to the admin
 Dashboard | dashboard.component.ts,<br /> dashboard.component.html,<br /> dashboard.component.css | The parent component for the user dashboard
