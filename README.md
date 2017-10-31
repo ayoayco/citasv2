@@ -6,11 +6,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Components, Services, and Other Modules
 
-This section lists all the parts that build up tha app.
+Service Name| Definition | Files
+--- | --- | ---
+App Session Service | Service for session handling and storing data in cookies and the local storage | app.session.service.ts
+Citas API Service | Service for communication with the backend API. Has a method for each API endpoint and stores the API Base URL in a single variable for easy updates
 
-### Components
-
-Component | Definition | Files
+Component Name | Definition | Files
 --- | --- | ---
 App Component | The parent component of the app. | app.component.ts, app.component.html, app.component.css 
 
