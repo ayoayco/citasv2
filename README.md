@@ -7,9 +7,10 @@ To setup your development environment, do the following:
 1. Install [NodeJS](https://nodejs.org/en/).
 2. From the [Official Repository](https://gitlab.discs.ateneo.edu/Ayo/citasv2), clone the project to your computer.
 3. Go to the cloned directory: `cd citasv2`
-4. Install dependencies: `npm i`.
+4. Install dependencies: `npm i`
 5. Angular CLI also needs to be installed globally: `npm i -g @angular/cli`
-6. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+6. Run `ng serve` for a dev server.
+7. Open your browser to `http://localhost:4200/` -- The app will automatically reload if you change any of the source files. Chrome is recommended.
 
 
 **Required knowledge:** TypeScript, Angular, Angular CLI, Node, Leaflet, jQuery, HTTP, Bootstrap
@@ -59,14 +60,21 @@ Datasets<br />Sensor Data | datasets.sensor-data.component.ts,<br /> datasets.se
 Datasets<br />Soil Data | datasets.soil-data.component.ts,<br /> datasets.soil-data.component.html,<br /> datasets.soil-data.component.css | Displays soil characteristics for the farm
 Downloads | downloads.component.ts,<br /> downloads.component.html,<br /> downloads.component.css | Parent component for the downloads page
 Downloads<br />Plant Data | downloads.plant-data.component.ts,<br /> downloads.plant-data.component.html,<br /> downloads.plant-data.component.css | Offers a set of filters for downloading plant images
-Downloads<br />Sensor Data | app.component.ts,<br /> app.component.html,<br /> app.component.css | Offers a set of filters for downloading sensor data CSV
+Downloads<br />Sensor Data | downloads.sensor-data.component.ts,<br /> downloads.sensor-data.component.html,<br /> downloads.sensor-data.component.css | Offers a set of filters for downloading sensor data CSV
 Edit Farm | edit-farm.component.ts,<br /> edit-farm.component.html,<br /> edit-farm.component.css | For farm owners, handles editing farm feature
 Edit Profile | edit-farm.component.ts,<br /> edit-farm.component.html,<br /> edit-farm.component.css | For users, handles editing user information
 Footer | footer.component.ts,<br /> footer.component.html,<br /> footer.component.css | Displays info an navigation in footer (when not logged in)
 Header | header.component.ts,<br /> header.component.html,<br /> header.component.css | Displays header info in the home page (when not logged in)
 Login | login.component.ts,<br /> login.component.html,<br /> login.component.css | Displays a modal with a form for submiting username and password for authentication
+Login<br />Forgot Password | login.forgot-password.component.ts,<br /> login.forgot-password.component.html,<br /> login.forgot-password.component.css | Displays a modal with a form for resetting user password
 Map Component | map.component.ts,<br /> map.component.html,<br /> map.component.css | All maps in the web app are handled by this component
- | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
+Nav Component | nav.component.ts,<br /> nav.component.html,<br /> nav.component.css | Displays the nav bar (when not logged in)
+Not Found | notfound.component.ts,<br /> notfound.component.html,<br /> notfound.component.css | Displays a 404 page when user tries to view someting not in app routes
+Plant Analysis | plant-analysis.component.ts,<br /> plant-analysis.component.html,<br /> plant-analysis.component.css | Parent component for the Plant Analysis page
+App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
+App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
+App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
+App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
