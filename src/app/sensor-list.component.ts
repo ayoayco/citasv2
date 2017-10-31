@@ -52,7 +52,6 @@ export class SensorListComponent implements AfterViewInit {
         this.sensors = [];
         this.selectedSensorName = undefined;
         let data: any;
-        // console.log('selected site: ' + siteID)
         this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), val.toString())
         .subscribe(
             res => {
@@ -134,15 +133,12 @@ export class SensorListComponent implements AfterViewInit {
 
     public selectSite(siteID: number){
         let data: any;
-        // console.log('selected site: ' + siteID)
         this.apiService.getSensorList(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString(), siteID.toString())
         .subscribe(
             res => {
                 data = res;
                 data = JSON.parse(data._body);
                 this.sensors = data.data;
-                // console.log('sensor count: '+this.sensors.length);
-                // console.log(this.sensors);
             }
         );
     }
