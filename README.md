@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Components, Services, and Other Modules
 
-In this section, I list all the parts that build up tha app.
+This section lists all the parts that build up tha app.
 
 ### Components
 
