@@ -7,7 +7,7 @@ To setup your development environment, do the following:
 1. Install [NodeJS](https://nodejs.org/en/).
 2. From the [Official Repository](https://gitlab.discs.ateneo.edu/Ayo/citasv2), clone the project to your computer.
 3. Go to the cloned directory: `cd citasv2`
-4. Install dependencies with: `npm install`.
+4. Install dependencies: `npm i`.
 5. Angular CLI also needs to be installed globally: `npm i -g @angular/cli`
 
 
