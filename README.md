@@ -12,11 +12,19 @@ To setup your development environment, do the following:
 6. Run `ng serve` for a dev server.
 7. Open your browser to `http://localhost:4200/` -- The app will automatically reload if you change any of the source files.
 
-**Recommendations:**
+### Recommendations:
 1. [VS Code](https://code.visualstudio.com/) for editing source code
 2. [Google Chrome](https://www.google.com/chrome/browser/desktop/index.html) for checking/debugging the web app
 
-**Required knowledge:** TypeScript, Angular, Angular CLI, Node, Leaflet, jQuery, HTTP, Bootstrap
+### Required Knowledge:
+1. TypeScript
+2. Angular
+3. Angular CLI
+4. Node
+5. Leaflet
+6. jQuery
+7. HTTP
+8. Bootstrap
 
 ## Code scaffolding
 
