@@ -102,6 +102,7 @@ View Farms | view-farms.component.ts,<br /> view-farms.component.html,<br /> vie
 View Profile | view-profile.component.ts,<br /> view-profile.component.html,<br /> view-profile.component.css | Displays User info
 Why Component | why.component.ts,<br /> why.component.html,<br /> why.component.css | Displays content on registration's Why Are We Asking link
 
+
 ## Frequently Asked Questions
 
 **_Q:_ How do I update the API Base URL?<br />**
