@@ -1,14 +1,16 @@
 # Citas V2 Frontend
 
-Install [NodeJS](https://nodejs.org/en/).
-
-From the [Official Repository](https://gitlab.discs.ateneo.edu/Ayo/citasv2), clone the project to your computer. Install dependencies with `npm install`.
-
-Angular CLI also needs to be installed globally: `npm i -g @angular/cli`
+## Setting Up for Development
+To setup your development environment, do the following:
+1. Install [NodeJS](https://nodejs.org/en/).
+2. From the [Official Repository](https://gitlab.discs.ateneo.edu/Ayo/citasv2), clone the project to your computer.
+3. Go to the cloned directory: `cd citasv2`
+4. Install dependencies with: `npm install`.
+5. Angular CLI also needs to be installed globally: `npm i -g @angular/cli`
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
-Required knowledge: TypeScript, Angular, Angular CLI, Node, Leaflet, jQuery, HTTP, Bootstrap
+**Required knowledge:** TypeScript, Angular, Angular CLI, Node, Leaflet, jQuery, HTTP, Bootstrap
 
 ## Development server
 
