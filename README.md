@@ -66,14 +66,17 @@ Edit Profile | edit-farm.component.ts,<br /> edit-farm.component.html,<br /> edi
 Footer | footer.component.ts,<br /> footer.component.html,<br /> footer.component.css | Displays info an navigation in footer (when not logged in)
 Header | header.component.ts,<br /> header.component.html,<br /> header.component.css | Displays header info in the home page (when not logged in)
 Login | login.component.ts,<br /> login.component.html,<br /> login.component.css | Displays a modal with a form for submiting username and password for authentication
-Login<br />Forgot Password | login.forgot-password.component.ts,<br /> login.forgot-password.component.html,<br /> login.forgot-password.component.css | Displays a modal with a form for resetting user password
+Login<br />Forgot Password | login.forgot-password.component.ts,<br /> login.forgot-password.component.html,<br /> login.forgot-password.component.css | Displays a modal with a form for submitting request to reset user password
 Map Component | map.component.ts,<br /> map.component.html,<br /> map.component.css | All maps in the web app are handled by this component
 Nav Component | nav.component.ts,<br /> nav.component.html,<br /> nav.component.css | Displays the nav bar (when not logged in)
 Not Found | notfound.component.ts,<br /> notfound.component.html,<br /> notfound.component.css | Displays a 404 page when user tries to view someting not in app routes
 Plant Analysis | plant-analysis.component.ts,<br /> plant-analysis.component.html,<br /> plant-analysis.component.css | Parent component for the Plant Analysis page
-App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
-App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
-App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
+Plant Analysis<br />Plant Info | plant-analysis.plant-info.component.ts,<br /> plant-analysis.plant-info.component.html,<br /> plant-analysis.plant-info.component.css | Displays information on selected plant
+Plant List | plant-list.component.ts,<br /> plant-list.component.html,<br /> plant-list.component.css | Displays controls for selecting a plant (search, map)
+Register Farm | register-farm.component.ts,<br /> register-farm.component.html,<br /> register-farm.component.css | For farm owners, offers a wizard for adding a farm
+Registration | registration.component.ts,<br /> registration.component.html,<br /> registration.component.css | Displays a form for user registration
+Reset Password | reset-password.component.ts,<br /> reset-password.component.html,<br /> reset-password.component.css | Displays a modal with a form for resetting user password
+Sensor Analysis | sensor-analysis.component.ts,<br /> sensor-analysis.component.html,<br /> sensor-analysis.component.css | Parent component for the Sensor Analysis page
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
@@ -96,6 +99,8 @@ The tests in this app will fail because they are not updated and contain out-of-
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Running end-to-end tests
+
+The tests in this app will fail because they are not updated and contain out-of-the-box tests from Angular CLI.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 Before running the tests make sure you are serving the app via `ng serve`.
