@@ -7,6 +7,18 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Required knowledge: TypeScript, Angular, Angular CLI, Node, Leaflet, jQuery, HTTP, Bootstrap
 
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
 ## Components, Services, and Other Modules
 
 This section lists the different parts of the app. Source files are in `src/app`
@@ -65,18 +77,6 @@ _A:_ All the communication with the backend API are handled by the Angular Servi
 
 _Q:_ What are the third-party libraries used?<br />
 _A:_ A list of third-party libraries can be found (and should be updated everytime a new library is needed) in the meta file: .angular-cli.json. This file is used to gather all scripts used when the app is built.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
 ## Running unit tests
 
