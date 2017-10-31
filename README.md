@@ -40,6 +40,8 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
+The tests in this app will fail because they are not updated and contain out-of-the-box tests from Angular CLI.
+
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Running end-to-end tests
