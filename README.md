@@ -58,10 +58,10 @@ Sensor | models/sensor.ts | Object model describing sensor properties
 Site | models/site.ts | Object model describing site properties
 User | models/user.ts | Object model describing user properties
 
+
 ### Custom Pipes
 Pipe Name | Files | Definition
 --- | --- | ---
- | | 
 Analysis Pipe | pipes/analysis.pipe.ts | Format analysis text into verbose
 Ellipsis Pipe | pipes/ellipsis.pipe.ts | Cuts a text short and inserts ellipsis to fit a field/cell
 
