@@ -1,6 +1,7 @@
 # Citas V2 Frontend
 
-Clone the project to your computer. Install dependencies with `npm install`.
+From the [Official Repository](https://gitlab.discs.ateneo.edu/Ayo/citasv2), clone the project to your computer. Install dependencies with `npm install`.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
