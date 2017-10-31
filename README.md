@@ -131,7 +131,7 @@ _A:_ All the communication with the backend API are handled by the Angular Servi
 **_Q:_ What are the third-party libraries used?<br />**
 _A:_ A list of third-party libraries can be found (and should be updated everytime a new library is needed) in the meta file: .angular-cli.json. This file is used to gather all scripts used when the app is built.
 
-## Running unit tests
+## Running tests
 
 The tests in this app and contain out-of-the-box tests from Angular CLI and needs to be updated.
 
