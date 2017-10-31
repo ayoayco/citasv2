@@ -10,8 +10,9 @@ In this section, I list all the parts that build up tha app.
 
 ### Components
 
-| Component | Files | Definition |
-| App Component | app.component.ts, app.component.html, app.component.css | The parent component of the app. |
+Component | Files | Definition
+--- | --- | ---
+App Component | app.component.ts, app.component.html, app.component.css | The parent component of the app.
 
 
 ## Frequently Asked Questions
