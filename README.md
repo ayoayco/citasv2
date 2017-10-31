@@ -101,7 +101,6 @@ User<br />Nav | user.nav.component.ts,<br /> user.nav.component.html,<br /> user
 View Farms | view-farms.component.ts,<br /> view-farms.component.html,<br /> view-farms.component.css | Displays all farms in a scrollable page
 View Profile | view-profile.component.ts,<br /> view-profile.component.html,<br /> view-profile.component.css | Displays User info
 Why Component | why.component.ts,<br /> why.component.html,<br /> why.component.css | Displays content on registration's Why Are We Asking link
-[//]: App | app.component.ts,<br /> app.component.html,<br /> app.component.css | 
 
 ## Frequently Asked Questions
 
