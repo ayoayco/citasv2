@@ -1,7 +1,26 @@
-After cloning the project with `git clone ...`, install dependencies with `npm install`. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.1.
+# Citas V2 Frontend
 
-## Updating the API Base URL
-All the communication with the backend API are handled by the Angular Service: citas.api.service.ts. The API base URL is stored in a variable in this file.
+Clone the project to your computer. Install dependencies with `npm install`.
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
+
+## Components, Services, and Other Modules
+
+In this section, I list all the parts that build up tha app.
+
+### Components
+
+| Component | Files | Definition |
+| App Component | app.component.ts, app.component.html, app.component.css | The parent component of the app. |
+
+
+## Frequently Asked Questions
+
+*Q:* How do I update the API Base URL?
+*A:* All the communication with the backend API are handled by the Angular Service: citas.api.service.ts. The API base URL is stored in a variable in this file.
+
+*Q:* What are the third-party libraries used?
+*A:* A list of third-party libraries can be found (and should be updated everytime a new library is needed) in the meta file: .angular-cli.json. This file is used to gather all scripts used when the app is built.
 
 ## Development server
 
