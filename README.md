@@ -10,14 +10,14 @@ This section lists the different parts of the app. Source files are in `src/app`
 
 ### Services
 
-Service Name| Files | Definition
+Service<br />Name| Files | Definition
 --- | --- | ---
 App Session Service | app.session.services.ts | Service for session handling and storing data
 Citas API Service | citas.api.service.ts | Service for communication with the backend API
 
 ### Components
 
-Component Name | Files | Definition
+Component<br />Name | Files | Definition
 --- | --- | ---
 App Component | app.component.ts,<br /> app.component.html,<br /> app.component.css | The parent component of the app. 
 About Citas | about.citas.component.ts,<br /> about.citas.component.html,<br /> about.citas.component.css| Content for the About page (when not logged in) 
