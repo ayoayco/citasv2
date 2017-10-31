@@ -10,18 +10,32 @@ This section lists the different parts of the app.
 
 ### Services
 
-Service Name| Definition | Files
+Service Name| Files | Definition
 --- | --- | ---
-App Session Service | Service for session handling and storing data | app.session.service.ts
-Citas API Service | Service for communication with the backend API | citas.api.service.ts
+App Session Service | app.session.services.ts | Service for session handling and storing data
+Citas API Service | citas.api.service.ts | Service for communication with the backend API
 
 ### Components
 
-Component Name | Definition | Files
+Component Name | Files | Definition
 --- | --- | ---
-App Component | The parent component of the app. | app.component.ts<br /> app.component.html<br /> app.component.css 
-
-
+App Component | app.component.ts<br /> app.component.html<br /> app.component.css | The parent component of the app. 
+About Citas Component | about.citas.component.ts<br /> about.citas.component.html<br /> about.citas.component.css| Content for the About page (when not logged in) 
+About Events Component | about-events.component.ts<br /> about-events.component.html<br /> about-events.component.css | Content for the Events page 
+About Research Component | about-research.component.ts<br /> about-research.component.html<br /> about-research.component.css | Component for the Research page 
+About Team Component | about-team.component.ts<br /> about-team.component.html<br /> about-team.component.css | Component for the Team page 
+About Trainings Component | about-trainings.component.ts<br /> about-trainings.component.html<br /> about-trainings.component.css | Component for the Trainings page 
+About Component | about.component.ts<br /> about.component.html<br /> about.component.css | Content for the About page (when not logged in) 
+Blank Component | blank.component.ts<br /> blank.component.html<br /> blank.component.css | Contains the Component that displays Lorem Ipsum 
+Contact Us Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
+App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
+App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
+App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
+App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
+App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
+App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
+App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
+App Component | app.component.ts<br /> app.component.html<br /> app.component.css | 
 
 ## Frequently Asked Questions
 
