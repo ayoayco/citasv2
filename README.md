@@ -12,8 +12,8 @@ This section lists the different parts of the app.
 
 Service Name| Definition | Files
 --- | --- | ---
-App Session Service | Service for session handling and storing data in cookies and the local storage | app.session.service.ts
-Citas API Service | Service for communication with the backend API. Has a method for each API endpoint and stores the API Base URL in a single variable for easy updates | citas.api.service.ts
+App Session Service | Service for session handling and storing data | app.session.service.ts
+Citas API Service | Service for communication with the backend API | citas.api.service.ts
 
 ### Components
 
