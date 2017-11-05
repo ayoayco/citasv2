@@ -57,7 +57,7 @@ Model Name | Files | Definition
 Farm | models/farm.ts | Object model describing farm properties
 Plant Analysis | models/pant-analysis.ts | Object model describing plant analysis properties
 Plant | models/plant.ts | Object model describing plant properties
-Sensor Readint | models/sensor-reading.ts | Object model describing sensor reading properties
+Sensor Reading | models/sensor-reading.ts | Object model describing sensor reading properties
 Sensor | models/sensor.ts | Object model describing sensor properties
 Site | models/site.ts | Object model describing site properties
 User | models/user.ts | Object model describing user properties
