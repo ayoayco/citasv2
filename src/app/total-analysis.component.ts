@@ -55,11 +55,15 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
     showSamplings: boolean;
     showStation: boolean;
 
+    showWeatherForecast: boolean;
     showTemp: boolean;
     showPress: boolean;
     showHumid: boolean;
     clearOverlay: boolean;
     weatherStation: any;
+    weatherForecast: any;
+    forecasts: Array<any>;
+    selectedForecast: any;
 
     constructor(
         private sessionService: AppSessionService,
@@ -75,6 +79,7 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
         this.showSensors = true;
         this.showSites = true;
 
+        this.showWeatherForecast = false;
         this.showTemp = false;
         this.showPress = false;
         this.showHumid = false;
@@ -124,6 +129,27 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                         }
                     )
 
+                    this.apiService.getWeatherForecast(this.selectedFarm.farm_id)
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            this.weatherForecast = data;
+                            this.forecasts = this.weatherForecast.data.data;
+                            console.log(this.forecasts);
+                            if (!this.weatherForecast.Success) {
+                                $('#toggleFore').prop('disabled', true);
+                                $('.no-forecast').show();
+                                $('#toggleFore').hide();
+                            } else {
+                                $('#toggleFore').prop('disabled', false);
+                                $('.no-forecast').hide();
+                                $('#toggleFore').show();
+                            }
+                            this.selectedForecast = this.forecasts[0];
+                        }
+                    );
+
                     this.apiService.getWeatherStations(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                     .subscribe(
                         response => {
@@ -132,16 +158,16 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                             this.weatherStation = data;
                             if (!this.weatherStation.Success) {
                                 $('#toggleStations').prop('disabled', true);
-                                $('.fa-close').show();
+                                $('.no-stations').show();
                                 $('#toggleStations').hide();
                             } else {
                                 $('#toggleStations').prop('disabled', false);
-                                $('.fa-close').hide();
+                                $('.no-stations').hide();
                                 $('#toggleStations').show();
                             }
                             this.updateChart('rain_value');
                         }
-                    )
+                    );
 
                     let url = '';
                     this.apiService.getSamplingsGeoJSONURL(this.selectedFarm.farm_id)
@@ -250,6 +276,27 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                         }
                     );
 
+
+                    this.apiService.getWeatherForecast(this.selectedFarm.farm_id)
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            this.weatherForecast = data;
+                            console.log(this.weatherForecast);
+                            if (!this.weatherForecast.Success) {
+                                $('#toggleFore').prop('disabled', true);
+                                $('.no-forecast').show();
+                                $('#toggleFore').hide();
+                            } else {
+                                $('#toggleFore').prop('disabled', false);
+                                $('.no-forecast').hide();
+                                $('#toggleFore').show();
+                            }
+                            this.selectedForecast = this.forecasts[0];
+                        }
+                    );
+
                     this.apiService.getWeatherStations(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                     .subscribe(
                         response => {
@@ -320,6 +367,21 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
         }
     }
 
+    public updateForecast(i: number){
+        const date = this.forecasts[i].date;
+        console.log('update forecast: ' + this.forecasts[i].date);
+
+        const links = $('ul#tablist li a.selectedTab');
+
+        for (let i = 0; i < links.length; i++) {
+            $(links[i]).removeClass('selectedTab');
+        }
+
+
+        $('#' + date).addClass('selectedTab');
+        this.selectedForecast = this.forecasts[i];
+    }
+
     public updateChart(str: string) {
         const series: any[] = [];
         const values: number[] = [];
@@ -383,6 +445,8 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
         this.showSamplings = false;
         this.showSensors = true;
         this.showSites = true;
+
+        this.showWeatherForecast = false;
         this.showTemp = false;
         this.showPress = false;
         this.showHumid = false;
@@ -416,6 +480,27 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                             }
                         }
                     )
+
+                    this.apiService.getWeatherForecast(this.selectedFarm.farm_id)
+                    .subscribe(
+                        response => {
+                            data = response;
+                            data = JSON.parse(data._body);
+                            this.weatherForecast = data;
+                            console.log(this.weatherForecast);
+                            if (!this.weatherForecast.Success) {
+                                $('#toggleFore').prop('disabled', true);
+                                $('.no-forecast').show();
+                                $('#toggleFore').hide();
+                            } else {
+                                $('#toggleFore').prop('disabled', false);
+                                $('.no-forecast').hide();
+                                $('#toggleFore').show();
+                            }
+                            this.selectedForecast = this.forecasts[0];
+                        }
+                    );
+
 
                 this.apiService.getWeatherStations(this.sessionService.getLoggedInKey(), this.selectedFarm.farm_id.toString())
                 .subscribe(
@@ -552,14 +637,26 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
     public toggleOverlay(type: string) {
         switch (type) {
             case 'none':
+                this.showSamplings = false;
+                this.showWeatherForecast = false;
                 this.showTemp = false;
                 this.showPress = false;
                 this.showHumid = false;
                 this.showStation = false;
                 this.clearOverlay = true;
                 $('.legend').hide(); break;
+            case 'weatherForecast':
+                this.showWeatherForecast = true;
+                this.showSamplings = false;
+                this.showTemp = false;
+                this.showPress = false;
+                this.showHumid = false;
+                this.showStation = false;
+                this.clearOverlay = false;
+                $('.legend').hide(); break;
             case 'temp':
                 this.showSamplings = false;
+                this.showWeatherForecast = false;
                 this.showTemp = true;
                 this.showPress = false;
                 this.showHumid = false;
@@ -570,6 +667,8 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
             case 'press':
                 this.showSamplings = false;
                 this.showPress = true;
+                this.showWeatherForecast = false;
+                this.showWeatherForecast = false;
                 this.showTemp = false;
                 this.showHumid = false;
                 this.showStation = false;
@@ -579,6 +678,7 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
             case 'humid':
                 this.showSamplings = false;
                 this.showHumid = true;
+                this.showWeatherForecast = false;
                 this.showTemp = false;
                 this.showPress = false;
                 this.showStation = false;
@@ -588,6 +688,7 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
             case 'station':
                 this.showSamplings = false;
                 this.showHumid = false;
+                this.showWeatherForecast = false;
                 this.showTemp = false;
                 this.showPress = false;
                 this.showStation = true;
