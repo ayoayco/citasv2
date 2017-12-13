@@ -135,8 +135,6 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                             data = response;
                             data = JSON.parse(data._body);
                             this.weatherForecast = data;
-                            this.forecasts = this.weatherForecast.data.data;
-                            console.log(this.forecasts);
                             if (!this.weatherForecast.Success) {
                                 $('#toggleFore').prop('disabled', true);
                                 $('.no-forecast').show();
@@ -145,8 +143,9 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                                 $('#toggleFore').prop('disabled', false);
                                 $('.no-forecast').hide();
                                 $('#toggleFore').show();
+                                this.forecasts = this.weatherForecast.data.data;
+                                this.selectedForecast = this.forecasts[0];
                             }
-                            this.selectedForecast = this.forecasts[0];
                         }
                     );
 
@@ -283,7 +282,6 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                             data = response;
                             data = JSON.parse(data._body);
                             this.weatherForecast = data;
-                            console.log(this.weatherForecast);
                             if (!this.weatherForecast.Success) {
                                 $('#toggleFore').prop('disabled', true);
                                 $('.no-forecast').show();
@@ -292,8 +290,9 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                                 $('#toggleFore').prop('disabled', false);
                                 $('.no-forecast').hide();
                                 $('#toggleFore').show();
+                                this.forecasts = this.weatherForecast.data.data;
+                                this.selectedForecast = this.forecasts[0];
                             }
-                            this.selectedForecast = this.forecasts[0];
                         }
                     );
 
@@ -305,12 +304,12 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                             this.weatherStation = data;
                             if(!this.weatherStation.Success) {
                                 $('#toggleStations').prop('disabled', true);
-                                $('.fa-close').show();
+                                $('.no-stations').show();
                                 $('#toggleStations').hide();
                             } else {
                                 $('#toggleStations').prop('disabled', false);
                                 $('#toggleStations').show();
-                                $('.fa-close').hide();
+                                $('.no-stations').hide();
                             }
                             this.updateChart('rain_value');
                         }
@@ -487,7 +486,6 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                             data = response;
                             data = JSON.parse(data._body);
                             this.weatherForecast = data;
-                            console.log(this.weatherForecast);
                             if (!this.weatherForecast.Success) {
                                 $('#toggleFore').prop('disabled', true);
                                 $('.no-forecast').show();
@@ -496,8 +494,9 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                                 $('#toggleFore').prop('disabled', false);
                                 $('.no-forecast').hide();
                                 $('#toggleFore').show();
+                                this.forecasts = this.weatherForecast.data.data;
+                                this.selectedForecast = this.forecasts[0];
                             }
-                            this.selectedForecast = this.forecasts[0];
                         }
                     );
 
@@ -510,12 +509,12 @@ export class AppTotalAnalysisComponent implements AfterViewInit {
                         this.weatherStation = data;
                         if(!this.weatherStation.Success) {
                             $('#toggleStations').prop('disabled', true);
-                            $('.fa-close').show();
+                            $('.no-stations').show();
                             $('#toggleStations').hide();
                         } else {
                             $('#toggleStations').prop('disabled', false);
                             $('#toggleStations').show();
-                            $('.fa-close').hide();
+                            $('.no-stations').hide();
                         }
                         this.updateChart('rain_value');
                     }
