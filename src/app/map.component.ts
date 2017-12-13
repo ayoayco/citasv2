@@ -29,6 +29,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     @Input() clearOverlay: boolean;
     @Input() showHumid: boolean;
     @Input() showPress: boolean;
+    @Input() showWeatherForecast: boolean;
     @Input() showTemp: boolean;
 
     @Input() showSites: boolean;
@@ -515,6 +516,13 @@ export class MapComponent implements AfterViewInit, OnChanges {
         this.weatherLayer.addTo(this.mymap);
     }
 
+
+    private plotWeatherForecast() {
+        this.weatherLayer.clearLayers();
+        $('#weather-forecast-div').modal('show');
+        console.log('Show weather forecast');
+    }
+
     private plotTemp() {
         this.weatherLayer.clearLayers();
         const southWest = L.latLng(this.overlayBounds.south, this.overlayBounds.west),
@@ -599,6 +607,12 @@ export class MapComponent implements AfterViewInit, OnChanges {
         if (changes.showPress && changes.showPress.firstChange === false) {
             if (this.showPress) {
                 this.plotPress();
+            }
+        }
+
+        if (changes.showWeatherForecast && changes.showWeatherForecast.firstChange === false) {
+            if(this.showWeatherForecast) {
+                this.plotWeatherForecast();
             }
         }
 

@@ -2,7 +2,7 @@
     <sidebar></sidebar>
     <div id="page-content-wrapper">
         <user-nav [farms]="farms" (selectFarm)="selectFarm($event)" [selectedFarm]="selectedFarm"></user-nav>
-        <map [showStation]="showStation" [weatherStation]="weatherStation" [zoomTo]="zoomTo" [clearOverlay]="clearOverlay" [showHumid]="showHumid" [showPress]="showPress" [showTemp]="showTemp" (selectPlant)="selectPlant($event)" [showPlants]="showPlants" [showSamplings]="showSamplings"
+        <map [showStation]="showStation" [weatherStation]="weatherStation" [zoomTo]="zoomTo" [clearOverlay]="clearOverlay" [showHumid]="showHumid" [showPress]="showPress" [showWeatherForecast]="showWeatherForecast" [showTemp]="showTemp" (selectPlant)="selectPlant($event)" [showPlants]="showPlants" [showSamplings]="showSamplings"
             [showSensors]="showSensors" [showSites]="showSites" [fullMap]="true" [resize]="resize" [zoomControl]="true" [selectedFarm]="selectedFarm" [plants]="plants" [sensors]="sensors" [sites]="sites" (selectSensor)="selectSensor($event)" [samplings]="samplings">
         </map>
         <div id="draggableMenu" class="ui-widget-content">
@@ -21,9 +21,9 @@
                     <input type="radio" id="toggleTemp" name="toggleOverlay" value="temp" (click)="toggleOverlay('temp')"> <label for="toggleTemp">Temperature</label><br />
                     <input type="radio" id="togglePress" name="toggleOverlay" value="press" (click)="toggleOverlay('press')"> <label for="togglePress">Pressure</label><br />
                     <input type="radio" id="toggleHumid" name="toggleOverlay" value="humid" (click)="toggleOverlay('humid')"> <label for="toggleHumid">Humidity</label><br />
-                    <input type="radio" id="toggleStations" name="toggleOverlay" value="station" (click)="toggleOverlay('station')"><i class="fa fa-close" data-toggle="tooltip" title="No weather stations available!"></i><label for="toggleStations" id="station-label">&nbsp;Weather Stations</label><br
+                    <input type="radio" id="toggleStations" name="toggleOverlay" value="station" (click)="toggleOverlay('station')"><i class="fa fa-close no-stations" data-toggle="tooltip" title="No weather stations available!"></i><label for="toggleStations" id="station-label">&nbsp;Weather Stations</label><br
                     />
-                    <input type="radio" id="toggleFore" name="toggleOverlay" disabled="disabled"> <label for="toggleFore">Weather Forecast</label><br />
+                    <input type="radio" id="toggleFore" name="toggleOverlay" value="weatherForecast" (click)="toggleOverlay('weatherForecast')"><i class="fa fa-close no-forecast" data-toggle="tooltip" title="No weather forecast available!"></i> <label for="toggleFore">Weather Forecast</label><br />
                 </form>
             </div>
         </div>
@@ -31,7 +31,40 @@
             <p>No soil characteristics data for {{selectedFarm.farm_name}}.</p>
             <a *ngIf="vertical_profile_exists" class="btn btn-primary vertical_profile_link" target="_blank" href="{{vertical_profile_URL}}">View Vertical Profile</a>
         </div>
-        <div class="modal fade" id="weather-station-div" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" *ngIf="weatherStation">
+        <div class="modal fade" id="weather-forecast-div" role="dialog" aria-labelledby="Weather Forecast" aria-hidden="true" *ngIf="weatherForecast">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 *ngIf="weatherForecast.data">{{weatherForecast.data.verbose_name}} Weather Forecast</h4>
+                    </div>
+                    <div class="modal-body" id="weather-forcast-modal-body">
+                        <ul id="tablist">
+                            <li *ngFor="let forecast of forecasts; let i = index"><a *ngIf="i<7" (click)="updateForecast(i)" id="{{forecast.date}}" [ngClass]="{'selectedTab': i === 0}">{{forecast.date}}</a></li>
+                        </ul>
+                        <table *ngIf="selectedForecast">
+                            <tr>
+                                <th>Time</th>
+                                <th>Forecast</th>
+                                <th>Rain</th>
+                                <th>Temperature</th>
+                                <th>Heat Index</th>
+                            </tr>
+                            <tr *ngFor="let reading of selectedForecast.readings">
+                                <td>{{reading.time}}</td>
+                                <td><img class="forecast-icon" src="http://noah.up.edu.ph/static/img/forecast/{{reading.icon}}.png" alt="{{reading.icon}}" /></td>
+                                <td>{{reading.rainfall}} mm</td>
+                                <td>{{reading.temperature}} C</td>
+                                <td>{{reading.heat_index}} C</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="weather-station-div" tabindex="-1" role="dialog" aria-labelledby="Weather Station" aria-hidden="true" *ngIf="weatherStation">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

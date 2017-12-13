@@ -110,6 +110,9 @@ tr td tbody {
 tr td tr {
     border: 1px solid #ddd;
 }
+#weather-forecast-div .modal-dialog {
+    width: 650px;
+}
 
 #weather-station-div .modal-dialog {
     width: 650px;
@@ -121,6 +124,10 @@ tr td tr {
 
 a {
     cursor: pointer;
+}
+
+.forecast-icon {
+    width: 50px;
 }
 
 ul#tablist li a.selectedTab {

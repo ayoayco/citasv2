@@ -25,6 +25,27 @@ export class CitasApiService {
     data: any;
     constructor(private http: Http) {}
 
+    public getWeatherForecast(farm_id: number){
+        $('body').addClass('loading');
+        const url = this.APIURL + '/weather_forecast/' + farm_id;
+
+        return this.http.get(url)
+            .catch(this.onCatch)
+            .do(
+                res => {
+                    this.onSuccess(res);
+                },
+                error => {
+                    this.onError(this, error);
+                }
+            )
+            .finally(
+                () => {
+                    this.onEnd();
+                }
+            );
+    }
+
     public uploadImage(key: string,
         entry_id: number,
         upload_type: string,
